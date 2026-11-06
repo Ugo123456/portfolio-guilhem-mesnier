@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guilhem Mesnier · Portfolio</title>
+<link rel="stylesheet" href="data/v1/polices.css">
+<style>
+/* Mesures reprises de Disney+ (octobre 2026) : fond #040714, barre de 72 px, marges de 68 px sur grand écran,
+   carrousel 3 pour 1 avec les voisins qui dépassent, cartes 16/9 de 5 par rangée et 20 px d'écart, coins de 8 px. */
+:root{
+  --fond:#040714;--fond2:#0f1324;--carte:#1a1d29;--tx:#f9f9f9;--tx2:rgba(249,249,249,.72);--tx3:rgba(249,249,249,.5);
+  --ligne:rgba(249,249,249,.12);--or:#e9c877;--sarcelle:#22d3e6;
+  --g:clamp(16px,4.7vw,68px);--ecart:clamp(10px,1.4vw,20px);--rayon:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Figtree",system-ui,sans-serif;background:var(--fond);color:var(--tx);font-size:17px;line-height:1.6;overflow-x:clip;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(120% 80% at 50% -10%,#16213e 0%,transparent 55%),var(--fond)}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+h1,h2,h3{font-family:"Sora",system-ui,sans-serif;line-height:1.12;letter-spacing:-.01em}
+
+/* ---------- Barre du haut ---------- */
+#barre{position:fixed;top:0;left:0;right:0;z-index:50;height:72px;display:flex;align-items:center;gap:clamp(14px,3vw,40px);padding:0 var(--g);transition:background .35s}
+#barre.plein{background:var(--fond);box-shadow:0 1px 0 var(--ligne)}
+#barre::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(4,7,20,.85),transparent);transition:opacity .35s}
+#barre.plein::before{opacity:0}
+.logo{display:flex;align-items:center;gap:12px;flex:none}
+.logo img{width:44px;height:auto}
+.logo span{font-family:"Sora";font-weight:700;font-size:15px;letter-spacing:.02em;white-space:nowrap}
+#barre nav{display:flex;gap:clamp(6px,2.2vw,34px)}
+#barre nav a{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 2px;position:relative;white-space:nowrap}
+#barre nav a svg{width:20px;height:20px;flex:none}
+#barre nav a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:2px;background:var(--tx);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+#barre nav a:hover::after,#barre nav a.actif::after{transform:scaleX(1)}
+@media(max-width:980px){.logo span{display:none}}
+@media(max-width:760px){#barre nav a b{display:none}#barre nav{gap:22px;margin-left:auto}}
+
+/* ---------- Boutons ---------- */
+.btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border-radius:999px;font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.blanc{background:var(--tx);color:#0b0d16}
+.btn.blanc:hover{background:#fff}
+.btn.verre{background:rgba(249,249,249,.14);border:1px solid rgba(249,249,249,.35);backdrop-filter:blur(8px)}
+.btn.verre:hover{background:rgba(249,249,249,.24)}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.puce{display:inline-flex;align-items:center;font-size:12.5px;font-weight:700;letter-spacing:.04em;padding:5px 12px;border-radius:999px;background:rgba(249,249,249,.1);border:1px solid rgba(249,249,249,.16)}
+
+/* ---------- Carrousel « À la une » ---------- */
+.carrousel{position:relative;padding:92px var(--g) 0;overflow:hidden}
+.piste-c{display:flex;gap:20px;transition:transform .9s cubic-bezier(.22,.8,.2,1)}
+.sl{position:relative;flex:0 0 100%;height:clamp(420px,32vw,540px);border-radius:14px;overflow:hidden;isolation:isolate;background:linear-gradient(120deg,var(--k1),var(--k2));display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;box-shadow:0 26px 40px -24px rgba(0,0,0,.8);border:2px solid transparent;transition:border-color .3s,opacity .6s}
+.sl:not(.on){opacity:.55}
+.sl:hover{border-color:rgba(249,249,249,.6)}
+.sl .fond{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.sl .fond.flou{filter:blur(26px) saturate(1.2);transform:scale(1.2);opacity:.6}
+.sl .voile{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(4,7,20,.92) 0%,rgba(4,7,20,.7) 38%,rgba(4,7,20,.05) 75%)}
+.sl-txt{padding:0 0 0 clamp(24px,5vw,72px);max-width:620px}
+.sur{display:block;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--tx2)}
+.sl h2{font-size:clamp(30px,3.6vw,54px);margin:14px 0 12px;text-wrap:balance}
+.sl h2 img{height:clamp(48px,6vw,88px);width:auto}
+.sl p{color:var(--tx2);font-size:clamp(15px,1.2vw,18px);line-height:1.5;max-width:52ch;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.sl-vis{height:100%;display:grid;place-items:center;padding:30px clamp(20px,4vw,60px) 30px 0;min-width:0}
+.sl-vis>img{max-height:82%;max-width:100%;border-radius:10px;box-shadow:0 30px 60px -20px rgba(0,0,0,.75);object-fit:contain}
+.sl-vis .page{max-height:86%;transform:rotate(-3deg)}
+.points{display:flex;justify-content:center;gap:8px;margin-top:18px}
+.points button{width:8px;height:8px;border-radius:99px;background:rgba(249,249,249,.3);transition:width .35s,background .35s}
+.points button.on{width:26px;background:var(--tx)}
+.carrousel .fl{position:absolute;top:calc(92px + clamp(420px,32vw,540px)/2);transform:translateY(-50%);width:var(--g);height:120px;font-size:44px;line-height:1;opacity:0;transition:opacity .25s;z-index:3}
+.carrousel:hover .fl{opacity:1}
+.carrousel .fl.g{left:0}.carrousel .fl.d{right:0}
+@media(max-width:820px){
+  .sl{grid-template-columns:1fr;grid-template-rows:1fr auto;height:600px;align-items:end}
+  .sl .voile{background:linear-gradient(0deg,rgba(4,7,20,.95) 0%,rgba(4,7,20,.75) 45%,rgba(4,7,20,.1) 80%)}
+  .sl-vis{grid-row:1;padding:26px 22px 0}
+  .sl-txt{grid-row:2;padding:0 22px 26px}
+  .sl-vis>img{max-height:250px}
+}
+/* Bienvenue */
+.sl.bienvenue{--k1:#0d2b3e;--k2:#123a3f;background:radial-gradient(70% 90% at 80% 50%,rgba(34,211,230,.28),transparent 60%),radial-gradient(60% 80% at 100% 100%,rgba(233,200,119,.25),transparent 60%),linear-gradient(120deg,#060b1d,#0d2b3e)}
+.sl.bienvenue .sl-vis img{max-height:78%;filter:drop-shadow(0 30px 50px rgba(34,211,230,.35))}
+
+/* Vitrines particulières */
+.boxes{position:relative;width:min(100%,560px);aspect-ratio:16/9}
+.boxes img{position:absolute;width:56%;top:50%;left:50%;filter:drop-shadow(0 26px 30px rgba(0,0,0,.6));transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.boxes img:nth-child(1){transform:translate(-112%,-44%) rotate(-7deg) scale(.86)}
+.boxes img:nth-child(2){transform:translate(-50%,-56%);z-index:2}
+.boxes img:nth-child(3){transform:translate(12%,-44%) rotate(7deg) scale(.86)}
+.boxes:hover img:nth-child(1){transform:translate(-128%,-46%) rotate(-10deg) scale(.88)}
+.boxes:hover img:nth-child(3){transform:translate(28%,-46%) rotate(10deg) scale(.88)}
+.tel{height:min(86%,520px);aspect-ratio:9/16;border-radius:26px;overflow:hidden;border:6px solid #11131c;box-shadow:0 30px 60px -18px rgba(0,0,0,.8);background:#000}
+.tel video{width:100%;height:100%;object-fit:cover}
+
+/* ---------- Rangées ---------- */
+.rang{margin-top:clamp(30px,3.6vw,50px)}
+.rang-tete{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:0 var(--g);margin-bottom:12px}
+.rang-tete h2{font-size:clamp(18px,1.6vw,24px);font-weight:600;letter-spacing:0}
+.rang-tete h2 small{font-family:"Figtree";font-weight:400;font-size:14px;color:var(--tx3);margin-left:10px}
+.rang-tete a{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tx2);white-space:nowrap}
+.rang-tete a:hover{color:var(--tx)}
+.rail{position:relative}
+.piste-r{display:flex;gap:var(--ecart);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 var(--g);padding:10px var(--g) 22px;scrollbar-width:none}
+.piste-r::-webkit-scrollbar{display:none}
+.rail .fl{position:absolute;top:10px;bottom:22px;width:var(--g);z-index:4;font-size:40px;background:linear-gradient(90deg,var(--fond),rgba(4,7,20,0));opacity:0;transition:opacity .2s}
+.rail .fl.d{right:0;background:linear-gradient(270deg,var(--fond),rgba(4,7,20,0))}
+.rail .fl.g{left:0}
+.rail:hover .fl:not([hidden]){opacity:1}
+.rail .fl[hidden]{display:block;opacity:0!important;pointer-events:none}
+.carte{position:relative;flex:0 0 calc((100% - 4 * var(--ecart)) / 5);scroll-snap-align:start;border-radius:var(--rayon);overflow:hidden;background:linear-gradient(135deg,var(--k1,#1f2a44),var(--k2,#0f1324));aspect-ratio:16/9;border:3px solid rgba(249,249,249,.08);box-shadow:0 26px 30px -10px rgba(0,0,0,.69),0 16px 10px -10px rgba(0,0,0,.73);transition:transform .3s cubic-bezier(.25,.46,.45,.94),border-color .3s,box-shadow .3s;cursor:pointer}
+.carte:hover{transform:scale(1.05);border-color:rgba(249,249,249,.8);box-shadow:0 40px 58px -16px rgba(0,0,0,.8),0 30px 22px -10px rgba(0,0,0,.72);z-index:2}
+.carte>img,.carte .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.carte .emo{position:absolute;inset:0;display:grid;place-items:center;font-size:52px}
+.carte .ov{position:absolute;inset:auto 0 0 0;padding:34px 12px 10px;background:linear-gradient(transparent,rgba(4,7,20,.92));display:flex;flex-direction:column;gap:2px}
+.carte .ov small{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--tx2)}
+.carte .ov b{font-family:"Sora";font-size:14px;font-weight:600;line-height:1.25}
+.tuile{flex:0 0 calc((100% - 4 * var(--ecart)) / 5);scroll-snap-align:start;display:block;min-width:0}
+.tuile .carte{display:block;width:100%}
+.tuile:hover .carte{transform:scale(1.05);border-color:rgba(249,249,249,.8);box-shadow:0 40px 58px -16px rgba(0,0,0,.8),0 30px 22px -10px rgba(0,0,0,.72)}
+.leg{display:block;padding:12px 2px 0}
+.leg b{display:block;font-family:"Sora";font-size:14.5px;font-weight:600;line-height:1.3}
+.leg small{margin-top:3px;color:var(--tx3);font-size:12.5px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tuile:hover .leg b{text-decoration:underline;text-underline-offset:3px}
+.carte.v{aspect-ratio:2/3;flex-basis:calc((100% - 5 * var(--ecart)) / 6)}
+.carte.v .ov b{font-size:16px}
+.carte.v.coll{background:linear-gradient(170deg,var(--k2),var(--k1))}
+.carte.v.coll>img{opacity:.22;filter:blur(2px) saturate(.8);transform:scale(1.1)}
+.carte.v.coll .teinte{position:absolute;inset:0;background:radial-gradient(80% 50% at 50% 30%,color-mix(in srgb,var(--k3) 40%,transparent),transparent 70%)}
+.carte.v.coll .ico{position:absolute;top:18%;left:0;right:0;text-align:center;font-size:clamp(40px,4vw,62px);filter:drop-shadow(0 8px 18px rgba(0,0,0,.5))}
+.carte.v.coll .ov{background:none;padding:16px}
+.carte.v.coll .ov b{font-size:clamp(16px,1.4vw,21px)}
+.carte.niv{aspect-ratio:16/9}
+.carte.niv .nom{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:10px;font-family:"Sora";font-weight:700;font-size:clamp(15px,1.5vw,22px);letter-spacing:.12em;text-transform:uppercase;text-shadow:0 4px 18px rgba(0,0,0,.6);z-index:2}
+.carte.niv .nom em{display:block;font-style:normal;font-size:28px;letter-spacing:0;margin-bottom:4px}
+.carte.niv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+.carte.niv:hover video{opacity:.75}
+.carte.niv>img{opacity:.18;filter:grayscale(.6) blur(1px);mix-blend-mode:luminosity;transition:opacity .4s}
+.carte.niv:hover>img{opacity:.32}
+.carte.niv::after{content:"";position:absolute;inset:0;background:radial-gradient(90% 120% at 50% 0%,rgba(255,255,255,.18),transparent 60%);pointer-events:none}
+@media(max-width:1100px){.tuile{flex-basis:calc((100% - 3 * var(--ecart)) / 4)}.carte{flex-basis:calc((100% - 3 * var(--ecart)) / 4)}.carte.v{flex-basis:calc((100% - 4 * var(--ecart)) / 5)}}
+@media(max-width:800px){.tuile{flex-basis:calc((100% - 2 * var(--ecart)) / 3)}.carte{flex-basis:calc((100% - 2 * var(--ecart)) / 3)}.carte.v{flex-basis:calc((100% - 3 * var(--ecart)) / 4)}}
+@media(max-width:560px){.tuile{flex-basis:44%}.carte{flex-basis:44%}.carte.v{flex-basis:36%}.carte .ov b{font-size:12.5px}}
+
+/* ---------- Titres de page façon « Toutes les collections » ---------- */
+.titre-page{padding:130px var(--g) 10px;text-align:center}
+.titre-page h1{font-size:clamp(28px,4.4vw,56px);font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+.titre-page p{color:var(--tx2);max-width:680px;margin:14px auto 0}
+
+/* ---------- Le présentoir à univers (page Travaux) ---------- */
+#scene{position:relative;margin:34px var(--g) 0;border-radius:18px;overflow:hidden;isolation:isolate;
+  background:radial-gradient(70% 90% at 75% 40%,color-mix(in srgb,var(--acc) 45%,transparent),transparent 65%),linear-gradient(125deg,var(--c1),var(--c2));transition:--c1 .9s,--c2 .9s,--acc .9s}
+@property --c1{syntax:"<color>";inherits:true;initial-value:#0d2b3e}
+@property --c2{syntax:"<color>";inherits:true;initial-value:#1f7a8c}
+@property --acc{syntax:"<color>";inherits:true;initial-value:#e9c877}
+#bulles{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+#bulles span{position:absolute;bottom:-60px;font-size:var(--t);opacity:.5;animation:monte var(--d) linear infinite;animation-delay:var(--r)}
+@keyframes monte{to{transform:translateY(-760px) rotate(var(--rot));opacity:0}}
+.scene-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px;align-items:center;padding:clamp(26px,4vw,56px)}
+#u-txt h2{font-size:clamp(28px,3.4vw,48px);margin:12px 0}
+#u-txt p{color:rgba(255,255,255,.85);max-width:52ch}
+#u-txt .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+#u-txt.anime{animation:entre .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes entre{from{opacity:0;transform:translateY(14px)}}
+#u-vis{display:grid;place-items:center;min-height:300px}
+#u-vis img{max-height:340px;border-radius:12px;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+#canettes{display:flex;gap:12px;overflow-x:auto;padding:4px clamp(26px,4vw,56px) 28px;scrollbar-width:none}
+#canettes::-webkit-scrollbar{display:none}
+.canette{flex:none;width:92px;height:150px;border-radius:46px;position:relative;overflow:hidden;background:linear-gradient(160deg,var(--k1),var(--k2));border:2px solid rgba(255,255,255,.25);transition:transform .3s,border-color .3s;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 8px 16px;text-align:center}
+.canette img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32;mix-blend-mode:luminosity}
+.canette i{font-style:normal;font-size:24px;position:relative}
+.canette b{position:relative;font-size:10.5px;line-height:1.2;margin-top:4px;font-family:"Sora";font-weight:600}
+.canette:hover{transform:translateY(-6px)}
+.canette.choisie{border-color:#fff;transform:translateY(-8px) scale(1.04)}
+@media(max-width:820px){.scene-in{grid-template-columns:1fr}#u-vis{min-height:0}#u-vis img{max-height:220px}}
+
+.puces-filtre{display:flex;flex-wrap:wrap;gap:8px;padding:0 var(--g);margin-top:36px}
+.puces-filtre button{font-size:13px;font-weight:700;padding:8px 16px;border-radius:999px;background:rgba(249,249,249,.08);border:1px solid var(--ligne);transition:background .2s}
+.puces-filtre button:hover{background:rgba(249,249,249,.16)}
+.puces-filtre button.on{background:var(--tx);color:#0b0d16}
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:var(--ecart);padding:16px var(--g) 0}
+.grille .tuile,.grille .carte{flex:none}
+
+/* ---------- Page d'un travail ---------- */
+.vitrine{position:relative;min-height:min(100svh,880px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:110px var(--g) 60px;overflow:hidden;isolation:isolate;background:linear-gradient(135deg,var(--k1),var(--k2))}
+.vitrine .fond{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.vitrine .fond.flou{filter:blur(34px) saturate(1.25);transform:scale(1.25);opacity:.55}
+.vitrine::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(80% 70% at 50% 45%,rgba(4,7,20,.15),rgba(4,7,20,.75)),linear-gradient(180deg,rgba(4,7,20,.35),transparent 30%,transparent 65%,var(--fond))}
+.vitrine .retour{position:absolute;top:92px;left:var(--g);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tx2)}
+.vitrine .retour:hover{color:var(--tx)}
+.vitrine h1{font-size:clamp(30px,5vw,70px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-shadow:0 6px 30px rgba(0,0,0,.5);max-width:16ch;text-wrap:balance}
+.vitrine h1.long{font-size:clamp(26px,3.6vw,52px);letter-spacing:.08em;max-width:22ch}
+.vitrine h1 img{height:clamp(60px,9vw,130px);width:auto;margin:0 auto;filter:drop-shadow(0 8px 26px rgba(0,0,0,.5))}
+.vitrine .sous{color:var(--tx);opacity:.88;font-size:clamp(16px,1.5vw,20px);max-width:60ch;margin-top:14px;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.vitrine .centre{margin:clamp(24px,4vw,46px) 0 0;width:100%;display:grid;place-items:center}
+.vitrine .centre>img{max-height:min(46vh,440px);border-radius:12px;box-shadow:0 40px 70px -24px rgba(0,0,0,.85)}
+.vitrine .centre .boxes{width:min(100%,760px)}
+.vitrine .centre .tel{height:min(52vh,500px)}
+.vitrine .centre .page{transform:rotate(-2deg)}
+.vitrine .meta{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:28px}
+.vitrine .btns{justify-content:center}
+
+.lecture{max-width:1180px;margin:0 auto;padding:30px var(--g) 0;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:clamp(28px,4vw,64px);align-items:start}
+.chap{display:grid;grid-template-columns:64px minmax(0,1fr);gap:8px 20px;padding:30px 0;border-bottom:1px solid var(--ligne)}
+.chap:first-child{padding-top:0}
+.chap .n{font-family:"Sora";font-weight:700;font-size:40px;line-height:1;background:linear-gradient(160deg,var(--k3),var(--k2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.chap h2{font-size:clamp(22px,2vw,28px);margin-bottom:10px}
+.chap p{color:var(--tx2);font-size:clamp(16px,1.25vw,18.5px);line-height:1.7;max-width:68ch}
+.chap .note{font-size:13.5px;color:var(--tx3);margin-top:10px;font-style:italic}
+.fiche{position:sticky;top:96px;background:linear-gradient(160deg,color-mix(in srgb,var(--k1) 55%,var(--carte)),var(--carte));border:1px solid var(--ligne);border-radius:14px;padding:22px}
+.fiche dl{display:grid;gap:14px}
+.fiche dt{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tx3)}
+.fiche dd{font-size:15px;line-height:1.45;margin-top:2px}
+.fiche .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.fiche .tags a{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(249,249,249,.1);border:1px solid var(--ligne)}
+.fiche .tags a:hover{background:rgba(249,249,249,.2)}
+@media(max-width:900px){.lecture{grid-template-columns:1fr}.fiche{position:static}.chap{grid-template-columns:1fr}.chap .n{font-size:32px}}
+
+.bloc{max-width:1180px;margin:0 auto;padding:clamp(40px,5vw,70px) var(--g) 0}
+.bloc>h2{font-size:clamp(22px,2.2vw,30px);margin-bottom:6px}
+.bloc>p.chapo{color:var(--tx2);margin-bottom:22px}
+.medias{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.medias figure{background:var(--carte);border-radius:12px;overflow:hidden;border:1px solid var(--ligne)}
+.medias video,.medias img{width:100%;max-height:560px;object-fit:contain;background:#000}
+.medias img{cursor:zoom-in}
+.medias figcaption{padding:10px 14px;font-size:13.5px;color:var(--tx2)}
+.diapo .scene-d{position:relative;background:#05070f;border-radius:14px;border:1px solid var(--ligne);display:grid;place-items:center;aspect-ratio:16/9;overflow:hidden}
+.diapo .scene-d img{max-width:100%;max-height:100%;object-fit:contain;cursor:zoom-in}
+.diapo .fl{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:rgba(4,7,20,.6);border:1px solid rgba(249,249,249,.3);font-size:30px;line-height:1;backdrop-filter:blur(6px)}
+.diapo .fl:hover{background:rgba(249,249,249,.25)}
+.diapo .fl.g{left:14px}.diapo .fl.d{right:14px}
+.compte{display:flex;justify-content:space-between;color:var(--tx3);font-size:13px;margin:10px 2px}
+.vignettes{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+.vignettes img{height:74px;width:auto;border-radius:6px;opacity:.5;cursor:pointer;border:2px solid transparent;flex:none;transition:opacity .2s}
+.vignettes img.on,.vignettes img:hover{opacity:1;border-color:var(--tx)}
+.sans-image{display:flex;gap:18px;align-items:center;background:var(--carte);border:1px solid var(--ligne);border-radius:14px;padding:22px}
+.sans-image span{font-size:44px}
+.sans-image p{color:var(--tx2)}
+.suite{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1180px;margin:50px auto 0;padding:0 var(--g)}
+.suite a{background:var(--carte);border:1px solid var(--ligne);border-radius:12px;padding:18px 20px;transition:border-color .2s}
+.suite a:hover{border-color:rgba(249,249,249,.6)}
+.suite small{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3)}
+.suite b{font-family:"Sora";font-weight:600}
+.suite .droite{text-align:right}
+@media(max-width:600px){.suite{grid-template-columns:1fr}.suite .droite{text-align:left}}
+
+/* ---------- L'atelier en mouvement (bas de l'accueil) ---------- */
+.atelier-tete{padding:clamp(70px,8vw,120px) var(--g) 0;text-align:center}
+.atelier-tete h2{font-size:clamp(26px,3.4vw,46px);letter-spacing:.16em;text-transform:uppercase}
+.atelier-tete p{color:var(--tx2);max-width:640px;margin:12px auto 0}
+.sous-tete{padding:0 var(--g);margin-top:clamp(50px,6vw,80px)}
+.sous-tete .sur{color:var(--or)}
+.sous-tete h3{font-size:clamp(22px,2.4vw,32px);margin-top:6px}
+.sous-tete p{color:var(--tx2);margin-top:6px;max-width:70ch}
+.acc{display:flex;gap:12px;height:min(72vh,640px);margin:26px var(--g) 0}
+.pn{position:relative;flex:1;min-width:0;border-radius:14px;overflow:hidden;cursor:pointer;transition:flex .7s cubic-bezier(.2,.8,.2,1);background:linear-gradient(160deg,var(--k1),var(--k2));border:2px solid rgba(249,249,249,.1)}
+.pn.on{flex:6;border-color:rgba(249,249,249,.5)}
+.pn>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;transition:opacity .6s,transform 1.2s}
+.pn.on>img{opacity:.3;transform:scale(1.04)}
+.pn .etiquette{position:absolute;left:50%;bottom:28px;transform:translateX(-50%) rotate(180deg);writing-mode:vertical-rl;font-family:"Sora";font-weight:700;font-size:19px;white-space:nowrap;transition:opacity .3s}
+.pn.on .etiquette{opacity:0}
+.pn .dedans{position:absolute;inset:0;padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;justify-content:flex-end;opacity:0;transition:opacity .4s .25s;background:linear-gradient(rgba(4,7,20,.1),rgba(4,7,20,.92) 60%)}
+.pn.on .dedans{opacity:1}
+.pn .dedans h4{font-family:"Sora";font-size:clamp(24px,2.8vw,38px);margin:6px 0 8px;line-height:1.1}
+.pn .dedans p{max-width:620px;color:var(--tx2)}
+.pn .vigs{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.pn .vigs img{height:64px;width:auto;border-radius:6px;border:1px solid rgba(249,249,249,.25);cursor:zoom-in}
+@media(max-width:900px){.acc{flex-direction:column;height:auto}.pn{min-height:84px;flex:none}.pn.on{min-height:560px}.pn .etiquette{writing-mode:horizontal-tb;transform:translateX(-50%);bottom:auto;top:28px;font-size:16px;white-space:normal;width:90%;text-align:center}}
+
+.boule-zone{position:relative;height:min(92vh,820px);margin-top:10px;perspective:1300px;overflow:hidden;cursor:grab;touch-action:pan-y}
+.boule-zone:active{cursor:grabbing}
+.globe{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
+.globe figure{position:absolute;width:var(--l);margin:calc(var(--l) * -.28125) 0 0 calc(var(--l) / -2);backface-visibility:hidden;transform-style:preserve-3d}
+.globe img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;box-shadow:0 10px 26px rgba(0,0,0,.6);border:1px solid rgba(249,249,249,.18);cursor:zoom-in;-webkit-user-drag:none;user-select:none}
+.boule-zone .aide{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--tx3);pointer-events:none}
+
+.tunnel{height:480vh;margin-top:20px}
+.tscene{position:sticky;top:0;height:100vh;overflow:hidden;perspective:1100px}
+.tscene .entete{position:absolute;left:0;right:0;top:96px;text-align:center;z-index:5;pointer-events:none;padding:0 var(--g)}
+.tpiste{position:absolute;left:50%;top:56%;transform-style:preserve-3d}
+.tpiste figure{position:absolute;width:280px;margin:-210px 0 0 -140px;will-change:transform,opacity}
+.tpiste img{width:280px;aspect-ratio:2/3;object-fit:cover;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.6);cursor:zoom-in}
+.tpiste figcaption{font-family:"Sora";font-size:14px;text-align:center;margin-top:12px}
+.tpiste figcaption small{display:block;color:var(--tx2);font-family:"Figtree"}
+.compteur{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-family:"Sora";font-size:13px;color:var(--tx2);letter-spacing:.2em}
+@media(max-width:700px){.tpiste figure{width:200px;margin:-150px 0 0 -100px}.tpiste img{width:200px}}
+
+/* ---------- Créations et À propos ---------- */
+.mention{display:flex;gap:14px;align-items:flex-start;text-align:left;max-width:760px;margin:26px auto 0;background:rgba(4,7,20,.55);border:1px solid var(--ligne);border-radius:12px;padding:16px 18px;font-size:14px;color:var(--tx2);backdrop-filter:blur(8px)}
+.mention span{font-size:22px}
+.avatar{width:clamp(150px,16vw,200px);aspect-ratio:1;border-radius:50%;overflow:hidden;border:4px solid rgba(249,249,249,.9);box-shadow:0 30px 60px -20px rgba(0,0,0,.8);background:#0d2b3e}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.chiffres{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.chiffre{background:var(--carte);border:1px solid var(--ligne);border-radius:12px;padding:22px}
+.chiffre b{display:block;font-family:"Sora";font-size:44px;line-height:1;background:linear-gradient(120deg,var(--sarcelle),var(--or));-webkit-background-clip:text;background-clip:text;color:transparent}
+.chiffre span{color:var(--tx2);font-size:15px}
+.frise{position:relative;margin-top:26px;padding-left:30px}
+.frise::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;border-radius:2px;background:linear-gradient(var(--sarcelle),var(--or))}
+.etape{position:relative;padding:0 0 30px 14px}
+.etape::before{content:"";position:absolute;left:-29px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--fond);border:3px solid var(--sarcelle)}
+.etape small{font-family:"Sora";font-size:13px;font-weight:600;color:var(--sarcelle);letter-spacing:.06em}
+.etape h3{font-size:19px;margin:3px 0 4px}
+.etape p{color:var(--tx2);max-width:760px}
+
+footer{margin-top:clamp(70px,8vw,120px);padding:40px var(--g) 50px;border-top:1px solid var(--ligne);display:flex;flex-wrap:wrap;gap:16px 30px;align-items:center;justify-content:space-between;color:var(--tx3);font-size:13.5px}
+footer nav{display:flex;flex-wrap:wrap;gap:18px}
+footer nav a:hover{color:var(--tx)}
+footer .logo img{width:36px}
+
+#visio{position:fixed;inset:0;z-index:100;background:rgba(4,7,20,.94);display:none;place-items:center;padding:24px;cursor:zoom-out}
+#visio.on{display:grid}
+#visio img{max-width:100%;max-height:86vh;border-radius:10px}
+#visio p{color:var(--tx2);text-align:center;margin-top:10px;font-size:14px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header id="barre">
+  <a class="logo" href="#/"><img src="img/logo/gg-detoure.png" alt=""><span>Guilhem Mesnier</span></a>
+  <nav>
+    <a href="#/" data-r=""><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2 2.8 11h2.7v9.3h5V14.6h3v5.7h5V11h2.7z"/></svg><b>Accueil</b></a>
+    <a href="#/travaux" data-r="travaux"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h8v7H3zm10 0h8v7h-8zM3 13h8v7H3zm10 0h8v7h-8z"/></svg><b>Travaux</b></a>
+    <a href="#/creations" data-r="creations"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 14.6 9l6.9.5-5.3 4.4 1.7 6.7L12 16.9l-5.9 3.7 1.7-6.7L2.5 9.5 9.4 9z"/></svg><b>Créations personnelles</b></a>
+    <a href="#/a-propos" data-r="a-propos"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4.2"/><path d="M3.5 21c.6-4.6 4-7.4 8.5-7.4s7.9 2.8 8.5 7.4z"/></svg><b>À propos</b></a>
+  </nav>
+</header>
+<main id="app"></main>
+<footer>
+  <a class="logo" href="#/"><img src="img/logo/gg-detoure.png" alt=""><span>Guilhem Mesnier</span></a>
+  <nav><a href="#/travaux">Travaux</a><a href="#/creations">Créations personnelles</a><a href="#/a-propos">À propos</a><a href="Portfolio Guilhem Mesnier, octobre 2026.pdf">Version PDF</a></nav>
+  <span>Master information et communication, Université Clermont Auvergne · octobre 2026</span>
+</footer>
+
+<script src="data/v1/donnees.js"></script>
+<script src="data/v1/travaux.js"></script>
+<script>
+// Coordonnées publiques : à remplir par Guilhem. Un champ vide n'est jamais affiché.
+const CONTACT = { courriel: "", linkedin: "" };
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const PAR = Object.fromEntries(TRAVAUX.map(t => [t.slug, t]));
+const ORDRE_NIV = ["Stage M2", "Mémoire", "Master 2", "Master 1", "Licence"];
+const PHARES = ["livret-accueil", "memoire-metamorphoses", "kithara", "zefil", "a-ton-rythme", "tx-jewelry", "boz", "etrange-festival", "fragonard", "basilic"].filter(s => PAR[s]);
+const FLOTTE = {
+  "zefil": ["🐚","🌊","🫧"], "kithara": ["✈️","🧳","🗺️","🌎"], "livret-accueil": ["📘","🤝","🏠","✨"],
+  "memoire-metamorphoses": ["🎬","⭐","🏰","🎞️"], "a-ton-rythme": ["🌙","💜","🎧","✨"], "basilic": ["🌿","🍃","🌱"],
+  "tx-jewelry": ["💎","✨","💍"], "fragonard": ["🌸","🌹","✨"], "boz": ["🍟","🍔","🥤"],
+  "nuit-des-musees": ["🌌","⭐","🖼️"], "etrange-festival": ["👁️","🎞️","✨"]
+};
+const pad = i => String(i).padStart(2, "0");
+
+function forme(t) {
+  if (t.groupe === 1) return "Travail individuel";
+  if (t.groupe > 1) return `Travail de groupe (${t.groupe} étudiants)`;
+  return "Travail de groupe";
+}
+const teinte = t => `--k1:${t.couleurs[0]};--k2:${t.couleurs[1]};--k3:${t.couleurs[2]}`;
+const visuelDe = t => t.montage || t.images[0] || "";
+const dansFam = (t, f) => t.tags.some(g => FAM[f].some(x => g.toLowerCase().includes(x.toLowerCase()) || x.toLowerCase().includes(g.toLowerCase())));
+const nivCourt = t => t.niveau === "Stage M2" ? "Stage de Master 2" : t.niveau === "Mémoire" ? "Mémoire de Master 2" : `${t.niveau} · ${t.sem.split(",")[0]}`;
+
+// Le grand titre : un logo quand le travail en a un, sinon le texte.
+function titreArt(t) {
+  if (t.slug === "kithara") return `<img src="img/kithara/logo-blanc.png" alt="Kithara">`;
+  return esc(t.titre);
+}
+// Ce qui est posé au milieu : les box de Kithara, la publicité verticale de Zefil, la page de garde du mémoire, sinon le visuel.
+function centre(t) {
+  if (t.slug === "kithara") return `<div class="boxes"><img src="img/kithara/box-amerique-latine.png" alt="Box Amérique latine"><img src="img/kithara/box-lisbonne.png" alt="Box Lisbonne"><img src="img/kithara/box-thailande.png" alt="Box Thaïlande"></div>`;
+  if (t.slug === "zefil" && t.video) return `<div class="tel"><video src="${t.video}" muted loop autoplay playsinline></video></div>`;
+  const v = visuelDe(t);
+  if (!v) return "";
+  return `<img class="${t.slug === "memoire-metamorphoses" ? "page" : ""}" src="${v}" alt="${esc(t.titre)}" data-l="${esc(t.titre)}">`;
+}
+function fond(t, lancer) {
+  if (t.slug === "kithara" && t.video) return `<video class="fond" ${lancer ? `src="${t.video}" autoplay` : `data-src="${t.video}"`} muted loop playsinline></video>`;
+  const v = visuelDe(t);
+  return v ? `<img class="fond flou" src="${v}" alt="">` : "";
+}
+
+/* ---------- Cartes et rangées ---------- */
+function carte(t) {
+  const v = visuelDe(t);
+  return `<a class="tuile" href="#/t/${t.slug}"><span class="carte" style="${teinte(t)}">${v ? `<img src="${v}" alt="" loading="lazy">` : `<span class="emo">${t.emoji}</span>`}</span><span class="leg"><b>${t.emoji} ${esc(t.titre)}</b><small>${esc(nivCourt(t))} · ${esc(t.matiere)}</small></span></a>`;
+}
+function carteColl(f) {
+  const ts = TRAVAUX.filter(t => dansFam(t, f));
+  const t = ts.find(x => x.images.length) || ts[0];
+  return `<a class="carte v coll" href="#/collection/${encodeURIComponent(f)}" style="${teinte(t)}">${t.images[0] ? `<img src="${t.images[0]}" alt="" loading="lazy">` : ""}<span class="teinte"></span><span class="ico">${({ "Marque et identité": "💎", "Stratégie et marketing": "🎯", "Création graphique": "🎨", "Vidéo et audio": "🎬", "Réseaux et contenus": "📱", "Numérique et données": "📊", "Organisations et secteur public": "🏛️", "Santé et social": "🤝", "Culture et médias": "🎭", "Recherche et études": "🔎", "Rédaction et langues": "✒️" })[f] || "✦"}</span><span class="ov"><small>Collection · ${ts.length} travaux</small><b>${esc(f)}</b></span></a>`;
+}
+function rangee(titre, contenu, o = {}) {
+  return `<section class="rang"${o.id ? ` id="${o.id}"` : ""}><div class="rang-tete"><h2>${titre}</h2>${o.lien ? `<a href="${o.lien}">Tout voir ›</a>` : ""}</div>
+    <div class="rail"><button class="fl g" aria-label="Précédent" hidden>‹</button><div class="piste-r">${contenu}</div><button class="fl d" aria-label="Suivant">›</button></div></section>`;
+}
+function brancherRails() {
+  $$(".rail").forEach(r => {
+    const p = $(".piste-r", r), g = $(".fl.g", r), d = $(".fl.d", r);
+    if (!g || !d) return;
+    const maj = () => { g.hidden = p.scrollLeft < 10; d.hidden = p.scrollLeft + p.clientWidth > p.scrollWidth - 10; };
+    g.onclick = () => p.scrollBy({ left: -p.clientWidth * .85, behavior: "smooth" });
+    d.onclick = () => p.scrollBy({ left: p.clientWidth * .85, behavior: "smooth" });
+    p.addEventListener("scroll", maj, { passive: true }); maj();
+  });
+}
+// Les groupes : le stage et le mémoire ensemble, puis chaque semestre.
+function groupes(liste) {
+  const res = [];
+  const sm = liste.filter(t => t.niveau === "Stage M2" || t.niveau === "Mémoire");
+  if (sm.length) res.push({ id: "stage-memoire", titre: "Le stage de Master 2 et le mémoire", sous: "2026", items: sm });
+  const m = new Map();
+  for (const t of liste.filter(t => !sm.includes(t))) {
+    const k = `${t.niveau}|${t.sem}`;
+    if (!m.has(k)) m.set(k, []);
+    m.get(k).push(t);
+  }
+  [...m.keys()].sort((a, b) => ORDRE_NIV.indexOf(a.split("|")[0]) - ORDRE_NIV.indexOf(b.split("|")[0]) || b.localeCompare(a)).forEach(k => {
+    const [n, s] = k.split("|");
+    res.push({ id: (n + "-" + s).toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-"), titre: n, sous: s, items: m.get(k).sort((a, b) => a.matiere.localeCompare(b.matiere, "fr")) });
+  });
+  return res;
+}
+
+/* ---------- Accueil ---------- */
+let iSl = 0, minuteur = null;
+function pageAccueil() {
+  const sl = PHARES.map(s => PAR[s]);
+  const bienvenue = `<article class="sl bienvenue on"><div class="voile"></div><div class="sl-txt"><span class="sur">Portfolio · octobre 2026</span><h2>Guilhem Mesnier</h2><p>${esc(PROFIL)}</p><div class="btns"><a class="btn blanc" href="#/travaux">Voir les travaux</a><a class="btn verre" href="#/a-propos">À propos</a></div></div><div class="sl-vis"><img src="img/logo/gg-detoure.png" alt="Logo gg"></div></article>`;
+  const slides = sl.map(t => `<article class="sl" style="${teinte(t)}">${fond(t, false)}<div class="voile"></div>
+      <div class="sl-txt"><span class="sur">${t.emoji} ${esc(nivCourt(t))}</span><h2>${titreArt(t)}</h2><p>${esc(t.sous)}</p>
+      <div class="btns"><a class="btn blanc" href="#/t/${t.slug}">Voir le travail</a><a class="btn verre" href="#/travaux">Tous les travaux</a></div></div>
+      <div class="sl-vis">${centre(t)}</div></article>`).join("");
+  const nb = sl.length + 1;
+  const tuiles = [
+    ["Stage M2", "#1f7a8c,#0b2a3a", "Stage", "#/travaux/stage-memoire", "img/travaux/livret-accueil/livret-p01.jpg", ""],
+    ["Mémoire", "#6b3fa0,#1a0f33", "Mémoire", "#/t/memoire-metamorphoses", "img/memoire/presse-1.jpg", ""],
+    ["Master 2", "#14523f,#062018", "Master 2", "#/travaux/master-2-semestre-1-automne-2025", visuelDe(PAR.kithara || {}), (PAR.kithara || {}).video || ""],
+    ["Master 1", "#a8322a,#2d0c0b", "Master 1", "#/travaux/master-1-semestre-2-printemps-2025", (PAR.boz || {}).images?.[0] || "", ""],
+    ["Créations", "#c58b2a,#3a1f5c", "Créations personnelles", "#/creations", "img/fonds/f01.jpg", ""]
+  ].map(([k, e, nom, href, img, vid]) => `<a class="carte niv" href="${href}" style="background:linear-gradient(135deg,${e.split(",")[0]},${e.split(",")[1]})">${img ? `<img src="${img}" alt="" loading="lazy">` : ""}${vid ? `<video data-src="${vid}" muted loop playsinline></video>` : ""}<span class="nom"><span>${esc(nom)}</span></span></a>`).join("");
+  const gs = groupes(TRAVAUX);
+  return `
+  <section class="carrousel" aria-label="À la une">
+    <div class="piste-c">${bienvenue}${slides}</div>
+    <button class="fl g" aria-label="Précédent">‹</button><button class="fl d" aria-label="Suivant">›</button>
+    <div class="points">${Array.from({ length: nb }, (_, i) => `<button aria-label="Diapositive ${i + 1}" data-i="${i}" class="${i ? "" : "on"}"></button>`).join("")}</div>
+  </section>
+  <section class="rang"><div class="rail"><div class="piste-r">${tuiles}</div></div></section>
+  ${rangee("Les travaux phares", sl.map(carte).join(""), { lien: "#/travaux" })}
+  ${gs.map(g => rangee(`${esc(g.titre)}<small>${esc(g.sous)}</small>`, g.items.map(carte).join(""), { lien: `#/travaux/${g.id}` })).join("")}
+  ${rangee("Toutes les collections, par compétence", Object.keys(FAM).map(carteColl).join(""))}
+  ${rangee("Créations personnelles · affiches", aff.map(([c, b, s]) => `<a class="carte v" href="#/creations"><img src="img/affiches/${c}.jpg" alt="${esc(b)}" loading="lazy"><span class="ov"><small>${esc(s)}</small><b>${esc(b)}</b></span></a>`).join(""), { lien: "#/creations" })}
+
+  <div class="atelier-tete"><span class="sur" style="color:var(--or)">Pour aller plus loin</span><h2>L'atelier en mouvement</h2><p>Trois façons de feuilleter le travail autrement : une sélection de travaux en accordéon, les fonds d'écran sur une boule, les affiches dans un tunnel.</p></div>
+  <div class="sous-tete"><span class="sur">Une sélection de travaux</span><h3>Cinq travaux, cinq panneaux</h3><p>Survolez ou touchez un panneau pour l'ouvrir, puis ouvrez la page du travail.</p></div>
+  <div class="acc">${sl.slice(0, 5).map((t, i) => `<div class="pn${i ? "" : " on"}" style="${teinte(t)}">${visuelDe(t) ? `<img src="${visuelDe(t)}" alt="">` : ""}<div class="etiquette">${t.emoji} ${esc(t.titre)}</div>
+      <div class="dedans"><span class="sur">${esc(nivCourt(t))}</span><h4>${esc(t.titre)}</h4><p>${esc(t.sous)}</p>
+      <div class="vigs">${t.images.slice(0, 5).map(s => `<img src="${s}" alt="" data-l="${esc(t.titre)}" loading="lazy">`).join("")}</div>
+      <div class="btns"><a class="btn blanc" href="#/t/${t.slug}">Voir le travail</a></div></div></div>`).join("")}</div>
+  <div class="sous-tete"><span class="sur">Fonds d'écran et univers de studios</span><h3>La boule</h3><p>Faites-la tourner en la faisant glisser. Un clic sur une image l'agrandit.</p></div>
+  <div class="boule-zone" id="boule"><div class="globe" id="globe"></div><div class="aide">⟲ Glisser pour tourner</div></div>
+  <section class="tunnel" id="tunnel"><div class="tscene">
+    <div class="entete"><span class="sur" style="color:var(--or)">Affiches de cinéma</span><h3 style="font-size:clamp(24px,3vw,40px);margin-top:6px">Le tunnel des affiches</h3></div>
+    <div class="tpiste" id="tpiste"></div><div class="compteur" id="compteur"></div></div></section>`;
+}
+function montrerSlide(i) {
+  const s = $$(".sl"); if (!s.length) return;
+  iSl = (i + s.length) % s.length;
+  $(".piste-c").style.transform = `translateX(calc(${-iSl} * (100% + 20px)))`;
+  s.forEach((x, k) => {
+    x.classList.toggle("on", k === iSl);
+    const v = $("video.fond", x);
+    if (v) { if (k === iSl) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause(); }
+  });
+  $$(".points button").forEach((b, k) => b.classList.toggle("on", k === iSl));
+}
+function brancherAccueil() {
+  const lancer = () => { clearInterval(minuteur); minuteur = setInterval(() => { if (!document.hidden) montrerSlide(iSl + 1); }, 8000); };
+  $$(".points button").forEach(b => b.onclick = () => { montrerSlide(+b.dataset.i); lancer(); });
+  $(".carrousel .fl.g").onclick = () => { montrerSlide(iSl - 1); lancer(); };
+  $(".carrousel .fl.d").onclick = () => { montrerSlide(iSl + 1); lancer(); };
+  const c = $(".carrousel");
+  c.addEventListener("mouseenter", () => clearInterval(minuteur));
+  c.addEventListener("mouseleave", lancer);
+  let x0 = null;
+  c.addEventListener("touchstart", e => x0 = e.touches[0].clientX, { passive: true });
+  c.addEventListener("touchend", e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) { montrerSlide(iSl + (dx < 0 ? 1 : -1)); lancer(); } x0 = null; });
+  montrerSlide(0); lancer();
+  $$(".carte.niv").forEach(t => { const v = $("video", t); if (!v) return; t.addEventListener("mouseenter", () => { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); }); t.addEventListener("mouseleave", () => v.pause()); });
+  $$(".pn").forEach(p => { const ouvrir = () => $$(".pn").forEach(x => x.classList.toggle("on", x === p)); p.addEventListener("mouseenter", ouvrir); p.addEventListener("click", ouvrir); });
+  brancherBoule(); brancherTunnel();
+}
+
+/* La boule : fonds d'écran et univers de studios posés sur une sphère. */
+let rot = { x: -12, y: 0 }, vitesse = .06, anim = null, visible = false;
+function brancherBoule() {
+  const g = $("#globe"); if (!g) return;
+  const items = [...fonds.map(([c, b, s]) => [`img/fonds/${c}.jpg`, `${b}, ${s}`]), ...marques.map((b, i) => [`img/marques/${pad(i + 1)}.jpg`, b])];
+  const N = items.length, R = Math.min(390, innerWidth * .4), L = Math.max(96, Math.min(176, R * .45));
+  g.style.setProperty("--l", L + "px");
+  g.innerHTML = items.map(([src, l], i) => {
+    const y = 1 - (i + .5) / N * 2, lat = Math.asin(y), lon = i * 2.399963;
+    return `<figure style="transform:rotateY(${lon}rad) rotateX(${lat}rad) translateZ(${R}px)"><img src="${src}" alt="${esc(l)}" data-l="${esc(l)}" loading="lazy" draggable="false"></figure>`;
+  }).join("");
+  const zone = $("#boule");
+  let tir = null, bouge = false;
+  zone.addEventListener("pointerdown", e => { tir = { x: e.clientX, y: e.clientY, rx: rot.x, ry: rot.y }; bouge = false; });
+  addEventListener("pointermove", e => { if (!tir) return; const dx = e.clientX - tir.x, dy = e.clientY - tir.y; if (Math.abs(dx) + Math.abs(dy) > 4) bouge = true; rot.y = tir.ry + dx * .3; rot.x = Math.max(-60, Math.min(60, tir.rx - dy * .3)); });
+  addEventListener("pointerup", () => { tir = null; });
+  zone.addEventListener("click", e => { if (bouge) { e.stopPropagation(); e.preventDefault(); bouge = false; } }, true);
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(zone);
+  cancelAnimationFrame(anim);
+  const tour = () => { if (!$("#globe")) return; if (visible) { if (!tir) rot.y += vitesse * 6; $("#globe").style.transform = `rotateX(${rot.x}deg) rotateY(${rot.y}deg)`; } anim = requestAnimationFrame(tour); };
+  tour();
+}
+
+/* Le tunnel : les affiches viennent vers soi au fil du défilement. */
+let figs = [];
+const ECART = 520;
+function brancherTunnel() {
+  const p = $("#tpiste"); if (!p) return;
+  p.innerHTML = aff.map(([c, b, s]) => `<figure><img src="img/affiches/${c}.jpg" data-l="${esc(b)}, ${esc(s)}" alt="${esc(b)}" loading="lazy"><figcaption>${esc(b)}<small>${esc(s)}</small></figcaption></figure>`).join("");
+  figs = [...p.children]; tunnel();
+}
+function tunnel() {
+  const s = $("#tunnel"); if (!s || !figs.length) return;
+  const r = s.getBoundingClientRect(), h = s.offsetHeight - innerHeight;
+  const pr = Math.min(1, Math.max(0, -r.top / h)), avance = pr * (figs.length - 1) * ECART + 200;
+  let proche = 0;
+  figs.forEach((g, i) => {
+    const z = -i * ECART + avance, cote = i % 2 ? 1 : -1, x = cote * Math.min(innerWidth * .22, 300), y = (i % 3 - 1) * 40;
+    const o = z > 520 ? 0 : z < -3200 ? 0 : z > 200 ? 1 - (z - 200) / 320 : Math.min(1, (3200 + z) / 1200);
+    g.style.transform = `translate3d(${x}px,${y}px,${z}px) rotateY(${-cote * 14}deg)`;
+    g.style.opacity = o; g.style.pointerEvents = o > .6 ? "auto" : "none";
+    if (z <= 300 && z > -ECART / 2) proche = i;
+  });
+  $("#compteur").textContent = pad(proche + 1) + " / " + figs.length;
+}
+
+/* ---------- Tous les travaux ---------- */
+let filtre = "Tout", uI = 0, uMin = null;
+const UNIVERS = TRAVAUX.filter(t => t.univers && (t.images.length || t.montage || t.video));
+function pageTravaux() {
+  return `<div class="titre-page"><h1>Tous les travaux</h1><p>${TRAVAUX.length} travaux de Master 1, de Master 2, de stage et de mémoire, rangés par semestre. Choisissez un univers pour changer d'ambiance, ou filtrez par compétence.</p></div>
+  <section id="scene"><div id="bulles"></div>
+    <div class="scene-in"><div id="u-txt"><span class="sur" id="u-sur"></span><h2 id="u-titre"></h2><p id="u-sous"></p><div class="tags" id="u-tags"></div>
+      <div class="btns"><a class="btn blanc" id="u-voir" href="#/">Voir le travail</a></div></div><div id="u-vis"></div></div>
+    <div id="canettes">${UNIVERS.map((t, i) => `<button class="canette" data-i="${i}" aria-label="${esc(t.titre)}" style="${teinte(t)}">${t.images[0] ? `<img src="${t.images[0]}" alt="" loading="lazy">` : ""}<i>${t.emoji}</i><b>${esc(t.titre)}</b></button>`).join("")}</div>
+  </section>
+  <div class="puces-filtre">${["Tout", ...Object.keys(FAM)].map(f => `<button data-f="${esc(f)}" class="${f === filtre ? "on" : ""}">${esc(f)}</button>`).join("")}</div>
+  <div id="liste"></div>`;
+}
+function montrerUnivers(i) {
+  const t = UNIVERS[i]; uI = i; const sc = $("#scene"); if (!sc) return;
+  sc.style.setProperty("--c1", t.couleurs[0]); sc.style.setProperty("--c2", t.couleurs[1]); sc.style.setProperty("--acc", t.couleurs[2]);
+  $$(".canette").forEach(c => c.classList.toggle("choisie", +c.dataset.i === i));
+  $("#u-sur").textContent = `${t.emoji}  ${nivCourt(t)} · ${t.matiere}`;
+  $("#u-titre").textContent = t.titre;
+  $("#u-sous").textContent = t.sous;
+  $("#u-tags").innerHTML = t.tags.map(g => `<span class="puce">${esc(g)}</span>`).join("");
+  $("#u-voir").href = `#/t/${t.slug}`;
+  const x = $("#u-txt"); x.classList.remove("anime"); void x.offsetWidth; x.classList.add("anime");
+  $("#u-vis").innerHTML = centre(t);
+  const m = FLOTTE[t.slug] || [t.emoji];
+  $("#bulles").innerHTML = Array.from({ length: 14 }, (_, k) => `<span style="left:${(k * 7.1 + 3) % 98}%;--t:${20 + (k * 7) % 24}px;--d:${11 + (k * 3) % 9}s;--r:-${(k * 1.7) % 12}s;--rot:${k % 2 ? 200 : -160}deg">${m[k % m.length]}</span>`).join("");
+}
+function remplirListe() {
+  const ok = TRAVAUX.filter(t => filtre === "Tout" || dansFam(t, filtre));
+  $("#liste").innerHTML = filtre === "Tout"
+    ? groupes(ok).map(g => rangee(`${esc(g.titre)}<small>${esc(g.sous)}</small>`, g.items.map(carte).join(""), { id: g.id })).join("")
+    : `<section class="rang"><div class="rang-tete"><h2>${esc(filtre)}<small>${ok.length} travaux</small></h2><a href="#/collection/${encodeURIComponent(filtre)}">Page de la collection ›</a></div><div class="grille">${ok.map(carte).join("")}</div></section>`;
+  brancherRails();
+}
+function brancherTravaux(ancre) {
+  $$(".canette").forEach(c => c.onclick = () => { montrerUnivers(+c.dataset.i); clearInterval(uMin); });
+  $$(".puces-filtre button").forEach(b => b.onclick = () => { filtre = b.dataset.f; $$(".puces-filtre button").forEach(x => x.classList.toggle("on", x === b)); remplirListe(); });
+  const k = UNIVERS.findIndex(t => t.slug === "kithara");
+  montrerUnivers(k >= 0 ? k : 0);
+  clearInterval(uMin); uMin = setInterval(() => { if (!document.hidden) montrerUnivers((uI + 1) % UNIVERS.length); }, 9000);
+  remplirListe();
+  if (ancre) { const el = document.getElementById(ancre); if (el) setTimeout(() => scrollTo({ top: el.getBoundingClientRect().top + scrollY - 90 }), 30); }
+}
+
+/* ---------- Page d'une collection (par compétence) ---------- */
+function pageCollection(f) {
+  if (!FAM[f]) return pageIntrouvable();
+  const ts = TRAVAUX.filter(t => dansFam(t, f)), t0 = ts.find(x => x.images.length) || ts[0];
+  return `<section class="vitrine" style="${teinte(t0)};min-height:min(70svh,620px)">${fond(t0, false)}<a class="retour" href="#/travaux">‹ Tous les travaux</a>
+    <span class="sur">Collection</span><h1 class="${f.length > 22 ? "long" : ""}" style="margin-top:12px">${esc(f)}</h1><p class="sous">${ts.length} travaux où l'on retrouve : ${esc(FAM[f].join(", ").toLowerCase())}.</p></section>
+    <section class="rang" style="margin-top:0"><div class="grille">${ts.map(carte).join("")}</div></section>
+    ${rangee("Les autres collections", Object.keys(FAM).filter(x => x !== f).map(carteColl).join(""))}`;
+}
+
+/* ---------- Page d'un travail ---------- */
+let idx = 0, imgs = [];
+function pageTravail(slug) {
+  const k = TRAVAUX.findIndex(t => t.slug === slug);
+  if (k < 0) return pageIntrouvable();
+  const t = TRAVAUX[k], av = TRAVAUX[(k - 1 + TRAVAUX.length) % TRAVAUX.length], ap = TRAVAUX[(k + 1) % TRAVAUX.length];
+  imgs = t.images; idx = 0;
+  const noteCons = t.consigne_src === "rendu" ? "Consigne reconstituée d'après le rendu." : t.consigne_src === "mission" ? "Mission confiée pendant le stage." : "";
+  const long = t.titre.length > 24 || t.slug !== "kithara" && t.titre.length > 16;
+  const media = [];
+  if (t.video) media.push(`<figure><video src="${t.video}" controls muted playsinline preload="metadata"></video><figcaption>${t.slug === "zefil" ? "La publicité verticale pour les réseaux sociaux" : "La vidéo du travail"}</figcaption></figure>`);
+  if (t.montage) media.push(`<figure><img src="${t.montage}" alt="" data-l="${esc(t.titre)}"><figcaption>Le montage de présentation</figcaption></figure>`);
+  const memeSem = TRAVAUX.filter(x => x !== t && x.niveau === t.niveau && x.sem === t.sem);
+  const proches = TRAVAUX.filter(x => x !== t && !memeSem.includes(x) && x.tags.some(g => t.tags.includes(g)));
+  const fams = Object.keys(FAM).filter(f => dansFam(t, f));
+  return `<section class="vitrine" style="${teinte(t)}">${fond(t, true)}<a class="retour" href="#/travaux">‹ Tous les travaux</a>
+    <span class="sur">${t.emoji} ${esc(nivCourt(t))} · ${esc(t.matiere)}</span>
+    <h1 class="${long ? "long" : ""}" style="margin-top:14px">${titreArt(t)}</h1>
+    <p class="sous">${esc(t.sous)}</p>
+    <div class="centre">${centre(t)}</div>
+    <div class="meta"><span class="puce">${esc(t.sem)}</span><span class="puce">${forme(t)}</span><span class="puce">${t.images.length} pièce${t.images.length > 1 ? "s" : ""}</span></div>
+    <div class="btns"><a class="btn blanc" href="#lire">Lire le travail</a>${t.images.length ? `<a class="btn verre" href="#pieces">Voir les pièces</a>` : ""}</div>
+  </section>
+  <div class="lecture" id="lire" style="${teinte(t)}">
+    <div>
+      <div class="chap"><span class="n">01</span><div><h2>📋 La consigne</h2><p>${esc(t.consigne)}</p>${noteCons ? `<p class="note">${noteCons}</p>` : ""}</div></div>
+      <div class="chap"><span class="n">02</span><div><h2>🛠️ Ce qui a été fait</h2><p>${esc(t.fait)}</p></div></div>
+      <div class="chap"><span class="n">03</span><div><h2>🧭 Le développement</h2><p>${esc(t.dev)}</p></div></div>
+    </div>
+    <aside class="fiche"><dl>
+      <div><dt>Année</dt><dd>${esc(t.niveau === "Stage M2" || t.niveau === "Mémoire" ? "Master 2" : t.niveau)}, ${esc(t.sem)}</dd></div>
+      <div><dt>Matière</dt><dd>${esc(t.matiere)}</dd></div>
+      <div><dt>Forme</dt><dd>${forme(t)}</dd></div>
+      <div><dt>Compétences</dt><dd class="tags">${t.tags.map(g => `<span class="puce">${esc(g)}</span>`).join("")}</dd></div>
+      ${fams.length ? `<div><dt>Collections</dt><dd class="tags">${fams.map(f => `<a href="#/collection/${encodeURIComponent(f)}">${esc(f)}</a>`).join("")}</dd></div>` : ""}
+    </dl></aside>
+  </div>
+  ${media.length ? `<section class="bloc"><h2>🎞️ En mouvement</h2><p class="chapo">La vidéo et le montage tels qu'ils ont été rendus.</p><div class="medias">${media.join("")}</div></section>` : ""}
+  <section class="bloc" id="pieces"><h2>🗂️ Toutes les pièces du travail</h2>
+  ${t.images.length ? `<p class="chapo">${t.images.length} pièce${t.images.length > 1 ? "s" : ""}. Flèches du clavier pour passer de l'une à l'autre, clic pour agrandir.</p>
+    <div class="diapo"><div class="scene-d"><img id="d-img" src="${t.images[0]}" alt="" data-l="${esc(t.titre)}">${t.images.length > 1 ? `<button class="fl g" aria-label="Pièce précédente">‹</button><button class="fl d" aria-label="Pièce suivante">›</button>` : ""}</div>
+    <div class="compte"><span>${esc(t.titre)}</span><span id="d-num">1 / ${t.images.length}</span></div>
+    <div class="vignettes">${t.images.map((s, i) => `<img src="${s}" alt="" loading="lazy" data-v="${i}" class="${i ? "" : "on"}">`).join("")}</div></div>`
+    : `<div class="sans-image"><span>${t.emoji}</span><p>Ce travail est présenté par son texte : le rendu d'origine contient des noms de personnes ou n'a pas de visuel publiable.</p></div>`}
+  </section>
+  ${memeSem.length ? rangee(`Du même semestre<small>${esc(t.sem)}</small>`, memeSem.map(carte).join("")) : ""}
+  ${proches.length ? rangee("Avec les mêmes compétences", proches.slice(0, 12).map(carte).join("")) : ""}
+  <div class="suite"><a href="#/t/${av.slug}"><small>‹ Travail précédent</small><b>${av.emoji} ${esc(av.titre)}</b></a><a class="droite" href="#/t/${ap.slug}"><small>Travail suivant ›</small><b>${ap.emoji} ${esc(ap.titre)}</b></a></div>`;
+}
+function allerA(i) {
+  if (!imgs.length || !$("#d-img")) return;
+  idx = (i + imgs.length) % imgs.length;
+  $("#d-img").src = imgs[idx];
+  $("#d-num").textContent = `${idx + 1} / ${imgs.length}`;
+  $$(".vignettes img").forEach(v => v.classList.toggle("on", +v.dataset.v === idx));
+  const on = $(".vignettes img.on"); if (on) on.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+}
+function brancherTravail() {
+  const g = $(".diapo .fl.g"), d = $(".diapo .fl.d");
+  if (g) g.onclick = () => allerA(idx - 1);
+  if (d) d.onclick = () => allerA(idx + 1);
+  $$(".vignettes img").forEach(v => v.onclick = () => allerA(+v.dataset.v));
+  $$('a[href="#lire"],a[href="#pieces"]').forEach(a => a.onclick = e => { e.preventDefault(); const el = document.getElementById(a.getAttribute("href").slice(1)); scrollTo({ top: el.getBoundingClientRect().top + scrollY - 84, behavior: "smooth" }); });
+}
+
+/* ---------- Créations personnelles ---------- */
+function pageCreations() {
+  const c = (src, b, s, v) => `<figure class="carte${v ? " v" : ""}"><img src="${src}" alt="${esc(b)}" loading="lazy" data-l="${esc(b)}${s ? " · " + esc(s) : ""}"><span class="ov"><small>${esc(s || "")}</small><b>${esc(b)}</b></span></figure>`;
+  return `<section class="vitrine" style="--k1:#0d2b3e;--k2:#3a1f5c;min-height:min(84svh,760px)"><img class="fond flou" src="img/fonds/f01.jpg" alt="">
+    <span class="sur">✦ À part des travaux universitaires</span><h1 style="margin-top:12px">Créations personnelles</h1>
+    <p class="sous">Ni des travaux de Master, ni des commandes : des exercices que je me donne depuis plusieurs années pour m'entraîner à la direction artistique. Reprendre une affiche de cinéma, un fond d'écran ou toute l'identité d'un studio, et la refaire avec rigueur.</p>
+    <p class="sous" style="font-size:16px;opacity:.75">Refaire un logo célèbre à l'identique est un exercice de précision : proportions, espacements, courbes et couleurs exactes. Un logo redessiné se reconnaît à sa fidélité.</p>
+    <div class="mention"><span>⚖️</span><p>${esc(MENTION)}</p></div>
+  </section>
+  ${rangee(`Affiches de cinéma<small>${aff.length}</small>`, aff.map(([k, b, s]) => c(`img/affiches/${k}.jpg`, b, s, true)).join(""))}
+  ${rangee(`Fonds d'écran<small>${fonds.length}</small>`, fonds.map(([k, b, s]) => c(`img/fonds/${k}.jpg`, b, s)).join(""))}
+  ${rangee(`Univers de studios redessinés<small>${marques.length} · les noms sont transformés exprès</small>`, marques.map((b, i) => c(`img/marques/${pad(i + 1)}.jpg`, b, "Univers de marque")).join(""))}
+  ${rangee("Mon propre logo", LOGOS.map(([k, b, s]) => c(`img/logo/${k}.jpg`, b, s)).join(""))}
+  ${Object.entries(ateliers).map(([nom, l]) => rangee(`${esc(nom)}<small>${l.length}</small>`, l.map(([k, b, s]) => c(`img/${k}.jpg`, b, s)).join(""))).join("")}`;
+}
+
+/* ---------- À propos ---------- */
+function pageAPropos() {
+  const contact = [CONTACT.courriel && `<a class="btn blanc" href="mailto:${esc(CONTACT.courriel)}">Écrire un courriel</a>`, CONTACT.linkedin && `<a class="btn verre" href="${esc(CONTACT.linkedin)}">LinkedIn</a>`].filter(Boolean).join("");
+  return `<section class="vitrine" style="--k1:#0d2b3e;--k2:#123a3f;min-height:min(80svh,720px)">
+    <div class="avatar"><img src="img/profil/portrait-vert.png" alt="Portrait de Guilhem Mesnier"></div>
+    <h1 style="margin-top:22px;letter-spacing:.08em">Guilhem Mesnier</h1><p class="sous">${esc(PROFIL)}</p>
+    ${contact ? `<div class="btns">${contact}</div>` : ""}
+  </section>
+  <section class="bloc"><div class="chiffres">${CHIFFRES.map(([n, l]) => `<div class="chiffre"><b>${esc(n)}</b><span>${esc(l)}</span></div>`).join("")}</div></section>
+  <section class="bloc"><h2>🧭 De l'histoire à la communication</h2><div class="frise">${PARCOURS.map(([d, t, p]) => `<div class="etape"><small>${esc(d)}</small><h3>${esc(t)}</h3><p>${esc(p)}</p></div>`).join("")}</div></section>
+  ${rangee("Pour commencer", PHARES.slice(0, 6).map(s => carte(PAR[s])).join(""), { lien: "#/travaux" })}`;
+}
+function pageIntrouvable() { return `<div class="titre-page"><h1>Page introuvable</h1><p><a class="btn blanc" href="#/" style="margin-top:20px">Revenir à l'accueil</a></p></div>`; }
+
+/* ---------- Routeur ---------- */
+function route() {
+  const [r, a] = location.hash.replace(/^#\/?/, "").split("/");
+  clearInterval(minuteur); clearInterval(uMin); cancelAnimationFrame(anim); figs = [];
+  const app = $("#app");
+  if (r === "t") { app.innerHTML = pageTravail(decodeURIComponent(a || "")); brancherTravail(); }
+  else if (r === "travaux") { app.innerHTML = pageTravaux(); brancherTravaux(a && decodeURIComponent(a)); }
+  else if (r === "collection") app.innerHTML = pageCollection(decodeURIComponent(a || ""));
+  else if (r === "creations") app.innerHTML = pageCreations();
+  else if (r === "a-propos" || r === "parcours") app.innerHTML = pageAPropos();
+  else { app.innerHTML = pageAccueil(); brancherAccueil(); }
+  brancherRails();
+  $$("#barre nav a").forEach(x => x.classList.toggle("actif", x.dataset.r === ({ t: "travaux", collection: "travaux", parcours: "a-propos" }[r] || r || "")));
+  if (r !== "travaux" || !a) scrollTo(0, 0);
+  barre();
+}
+function barre() { $("#barre").classList.toggle("plein", scrollY > 30); }
+addEventListener("hashchange", route);
+addEventListener("scroll", () => { barre(); if (figs.length) requestAnimationFrame(tunnel); }, { passive: true });
+addEventListener("resize", () => { if (figs.length) tunnel(); });
+addEventListener("keydown", e => {
+  if ($("#visio.on")) return;
+  if ($(".diapo")) { if (e.key === "ArrowLeft") allerA(idx - 1); if (e.key === "ArrowRight") allerA(idx + 1); }
+  else if ($(".carrousel")) { if (e.key === "ArrowLeft") montrerSlide(iSl - 1); if (e.key === "ArrowRight") montrerSlide(iSl + 1); }
+});
+visionneuse();
+route();
+</script>
+</body>
+</html>

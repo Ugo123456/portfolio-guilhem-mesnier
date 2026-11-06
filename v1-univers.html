@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guilhem Mesnier, portfolio à univers</title>
+<link rel="stylesheet" href="data/v1/polices.css">
+<style>
+:root{
+  --c1:#0b2a4a; --c2:#1d6fa5; --acc:#f4d9b0;
+  --encre:#fff; --doux:rgba(255,255,255,.78); --voile:rgba(255,255,255,.1); --trait:rgba(255,255,255,.18);
+  --clair:#f6f3ee; --texte:#1c1b22; --gris:#5d5a66;
+  --titre:"Sora",system-ui,sans-serif; --corps:"Figtree",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--corps);background:var(--clair);color:var(--texte);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+.cache{display:none!important}
+
+/* Barre du haut */
+#barre{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px clamp(16px,4vw,48px);color:#fff;transition:background .4s}
+#barre.plein{background:rgba(12,12,18,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+#barre .nom{font-family:var(--titre);font-weight:700;font-size:18px;text-decoration:none;letter-spacing:-.01em}
+#barre nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+#barre nav a{text-decoration:none;font-weight:600;font-size:14px;padding:8px 14px;border-radius:999px;background:var(--voile);border:1px solid var(--trait)}
+#barre nav a.actif{background:#fff;color:#111}
+
+/* Accueil à univers */
+#scene{position:relative;min-height:100svh;color:#fff;overflow:hidden;
+  background:radial-gradient(120% 90% at 85% 15%,var(--c2) 0%,transparent 60%),radial-gradient(90% 80% at 0% 100%,color-mix(in srgb,var(--acc) 35%,transparent) 0%,transparent 55%),var(--c1);
+  transition:background .9s ease}
+@property --c1{syntax:"<color>";inherits:true;initial-value:#0b2a4a}
+@property --c2{syntax:"<color>";inherits:true;initial-value:#1d6fa5}
+@property --acc{syntax:"<color>";inherits:true;initial-value:#f4d9b0}
+#scene{transition:--c1 .9s ease,--c2 .9s ease,--acc .9s ease}
+#fondvideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s}
+#fondvideo.on{opacity:.55}
+#scene::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 30%,transparent 65%,rgba(0,0,0,.45));pointer-events:none}
+#bulles{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+#bulles span{position:absolute;bottom:-60px;font-size:var(--t,28px);opacity:.0;animation:monte var(--d,14s) linear var(--r,0s) infinite;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
+@keyframes monte{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.9}90%{opacity:.8}100%{transform:translateY(-115vh) rotate(var(--rot,180deg));opacity:0}}
+.scene-in{position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:110px clamp(16px,4vw,48px) 36px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,60px);align-items:center;min-height:calc(100svh - 230px)}
+.surtitre{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:999px;background:var(--voile);border:1px solid var(--trait)}
+#h-titre{font-family:var(--titre);font-weight:700;font-size:var(--fs,clamp(44px,7.4vw,108px));overflow-wrap:break-word;line-height:.95;letter-spacing:-.035em;margin:22px 0 16px;text-wrap:balance}
+#h-sous{font-size:clamp(18px,1.8vw,23px);line-height:1.45;color:var(--doux);max-width:34ch}
+#h-tags{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 28px}
+.puce{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;background:var(--voile);border:1px solid var(--trait)}
+.boutons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:16px;padding:15px 24px;border-radius:999px;border:0;background:var(--acc);color:#141414;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55);box-shadow:none}
+#h-visuel{position:relative;aspect-ratio:4/3;border-radius:32px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.4);background:rgba(0,0,0,.2)}
+#h-visuel img,#h-visuel video{width:100%;height:100%;object-fit:cover;animation:entre .8s cubic-bezier(.2,.8,.2,1)}
+#h-visuel.vertical{aspect-ratio:auto;height:min(68svh,620px);width:auto;max-width:100%;justify-self:center}
+#h-visuel.vertical video{aspect-ratio:9/16;height:100%;width:auto}
+@keyframes entre{from{opacity:0;transform:scale(1.06)}to{opacity:1;transform:none}}
+.anime{animation:glisse .7s cubic-bezier(.2,.8,.2,1)}
+@keyframes glisse{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* Le présentoir de canettes */
+#presentoir{position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:0 clamp(16px,4vw,48px) 34px}
+#presentoir p{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--doux);margin-bottom:12px}
+#canettes{display:flex;gap:14px;overflow-x:auto;padding:14px 4px 18px;scroll-snap-type:x mandatory;scrollbar-width:thin}
+.canette{flex:0 0 auto;width:96px;height:184px;border-radius:48px;position:relative;overflow:hidden;border:2px solid rgba(255,255,255,.35);scroll-snap-align:start;padding:0;background:linear-gradient(180deg,var(--k2),var(--k1));transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s}
+.canette img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;mix-blend-mode:luminosity}
+.canette::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.35) 45%,transparent 60%);z-index:1}
+.canette i{position:absolute;z-index:2;top:14px;left:0;right:0;text-align:center;font-style:normal;font-size:26px}
+.canette b{position:absolute;z-index:2;bottom:16px;left:6px;right:6px;text-align:center;font-family:var(--titre);font-size:12px;line-height:1.15;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.canette:hover{transform:translateY(-6px)}
+.canette.choisie{transform:translateY(-12px) scale(1.06);border-color:#fff;box-shadow:0 18px 40px rgba(0,0,0,.45),0 0 0 4px color-mix(in srgb,var(--k3) 70%,transparent)}
+
+/* Sections claires */
+section.bloc{max-width:1320px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(16px,4vw,48px)}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7a6f86}
+h2{font-family:var(--titre);font-size:clamp(32px,4.4vw,58px);letter-spacing:-.03em;line-height:1;margin:10px 0 14px}
+.intro{font-size:18px;line-height:1.55;color:var(--gris);max-width:62ch}
+#filtres{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 8px}
+#filtres button,#niv button{border:1.5px solid #d9d3cb;background:#fff;color:#2a2830;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600}
+#filtres button.on,#niv button.on{background:#1c1b22;border-color:#1c1b22;color:#fff}
+#niv{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.groupe-titre{font-family:var(--titre);font-size:22px;margin:42px 0 6px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.groupe-titre small{font-family:var(--corps);font-size:14px;color:var(--gris);font-weight:600}
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:16px}
+.carte{display:flex;flex-direction:column;text-decoration:none;border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 1px 0 #e7e1d8,0 12px 30px rgba(30,20,40,.06);transition:transform .25s,box-shadow .25s}
+.carte:hover{transform:translateY(-4px);box-shadow:0 1px 0 #e7e1d8,0 20px 40px rgba(30,20,40,.12)}
+.carte .vis{aspect-ratio:16/10;position:relative;background:linear-gradient(135deg,var(--k1),var(--k2))}
+.carte .vis img{width:100%;height:100%;object-fit:cover}
+.carte .vis .emo{position:absolute;inset:0;display:grid;place-items:center;font-size:54px}
+.carte .vis em{position:absolute;left:12px;top:12px;font-style:normal;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.92);color:#222}
+.carte .txt{padding:16px 18px 20px}
+.carte h3{font-family:var(--titre);font-size:19px;line-height:1.2;letter-spacing:-.01em}
+.carte p{font-size:14px;line-height:1.45;color:var(--gris);margin-top:6px}
+.carte .mat{font-size:12px;font-weight:700;color:#7a6f86;margin-top:10px;text-transform:uppercase;letter-spacing:.05em}
+
+/* Page d'un travail */
+.tete-travail{position:relative;color:#fff;padding:120px clamp(16px,4vw,48px) 56px;background:radial-gradient(110% 100% at 90% 0%,var(--k2),transparent 60%),var(--k1);overflow:hidden}
+.tete-travail .in{max-width:1180px;margin:0 auto;position:relative;z-index:2}
+.tete-travail .emo-g{position:absolute;right:clamp(10px,6vw,90px);bottom:-30px;font-size:clamp(120px,18vw,260px);opacity:.18;z-index:1}
+.tete-travail h1{font-family:var(--titre);font-size:clamp(40px,6.4vw,88px);letter-spacing:-.035em;line-height:.98;margin:18px 0 14px;text-wrap:balance}
+.tete-travail .sous{font-size:clamp(17px,1.7vw,22px);color:var(--doux);max-width:46ch;line-height:1.45}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.corps-travail{max-width:1180px;margin:0 auto;padding:clamp(36px,5vw,64px) clamp(16px,4vw,48px)}
+.trois{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.case{background:#fff;border-radius:24px;padding:24px 24px 26px;box-shadow:0 1px 0 #e7e1d8}
+.case h3{font-family:var(--titre);font-size:18px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.case h3 span{display:grid;place-items:center;width:34px;height:34px;border-radius:12px;background:color-mix(in srgb,var(--k2) 18%,#fff);font-size:17px}
+.case p{font-size:16px;line-height:1.6;color:#34313b}
+.case .note{font-size:13px;color:#857b8f;margin-top:12px;font-style:italic}
+.diapo{margin-top:34px;background:#121117;border-radius:28px;padding:18px;color:#fff}
+.diapo .scene-d{position:relative;border-radius:18px;overflow:hidden;background:#000;display:grid;place-items:center;height:min(70svh,640px)}
+.diapo .scene-d img{max-height:100%;max-width:100%;object-fit:contain;cursor:zoom-in}
+.diapo .fl{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.9);color:#111;font-size:22px;font-weight:700}
+.diapo .fl.g{left:12px}.diapo .fl.d{right:12px}
+.diapo .compte{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:#c9c4d1;margin:12px 4px 10px}
+.vignettes{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
+.vignettes img{flex:0 0 auto;width:96px;height:64px;object-fit:cover;border-radius:10px;opacity:.5;cursor:pointer;border:2px solid transparent}
+.vignettes img.on{opacity:1;border-color:var(--k3)}
+.media{margin-top:34px;display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:start}
+.media figure{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 1px 0 #e7e1d8}
+.media figure video,.media figure img{width:100%;max-height:640px;object-fit:contain;background:#111}
+.media figcaption{padding:12px 16px;font-size:14px;color:var(--gris)}
+.sans-image{margin-top:28px;border-radius:24px;padding:28px;background:linear-gradient(135deg,var(--k1),var(--k2));color:#fff;display:flex;gap:18px;align-items:center}
+.sans-image span{font-size:44px}
+.sans-image p{line-height:1.55;color:var(--doux)}
+.suite{display:flex;justify-content:space-between;gap:14px;margin-top:40px;flex-wrap:wrap}
+.suite a{flex:1 1 260px;text-decoration:none;background:#fff;border-radius:20px;padding:18px 20px;box-shadow:0 1px 0 #e7e1d8}
+.suite a small{display:block;font-size:12px;font-weight:700;color:#857b8f;text-transform:uppercase;letter-spacing:.06em}
+.suite a b{font-family:var(--titre);font-size:18px}
+.suite a.droite{text-align:right}
+
+/* Créations personnelles */
+.tete-crea{color:#fff;padding:120px clamp(16px,4vw,48px) 60px;background:radial-gradient(90% 120% at 100% 0%,#6d28d9,transparent 55%),radial-gradient(80% 90% at 0% 100%,#b45309,transparent 55%),#140f1f}
+.tete-crea .in{max-width:1180px;margin:0 auto}
+.tete-crea h1{font-family:var(--titre);font-size:clamp(40px,6vw,84px);letter-spacing:-.035em;line-height:1;margin:16px 0}
+.tete-crea p{font-size:18px;line-height:1.6;color:var(--doux);max-width:70ch;margin-top:12px}
+.avertissement{margin-top:24px;display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:18px 20px;max-width:900px}
+.avertissement span{font-size:26px}
+.avertissement p{margin:0;font-size:15px}
+.mur{display:grid;gap:14px;margin-top:20px}
+.mur.affiches{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.mur.larges{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.mur figure{border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 1px 0 #e7e1d8}
+.mur img{width:100%;cursor:zoom-in}
+.mur.affiches img{aspect-ratio:2/3;object-fit:cover}
+.mur.larges img{aspect-ratio:16/9;object-fit:cover}
+.mur figcaption{padding:10px 12px;font-size:13px;line-height:1.35}
+.mur figcaption b{display:block;font-size:14px}
+.mur figcaption span{color:var(--gris)}
+
+/* Parcours */
+.tete-parcours{color:#fff;padding:120px clamp(16px,4vw,48px) 64px;background:radial-gradient(100% 100% at 100% 0%,#1f7a8c,transparent 60%),#0d2b3e}
+.tete-parcours .in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.portrait{width:clamp(150px,20vw,240px);aspect-ratio:1;border-radius:50%;object-fit:cover;border:5px solid rgba(255,255,255,.85);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.tete-parcours h1{font-family:var(--titre);font-size:clamp(40px,6vw,80px);letter-spacing:-.035em;line-height:1}
+.tete-parcours p{font-size:19px;line-height:1.55;color:var(--doux);margin-top:14px;max-width:60ch}
+.chiffres{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.chiffre{background:#fff;border-radius:22px;padding:22px;box-shadow:0 1px 0 #e7e1d8}
+.chiffre b{font-family:var(--titre);font-size:44px;letter-spacing:-.03em;display:block;color:#0d2b3e}
+.chiffre span{font-size:15px;color:var(--gris);line-height:1.4}
+.frise{margin-top:34px;border-left:3px solid #d9d3cb;padding-left:26px;display:grid;gap:22px}
+.etape{position:relative;background:#fff;border-radius:20px;padding:18px 22px;box-shadow:0 1px 0 #e7e1d8}
+.etape::before{content:"";position:absolute;left:-36px;top:22px;width:16px;height:16px;border-radius:50%;background:#1f7a8c;border:3px solid var(--clair)}
+.etape small{font-size:13px;font-weight:700;color:#1f7a8c;letter-spacing:.04em;text-transform:uppercase}
+.etape h3{font-family:var(--titre);font-size:20px;margin:4px 0 6px}
+.etape p{color:var(--gris);line-height:1.55}
+
+footer{background:#121117;color:#bdb7c6;padding:36px clamp(16px,4vw,48px);font-size:14px;line-height:1.6}
+footer .in{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* Visionneuse */
+#visio{position:fixed;inset:0;z-index:100;background:rgba(8,8,12,.92);display:none;place-items:center;padding:24px;cursor:zoom-out}
+#visio.on{display:grid}
+#visio img{max-width:100%;max-height:86vh;border-radius:10px}
+#visio p{color:#ddd;text-align:center;margin-top:10px;font-size:14px}
+
+@media (max-width:900px){
+  .scene-in{grid-template-columns:1fr;padding-top:100px;min-height:auto}
+  #h-visuel{order:-1;aspect-ratio:16/10}
+  .scene-in{gap:20px;padding-bottom:16px}
+  #h-visuel.vertical{height:52svh}
+  .trois,.chiffres{grid-template-columns:1fr 1fr}
+  .tete-parcours .in{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  #barre .nom{font-size:15px}
+  #barre nav a{padding:7px 10px;font-size:13px}
+  .trois,.chiffres{grid-template-columns:1fr}
+  .canette{width:78px;height:150px}
+  .diapo{padding:10px}
+  .diapo .scene-d{height:52svh}
+  .grille{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){#bulles{display:none}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header id="barre">
+  <a class="nom" href="#/">Guilhem Mesnier</a>
+  <nav>
+    <a href="#/" data-r="">Univers</a>
+    <a href="#/travaux" data-r="travaux">Travaux</a>
+    <a href="#/creations" data-r="creations">Créations personnelles</a>
+    <a href="#/parcours" data-r="parcours">Parcours</a>
+  </nav>
+</header>
+<main id="app"></main>
+<footer><div class="in"><span>Guilhem Mesnier · Master information et communication, Université Clermont Auvergne · portfolio d'octobre 2026</span><span id="pied"></span></div></footer>
+
+<script src="data/v1/donnees.js"></script>
+<script src="data/v1/travaux.js"></script>
+<script>
+// Coordonnées publiques : à remplir par Guilhem. Un champ vide n'est jamais affiché.
+const CONTACT = { courriel: "", linkedin: "" };
+
+// Ce qui flotte dans le fond de chaque univers (sinon : l'emoji du travail).
+const FLOTTE = {
+  "zefil": ["🐚","🐚","🌊","🫧","🐚"],
+  "kithara": ["✈️","🧳","🗺️","🌎","📦"],
+  "livret-accueil": ["📘","🤝","🏠","✨"],
+  "memoire-metamorphoses": ["🎬","⭐","🏰","🎞️"],
+  "a-ton-rythme": ["🌙","💜","🎧","✨"],
+  "basilic": ["🌿","🍃","🌱"],
+  "tx-jewelry": ["💎","✨","💍"],
+  "fragonard": ["🌸","🌹","✨"],
+  "boz": ["🍟","🍔","🥤"],
+  "nuit-des-musees": ["🌌","⭐","🖼️","🌙"],
+  "etrange-festival": ["👁️","🎞️","🩸","✨"]
+};
+
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const UNIVERS = TRAVAUX.filter(t => t.univers && (t.images.length || t.montage || t.video));
+const ORDRE_NIV = ["Stage M2", "Mémoire", "Master 2", "Master 1", "Licence"];
+
+function forme(t) {
+  if (t.groupe === 1) return "Travail individuel";
+  if (t.groupe > 1) return `Travail de groupe (${t.groupe} étudiants)`;
+  return "Travail de groupe";
+}
+function teintes(el, t) {
+  el.style.setProperty("--k1", t.couleurs[0]);
+  el.style.setProperty("--k2", t.couleurs[1]);
+  el.style.setProperty("--k3", t.couleurs[2]);
+}
+function visuelDe(t) { return t.montage || t.images[0] || ""; }
+
+/* ---------- Accueil à univers ---------- */
+let choisi = 0, minuteur = null;
+function pageAccueil() {
+  return `
+  <section id="scene">
+    <video id="fondvideo" muted loop playsinline preload="none"></video>
+    <div id="bulles"></div>
+    <div class="scene-in">
+      <div id="h-texte">
+        <span class="surtitre" id="h-sur"></span>
+        <h1 id="h-titre"></h1>
+        <p id="h-sous"></p>
+        <div id="h-tags"></div>
+        <div class="boutons">
+          <a class="btn" id="h-voir" href="#/">Voir le travail →</a>
+          <a class="btn ghost" href="#/travaux">Tous les travaux</a>
+        </div>
+      </div>
+      <div id="h-visuel"></div>
+    </div>
+    <div id="presentoir">
+      <p>Choisis un univers</p>
+      <div id="canettes">${UNIVERS.map((t, i) => `
+        <button class="canette" data-i="${i}" aria-label="${esc(t.titre)}" style="--k1:${t.couleurs[0]};--k2:${t.couleurs[1]};--k3:${t.couleurs[2]}">
+          ${t.images[0] ? `<img src="${t.images[0]}" alt="" loading="lazy">` : ""}
+          <i>${t.emoji}</i><b>${esc(t.titre)}</b>
+        </button>`).join("")}</div>
+    </div>
+  </section>
+  <section class="bloc">
+    <span class="kicker">Ce que je fais</span>
+    <h2>Des marques, des images et des organisations qui se parlent mieux.</h2>
+    <p class="intro">${esc(PROFIL)} Chaque univers ci-dessus est un vrai travail de Master ou de stage : clique sur une canette pour changer d'ambiance, puis ouvre le travail pour lire la consigne, ce qui a été fait et le développement.</p>
+    <div class="boutons" style="margin-top:24px"><a class="btn" style="background:#1c1b22;color:#fff" href="#/travaux">Les ${TRAVAUX.length} travaux</a><a class="btn ghost" style="color:#1c1b22;border-color:#1c1b22" href="#/creations">Créations personnelles</a></div>
+  </section>`;
+}
+function montrerUnivers(i) {
+  const t = UNIVERS[i]; choisi = i;
+  const sc = $("#scene"); if (!sc) return;
+  sc.style.setProperty("--c1", t.couleurs[0]);
+  sc.style.setProperty("--c2", t.couleurs[1]);
+  sc.style.setProperty("--acc", t.couleurs[2]);
+  document.querySelectorAll(".canette").forEach(c => c.classList.toggle("choisie", +c.dataset.i === i));
+  $("#h-sur").textContent = `${t.emoji}  ${t.niveau} · ${t.matiere}`;
+  $("#h-titre").textContent = t.titre;
+  const L = t.titre.length;
+  $("#h-titre").style.setProperty("--fs", L > 18 ? "clamp(32px,4.4vw,62px)" : L > 11 ? "clamp(36px,4.8vw,70px)" : L > 8 ? "clamp(40px,6vw,86px)" : "clamp(44px,7.4vw,108px)");
+  $("#h-sous").textContent = t.sous;
+  $("#h-tags").innerHTML = t.tags.map(g => `<span class="puce">${esc(g)}</span>`).join("");
+  $("#h-voir").href = `#/t/${t.slug}`;
+  $("#h-texte").classList.remove("anime"); void $("#h-texte").offsetWidth; $("#h-texte").classList.add("anime");
+  // Visuel : la vidéo verticale de Zefil, sinon le montage ou la première image.
+  const v = $("#h-visuel");
+  const fv = $("#fondvideo");
+  if (t.slug === "kithara" && t.video) {
+    fv.src = t.video; fv.classList.add("on"); fv.play().catch(() => {});
+  } else { fv.classList.remove("on"); fv.pause(); }
+  if (t.video && t.slug !== "kithara") {
+    v.className = "vertical";
+    v.innerHTML = `<video src="${t.video}" muted loop autoplay playsinline></video>`;
+  } else {
+    v.className = "";
+    v.innerHTML = `<img src="${visuelDe(t)}" alt="${esc(t.titre)}">`;
+  }
+  // Ce qui flotte.
+  const motifs = FLOTTE[t.slug] || [t.emoji];
+  $("#bulles").innerHTML = Array.from({ length: 16 }, (_, k) =>
+    `<span style="left:${(k * 6.3 + 3) % 98}%;--t:${20 + (k * 7) % 26}px;--d:${11 + (k * 3) % 9}s;--r:-${(k * 1.7) % 12}s;--rot:${k % 2 ? 200 : -160}deg">${motifs[k % motifs.length]}</span>`).join("");
+}
+function brancherAccueil() {
+  document.querySelectorAll(".canette").forEach(c => c.addEventListener("click", () => {
+    montrerUnivers(+c.dataset.i); clearInterval(minuteur);
+  }));
+  const k = UNIVERS.findIndex(t => t.slug === "kithara");
+  montrerUnivers(k >= 0 ? k : 0);
+  clearInterval(minuteur);
+  minuteur = setInterval(() => { if (!document.hidden) montrerUnivers((choisi + 1) % UNIVERS.length); }, 9000);
+}
+
+/* ---------- Tous les travaux ---------- */
+let filtreFam = "Tout", filtreNiv = "Tout";
+function carte(t) {
+  const img = t.montage || t.images[0];
+  return `<a class="carte" href="#/t/${t.slug}" style="--k1:${t.couleurs[0]};--k2:${t.couleurs[1]}">
+    <div class="vis">${img ? `<img src="${img}" alt="" loading="lazy">` : `<div class="emo">${t.emoji}</div>`}<em>${esc(t.niveau)}</em></div>
+    <div class="txt"><h3>${t.emoji} ${esc(t.titre)}</h3><p>${esc(t.sous)}</p><div class="mat">${esc(t.matiere)}</div></div></a>`;
+}
+function pageTravaux() {
+  const fams = ["Tout", ...Object.keys(FAM)];
+  return `<div style="height:70px;background:#121117"></div><section class="bloc">
+    <span class="kicker">Master 1, Master 2 et stages</span>
+    <h2>Tous les travaux</h2>
+    <p class="intro">Rangés par année, puis par semestre et par matière. Les étiquettes servent à filtrer par compétence.</p>
+    <div id="niv">${["Tout", ...ORDRE_NIV.filter(n => TRAVAUX.some(t => t.niveau === n))].map(n => `<button data-n="${esc(n)}" class="${n === filtreNiv ? "on" : ""}">${esc(n)}</button>`).join("")}</div>
+    <div id="filtres">${fams.map(f => `<button data-f="${esc(f)}" class="${f === filtreFam ? "on" : ""}">${esc(f)}</button>`).join("")}</div>
+    <div id="liste"></div></section>`;
+}
+function remplirListe() {
+  const ok = t => (filtreNiv === "Tout" || t.niveau === filtreNiv) &&
+    (filtreFam === "Tout" || t.tags.some(g => FAM[filtreFam].some(x => g.toLowerCase().includes(x.toLowerCase()) || x.toLowerCase().includes(g.toLowerCase()))));
+  const choisis = TRAVAUX.filter(ok);
+  const groupes = new Map();
+  for (const t of choisis) {
+    const cle = `${t.niveau}|${t.sem}`;
+    if (!groupes.has(cle)) groupes.set(cle, []);
+    groupes.get(cle).push(t);
+  }
+  const cles = [...groupes.keys()].sort((a, b) => ORDRE_NIV.indexOf(a.split("|")[0]) - ORDRE_NIV.indexOf(b.split("|")[0]) || b.localeCompare(a));
+  $("#liste").innerHTML = choisis.length ? cles.map(c => {
+    const [n, s] = c.split("|"); const l = groupes.get(c);
+    l.sort((a, b) => a.matiere.localeCompare(b.matiere, "fr"));
+    return `<div class="groupe-titre">${esc(n)} <small>${esc(s)} · ${l.length} travail${l.length > 1 ? "x" : ""}</small></div><div class="grille">${l.map(carte).join("")}</div>`;
+  }).join("") : `<p class="intro" style="margin-top:30px">Aucun travail ne correspond à ces deux filtres.</p>`;
+}
+function brancherTravaux() {
+  document.querySelectorAll("#filtres button").forEach(b => b.onclick = () => { filtreFam = b.dataset.f; document.querySelectorAll("#filtres button").forEach(x => x.classList.toggle("on", x === b)); remplirListe(); });
+  document.querySelectorAll("#niv button").forEach(b => b.onclick = () => { filtreNiv = b.dataset.n; document.querySelectorAll("#niv button").forEach(x => x.classList.toggle("on", x === b)); remplirListe(); });
+  remplirListe();
+}
+
+/* ---------- Page d'un travail ---------- */
+let idx = 0, imagesCourantes = [];
+function pageTravail(slug) {
+  const k = TRAVAUX.findIndex(t => t.slug === slug);
+  if (k < 0) return `<section class="bloc" style="padding-top:140px"><h2>Travail introuvable</h2><a href="#/travaux">Retour aux travaux</a></section>`;
+  const t = TRAVAUX[k], av = TRAVAUX[(k - 1 + TRAVAUX.length) % TRAVAUX.length], ap = TRAVAUX[(k + 1) % TRAVAUX.length];
+  const noteCons = t.consigne_src === "rendu" ? "Consigne reconstituée d'après le rendu." : t.consigne_src === "mission" ? "Mission confiée pendant le stage." : "";
+  imagesCourantes = t.images; idx = 0;
+  const media = [];
+  if (t.video) media.push(`<figure><video src="${t.video}" controls muted playsinline preload="metadata"></video><figcaption>Vidéo du travail</figcaption></figure>`);
+  if (t.montage) media.push(`<figure><img src="${t.montage}" alt="" data-l="${esc(t.titre)}"><figcaption>Montage de présentation</figcaption></figure>`);
+  return `<div class="tete-travail" style="--k1:${t.couleurs[0]};--k2:${t.couleurs[1]}"><div class="emo-g">${t.emoji}</div><div class="in">
+      <a class="puce" href="#/travaux" style="text-decoration:none">← Tous les travaux</a>
+      <h1>${t.emoji} ${esc(t.titre)}</h1><p class="sous">${esc(t.sous)}</p>
+      <div class="meta"><span class="puce">${esc(t.niveau)}</span><span class="puce">${esc(t.sem)}</span><span class="puce">${esc(t.matiere)}</span><span class="puce">${forme(t)}</span>${t.tags.map(g => `<span class="puce">${esc(g)}</span>`).join("")}</div>
+    </div></div>
+  <div class="corps-travail" style="--k1:${t.couleurs[0]};--k2:${t.couleurs[1]};--k3:${t.couleurs[2]}">
+    <div class="trois">
+      <div class="case"><h3><span>📋</span>La consigne</h3><p>${esc(t.consigne)}</p>${noteCons ? `<p class="note">${noteCons}</p>` : ""}</div>
+      <div class="case"><h3><span>🛠️</span>Ce qui a été fait</h3><p>${esc(t.fait)}</p></div>
+      <div class="case"><h3><span>🧭</span>Le développement</h3><p>${esc(t.dev)}</p></div>
+    </div>
+    ${media.length ? `<div class="media">${media.join("")}</div>` : ""}
+    ${t.images.length ? `<div class="diapo"><div class="scene-d"><img id="d-img" src="${t.images[0]}" alt="" data-l="${esc(t.titre)}"><button class="fl g" aria-label="Image précédente">‹</button><button class="fl d" aria-label="Image suivante">›</button></div>
+      <div class="compte"><span>Diaporama</span><span id="d-num">1 / ${t.images.length}</span></div>
+      <div class="vignettes">${t.images.map((s, i) => `<img src="${s}" alt="" loading="lazy" data-v="${i}" class="${i ? "" : "on"}">`).join("")}</div></div>`
+      : (media.length ? "" : `<div class="sans-image"><span>${t.emoji}</span><p>Ce travail est présenté par son texte : le rendu d'origine contient des noms de personnes ou n'a pas de visuel publiable.</p></div>`)}
+    <div class="suite"><a href="#/t/${av.slug}"><small>← Travail précédent</small><b>${av.emoji} ${esc(av.titre)}</b></a><a class="droite" href="#/t/${ap.slug}"><small>Travail suivant →</small><b>${ap.emoji} ${esc(ap.titre)}</b></a></div>
+  </div>`;
+}
+function allerA(i) {
+  if (!imagesCourantes.length) return;
+  idx = (i + imagesCourantes.length) % imagesCourantes.length;
+  $("#d-img").src = imagesCourantes[idx];
+  $("#d-num").textContent = `${idx + 1} / ${imagesCourantes.length}`;
+  document.querySelectorAll(".vignettes img").forEach(v => v.classList.toggle("on", +v.dataset.v === idx));
+  const on = $(".vignettes img.on"); if (on) on.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+}
+function brancherTravail() {
+  const g = $(".diapo .g"), d = $(".diapo .d");
+  if (g) g.onclick = () => allerA(idx - 1);
+  if (d) d.onclick = () => allerA(idx + 1);
+  document.querySelectorAll(".vignettes img").forEach(v => v.onclick = () => allerA(+v.dataset.v));
+}
+
+/* ---------- Créations personnelles ---------- */
+function pageCreations() {
+  const fig = (src, b, s) => `<figure><img src="${src}" alt="${esc(b)}" loading="lazy" data-l="${esc(b)}${s ? " · " + esc(s) : ""}"><figcaption><b>${esc(b)}</b>${s ? `<span>${esc(s)}</span>` : ""}</figcaption></figure>`;
+  const ateliersHTML = Object.entries(ateliers).map(([nom, l]) => `<h3 class="groupe-titre">${esc(nom)}</h3><div class="mur larges">${l.map(([c, b, s]) => fig(`img/${c}.jpg`, b, s)).join("")}</div>`).join("");
+  return `<div class="tete-crea"><div class="in">
+    <span class="surtitre">✦ À part des travaux universitaires</span>
+    <h1>Créations personnelles</h1>
+    <p>Ces images ne sont ni des travaux de Master ni des commandes. Ce sont des exercices que je me donne à moi-même, depuis plusieurs années, pour m'entraîner à la direction artistique : reprendre une affiche de cinéma, un fond d'écran ou toute l'identité d'un studio, et la refaire avec rigueur.</p>
+    <p>Refaire un logo célèbre à l'identique est un exercice de précision : il faut retrouver ses proportions, ses espacements, ses courbes et ses couleurs exactes. C'est la meilleure preuve que ces images sont faites de mes mains, et non copiées : un logo redessiné se reconnaît à sa fidélité, pas à ses défauts.</p>
+    <div class="avertissement"><span>⚖️</span><p>${esc(MENTION)}</p></div>
+  </div></div>
+  <section class="bloc">
+    <span class="kicker">Exercices de cinéma</span><h2>Affiches</h2>
+    <div class="mur affiches">${aff.map(([c, b, s]) => fig(`img/affiches/${c}.jpg`, b, s)).join("")}</div>
+    <h2 style="margin-top:64px">Fonds d'écran</h2>
+    <div class="mur larges">${fonds.map(([c, b, s]) => fig(`img/fonds/${c}.jpg`, b, s)).join("")}</div>
+    <h2 style="margin-top:64px">Univers de studios redessinés</h2>
+    <p class="intro">Les noms sont transformés exprès : chaque planche montre comment je reconstruis une identité complète.</p>
+    <div class="mur larges">${marques.map((b, i) => fig(`img/marques/${String(i + 1).padStart(2, "0")}.jpg`, b, "")).join("")}</div>
+    <h2 style="margin-top:64px">Mon propre logo</h2>
+    <div class="mur larges">${LOGOS.map(([c, b, s]) => fig(`img/logo/${c}.jpg`, b, s)).join("")}</div>
+    <h2 style="margin-top:64px">Ateliers</h2>
+    ${ateliersHTML}
+  </section>`;
+}
+
+/* ---------- Parcours ---------- */
+function pageParcours() {
+  const contact = [CONTACT.courriel && `<a class="btn" href="mailto:${esc(CONTACT.courriel)}">Écrire un courriel</a>`, CONTACT.linkedin && `<a class="btn ghost" href="${esc(CONTACT.linkedin)}">LinkedIn</a>`].filter(Boolean).join("");
+  return `<div class="tete-parcours"><div class="in">
+    <img class="portrait" src="img/profil/portrait-vert.png" alt="Portrait de Guilhem Mesnier">
+    <div><span class="surtitre">Parcours</span><h1 style="margin-top:16px">Guilhem Mesnier</h1><p>${esc(PROFIL)}</p>${contact ? `<div class="boutons" style="margin-top:22px">${contact}</div>` : ""}</div>
+  </div></div>
+  <section class="bloc">
+    <div class="chiffres">${CHIFFRES.map(([n, l]) => `<div class="chiffre"><b>${esc(n)}</b><span>${esc(l)}</span></div>`).join("")}</div>
+    <h2 style="margin-top:64px">De l'histoire à la communication</h2>
+    <div class="frise">${PARCOURS.map(([d, t, p]) => `<div class="etape"><small>${esc(d)}</small><h3>${esc(t)}</h3><p>${esc(p)}</p></div>`).join("")}</div>
+  </section>`;
+}
+
+/* ---------- Routeur ---------- */
+function route() {
+  const h = location.hash.replace(/^#\/?/, "");
+  const [r, a] = h.split("/");
+  clearInterval(minuteur);
+  const app = $("#app");
+  if (r === "t") { app.innerHTML = pageTravail(decodeURIComponent(a || "")); brancherTravail(); }
+  else if (r === "travaux") { app.innerHTML = pageTravaux(); brancherTravaux(); }
+  else if (r === "creations") app.innerHTML = pageCreations();
+  else if (r === "parcours") app.innerHTML = pageParcours();
+  else { app.innerHTML = pageAccueil(); brancherAccueil(); }
+  document.querySelectorAll("#barre nav a").forEach(x => x.classList.toggle("actif", x.dataset.r === (r === "t" ? "travaux" : r || "")));
+  scrollTo(0, 0);
+  barre();
+}
+function barre() { $("#barre").classList.toggle("plein", scrollY > 40 || !!location.hash.replace(/^#\/?$/, "")); }
+addEventListener("hashchange", route);
+addEventListener("scroll", barre, { passive: true });
+addEventListener("keydown", e => {
+  if (!$(".diapo")) return;
+  if (e.key === "ArrowLeft") allerA(idx - 1);
+  if (e.key === "ArrowRight") allerA(idx + 1);
+});
+$("#pied").textContent = `${TRAVAUX.length} travaux · ${UNIVERS.length} univers`;
+visionneuse();
+route();
+</script>
+</body>
+</html>

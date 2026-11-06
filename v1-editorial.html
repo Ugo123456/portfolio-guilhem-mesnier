@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guilhem Mesnier, portfolio éditorial</title>
+<style>
+:root{--papier:#F6F1E7;--papier2:#EFE7D8;--encre:#1E1A17;--gris:#6D655C;--bordeaux:#7A1E2C;--or:#A9853F;--ligne:rgba(30,26,23,.16)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--papier);color:var(--encre);font-family:"Lora",Georgia,serif;font-size:18px;line-height:1.65;overflow-x:hidden}
+.didot{font-family:"Didot","Bodoni 72",Georgia,serif;font-weight:400;letter-spacing:-.01em}
+img{display:block;max-width:100%}
+a{color:inherit}
+.col{width:min(1180px,100% - 48px);margin:0 auto}
+.rubrique{font-family:"Lora";font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--bordeaux);font-weight:600}
+.filet{border:0;border-top:1px solid var(--encre);margin:0}
+.filet2{border:0;border-top:3px double var(--encre);margin:0}
+section{padding:96px 0}
+h2.titre{font-size:clamp(40px,6vw,84px);line-height:1.02;margin:14px 0 22px}
+h2.titre em{color:var(--bordeaux)}
+.chapo{font-size:21px;font-style:italic;color:var(--gris);max-width:760px}
+/* bandeau du journal */
+header.une{padding:26px 0 0}
+.manchette{display:flex;justify-content:space-between;align-items:end;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gris);padding-bottom:10px}
+.nomjournal{text-align:center;font-size:clamp(64px,13vw,190px);line-height:.92;padding:18px 0 6px}
+.nomjournal em{color:var(--bordeaux);font-style:italic}
+.sousnom{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;font-size:13px;letter-spacing:.2em;text-transform:uppercase;padding:10px 0}
+.sousnom a{text-decoration:none}
+.sousnom a:hover{color:var(--bordeaux)}
+.une-grille{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center;padding:56px 0 40px}
+.une-grille h1{font-size:clamp(36px,4.6vw,64px);line-height:1.05;margin:14px 0 20px}
+.lettrine::first-letter{font-family:"Didot";float:left;font-size:92px;line-height:.8;padding:8px 12px 0 0;color:var(--bordeaux)}
+.portrait{position:relative;justify-self:center}
+.portrait img.photo{width:min(400px,80vw);aspect-ratio:1;border-radius:50%;object-fit:cover;border:1px solid var(--encre);padding:10px;background:var(--papier2)}
+.portrait .sceau{position:absolute;right:-6px;bottom:18px;width:104px;height:104px;border-radius:50%;object-fit:cover;border:4px solid var(--papier);box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.portrait figcaption{text-align:center;font-size:13px;font-style:italic;color:var(--gris);margin-top:14px}
+.chiffres{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--encre);border-bottom:1px solid var(--encre)}
+.chiffres div{padding:22px 20px;border-left:1px solid var(--ligne)}
+.chiffres div:first-child{border-left:0}
+.chiffres b{display:block;font-family:"Didot";font-size:54px;font-weight:400;line-height:1;color:var(--bordeaux)}
+.chiffres span{font-size:14px;color:var(--gris)}
+/* sommaire */
+.sommaire{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:30px;border-top:1px solid var(--encre)}
+.sommaire a{text-decoration:none;padding:20px 18px 24px;border-right:1px solid var(--ligne);transition:background .3s}
+.sommaire a:hover{background:var(--papier2)}
+.sommaire b{font-family:"Didot";font-size:44px;font-weight:400;color:var(--or);display:block;line-height:1}
+.sommaire span{font-size:17px}
+/* parcours en colonnes de journal */
+.parcours{columns:3 280px;column-gap:44px;column-rule:1px solid var(--ligne);margin-top:30px}
+.etape{break-inside:avoid;margin-bottom:26px}
+.etape .quand{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--bordeaux);font-weight:600}
+.etape h3{font-family:"Didot";font-weight:400;font-size:26px;line-height:1.15;margin:4px 0 6px}
+.etape p{font-size:16px;color:var(--gris)}
+/* articles 2026 */
+.article{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding:56px 0;border-top:1px solid var(--ligne)}
+.article:nth-child(even) .visuel{order:2}
+.article .visuel img.grand{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--encre)}
+.article .legende{font-size:13px;font-style:italic;color:var(--gris);margin-top:8px}
+.article h3{font-family:"Didot";font-weight:400;font-size:clamp(36px,4vw,56px);line-height:1.02;margin:8px 0 16px}
+.article .sur{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);font-weight:600}
+.planche{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+.planche img{width:100%;aspect-ratio:1;object-fit:cover;cursor:zoom-in;border:1px solid var(--ligne);transition:transform .3s}
+.planche img:hover{transform:scale(1.04)}
+.mots{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.mots i{font-style:normal;font-size:12px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--encre);padding:4px 10px;border-radius:99px}
+video{width:100%;max-height:360px;margin-top:12px;background:#000}
+/* galerie des affiches : défilement horizontal */
+.galerie{display:flex;gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;padding:30px max(24px,calc((100vw - 1180px)/2)) 34px;scrollbar-width:thin}
+.galerie figure{flex:0 0 auto;scroll-snap-align:center;width:260px}
+.galerie img{width:260px;aspect-ratio:2/3;object-fit:cover;cursor:zoom-in;box-shadow:0 18px 36px rgba(0,0,0,.18);transition:transform .4s}
+.galerie img:hover{transform:translateY(-8px) rotate(-1deg)}
+.galerie figcaption{font-family:"Didot";font-size:21px;margin-top:12px;line-height:1.1}
+.galerie small{display:block;font-family:"Lora";font-size:13px;font-style:italic;color:var(--gris)}
+.indice{font-size:13px;color:var(--gris);font-style:italic}
+/* fonds */
+.fonds{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+.fonds figure img{width:100%;aspect-ratio:16/9;object-fit:cover;cursor:zoom-in}
+.fonds figcaption{font-size:14px;margin-top:6px}
+.fonds figcaption b{font-family:"Didot";font-weight:400;font-size:19px}
+/* marques */
+.marques{columns:4 220px;column-gap:20px;margin-top:30px}
+.marques figure{break-inside:avoid;margin-bottom:20px;background:var(--papier2);padding:10px}
+.marques img{width:100%;cursor:zoom-in}
+.marques figcaption{font-family:"Didot";font-size:18px;padding-top:8px}
+/* ateliers */
+.atelier{margin-top:50px}
+.atelier h3{font-family:"Didot";font-weight:400;font-size:34px;border-bottom:1px solid var(--encre);padding-bottom:8px;margin-bottom:18px}
+.atelier .vign{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.atelier img{width:100%;aspect-ratio:4/3;object-fit:cover;cursor:zoom-in;border:1px solid var(--ligne)}
+.atelier figcaption{font-size:13px;color:var(--gris);margin-top:4px}
+/* index des travaux */
+.filtres{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:26px 0 8px}
+.filtres select{font-family:"Lora";font-size:16px;padding:8px 12px;border:1px solid var(--encre);background:var(--papier);border-radius:0}
+.compte{font-style:italic;color:var(--gris);font-size:15px}
+.annee h3{font-family:"Didot";font-weight:400;font-size:44px;margin:40px 0 4px;color:var(--bordeaux)}
+.ligne{display:grid;grid-template-columns:90px 1fr 1.2fr;gap:24px;padding:16px 0;border-top:1px solid var(--ligne);align-items:start}
+.ligne.cache{display:none}
+.ligne img{width:90px;height:68px;object-fit:cover;cursor:zoom-in}
+.ligne .vide{width:90px;height:68px;display:grid;place-items:center;font-family:"Didot";font-size:30px;color:var(--or);border:1px solid var(--ligne)}
+.ligne h4{font-family:"Didot";font-weight:400;font-size:23px;line-height:1.15}
+.ligne .ou{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gris)}
+.ligne p{font-size:16px}
+.ligne .mots i{font-size:10px;padding:2px 8px}
+/* logo */
+.logos{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:30px}
+.logos figure{text-align:center}
+.logos img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;border:1px solid var(--encre);padding:8px;background:var(--papier2)}
+.logos b{font-family:"Didot";font-size:60px;font-weight:400;color:var(--or);display:block;line-height:1;margin-top:14px}
+.logos h4{font-family:"Didot";font-weight:400;font-size:26px}
+.logos p{font-size:15px;color:var(--gris)}
+footer{background:var(--encre);color:var(--papier);padding:80px 0 50px;text-align:center}
+footer h2{font-size:clamp(44px,7vw,96px);font-family:"Didot";font-weight:400;line-height:1}
+footer h2 em{color:#D9A9B1}
+footer p{max-width:760px;margin:20px auto 0;font-size:15px;opacity:.75}
+footer .btn{display:inline-block;margin-top:28px;border:1px solid var(--papier);padding:12px 26px;text-decoration:none;letter-spacing:.14em;text-transform:uppercase;font-size:13px}
+#visio{position:fixed;inset:0;background:rgba(246,241,231,.96);display:none;place-items:center;z-index:99;cursor:zoom-out;padding:30px}
+#visio.on{display:grid}
+#visio img{max-width:92vw;max-height:84vh;box-shadow:0 30px 60px rgba(0,0,0,.25)}
+#visio p{font-family:"Didot";font-size:22px;text-align:center;margin-top:12px}
+.apparait{opacity:0;transform:translateY(24px);transition:opacity .9s,transform .9s}
+.apparait.vu{opacity:1;transform:none}
+@media(max-width:860px){.une-grille,.article{grid-template-columns:1fr}.article:nth-child(even) .visuel{order:0}.chiffres,.sommaire{grid-template-columns:1fr 1fr}.fonds,.logos{grid-template-columns:1fr}.ligne{grid-template-columns:70px 1fr}.ligne .droite{grid-column:2}.planche{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+
+<header class="une col">
+  <div class="manchette"><span>Édition d'octobre 2026</span><span>Clermont-Ferrand</span><span>Portfolio</span></div>
+  <hr class="filet2">
+  <div class="nomjournal didot">Guilhem <em>Mesnier</em></div>
+  <hr class="filet">
+  <nav class="sousnom"><a href="#parcours">Parcours</a><a href="#annee2026">L'année 2026</a><a href="#affiches">Affiches</a><a href="#marques">Marques</a><a href="#travaux">Tous les travaux</a><a href="#logo">Le monogramme</a><a href="#contact">Contact</a></nav>
+  <hr class="filet">
+  <div class="une-grille">
+    <div class="apparait">
+      <div class="rubrique">À la une</div>
+      <h1 class="didot">Comprendre une marque, puis la dessiner.</h1>
+      <p class="lettrine" id="profil"></p>
+      <p style="margin-top:14px;color:var(--gris)">Le mémoire étudie comment les grands studios de cinéma sont devenus des empires de marque. Les affiches, les fonds d'écran et les univers de studios refaits à la main montrent la même chose de l'autre côté : comment on fabrique une identité, logo par logo.</p>
+    </div>
+    <figure class="portrait apparait">
+      <img class="photo" src="img/profil/portrait-vert.png" alt="Portrait de Guilhem Mesnier">
+      <img class="sceau" src="img/logo/l1-candidat-a.jpg" alt="Monogramme gg">
+      <figcaption>Guilhem Mesnier, chargé de communication et de contenus numériques.</figcaption>
+    </figure>
+  </div>
+  <div class="chiffres apparait" id="chiffres"></div>
+  <div class="sommaire apparait">
+    <a href="#annee2026"><b>01</b><span>Les cinq projets de 2026</span></a>
+    <a href="#affiches"><b>02</b><span>La galerie des affiches</span></a>
+    <a href="#marques"><b>03</b><span>Vingt-six univers de studios</span></a>
+    <a href="#travaux"><b>04</b><span>L'index des travaux</span></a>
+  </div>
+</header>
+
+<section id="parcours"><div class="col">
+  <div class="rubrique">Parcours</div>
+  <h2 class="titre didot">De l'histoire à la <em>communication</em></h2>
+  <div class="parcours" id="listeParcours"></div>
+</div></section>
+
+<section id="annee2026" style="background:var(--papier2)"><div class="col">
+  <div class="rubrique">Dossier spécial</div>
+  <h2 class="titre didot">L'année <em>2026</em>, cinq projets</h2>
+  <p class="chapo">Un stage, un mémoire et trois projets de Master 2, racontés comme des articles. Cliquez sur une image pour l'agrandir.</p>
+  <div id="articles"></div>
+</div></section>
+
+<section id="affiches" style="padding-bottom:40px"><div class="col">
+  <div class="rubrique">Atelier personnel</div>
+  <h2 class="titre didot">La galerie des <em>affiches</em></h2>
+  <p class="indice">Faites défiler la galerie de côté, avec le pavé tactile ou la barre du bas.</p>
+</div>
+<div class="galerie" id="galerie"></div></section>
+
+<section id="fonds" style="padding-top:40px"><div class="col">
+  <div class="rubrique">Fonds d'écran</div>
+  <h2 class="titre didot">Format <em>16:9</em></h2>
+  <p class="chapo">Des déclinaisons paysage pensées pour les écrans d'accueil des plateformes.</p>
+  <div class="fonds" id="listeFonds"></div>
+</div></section>
+
+<section id="marques" style="background:var(--papier2)"><div class="col">
+  <div class="rubrique">Identité de marque</div>
+  <h2 class="titre didot">Vingt-six univers de <em>studios</em></h2>
+  <p class="chapo">Logos, déclinaisons, signalétique et cérémonies : chaque studio est repris en entier, avec ses règles. C'est le travail le plus proche du mémoire.</p>
+  <div class="marques" id="listeMarques"></div>
+</div></section>
+
+<section id="ateliers"><div class="col">
+  <div class="rubrique">Les autres ateliers</div>
+  <h2 class="titre didot">Interfaces, presse, photo, <em>musique</em></h2>
+  <div id="listeAteliers"></div>
+</div></section>
+
+<section id="travaux" style="background:var(--papier2)"><div class="col">
+  <div class="rubrique">Index</div>
+  <h2 class="titre didot">Tous les <em>travaux</em></h2>
+  <p class="chapo">Les matières servent seulement à ranger : un même travail parle souvent de plusieurs choses. Choisissez une année ou un thème.</p>
+  <div class="filtres"><select id="selAnnee"></select><select id="selTheme"></select><span class="compte" id="compte"></span></div>
+  <div id="index"></div>
+</div></section>
+
+<section id="logo"><div class="col">
+  <div class="rubrique">Le monogramme</div>
+  <h2 class="titre didot">Quel papillon <em>gg</em> ?</h2>
+  <p class="chapo">Le bon logo se lit comme deux g dos à dos et comme un papillon, même en tout petit.</p>
+  <div class="logos" id="listeLogos"></div>
+</div></section>
+
+<footer id="contact"><div class="col">
+  <div class="rubrique" style="color:#D9A9B1">Contact</div>
+  <h2>Travaillons <em>ensemble</em>.</h2>
+  <p style="opacity:1;font-size:19px;font-style:italic">Chargé de communication, de contenus numériques ou d'identité de marque.</p>
+  <a class="btn" href="#">Adresse et LinkedIn à ajouter</a>
+  <p id="mention"></p>
+  <p style="margin-top:40px">Guilhem Mesnier, portfolio éditorial, octobre 2026. Polices Didot et Lora.</p>
+</div></footer>
+
+<script src="data/v1/donnees.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+$("#profil").textContent=PROFIL;
+$("#mention").textContent=MENTION;
+$("#chiffres").innerHTML=CHIFFRES.map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join("");
+$("#listeParcours").innerHTML=PARCOURS.map(([q,t,p])=>`<div class="etape"><div class="quand">${q}</div><h3>${t}</h3><p>${p}</p></div>`).join("");
+$("#articles").innerHTML=acc.map(a=>`<article class="article apparait"><div class="visuel"><img class="grand" src="${a.img}" data-l="${a.t}" alt="${a.t}"><div class="legende">${a.t}, ${a.s.toLowerCase()}.</div></div><div><div class="sur">${a.s}</div><h3>${a.t}</h3><p>${a.p}</p><div class="planche">${a.v.map(s=>`<img src="${s}" data-l="${a.t}" alt="" loading="lazy">`).join("")}</div>${a.video?`<video src="${a.video}" controls muted playsinline preload="none" poster="img/zefil/pub9.jpg"></video>`:""}<div class="mots">${a.tags.map(t=>`<i>${t}</i>`).join("")}</div></div></article>`).join("");
+$("#galerie").innerHTML=aff.map(([f,t,s])=>`<figure><img src="img/affiches/${f}.jpg" data-l="${t}, ${s}" alt="${t}" loading="lazy"><figcaption>${t}<small>${s}</small></figcaption></figure>`).join("");
+$("#listeFonds").innerHTML=fonds.map(([f,t,s])=>`<figure class="apparait"><img src="img/fonds/${f}.jpg" data-l="${t}, ${s}" alt="${t}" loading="lazy"><figcaption><b>${t}</b>, ${s}</figcaption></figure>`).join("");
+$("#listeMarques").innerHTML=marques.map((m,i)=>`<figure><img src="img/marques/${String(i+1).padStart(2,"0")}.jpg" data-l="${m}" alt="${m}" loading="lazy"><figcaption>${m}</figcaption></figure>`).join("");
+$("#listeAteliers").innerHTML=Object.entries(ateliers).map(([nom,l])=>`<div class="atelier apparait"><h3>${nom}</h3><div class="vign">${l.map(([f,t,s])=>`<figure><img src="img/${f}.jpg" data-l="${t}, ${s}" alt="${t}" loading="lazy"><figcaption>${t}, ${s.toLowerCase()}</figcaption></figure>`).join("")}</div></div>`).join("");
+$("#listeLogos").innerHTML=LOGOS.map(([f,t,p],i)=>`<figure class="apparait"><img src="img/logo/${f}.jpg" data-l="${t}" alt="${t}"><b>${i+1}</b><h4>${t}</h4><p>${p}</p></figure>`).join("");
+/* index des travaux, groupé par année */
+const annees=["Stage M2","Master 2","Master 1","Licence"],noms={"Stage M2":"Le stage de 2026","Master 2":"Master 2","Master 1":"Master 1","Licence":"Licence"};
+$("#index").innerHTML=annees.map(a=>`<div class="annee" data-a="${a}"><h3>${noms[a]}</h3>${T.filter(x=>x.n===a).map(x=>`<div class="ligne" data-n="${x.n}" data-th="${x.th.join("|")}">${x.img?`<img src="img/${x.img}" data-l="${x.t}" alt="" loading="lazy">`:`<div class="vide">${x.gros||"§"}</div>`}<div><div class="ou">${x.ou}</div><h4>${x.t}</h4></div><div class="droite"><p>${x.p}</p><div class="mots">${x.th.map(t=>`<i>${t}</i>`).join("")}</div></div></div>`).join("")}</div>`).join("");
+$("#selAnnee").innerHTML=["Toutes les années",...annees].map(a=>`<option>${a}</option>`).join("");
+$("#selTheme").innerHTML=["Tous les thèmes",...Object.keys(FAM)].map(a=>`<option>${a}</option>`).join("");
+function filtrer(){const a=$("#selAnnee").value,t=$("#selTheme").value;let c=0;document.querySelectorAll(".ligne").forEach(d=>{const ok=(a==="Toutes les années"||d.dataset.n===a)&&(t==="Tous les thèmes"||d.dataset.th.split("|").some(x=>FAM[t].includes(x)));d.classList.toggle("cache",!ok);if(ok)c++});document.querySelectorAll(".annee").forEach(b=>b.style.display=b.querySelector(".ligne:not(.cache)")?"":"none");$("#compte").textContent=c+" travaux"}
+$("#selAnnee").onchange=$("#selTheme").onchange=filtrer;filtrer();
+visionneuse();
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("vu");io.unobserve(x.target)}}),{threshold:.1});
+document.querySelectorAll(".apparait").forEach(e=>io.observe(e));
+</script>
+</body>
+</html>

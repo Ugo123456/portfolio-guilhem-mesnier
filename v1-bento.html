@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guilhem Mesnier, portfolio bento</title>
+<style>
+:root{--fond:#F2F3F7;--carte:#FFFFFF;--tx:#16181D;--tx2:#6B7280;--bleu:#0A84FF;--sar:#14B8C9;--or:#C99A3D;--grad:linear-gradient(120deg,#0A84FF,#14B8C9 50%,#C99A3D);--ombre:0 1px 2px rgba(16,24,40,.04),0 12px 32px rgba(16,24,40,.07)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+section{scroll-margin-top:60px}
+body{background:var(--fond);color:var(--tx);font-family:"Avenir Next","Avenir",-apple-system,sans-serif;font-size:17px;line-height:1.55;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:-20% -10% auto;height:70vh;background:radial-gradient(closest-side,rgba(10,132,255,.13),transparent),radial-gradient(closest-side at 80% 40%,rgba(201,154,61,.12),transparent);z-index:-1;pointer-events:none}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.w{width:min(1200px,100% - 32px);margin:0 auto}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.carte{background:var(--carte);border-radius:28px;box-shadow:var(--ombre);overflow:hidden;position:relative}
+section{padding:70px 0}
+.sur{font-size:13px;font-weight:600;color:var(--bleu);letter-spacing:.02em}
+h2{font-size:clamp(34px,4.6vw,56px);font-weight:700;letter-spacing:-.025em;line-height:1.05;margin:6px 0 10px}
+.chapo{font-size:19px;color:var(--tx2);max-width:720px}
+/* barre en verre */
+nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:4px;padding:6px;border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(20px) saturate(1.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);box-shadow:0 8px 24px rgba(16,24,40,.08);border:1px solid rgba(255,255,255,.9)}
+nav a{font-size:14px;font-weight:500;padding:7px 14px;border-radius:999px;color:var(--tx2)}
+nav a:hover,nav a.on{background:var(--tx);color:#fff}
+nav img{width:30px;height:30px;border-radius:50%;object-fit:cover}
+/* héros en bento */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;gap:16px;padding-top:90px}
+.b-nom{grid-column:span 2;grid-row:span 2;padding:34px;display:flex;flex-direction:column;justify-content:flex-end}
+.b-nom h1{font-size:clamp(46px,6vw,84px);line-height:.95;letter-spacing:-.04em;font-weight:700}
+.b-nom p{color:var(--tx2);margin-top:14px;font-size:17px}
+.b-photo{grid-column:span 1;grid-row:span 2;background:linear-gradient(160deg,#d8f0e6,#9fd7c1)}
+.b-photo img{width:100%;height:100%;object-fit:cover}
+.b-logo{background:#0b0d12}
+.b-logo img{width:100%;height:100%;object-fit:cover}
+.b-chiffre{padding:22px;display:flex;flex-direction:column;justify-content:space-between}
+.b-chiffre b{font-size:56px;font-weight:700;letter-spacing:-.04em;line-height:1}
+.b-chiffre span{font-size:14px;color:var(--tx2);line-height:1.3}
+.b-proj{grid-column:span 2;grid-row:span 1;cursor:pointer}
+.b-proj img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.b-proj:hover img{transform:scale(1.05)}
+.b-proj .vt{position:absolute;inset:auto 0 0;padding:16px 20px;background:linear-gradient(transparent,rgba(0,0,0,.65));color:#fff;font-weight:600}
+.b-proj .vt small{display:block;font-weight:400;opacity:.85;font-size:13px}
+.b-cta{background:var(--tx);color:#fff;padding:22px;display:flex;flex-direction:column;justify-content:space-between}
+.b-cta b{font-size:24px;line-height:1.15}
+.b-cta span{font-size:14px;opacity:.7}
+/* frise */
+.frise{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:20px 4px 24px;scrollbar-width:none}
+.frise::-webkit-scrollbar{display:none}
+.frise .carte{flex:0 0 300px;scroll-snap-align:start;padding:24px}
+.frise .q{display:inline-block;font-size:13px;font-weight:600;color:#fff;background:var(--grad);padding:3px 10px;border-radius:99px}
+.frise h3{font-size:19px;line-height:1.2;margin:12px 0 8px}
+.frise p{font-size:15px;color:var(--tx2)}
+.fleches{display:flex;gap:8px;justify-content:flex-end}
+.fleches button,.rond{width:42px;height:42px;border-radius:50%;border:0;background:var(--carte);box-shadow:var(--ombre);font-size:18px;cursor:pointer}
+/* projets 2026 */
+.projets{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:26px}
+.projets .carte{cursor:pointer;transition:transform .35s}
+.projets .carte:hover{transform:translateY(-4px)}
+.projets .carte:nth-child(1),.projets .carte:nth-child(2){grid-column:span 3}
+.projets .carte:nth-child(n+3){grid-column:span 2}
+.projets .img{aspect-ratio:16/10;overflow:hidden}
+.projets .img img{width:100%;height:100%;object-fit:cover}
+.projets .txt{padding:20px 22px 24px}
+.projets h3{font-size:24px;letter-spacing:-.02em}
+.projets .s{font-size:13px;color:var(--bleu);font-weight:600}
+.projets p{font-size:15px;color:var(--tx2);margin-top:6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.projets .plus{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);display:grid;place-items:center;font-size:22px;font-weight:500}
+dialog{border:0;border-radius:32px;max-width:min(980px,94vw);width:100%;padding:0;box-shadow:0 40px 90px rgba(0,0,0,.3)}
+dialog::backdrop{background:rgba(242,243,247,.7);backdrop-filter:blur(16px)}
+dialog .haut{padding:30px 34px 10px}
+dialog h3{font-size:36px;letter-spacing:-.025em}
+dialog .grille{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px 34px 34px}
+dialog .grille img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:16px;cursor:zoom-in}
+dialog video{width:100%;border-radius:16px;grid-column:span 3;max-height:420px;background:#000}
+dialog .fermer{position:absolute;top:16px;right:16px}
+.puces{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.puces i{font-style:normal;font-size:12px;font-weight:500;background:var(--fond);padding:4px 10px;border-radius:99px}
+/* carrousel en éventail */
+.eventail{height:520px;position:relative;overflow:hidden;perspective:1600px;margin-top:20px}
+.eventail figure{position:absolute;left:50%;top:20px;width:290px;margin-left:-145px;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .7s,filter .7s;cursor:pointer}
+.eventail img{width:290px;aspect-ratio:2/3;object-fit:cover;border-radius:22px;box-shadow:0 30px 60px rgba(16,24,40,.25)}
+.eventail figcaption{text-align:center;font-weight:600;margin-top:12px;font-size:16px}
+.eventail figcaption small{display:block;font-weight:400;color:var(--tx2);font-size:13px}
+.ctrl{display:flex;gap:12px;justify-content:center;align-items:center}
+.ctrl span{font-size:14px;color:var(--tx2);min-width:70px;text-align:center}
+/* fonds : grille bento */
+.fonds{display:grid;grid-auto-flow:dense;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+.fonds .carte{aspect-ratio:16/9}
+.fonds .carte:nth-child(5n+1){grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.fonds img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;transition:transform .5s}
+.fonds .carte:hover img{transform:scale(1.05)}
+.fonds .lg{position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);font-size:12px;font-weight:600;padding:4px 10px;border-radius:99px}
+/* marques : deux rubans */
+.ruban{display:flex;gap:14px;width:max-content;animation:defile 70s linear infinite;margin-top:14px}
+.ruban.inverse{animation-direction:reverse}
+.ruban:hover{animation-play-state:paused}
+.ruban .carte{width:260px;flex:0 0 auto}
+.ruban img{width:100%;aspect-ratio:16/10;object-fit:cover;cursor:zoom-in}
+.ruban .n{padding:10px 14px;font-size:14px;font-weight:600}
+@keyframes defile{to{transform:translateX(-50%)}}
+.cadre-ruban{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);margin-top:20px}
+/* ateliers : sélecteur segmenté */
+.segment{display:inline-flex;background:#E4E6EC;padding:4px;border-radius:14px;gap:2px;flex-wrap:wrap;margin-top:18px}
+.segment button{font:inherit;font-size:14px;font-weight:500;border:0;background:none;padding:8px 16px;border-radius:10px;cursor:pointer}
+.segment button.on{background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+.panneau{display:none;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
+.panneau.on{display:grid}
+.panneau img{width:100%;aspect-ratio:4/3;object-fit:cover;cursor:zoom-in}
+.panneau .n{padding:10px 14px;font-size:14px}
+.panneau .n b{display:block}
+/* travaux */
+.puces-f{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.puces-f button{font:inherit;font-size:14px;font-weight:500;border:1px solid #D7DAE2;background:#fff;padding:7px 14px;border-radius:99px;cursor:pointer}
+.puces-f button.on{background:var(--tx);color:#fff;border-color:var(--tx)}
+.compte{margin:16px 0 8px;font-size:14px;color:var(--tx2)}
+.trav{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.trav .carte{display:flex;flex-direction:column}
+.trav .carte.cache{display:none}
+.trav img{width:100%;aspect-ratio:16/10;object-fit:cover;cursor:zoom-in}
+.trav .gros{aspect-ratio:16/10;display:grid;place-items:center;font-size:72px;font-weight:700;letter-spacing:-.04em;background:linear-gradient(135deg,#EEF4FF,#F7F1E6)}
+.trav .gros.sans{font-size:15px;font-weight:600;color:var(--tx2);letter-spacing:0;padding:20px;text-align:center}
+.trav .c{padding:16px 18px 18px}
+.trav .ou{font-size:12px;color:var(--bleu);font-weight:600}
+.trav h4{font-size:17px;line-height:1.25;margin:3px 0 4px}
+.trav p{font-size:14px;color:var(--tx2)}
+/* logo */
+.logos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.logos .carte{background:#0b0d12;color:#fff}
+.logos img{width:100%;aspect-ratio:1;object-fit:cover;cursor:zoom-in}
+.logos .c{padding:18px 22px 22px}
+.logos .rang{font-size:13px;font-weight:600;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logos h4{font-size:21px}
+.logos p{font-size:14px;opacity:.7}
+.contact{text-align:center;padding:90px 30px}
+.contact h2{font-size:clamp(44px,7vw,92px)}
+.bouton{display:inline-block;background:var(--tx);color:#fff;padding:14px 28px;border-radius:99px;font-weight:600;margin-top:22px}
+.mention{font-size:13px;color:var(--tx2);max-width:760px;margin:28px auto 0}
+#visio{position:fixed;inset:0;background:rgba(242,243,247,.85);backdrop-filter:blur(20px);display:none;place-items:center;z-index:99;cursor:zoom-out;padding:30px}
+#visio.on{display:grid}
+#visio img{max-width:92vw;max-height:84vh;border-radius:20px;box-shadow:0 40px 90px rgba(0,0,0,.3)}
+#visio p{text-align:center;font-weight:600;margin-top:12px}
+.app{opacity:0;transform:translateY(20px) scale(.98);transition:opacity .8s,transform .8s}
+.app.vu{opacity:1;transform:none}
+@media(max-width:900px){nav a.txt{display:none}.bento{grid-template-columns:1fr 1fr;grid-auto-rows:150px}.b-nom,.b-proj{grid-column:span 2}.b-photo{grid-column:span 1}.projets .carte:nth-child(n){grid-column:span 6}.fonds{grid-template-columns:1fr 1fr}.panneau{grid-template-columns:1fr 1fr}.logos{grid-template-columns:1fr}.eventail{height:470px}.eventail figure{width:220px;margin-left:-110px}.eventail img{width:220px}dialog .grille{grid-template-columns:1fr 1fr;padding:12px 18px 22px}dialog video{grid-column:span 2}}
+</style>
+</head>
+<body>
+<nav><a href="#haut"><img src="img/logo/l1-candidat-a.jpg" alt=""></a><a class="txt" href="#parcours">Parcours</a><a class="txt" href="#annee2026">2026</a><a class="txt" href="#affiches">Affiches</a><a class="txt" href="#marques">Marques</a><a class="txt" href="#travaux">Travaux</a><a class="txt" href="#contact">Contact</a></nav>
+
+<header class="w" id="haut">
+  <div class="bento">
+    <div class="carte b-nom app"><div class="sur">Portfolio, octobre 2026</div><h1>Guilhem<br><span class="grad">Mesnier</span></h1><p id="profil"></p></div>
+    <div class="carte b-photo app"><img src="img/profil/portrait-vert.png" alt="Portrait de Guilhem Mesnier"></div>
+    <div class="carte b-logo app"><img src="img/logo/l1-candidat-a.jpg" data-l="Le monogramme gg, sarcelle et or" alt=""></div>
+    <div class="carte b-chiffre app" id="c0"></div>
+    <a class="carte b-proj app" href="#annee2026"><img src="img/stage/accueil.jpg" alt=""><div class="vt">Livret d'accueil transversal<small>Stage de Master 2, 2026</small></div></a>
+    <div class="carte b-chiffre app" id="c1"></div>
+    <div class="carte b-chiffre app" id="c2"></div>
+    <a class="carte b-proj app" href="#affiches"><img src="img/affiches/a03.jpg" alt="" style="object-position:center 30%"><div class="vt">Vingt-trois affiches<small>Atelier personnel</small></div></a>
+    <div class="carte b-chiffre app" id="c3"></div>
+    <a class="carte b-cta app" href="#contact"><span>Disponible</span><b>Chargé de communication et de contenus numériques</b><span>Me contacter →</span></a>
+  </div>
+</header>
+
+<section id="parcours"><div class="w">
+  <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap"><div><div class="sur">Parcours</div><h2>De l'histoire à la <span class="grad">communication</span></h2></div><div class="fleches"><button onclick="frise.scrollBy({left:-320,behavior:'smooth'})" aria-label="Précédent">←</button><button onclick="frise.scrollBy({left:320,behavior:'smooth'})" aria-label="Suivant">→</button></div></div>
+  <div class="frise" id="frise"></div>
+</div></section>
+
+<section id="annee2026" style="padding-top:20px"><div class="w">
+  <div class="sur">L'année 2026</div>
+  <h2>Cinq projets, <span class="grad">une année</span></h2>
+  <p class="chapo">Touchez une carte pour ouvrir le projet en entier.</p>
+  <div class="projets" id="projets"></div>
+</div></section>
+<dialog id="fiche"><button class="rond fermer" onclick="fiche.close()" aria-label="Fermer">✕</button><div class="haut"><div class="sur" id="fS"></div><h3 id="fT"></h3><p class="chapo" id="fP" style="font-size:17px;margin-top:8px"></p><div class="puces" id="fK"></div></div><div class="grille" id="fG"></div></dialog>
+
+<section id="affiches"><div class="w">
+  <div class="sur">Atelier personnel</div>
+  <h2>L'éventail des <span class="grad">affiches</span></h2>
+  <p class="chapo">Avec les flèches, les touches du clavier ou en cliquant sur une affiche voisine.</p>
+  <div class="eventail" id="eventail"></div>
+  <div class="ctrl"><button class="rond" id="prec" aria-label="Précédente">←</button><span id="pos"></span><button class="rond" id="suiv" aria-label="Suivante">→</button></div>
+</div></section>
+
+<section id="fonds"><div class="w">
+  <div class="sur">Fonds d'écran</div>
+  <h2>Format <span class="grad">16:9</span></h2>
+  <p class="chapo">Des déclinaisons paysage pour les écrans d'accueil des plateformes.</p>
+  <div class="fonds" id="listeFonds"></div>
+</div></section>
+
+<section id="marques"><div class="w">
+  <div class="sur">Identité de marque</div>
+  <h2>Vingt-six univers de <span class="grad">studios</span></h2>
+  <p class="chapo">Logos, déclinaisons, signalétique et cérémonies : chaque studio est repris en entier. Le ruban s'arrête au survol.</p>
+</div>
+<div class="cadre-ruban"><div class="ruban" id="r1"></div><div class="ruban inverse" id="r2"></div></div></section>
+
+<section id="ateliers"><div class="w">
+  <div class="sur">Les autres ateliers</div>
+  <h2>Interfaces, presse, photo, <span class="grad">musique</span></h2>
+  <div class="segment" id="segment"></div>
+  <div id="panneaux"></div>
+</div></section>
+
+<section id="travaux"><div class="w">
+  <div class="sur">Tous les travaux</div>
+  <h2>Licence, Master, <span class="grad">stages</span></h2>
+  <p class="chapo">Les matières servent seulement à ranger : un même travail parle souvent de plusieurs choses.</p>
+  <div class="puces-f" id="fAnnee"></div>
+  <div class="puces-f" id="fTheme"></div>
+  <div class="compte" id="compte"></div>
+  <div class="trav" id="trav"></div>
+</div></section>
+
+<section id="logo"><div class="w">
+  <div class="sur">Le monogramme</div>
+  <h2>Quel papillon <span class="grad">gg</span> ?</h2>
+  <p class="chapo">Le bon logo se lit comme deux g dos à dos et comme un papillon, même en tout petit.</p>
+  <div class="logos" id="listeLogos"></div>
+</div></section>
+
+<section id="contact"><div class="w"><div class="carte contact app">
+  <div class="sur">Contact</div>
+  <h2>Travaillons <span class="grad">ensemble</span>.</h2>
+  <p class="chapo" style="margin:0 auto">Chargé de communication, de contenus numériques ou d'identité de marque.</p>
+  <a class="bouton" href="#">Adresse et LinkedIn à ajouter</a>
+  <p class="mention" id="mention"></p>
+  <p class="mention">Guilhem Mesnier, portfolio bento, octobre 2026. Police Avenir Next.</p>
+</div></div></section>
+
+<script src="data/v1/donnees.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+$("#profil").textContent=PROFIL;$("#mention").textContent=MENTION;
+CHIFFRES.forEach(([n,l],i)=>$("#c"+i).innerHTML=`<b class="${i%2?"":"grad"}">${n}</b><span>${l}</span>`);
+$("#frise").innerHTML=PARCOURS.map(([q,t,p])=>`<div class="carte"><span class="q">${q}</span><h3>${t}</h3><p>${p}</p></div>`).join("");
+/* projets et fiche */
+$("#projets").innerHTML=acc.map((a,i)=>`<div class="carte app" data-i="${i}"><div class="img"><img src="${a.img}" alt="${a.t}"></div><span class="plus">+</span><div class="txt"><div class="s">${a.s}</div><h3>${a.t}</h3><p>${a.p}</p></div></div>`).join("");
+document.querySelectorAll(".projets .carte").forEach(c=>c.onclick=()=>{const a=acc[c.dataset.i];$("#fS").textContent=a.s;$("#fT").textContent=a.t;$("#fP").textContent=a.p;$("#fK").innerHTML=a.tags.map(t=>`<i>${t}</i>`).join("");$("#fG").innerHTML=[a.img,...a.v].map(s=>`<img src="${s}" data-l="${a.t}" alt="">`).join("")+(a.video?`<video src="${a.video}" controls muted playsinline poster="img/zefil/pub9.jpg"></video>`:"");fiche.showModal()});
+/* éventail */
+const ev=$("#eventail");ev.innerHTML=aff.map(([f,t,s])=>`<figure><img src="img/affiches/${f}.jpg" data-l="${t}, ${s}" alt="${t}" loading="lazy"><figcaption>${t}<small>${s}</small></figcaption></figure>`).join("");
+const fe=[...ev.children];let cur=0;
+function placer(){fe.forEach((f,i)=>{const d=i-cur,a=Math.abs(d);f.style.transform=`translateX(${d*190}px) translateZ(${-a*170}px) rotateY(${-d*22}deg)`;f.style.opacity=a>3?0:1-a*.18;f.style.zIndex=50-a;f.style.filter=a?`saturate(${1-a*.2})`:"none";f.style.pointerEvents=a>3?"none":"auto"});$("#pos").textContent=(cur+1)+" / "+fe.length}
+fe.forEach((f,i)=>f.addEventListener("click",e=>{if(i!==cur){e.preventDefault();e.stopPropagation();cur=i;placer()}},true));
+$("#prec").onclick=()=>{cur=Math.max(0,cur-1);placer()};$("#suiv").onclick=()=>{cur=Math.min(fe.length-1,cur+1);placer()};
+document.addEventListener("keydown",e=>{const r=$("#affiches").getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0){if(e.key==="ArrowRight")$("#suiv").click();if(e.key==="ArrowLeft")$("#prec").click()}});
+cur=2;placer();
+$("#listeFonds").innerHTML=fonds.map(([f,t,s])=>`<div class="carte"><img src="img/fonds/${f}.jpg" data-l="${t}, ${s}" alt="${t}" loading="lazy"><span class="lg">${t}</span></div>`).join("");
+const m=marques.map((x,i)=>`<div class="carte"><img src="img/marques/${String(i+1).padStart(2,"0")}.jpg" data-l="${x}" alt="${x}" loading="lazy"><div class="n">${x}</div></div>`);
+$("#r1").innerHTML=[...m.slice(0,13),...m.slice(0,13)].join("");$("#r2").innerHTML=[...m.slice(13),...m.slice(13)].join("");
+Object.entries(ateliers).forEach(([nom,l],k)=>{const b=document.createElement("button");b.textContent=nom;if(!k)b.className="on";const p=document.createElement("div");p.className="panneau"+(k?"":" on");p.innerHTML=l.map(([f,t,s])=>`<div class="carte"><img src="img/${f}.jpg" data-l="${t}, ${s}" alt="${t}" loading="lazy"><div class="n"><b>${t}</b>${s}</div></div>`).join("");b.onclick=()=>{document.querySelectorAll(".segment button").forEach(x=>x.classList.toggle("on",x===b));document.querySelectorAll(".panneau").forEach(x=>x.classList.toggle("on",x===p))};$("#segment").append(b);$("#panneaux").append(p)});
+$("#trav").innerHTML=T.map(x=>`<div class="carte" data-n="${x.n}" data-th="${x.th.join("|")}">${x.img?`<img src="img/${x.img}" data-l="${x.t}" alt="" loading="lazy">`:`<div class="gros ${x.gros?"grad":"sans"}">${x.gros||x.th.join(" · ")}</div>`}<div class="c"><div class="ou">${x.ou}</div><h4>${x.t}</h4><p>${x.p}</p></div></div>`).join("");
+let fN="Tout",fT="Tout";
+function filtrer(){let c=0;document.querySelectorAll("#trav .carte").forEach(d=>{const ok=(fN==="Tout"||d.dataset.n===fN)&&(fT==="Tout"||d.dataset.th.split("|").some(t=>FAM[fT].includes(t)));d.classList.toggle("cache",!ok);if(ok)c++});$("#compte").textContent=c+" travaux affichés"}
+function boutons(l,cible,f){l.forEach((v,i)=>{const b=document.createElement("button");b.textContent=v==="Stage M2"?"Stage 2026":v==="Tout"&&cible.id==="fTheme"?"Tous les thèmes":v==="Tout"?"Toutes les années":v;if(!i)b.className="on";b.onclick=()=>{cible.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));f(v);filtrer()};cible.append(b)})}
+boutons(niveaux,$("#fAnnee"),v=>fN=v);boutons(["Tout",...Object.keys(FAM)],$("#fTheme"),v=>fT=v);filtrer();
+$("#listeLogos").innerHTML=LOGOS.map(([f,t,p],i)=>`<div class="carte app"><img src="img/logo/${f}.jpg" data-l="${t}" alt="${t}"><div class="c"><div class="rang">Choix n° ${i+1}</div><h4>${t}</h4><p>${p}</p></div></div>`).join("");
+visionneuse();
+/* la visionneuse doit passer devant la fiche ouverte : on la range dedans quand on clique dans la fiche */
+document.addEventListener("click",e=>{const v=$("#visio");(e.target.closest("dialog")||document.body).append(v)},true);
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("vu");io.unobserve(x.target)}}),{threshold:.1});
+document.querySelectorAll(".app").forEach(e=>io.observe(e));
+</script>
+</body>
+</html>

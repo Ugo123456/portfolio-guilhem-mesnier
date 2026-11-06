@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guilhem Mesnier, portfolio suisse</title>
+<style>
+:root{--blanc:#FAFAF8;--noir:#111;--gris:#777;--rouge:#E3171B;--ligne:#111}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--blanc);color:var(--noir);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.45;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.g{width:min(1320px,100% - 40px);margin:0 auto;display:grid;grid-template-columns:repeat(12,1fr);column-gap:20px}
+.r{color:var(--rouge)}
+section{border-top:2px solid var(--noir);padding:28px 0 90px}
+.num{grid-column:1/3;font-size:15px;font-weight:700}
+.num b{display:block;font-size:84px;line-height:.85;color:var(--rouge);font-weight:700;letter-spacing:-.04em}
+.tete{grid-column:3/13}
+.tete h2{font-size:clamp(44px,6.4vw,104px);line-height:.92;letter-spacing:-.045em;font-weight:700}
+.tete p{font-size:20px;max-width:720px;margin-top:18px;line-height:1.35}
+.plein{grid-column:1/13;margin-top:46px}
+/* barre fixe */
+nav{position:fixed;top:0;left:0;right:0;z-index:40;background:var(--blanc);border-bottom:2px solid var(--noir)}
+nav .g{align-items:center;height:52px}
+nav .m{grid-column:1/4;font-weight:700;font-size:15px;display:flex;gap:10px;align-items:center}
+nav .m i{width:14px;height:14px;background:var(--rouge);display:inline-block}
+nav .l{grid-column:4/13;display:flex;gap:22px;justify-content:flex-end;font-size:14px;font-weight:500}
+nav .l a:hover{color:var(--rouge)}
+/* héros */
+.heros{padding-top:84px;border-top:0}
+.heros h1{grid-column:1/13;font-size:clamp(76px,15.5vw,252px);line-height:.8;letter-spacing:-.065em;font-weight:700}
+.heros h1 span{color:var(--rouge)}
+.heros .bas{grid-column:1/13;display:grid;grid-template-columns:repeat(12,1fr);column-gap:20px;margin-top:40px;border-top:2px solid var(--noir);padding-top:18px}
+.heros .photo{grid-column:1/4;aspect-ratio:1;width:100%;object-fit:cover;border-radius:50%;filter:grayscale(1) contrast(1.05);transition:filter .5s}
+.heros .photo:hover{filter:none}
+.heros .txt{grid-column:5/10;font-size:22px;line-height:1.3;font-weight:500}
+.heros .meta{grid-column:10/13;font-size:14px;line-height:1.6}
+.heros .meta div{border-bottom:1px solid #ccc;padding:6px 0;display:flex;justify-content:space-between}
+.chiffres{grid-column:1/13;display:grid;grid-template-columns:repeat(4,1fr);margin-top:40px;border-top:2px solid var(--noir)}
+.chiffres div{padding:16px 16px 0 0}
+.chiffres b{font-size:clamp(56px,7vw,110px);font-weight:700;letter-spacing:-.05em;line-height:.9;display:block}
+.chiffres div:nth-child(2) b{color:var(--rouge)}
+.chiffres span{font-size:14px;display:block;max-width:220px;margin-top:6px}
+/* parcours en tableau */
+.tab{width:100%;border-collapse:collapse}
+.tab td{border-top:1px solid var(--noir);padding:14px 16px 14px 0;vertical-align:top}
+.tab td:first-child{width:18%;font-weight:700}
+.tab td:nth-child(2){width:32%;font-weight:700;font-size:19px;line-height:1.2}
+.tab td:nth-child(3){color:#333}
+.tab tr:hover td{background:#f0efe9}
+.tab tr:hover td:first-child{color:var(--rouge)}
+/* 2026 */
+.projet{grid-column:1/13;display:grid;grid-template-columns:repeat(12,1fr);column-gap:20px;border-top:1px solid var(--noir);padding:26px 0 40px}
+.projet .n{grid-column:1/2;font-size:44px;font-weight:700;color:var(--rouge);line-height:.9}
+.projet .t{grid-column:2/6}
+.projet .t h3{font-size:38px;letter-spacing:-.03em;line-height:.95}
+.projet .t .s{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-top:10px}
+.projet .t p{margin-top:14px;font-size:16px}
+.projet .t .k{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.projet .t .k i{font-style:normal;font-size:11px;font-weight:700;text-transform:uppercase;background:var(--noir);color:var(--blanc);padding:3px 7px}
+.projet .v{grid-column:6/13;display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:120px;gap:8px}
+.projet .v img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;transition:opacity .3s}
+.projet .v img:first-child{grid-row:span 2}
+.projet .v img:hover{opacity:.8}
+.projet video{width:100%;height:100%;object-fit:cover;background:#000;grid-column:span 2}
+/* affiches */
+.affiches{display:grid;grid-template-columns:repeat(6,1fr);gap:20px 20px}
+.affiches figure{cursor:zoom-in}
+.affiches img{width:100%;aspect-ratio:2/3;object-fit:cover;transition:transform .35s}
+.affiches figure:hover img{transform:translateY(-6px)}
+.affiches figcaption{font-size:13px;font-weight:700;margin-top:8px;border-top:1px solid var(--noir);padding-top:6px}
+.affiches figcaption small{display:block;font-weight:400;color:var(--gris)}
+.affiches figure:nth-child(7n+3) figcaption{color:var(--rouge)}
+/* fonds */
+.fonds{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.fonds img{width:100%;aspect-ratio:16/9;object-fit:cover;cursor:zoom-in}
+.fonds figure:first-child{grid-column:span 2;grid-row:span 2}
+.fonds figure:first-child img{height:calc(100% - 26px);aspect-ratio:auto}
+.fonds figcaption{font-size:13px;margin-top:6px;font-weight:700}
+/* marques */
+.marques{display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid var(--noir)}
+.marques figure{border-right:1px solid var(--noir);border-bottom:1px solid var(--noir);padding:12px;cursor:zoom-in;transition:background .3s}
+.marques figure:nth-child(-n+4){border-top:1px solid var(--noir)}
+.marques figure:hover{background:var(--rouge);color:var(--blanc)}
+.marques img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.marques figcaption{font-size:14px;font-weight:700;margin-top:8px;display:flex;justify-content:space-between}
+/* ateliers */
+.onglets{display:flex;gap:0;flex-wrap:wrap;border:2px solid var(--noir);width:max-content;max-width:100%}
+.onglets button{font:inherit;font-weight:700;font-size:14px;padding:10px 16px;border:0;border-right:2px solid var(--noir);background:none;cursor:pointer}
+.onglets button:last-child{border-right:0}
+.onglets button.on{background:var(--noir);color:var(--blanc)}
+.panneau{display:none;grid-template-columns:repeat(5,1fr);gap:20px;margin-top:24px}
+.panneau.on{display:grid}
+.panneau img{width:100%;aspect-ratio:4/3;object-fit:cover;cursor:zoom-in}
+.panneau figcaption{font-size:13px;margin-top:6px}
+.panneau figcaption b{display:block}
+/* index des travaux avec aperçu qui suit la souris */
+.filtres{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;align-items:center}
+.filtres span{font-weight:700;font-size:13px;width:70px}
+.filtres button{font:inherit;font-size:13px;font-weight:500;padding:5px 10px;border:1px solid var(--noir);background:none;cursor:pointer}
+.filtres button.on{background:var(--rouge);border-color:var(--rouge);color:#fff}
+.compte{font-size:13px;font-weight:700;margin:14px 0}
+.idx{width:100%;border-collapse:collapse}
+.idx th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--noir);padding:8px 10px 8px 0}
+.idx td{border-bottom:1px solid #bbb;padding:12px 10px 12px 0;vertical-align:top;font-size:15px}
+.idx td.t{font-weight:700;font-size:17px}
+.idx td.a{white-space:nowrap;font-weight:700}
+.idx td.th{font-size:12px;color:var(--gris)}
+.idx tr.cache{display:none}
+.idx tr:hover td{color:var(--rouge)}
+#apercu{position:fixed;pointer-events:none;width:280px;z-index:60;opacity:0;transition:opacity .2s;box-shadow:0 20px 40px rgba(0,0,0,.25)}
+#apercu.on{opacity:1}
+/* logo */
+.logos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.logos figure{border-top:2px solid var(--noir);padding-top:12px}
+.logos b{font-size:96px;font-weight:700;line-height:.8;color:var(--rouge);letter-spacing:-.05em}
+.logos img{width:100%;aspect-ratio:1;object-fit:cover;margin-top:14px;cursor:zoom-in}
+.logos h4{font-size:22px;margin-top:12px}
+.logos p{font-size:14px;color:#444}
+footer{background:var(--rouge);color:#fff;padding:60px 0 40px}
+footer h2{grid-column:1/13;font-size:clamp(60px,11vw,180px);line-height:.85;letter-spacing:-.06em}
+footer .c{grid-column:1/7;margin-top:30px;font-size:20px;font-weight:500}
+footer .c a{display:inline-block;margin-top:16px;border:2px solid #fff;padding:10px 18px;font-weight:700;font-size:15px}
+footer .m{grid-column:8/13;margin-top:30px;font-size:13px}
+#visio{position:fixed;inset:0;background:rgba(250,250,248,.97);display:none;place-items:center;z-index:99;cursor:zoom-out;padding:30px}
+#visio.on{display:grid}
+#visio img{max-width:92vw;max-height:84vh}
+#visio p{font-weight:700;margin-top:10px;text-align:center}
+@media(max-width:900px){.num{grid-column:1/13}.num b{font-size:56px}.tete{grid-column:1/13;margin-top:10px}.heros .photo{grid-column:1/7}.heros .txt{grid-column:1/13;margin-top:20px}.heros .meta{grid-column:1/13;margin-top:20px}.chiffres{grid-template-columns:1fr 1fr}.projet .n,.projet .t,.projet .v{grid-column:1/13}.projet .v{margin-top:20px}.affiches{grid-template-columns:repeat(2,1fr)}.fonds,.marques{grid-template-columns:1fr 1fr}.panneau{grid-template-columns:1fr 1fr}.logos{grid-template-columns:1fr}.idx td.th,.idx th:nth-child(4),.idx td.o,.idx th:nth-child(2){display:none}nav .l{display:none}footer .c,footer .m{grid-column:1/13}.tab td:first-child{width:30%}.tab td:nth-child(3){display:none}}
+</style>
+</head>
+<body>
+<nav><div class="g"><a class="m" href="#haut"><i></i>Guilhem Mesnier</a><div class="l"><a href="#parcours">01 Parcours</a><a href="#annee2026">02 2026</a><a href="#affiches">03 Affiches</a><a href="#marques">05 Marques</a><a href="#travaux">07 Index</a><a href="#logo">08 Logo</a><a href="#contact">Contact</a></div></div></nav>
+
+<section class="heros" id="haut"><div class="g">
+  <h1>Guilhem<br>Mesnier<span>.</span></h1>
+  <div class="bas">
+    <img class="photo" src="img/profil/portrait-vert.png" alt="Portrait de Guilhem Mesnier">
+    <p class="txt" id="profil"></p>
+    <div class="meta"><div><span>Portfolio</span><b>Octobre 2026</b></div><div><span>Ville</span><b>Clermont-Ferrand</b></div><div><span>Domaine</span><b>Communication</b></div><div><span>Diplôme</span><b>Master Info-Com</b></div></div>
+  </div>
+  <div class="chiffres" id="chiffres"></div>
+</div></section>
+
+<section id="parcours"><div class="g">
+  <div class="num"><b>01</b>Parcours</div>
+  <div class="tete"><h2>De l'histoire à la communication.</h2></div>
+  <div class="plein"><table class="tab" id="tabParcours"></table></div>
+</div></section>
+
+<section id="annee2026"><div class="g">
+  <div class="num"><b>02</b>L'année 2026</div>
+  <div class="tete"><h2>Cinq projets.<br><span class="r">Une année.</span></h2><p>Un stage, un mémoire, trois projets de Master 2. Cliquez sur une image pour l'agrandir.</p></div>
+  <div class="plein" id="projets" style="display:grid;grid-template-columns:repeat(12,1fr);column-gap:20px"></div>
+</div></section>
+
+<section id="affiches"><div class="g">
+  <div class="num"><b>03</b>Affiches</div>
+  <div class="tete"><h2>Vingt-trois affiches.</h2><p>Un atelier personnel mené en parallèle des études, sur Photoshop et Illustrator.</p></div>
+  <div class="plein affiches" id="listeAffiches"></div>
+</div></section>
+
+<section id="fonds"><div class="g">
+  <div class="num"><b>04</b>Fonds d'écran</div>
+  <div class="tete"><h2>Format 16:9.</h2><p>Des déclinaisons paysage pour les écrans d'accueil des plateformes.</p></div>
+  <div class="plein fonds" id="listeFonds"></div>
+</div></section>
+
+<section id="marques"><div class="g">
+  <div class="num"><b>05</b>Marques</div>
+  <div class="tete"><h2>Vingt-six univers de studios.</h2><p>Logos, déclinaisons, signalétique et cérémonies : chaque studio est repris en entier, avec ses règles. C'est le travail le plus proche du mémoire.</p></div>
+  <div class="plein marques" id="listeMarques"></div>
+</div></section>
+
+<section id="ateliers"><div class="g">
+  <div class="num"><b>06</b>Ateliers</div>
+  <div class="tete"><h2>Interfaces, presse, photo, musique.</h2></div>
+  <div class="plein"><div class="onglets" id="onglets"></div><div id="panneaux"></div></div>
+</div></section>
+
+<section id="travaux"><div class="g">
+  <div class="num"><b>07</b>Index</div>
+  <div class="tete"><h2>Tous les travaux.</h2><p>Les matières servent seulement à ranger : un même travail parle souvent de plusieurs choses. Le point rouge signale un travail illustré : passez la souris dessus pour le voir.</p></div>
+  <div class="plein">
+    <div class="filtres" id="fAnnee"><span>Année</span></div>
+    <div class="filtres" id="fTheme"><span>Thème</span></div>
+    <div class="compte" id="compte"></div>
+    <table class="idx"><thead><tr><th>Travail</th><th>Cours</th><th>Année</th><th>Thèmes</th></tr></thead><tbody id="corpsIdx"></tbody></table>
+  </div>
+</div></section>
+
+<section id="logo"><div class="g">
+  <div class="num"><b>08</b>Monogramme</div>
+  <div class="tete"><h2>Quel papillon gg ?</h2><p>Le bon logo se lit comme deux g dos à dos et comme un papillon, même en tout petit.</p></div>
+  <div class="plein logos" id="listeLogos"></div>
+</div></section>
+
+<footer id="contact"><div class="g">
+  <h2>Travaillons<br>ensemble.</h2>
+  <div class="c">Chargé de communication, de contenus numériques ou d'identité de marque.<br><a href="#">Adresse et LinkedIn à ajouter</a></div>
+  <div class="m"><p id="mention"></p><p style="margin-top:20px">Guilhem Mesnier, portfolio suisse, octobre 2026. Police Helvetica Neue.</p></div>
+</div></footer>
+
+<img id="apercu" alt="">
+<script src="data/v1/donnees.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+$("#profil").textContent=PROFIL;$("#mention").textContent=MENTION;
+$("#chiffres").innerHTML=CHIFFRES.map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join("");
+$("#tabParcours").innerHTML=PARCOURS.map(([q,t,p])=>`<tr><td>${q}</td><td>${t}</td><td>${p}</td></tr>`).join("");
+$("#projets").innerHTML=acc.map((a,i)=>`<div class="projet"><div class="n">${String(i+1).padStart(2,"0")}</div><div class="t"><h3>${a.t}</h3><div class="s">${a.s}</div><p>${a.p}</p><div class="k">${a.tags.map(t=>`<i>${t}</i>`).join("")}</div></div><div class="v"><img src="${a.img}" data-l="${a.t}" alt="">${a.v.slice(0,a.video?3:6).map(s=>`<img src="${s}" data-l="${a.t}" alt="" loading="lazy">`).join("")}${a.video?`<video src="${a.video}" controls muted playsinline preload="none" poster="img/zefil/pub9.jpg"></video>`:""}</div></div>`).join("");
+$("#listeAffiches").innerHTML=aff.map(([f,t,s])=>`<figure><img src="img/affiches/${f}.jpg" data-l="${t}, ${s}" alt="${t}" loading="lazy"><figcaption>${t}<small>${s}</small></figcaption></figure>`).join("");
+$("#listeFonds").innerHTML=fonds.map(([f,t,s])=>`<figure><img src="img/fonds/${f}.jpg" data-l="${t}, ${s}" alt="${t}" loading="lazy"><figcaption>${t}, ${s}</figcaption></figure>`).join("");
+$("#listeMarques").innerHTML=marques.map((m,i)=>{const n=String(i+1).padStart(2,"0");return `<figure><img src="img/marques/${n}.jpg" data-l="${m}" alt="${m}" loading="lazy"><figcaption><span>${m}</span><span>${n}</span></figcaption></figure>`}).join("");
+$("#listeLogos").innerHTML=LOGOS.map(([f,t,p],i)=>`<figure><b>${i+1}</b><img src="img/logo/${f}.jpg" data-l="${t}" alt="${t}"><h4>${t}</h4><p>${p}</p></figure>`).join("");
+Object.entries(ateliers).forEach(([nom,l],k)=>{const b=document.createElement("button");b.textContent=nom;if(!k)b.className="on";const p=document.createElement("div");p.className="panneau"+(k?"":" on");p.innerHTML=l.map(([f,t,s])=>`<figure><img src="img/${f}.jpg" data-l="${t}, ${s}" alt="${t}" loading="lazy"><figcaption><b>${t}</b>${s}</figcaption></figure>`).join("");b.onclick=()=>{document.querySelectorAll(".onglets button").forEach(x=>x.classList.toggle("on",x===b));document.querySelectorAll(".panneau").forEach(x=>x.classList.toggle("on",x===p))};$("#onglets").append(b);$("#panneaux").append(p)});
+const nomsAnnee={"Stage M2":"Stage 2026","Master 2":"Master 2","Master 1":"Master 1","Licence":"Licence"};
+$("#corpsIdx").innerHTML=T.map(x=>`<tr data-n="${x.n}" data-th="${x.th.join("|")}" ${x.img?`data-img="img/${x.img}"`:""}><td class="t">${x.t}${x.img?" <span class=\"r\" style=\"font-size:11px\">●</span>":""}<div style="font-weight:400;font-size:14px;color:#444;margin-top:3px">${x.p}</div></td><td class="o">${x.ou}</td><td class="a">${nomsAnnee[x.n]}</td><td class="th">${x.th.join(", ")}</td></tr>`).join("");
+let fN="Tout",fT="Tout";
+function filtrer(){let c=0;document.querySelectorAll("#corpsIdx tr").forEach(d=>{const ok=(fN==="Tout"||d.dataset.n===fN)&&(fT==="Tout"||d.dataset.th.split("|").some(t=>FAM[fT].includes(t)));d.classList.toggle("cache",!ok);if(ok)c++});$("#compte").textContent=c+" travaux sur "+T.length}
+function boutons(l,cible,f){l.forEach((v,i)=>{const b=document.createElement("button");b.textContent=v==="Stage M2"?"Stage 2026":v;if(!i)b.className="on";b.onclick=()=>{cible.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));f(v);filtrer()};cible.append(b)})}
+boutons(niveaux,$("#fAnnee"),v=>fN=v);boutons(["Tout",...Object.keys(FAM)],$("#fTheme"),v=>fT=v);filtrer();
+const ap=$("#apercu");
+document.querySelectorAll("#corpsIdx tr[data-img]").forEach(tr=>{tr.addEventListener("mouseenter",()=>{ap.src=tr.dataset.img;ap.classList.add("on")});tr.addEventListener("mouseleave",()=>ap.classList.remove("on"));tr.addEventListener("mousemove",e=>{ap.style.left=Math.min(e.clientX+24,innerWidth-300)+"px";ap.style.top=Math.max(60,e.clientY-120)+"px"});tr.addEventListener("click",()=>{const v=document.querySelector("#visio");v.querySelector("img").src=tr.dataset.img;v.querySelector("p").textContent=tr.querySelector(".t").firstChild.textContent;v.classList.add("on")})});
+visionneuse();
+</script>
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="fr" data-charte="sarcelle">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guilhem Mesnier, portfolio</title>
+<link rel="stylesheet" href="data/v1/polices.css">
+<style>
+:root{--bg:#070910;--bg2:#0d1220;--tx:#EEF2F6;--tx2:#9aa6b6;--ac:#22D3E6;--ac2:#E9C877;--ligne:rgba(255,255,255,.09);--carte:rgba(255,255,255,.035);--grad:linear-gradient(120deg,#22D3E6,#5EB9B1 45%,#E9C877)}
+[data-charte="morpho"]{--bg:#050816;--bg2:#0a1030;--ac:#19C3FF;--ac2:#7A5CFF;--grad:linear-gradient(120deg,#0B3BFF,#19C3FF 50%,#7A5CFF)}
+[data-charte="nacre"]{--bg:#0A0C18;--bg2:#141629;--ac:#C9B6FF;--ac2:#FFD6E8;--grad:linear-gradient(120deg,#C9B6FF,#FFD6E8 55%,#B8F0FF)}
+[data-charte="ivoire"]{--bg:#F4F1EA;--bg2:#ebe6db;--tx:#14171c;--tx2:#5b6470;--ac:#0E8FA0;--ac2:#9A7420;--ligne:rgba(0,0,0,.1);--carte:rgba(0,0,0,.035);--grad:linear-gradient(120deg,#0E8FA0,#2D5256 45%,#9A7420)}
+[data-charte="or"]{--bg:#0B0906;--bg2:#17120b;--ac:#E1B86B;--ac2:#F8DD97;--grad:linear-gradient(120deg,#8E662F,#BE924C 30%,#F8DD97 60%,#E1B86B)}
+[data-charte="feu"]{--bg:#07070F;--bg2:#10101e;--ac:#FF7A3D;--ac2:#3D7BFF;--grad:linear-gradient(120deg,#FF3D6E,#FF7A3D 35%,#3D7BFF)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:"Figtree",system-ui,sans-serif;font-size:17px;line-height:1.6;transition:background .5s,color .5s;overflow-x:hidden}
+h1,h2,h3,h4,.sora{font-family:"Sora",system-ui,sans-serif;letter-spacing:-.02em;line-height:1.12}
+a{color:inherit}
+img{display:block;max-width:100%}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wrap{width:min(1240px,100% - 48px);margin:0 auto}
+section{position:relative}
+.sur{font-family:"Sora";font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ac)}
+.titre{font-size:clamp(34px,5.2vw,68px);font-weight:700;margin:.25em 0 .35em}
+.chapo{font-size:clamp(17px,1.6vw,20px);color:var(--tx2);max-width:760px}
+.bloc{padding:120px 0}
+/* barre */
+nav.barre{position:fixed;inset:16px 16px auto;z-index:50;display:flex;align-items:center;gap:18px;padding:10px 14px 10px 10px;border:1px solid var(--ligne);border-radius:999px;background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4)}
+nav.barre .marque{display:flex;align-items:center;gap:10px;font-family:"Sora";font-weight:700;font-size:15px;text-decoration:none}
+nav.barre .marque img{width:34px;height:34px;border-radius:50%;object-fit:cover}
+nav.barre .liens{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav.barre .liens a{font-size:14px;text-decoration:none;padding:7px 12px;border-radius:999px;color:var(--tx2)}
+nav.barre .liens a:hover{background:var(--carte);color:var(--tx)}
+.chartes{display:flex;gap:6px;padding-left:10px;border-left:1px solid var(--ligne)}
+.chartes button{width:20px;height:20px;border-radius:50%;border:2px solid transparent;cursor:pointer}
+.chartes button.on{border-color:var(--tx)}
+@media(max-width:900px){nav.barre .liens{display:none}nav.barre .chartes{margin-left:auto}}
+/* héros */
+.heros{min-height:100vh;display:grid;align-items:center;padding:130px 0 80px;overflow:hidden}
+.heros::before{content:"";position:absolute;inset:-20%;background:radial-gradient(40% 40% at 70% 30%,color-mix(in srgb,var(--ac) 22%,transparent),transparent 70%),radial-gradient(35% 35% at 20% 80%,color-mix(in srgb,var(--ac2) 18%,transparent),transparent 70%);filter:blur(30px);animation:aurore 16s ease-in-out infinite alternate}
+@keyframes aurore{to{transform:translate3d(-4%,3%,0) scale(1.08)}}
+.heros .grille{position:relative;display:grid;grid-template-columns:1.25fr .9fr;gap:60px;align-items:center}
+.heros h1{font-size:clamp(48px,8vw,112px);font-weight:700}
+.heros .role{font-size:clamp(19px,2vw,24px);color:var(--tx2);margin:22px 0 34px;max-width:620px}
+.boutons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:999px;font-weight:600;text-decoration:none;border:1px solid var(--ligne);background:var(--carte)}
+.btn.plein{background:var(--grad);color:#081016;border:none}
+.portrait{position:relative;justify-self:center;width:min(420px,80vw);aspect-ratio:1}
+.portrait .photo{width:100%;height:100%;object-fit:cover;border-radius:50%;clip-path:circle(49.5%);position:relative;z-index:2}
+.portrait::before{content:"";position:absolute;inset:-14px;border-radius:50%;background:conic-gradient(from 0deg,var(--ac),var(--ac2),var(--ac));animation:tour 9s linear infinite;z-index:1;mask:radial-gradient(circle,transparent 63%,#000 64%);-webkit-mask:radial-gradient(circle,transparent 63%,#000 64%)}
+.portrait .logo-heros{position:absolute;right:-6px;bottom:6%;width:31%;aspect-ratio:1;border-radius:50%;object-fit:cover;z-index:3;border:4px solid var(--bg);box-shadow:0 10px 40px rgba(0,0,0,.45)}
+@keyframes tour{to{transform:rotate(360deg)}}
+.chiffres{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
+.chiffres div{padding:18px;border:1px solid var(--ligne);border-radius:20px;background:var(--carte)}
+.chiffres b{display:block;font-family:"Sora";font-size:30px}
+.chiffres span{font-size:13.5px;color:var(--tx2)}
+@media(max-width:900px){.heros .grille{grid-template-columns:1fr}.portrait{order:-1;width:min(300px,70vw)}.chiffres{grid-template-columns:repeat(2,1fr)}}
+/* fil */
+.fil{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:40px}
+.fil .carte{padding:34px;border-radius:28px;border:1px solid var(--ligne);background:var(--carte);position:relative;overflow:hidden}
+.fil .carte h3{font-size:24px;margin:10px 0}
+.fil .carte p{color:var(--tx2)}
+.fil .carte::after{content:"";position:absolute;inset:auto -30% -60% auto;width:70%;aspect-ratio:1;border-radius:50%;background:var(--grad);opacity:.12;filter:blur(20px)}
+@media(max-width:800px){.fil{grid-template-columns:1fr}}
+/* parcours */
+.frise{position:relative;margin-top:50px;padding-left:34px}
+.frise::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--grad);border-radius:2px}
+.etape{position:relative;padding:0 0 34px 18px}
+.etape::before{content:"";position:absolute;left:-31px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--ac)}
+.etape .quand{font-family:"Sora";font-size:13px;font-weight:600;color:var(--ac);letter-spacing:.06em}
+.etape h4{font-size:21px;margin:4px 0}
+.etape p{color:var(--tx2);max-width:760px}
+/* accordéon */
+.acc{display:flex;gap:12px;height:min(78vh,720px);margin-top:46px}
+.pn{position:relative;flex:1;min-width:0;border-radius:28px;overflow:hidden;cursor:pointer;transition:flex .7s cubic-bezier(.2,.8,.2,1);background:#000;border:1px solid var(--ligne)}
+.pn.on{flex:6}
+.pn>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;transition:opacity .6s,transform 1.2s}
+.pn.on>img{opacity:.2;transform:scale(1.04)}
+.pn .etiquette{position:absolute;left:50%;bottom:30px;transform:translateX(-50%) rotate(180deg);writing-mode:vertical-rl;font-family:"Sora";font-weight:700;font-size:20px;color:#fff;white-space:nowrap;transition:opacity .3s}
+.pn.on .etiquette{opacity:0}
+.pn .dedans{position:absolute;inset:0;padding:38px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;opacity:0;transition:opacity .4s .25s;background:linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.9) 55%)}
+.pn.on .dedans{opacity:1}
+.pn .dedans h3{font-size:clamp(26px,3vw,40px);margin:8px 0 10px}
+.pn .dedans p{max-width:640px;color:rgba(255,255,255,.82);font-size:16px}
+.pn .vignettes{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.pn .vignettes img{height:74px;width:auto;border-radius:12px;border:1px solid rgba(255,255,255,.2);cursor:zoom-in;background:#111}
+.pn .tags{margin-top:14px}
+@media(max-width:900px){.acc{flex-direction:column;height:auto}.pn{min-height:90px}.pn.on{min-height:640px}.pn .etiquette{writing-mode:horizontal-tb;transform:translateX(-50%);bottom:auto;top:30px}}
+/* tunnel */
+.tunnel{height:620vh}
+.scene{position:sticky;top:0;height:100vh;overflow:hidden;perspective:1100px}
+.scene .entete{position:absolute;left:0;right:0;top:110px;text-align:center;z-index:5;pointer-events:none}
+.piste{position:absolute;left:50%;top:55%;transform-style:preserve-3d}
+.piste figure{position:absolute;width:300px;margin:-225px 0 0 -150px;transform-style:preserve-3d;will-change:transform,opacity}
+.piste figure img{width:300px;aspect-ratio:2/3;object-fit:cover;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6);cursor:zoom-in}
+.piste figcaption{font-family:"Sora";font-size:14px;text-align:center;margin-top:12px;color:var(--tx)}
+.piste figcaption small{display:block;color:var(--tx2);font-family:"Figtree"}
+.compteur{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-family:"Sora";font-size:13px;color:var(--tx2);letter-spacing:.2em}
+@media(max-width:700px){.piste figure{width:210px;margin:-158px 0 0 -105px}.piste figure img{width:210px}}
+/* pellicule */
+.pellicule{margin-top:46px;background:#000;padding:30px 0;position:relative;overflow:hidden}
+.pellicule::before,.pellicule::after{content:"";position:absolute;left:0;right:0;height:16px;background:repeating-linear-gradient(90deg,transparent 0 14px,#2a2a2a 14px 30px);z-index:2}
+.pellicule::before{top:7px}.pellicule::after{bottom:7px}
+.ruban{display:flex;gap:16px;width:max-content;animation:defile 90s linear infinite}
+.pellicule:hover .ruban{animation-play-state:paused}
+.ruban figure{width:440px;flex:none}
+.ruban img{width:440px;aspect-ratio:16/9;object-fit:cover;border-radius:6px;cursor:zoom-in;filter:saturate(.92);transition:filter .3s,transform .3s}
+.ruban img:hover{filter:saturate(1.15);transform:scale(1.03)}
+.ruban figcaption{color:#cfd6df;font-size:13px;margin-top:8px;font-family:"Sora"}
+@keyframes defile{to{transform:translateX(-50%)}}
+/* mur des marques */
+.mur{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:46px;perspective:1000px}
+.mur figure{border-radius:18px;overflow:hidden;background:var(--carte);border:1px solid var(--ligne);transition:transform .25s ease-out;transform-style:preserve-3d}
+.mur img{width:100%;aspect-ratio:16/10;object-fit:cover;cursor:zoom-in}
+.mur figcaption{padding:12px 14px;font-size:14px}
+.mur figcaption b{font-family:"Sora";font-weight:600}
+.mur figcaption span{display:block;color:var(--tx2);font-size:12.5px}
+/* onglets */
+.onglets{display:flex;gap:8px;flex-wrap:wrap;margin-top:40px}
+.onglets button,.filtres button{font:600 14px "Figtree";padding:9px 16px;border-radius:999px;border:1px solid var(--ligne);background:var(--carte);color:var(--tx2);cursor:pointer;transition:.2s}
+.onglets button.on,.filtres button.on{background:var(--grad);color:#081016;border-color:transparent}
+.panneau{display:none;margin-top:26px}
+.panneau.on{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.panneau figure{border-radius:18px;overflow:hidden;border:1px solid var(--ligne);background:var(--carte)}
+.panneau img{width:100%;aspect-ratio:16/10;object-fit:cover;cursor:zoom-in}
+.panneau figcaption{padding:12px 14px;font-size:14px;color:var(--tx2)}
+.panneau figcaption b{color:var(--tx);font-family:"Sora";font-weight:600;display:block}
+/* travaux filtrables */
+.filtres{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.filtres .nom{font-family:"Sora";font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--tx2);align-self:center;margin-right:6px;min-width:70px}
+.travaux{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;margin-top:34px;align-items:start}
+.trav{border-radius:22px;border:1px solid var(--ligne);background:var(--carte);overflow:hidden;transition:transform .3s,opacity .3s}
+.trav.cache{display:none}
+.trav img{width:100%;aspect-ratio:4/3;object-fit:cover;cursor:zoom-in;background:#111}
+.trav .corps{padding:18px 20px 20px}
+.trav .ou{font-size:12px;color:var(--ac);font-family:"Sora";font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.trav h4{font-size:19px;margin:6px 0 8px}
+.trav p{font-size:15px;color:var(--tx2)}
+.trav.texte{background:linear-gradient(160deg,color-mix(in srgb,var(--ac) 10%,transparent),var(--carte) 55%)}
+.trav.texte .corps{padding:26px 24px}
+.trav.texte h4{font-size:22px}
+.trav.texte .gros{font-family:"Sora";font-size:44px;font-weight:700;line-height:1;margin-bottom:12px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.tags i{font-style:normal;font-size:11.5px;padding:3px 9px;border-radius:999px;border:1px solid var(--ligne);color:var(--tx2)}
+.pn .tags i{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.85)}
+.total{margin-top:16px;color:var(--tx2);font-size:14px}
+/* logo */
+.podium{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
+.podium .carte{border-radius:26px;border:1px solid var(--ligne);background:var(--carte);overflow:hidden}
+.podium img{width:100%;aspect-ratio:1;object-fit:cover}
+.podium .corps{padding:22px}
+.podium .rang{font-family:"Sora";font-size:46px;font-weight:700}
+.podium h4{font-size:21px;margin:4px 0 8px}
+.podium p{font-size:15px;color:var(--tx2)}
+.mentions{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.mentions figure{display:flex;gap:14px;align-items:center;padding:12px;border-radius:18px;border:1px solid var(--ligne);background:var(--carte)}
+.mentions img{width:84px;height:84px;object-fit:cover;border-radius:12px}
+.mentions figcaption{font-size:14px;color:var(--tx2)}
+.mentions b{color:var(--tx);font-family:"Sora"}
+@media(max-width:900px){.podium,.mentions{grid-template-columns:1fr}}
+/* note, contact */
+.note{margin-top:30px;padding:26px 28px;border-radius:22px;border:1px dashed var(--ligne);color:var(--tx2);font-size:15px}
+.contact{padding:140px 0 120px;text-align:center}
+.contact h2{font-size:clamp(40px,7vw,96px)}
+footer{border-top:1px solid var(--ligne);padding:28px 0;color:var(--tx2);font-size:13px}
+/* apparition */
+.app{opacity:0;transform:translateY(34px);transition:opacity .9s,transform .9s cubic-bezier(.2,.8,.2,1)}
+.app.vu{opacity:1;transform:none}
+/* visionneuse */
+.visio{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:4vh 4vw;cursor:zoom-out}
+.visio.on{display:flex}
+.visio img{max-width:100%;max-height:86vh;border-radius:10px;box-shadow:0 30px 120px rgba(0,0,0,.7)}
+.visio p{position:absolute;bottom:3vh;left:0;right:0;text-align:center;color:#dfe5ec;font-family:"Sora";font-size:15px}
+video{width:100%;border-radius:16px;background:#000}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.app{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav class="barre">
+  <a class="marque" href="#haut"><img id="logoBarre" src="img/logo/l1-candidat-a.jpg" alt="">Guilhem Mesnier</a>
+  <div class="liens">
+    <a href="#parcours">Parcours</a><a href="#annee2026">2026</a><a href="#affiches">Affiches</a><a href="#marques">Marques</a><a href="#travaux">Travaux</a><a href="#logo">Logo</a><a href="#contact">Contact</a>
+  </div>
+  <div class="chartes" id="chartes" aria-label="Charte de couleurs"></div>
+</nav>
+
+<!-- héros -->
+<section class="heros" id="haut">
+  <div class="wrap">
+    <div class="grille">
+      <div>
+        <div class="sur app">Portfolio, octobre 2026</div>
+        <h1 class="app">Guilhem<br><span class="grad">Mesnier</span></h1>
+        <p class="role app">Diplômé du Master information et communication de l'Université Clermont Auvergne, parcours communication numérique. Identité de marque, design graphique, contenus numériques et communication des organisations.</p>
+        <div class="boutons app"><a class="btn plein" href="#annee2026">Voir les projets de 2026</a><a class="btn" href="#travaux">Tous les travaux</a></div>
+      </div>
+      <div class="portrait app">
+        <img class="photo" src="img/profil/portrait-vert.png" alt="Portrait de Guilhem Mesnier">
+        <img class="logo-heros" id="logoHeros" src="img/logo/l1-candidat-a.jpg" alt="Monogramme gg">
+      </div>
+    </div>
+    <div class="chiffres app">
+      <div><b class="grad">2</b><span>stages au Centre communal d'action sociale de Clermont-Ferrand</span></div>
+      <div><b class="grad">307</b><span>pages de mémoire sur l'identité des grands studios</span></div>
+      <div><b class="grad">40+</b><span>affiches et fonds d'écran retravaillés</span></div>
+      <div><b class="grad">26</b><span>univers de marque redessinés</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- fil rouge -->
+<section class="bloc" id="fil">
+  <div class="wrap">
+    <div class="sur app">Le fil rouge</div>
+    <h2 class="titre app">Comprendre une marque,<br>puis la <span class="grad">dessiner</span>.</h2>
+    <p class="chapo app">Le mémoire étudie comment les grands studios de cinéma sont devenus des empires de marque. Les affiches, les fonds d'écran et les univers de studios refaits à la main montrent la même chose de l'autre côté : comment on fabrique une identité, logo par logo.</p>
+    <div class="fil">
+      <div class="carte app"><div class="sur">Recherche</div><h3>Métamorphoses</h3><p>Les stratégies de communication numérique et l'identité des majors du cinéma, de 1985 à 2026, face aux plateformes de streaming. Questionnaire de réception, entretiens, analyse du discours numérique de cinquante-six cas.</p></div>
+      <div class="carte app"><div class="sur">Création</div><h3>Les univers refaits</h3><p>Affiches, fonds d'écran, logos de studios, interfaces de plateformes, éditions de presse et pochettes de disques : un atelier personnel mené en parallèle des études, sur Photoshop et Illustrator.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- parcours -->
+<section class="bloc" id="parcours" style="padding-top:40px">
+  <div class="wrap">
+    <div class="sur app">Parcours</div>
+    <h2 class="titre app">De l'histoire à la <span class="grad">communication</span></h2>
+    <div class="frise">
+      <div class="etape app"><div class="quand">2021</div><h4>Baccalauréat</h4><p>Lycée Camille Guérin.</p></div>
+      <div class="etape app"><div class="quand">2021 à 2024</div><h4>Licence d'histoire, La Rochelle Université</h4><p>Exposés sur la presse et les agences de presse au Brésil et aux États-Unis au long XIXᵉ siècle, sur les Indiens et les Espagnols du XVIᵉ au XVIIIᵉ siècle, dossier sur la guerre froide. Le goût des sources, du récit et des images vient de là.</p></div>
+      <div class="etape app"><div class="quand">Mai et juin 2024</div><h4>Stage de Licence 3, Maison des Écritures</h4><p>Premier contact avec la communication culturelle, au festival Intermondes.</p></div>
+      <div class="etape app"><div class="quand">2024 à 2026</div><h4>Master information et communication, Université Clermont Auvergne</h4><p>Parcours communication numérique. Stratégie de marque, conception graphique, audit numérique, référencement, données, réseaux sociaux, communication des organisations et de crise, méthodologie de recherche.</p></div>
+      <div class="etape app"><div class="quand">Juin à août 2025</div><h4>Stage de Master 1, Centre communal d'action sociale de Clermont-Ferrand</h4><p>Premier stage dans le secteur public et médico-social.</p></div>
+      <div class="etape app"><div class="quand">Mars à juin 2026</div><h4>Stage de Master 2, Département des politiques gérontologiques</h4><p>Création d'un livret d'accueil transversal pour les agents des établissements pour personnes âgées : sept établissements, plus de trois cents agents, un questionnaire, des entretiens et neuf ateliers.</p></div>
+      <div class="etape app"><div class="quand">Septembre 2026</div><h4>Mémoire soutenu, Master obtenu</h4><p>« Métamorphoses des stratégies de communication numérique et des ADN communicationnels des majors du cinéma en empires transmédiatiques ».</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2026 en accordéon -->
+<section class="bloc" id="annee2026">
+  <div class="wrap">
+    <div class="sur app">L'année 2026</div>
+    <h2 class="titre app">Cinq projets, <span class="grad">une année</span></h2>
+    <p class="chapo app">Survolez ou touchez un panneau pour l'ouvrir.</p>
+    <div class="acc" id="acc"></div>
+  </div>
+</section>
+
+<!-- tunnel des affiches -->
+<section class="tunnel" id="affiches">
+  <div class="scene" id="scene">
+    <div class="entete"><div class="sur">Atelier personnel</div><h2 class="titre" style="font-size:clamp(28px,4vw,52px)">Le tunnel des <span class="grad">affiches</span></h2></div>
+    <div class="piste" id="piste"></div>
+    <div class="compteur" id="compteur"></div>
+  </div>
+</section>
+
+<!-- fonds d'écran -->
+<section class="bloc" id="fonds" style="padding-bottom:60px">
+  <div class="wrap">
+    <div class="sur app">Fonds d'écran</div>
+    <h2 class="titre app">Format <span class="grad">16:9</span>, plein écran</h2>
+    <p class="chapo app">Des déclinaisons paysage pensées pour les écrans d'accueil des plateformes. Le ruban s'arrête au survol.</p>
+  </div>
+  <div class="pellicule"><div class="ruban" id="ruban"></div></div>
+</section>
+
+<!-- univers de marques -->
+<section class="bloc" id="marques">
+  <div class="wrap">
+    <div class="sur app">Identité de marque</div>
+    <h2 class="titre app">26 univers de <span class="grad">studios</span> redessinés</h2>
+    <p class="chapo app">Logos, déclinaisons, signalétique et cérémonies : chaque studio est repris en entier, avec ses règles. C'est le travail le plus proche du mémoire.</p>
+    <div class="mur" id="mur"></div>
+  </div>
+</section>
+
+<!-- autres ateliers -->
+<section class="bloc" id="ateliers" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sur app">Les autres ateliers</div>
+    <h2 class="titre app">Interfaces, presse, photo, <span class="grad">musique</span></h2>
+    <div class="onglets" id="onglets"></div>
+    <div id="panneaux"></div>
+  </div>
+</section>
+
+<!-- travaux filtrables -->
+<section class="bloc" id="travaux">
+  <div class="wrap">
+    <div class="sur app">Tous les travaux</div>
+    <h2 class="titre app">Licence, Master, <span class="grad">stages</span></h2>
+    <p class="chapo app">Les matières servent seulement à ranger : un même travail parle souvent de plusieurs choses. Filtrez par thème ou par année.</p>
+    <div class="filtres" id="fNiveau"><span class="nom">Année</span></div>
+    <div class="filtres" id="fTheme"><span class="nom">Thème</span></div>
+    <div class="total" id="total"></div>
+    <div class="travaux" id="grilleTravaux"></div>
+  </div>
+</section>
+
+<!-- logo -->
+<section class="bloc" id="logo">
+  <div class="wrap">
+    <div class="sur app">Le monogramme</div>
+    <h2 class="titre app">Quel papillon <span class="grad">gg</span> ?</h2>
+    <p class="chapo app">Le bon logo se lit comme deux g dos à dos et comme un papillon, même en tout petit. Les boucles ouvertes en bas gardent la lecture des lettres.</p>
+    <div class="podium">
+      <div class="carte app"><img src="img/logo/l1-candidat-a.jpg" alt=""><div class="corps"><div class="rang grad">1</div><h4>Sarcelle et or</h4><p>Le logo principal. Les deux g se lisent tout de suite, le dégradé sarcelle vers l'or donne la chaleur et le sérieux. À utiliser en grand : couverture, page d'accueil, signature.</p></div></div>
+      <div class="carte app"><img src="img/logo/l4-noir-uni.jpg" alt=""><div class="corps"><div class="rang grad">2</div><h4>Uni, noir ou ivoire</h4><p>Le plus lisible de tous, parce qu'il n'a aucun effet. C'est lui qu'il faut redessiner en vecteur : icône de site, CV, tampon, petits formats.</p></div></div>
+      <div class="carte app"><img src="img/logo/l2-irise.jpg" alt=""><div class="corps"><div class="rang grad">3</div><h4>Irisé feu et bleu</h4><p>Le plus spectaculaire. Parfait en animation, en vidéo et pour la charte Morpho bleu, moins sûr en petit car la lumière mange les boucles.</p></div></div>
+    </div>
+    <div class="mentions">
+      <figure class="app"><img src="img/logo/l5-or-brosse.jpg" alt=""><figcaption><b>Mention : or brossé</b><br>Pour l'impression, la dorure à chaud, les cartes de visite.</figcaption></figure>
+      <figure class="app"><img src="img/logo/l3-sarcelle.jpg" alt=""><figcaption><b>Sarcelle plat</b><br>Bonne base de travail, moins raffiné que le premier.</figcaption></figure>
+      <figure class="app"><img src="img/logo/l3b-sarcelle-or.jpg" alt=""><figcaption><b>Boucles fermées</b><br>Les g se perdent : on lit un huit, pas deux lettres.</figcaption></figure>
+    </div>
+    <p class="note app">Défaut commun à tous : ce sont des images, pas des dessins vectoriels. Avant toute impression, le gagnant doit être redessiné en vecteur, en une couleur puis en dégradé.</p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="sur app">Contact</div>
+    <h2 class="app">Travaillons <span class="grad">ensemble</span>.</h2>
+    <p class="chapo app" style="margin:24px auto 34px">Chargé de communication, de contenus numériques ou d'identité de marque.</p>
+    <div class="boutons app" style="justify-content:center"><a class="btn plein" href="#haut">Adresse et LinkedIn à ajouter</a></div>
+    <p class="note app" style="max-width:860px;margin:50px auto 0;text-align:left">Les affiches, fonds d'écran et univers de studios sont des exercices personnels, sans usage commercial, réalisés à partir des visuels officiels des films. Les noms de studios sont transformés exprès. Les travaux de groupe sont signalés comme tels.</p>
+  </div>
+</section>
+
+<footer><div class="wrap">Guilhem Mesnier, portfolio, octobre 2026. Polices Sora et Figtree.</div></footer>
+
+<div class="visio" id="visio"><img alt=""><p></p></div>
+
+<script>
+const $=s=>document.querySelector(s);
+/* chartes */
+const chartes=[["sarcelle","Doré sarcelle","#22D3E6","#E9C877","l1-candidat-a.jpg"],["morpho","Morpho bleu","#19C3FF","#7A5CFF","l2-irise.jpg"],["nacre","Nacre","#C9B6FF","#FFD6E8","l2-irise.jpg"],["ivoire","Ivoire et sarcelle","#F4F1EA","#0E8FA0","l4-noir-uni.jpg"],["or","Or brossé nuit","#BE924C","#F8DD97","l5-or-brosse.jpg"],["feu","Feu et bleu","#FF7A3D","#3D7BFF","l2-irise.jpg"]];
+chartes.forEach(([k,n,a,b,l])=>{const x=document.createElement("button");x.title=n;x.style.background=`linear-gradient(135deg,${a} 50%,${b} 50%)`;x.onclick=()=>{document.documentElement.dataset.charte=k;document.querySelectorAll("#chartes button").forEach(y=>y.classList.toggle("on",y===x));$("#logoBarre").src=$("#logoHeros").src="img/logo/"+l};if(k==="sarcelle")x.classList.add("on");$("#chartes").append(x)});
+
+/* accordéon 2026 */
+const acc=[
+ {t:"Livret d'accueil transversal",s:"Stage de Master 2, mars à juin 2026",img:"img/stage/accueil.jpg",p:"Au Département des politiques gérontologiques du Centre communal d'action sociale de Clermont-Ferrand : un livret d'accueil commun aux sept établissements pour personnes âgées, pour plus de trois cents agents. Diagnostic par questionnaire (cinquante-cinq réponses), entretiens, comparaison avec six autres centres, neuf ateliers collectifs et feuilles de route.",v:["img/stage/accueil.jpg","img/stage/diaporama.jpg","img/stage/transformation.jpg"],tags:["Communication interne","Secteur public","Infographie","Gestion de projet"]},
+ {t:"Métamorphoses",s:"Mémoire de Master 2, soutenu en septembre 2026",img:"img/memoire/presse-1.jpg",p:"Comment Disney, Warner, Universal, Paramount ou Sony sont devenus des empires de marque face à Netflix, Apple et Amazon. Quarante et un ans étudiés, soixante-neuf réponses au questionnaire de réception, trois entretiens avec des enseignants-chercheurs, cinquante-six cas de discours numérique, et un dossier de presse pour le présenter.",v:["img/memoire/presse-1.jpg","img/memoire/presse-2.jpg","img/memoire/presse-3.jpg","img/memoire/presse-4.jpg"],tags:["Recherche","Identité de marque","Médias et streaming"]},
+ {t:"Kithara",s:"Production de contenu numérique, Master 2",img:"img/kithara/k4.jpg",p:"Une marque de coffrets de voyage (Lisbonne, Thaïlande, Amérique latine) : identité, personas, visuels produits et calendrier éditorial de décembre 2025 à mai 2026. Travail de groupe.",v:["img/kithara/logo.jpg","img/kithara/k1.jpg","img/kithara/k2.jpg","img/kithara/k3.jpg","img/kithara/k5.jpg","img/kithara/k6.jpg","img/m2/kithara-calendrier.jpg"],tags:["Identité de marque","Réseaux sociaux","Calendrier éditorial"]},
+ {t:"Zefil",s:"Création et communication, Master 2",img:"img/zefil/pub9.jpg",p:"Une marque de bijoux artisanaux et éco-responsables : logo, hippocampe emblème, habillage et une publicité verticale de quarante-deux secondes pour les réseaux.",v:["img/zefil/z-logo.jpg","img/zefil/z-hippo.jpg","img/zefil/z-eco.jpg","img/zefil/pub3.jpg","img/zefil/pub15.jpg","img/zefil/pub22.jpg"],video:"video/pub-zefil.mp4",tags:["Identité de marque","Vidéo et motion","Réseaux sociaux"]},
+ {t:"À ton rythme",s:"Projet de communication numérique, Master 2",img:"img/ssu/Affiche-Douceur.jpg",p:"Une campagne de santé mentale pour les étudiants : six affiches (tristesse, isolement, fatigue, anxiété, douceur), une playlist, une charte graphique et des cartes. Travail de groupe.",v:["img/ssu/Affiche-Tristesse-V3.jpg","img/ssu/Affiche-Isolement-V3.jpg","img/ssu/Affiche-Fatigue-V3.jpg","img/ssu/Affiche-Anxiete-V3.jpg","img/ssu/1-cover-playlist-ssu.jpg","img/ssu/charte.jpg"],tags:["Campagne","Santé publique","Affiche","Charte graphique"]}
+];
+acc.forEach((a,i)=>{const d=document.createElement("div");d.className="pn"+(i===0?" on":"");d.innerHTML=`<img src="${a.img}" alt=""><div class="etiquette">${a.t}</div><div class="dedans"><div class="sur" style="color:#fff;opacity:.8">${a.s}</div><h3>${a.t}</h3><p>${a.p}</p><div class="vignettes">${a.v.map(s=>`<img src="${s}" data-l="${a.t}" alt="">`).join("")}${a.video?`<video src="${a.video}" controls muted playsinline preload="none" poster="img/zefil/pub9.jpg" style="height:96px;width:auto"></video>`:""}</div><div class="tags">${a.tags.map(t=>`<i>${t}</i>`).join("")}</div></div>`;const ouvrir=()=>document.querySelectorAll(".pn").forEach(x=>x.classList.toggle("on",x===d));d.addEventListener("mouseenter",ouvrir);d.addEventListener("click",ouvrir);$("#acc").append(d)});
+
+/* tunnel */
+const aff=[["a01","House of the Dragon","GBO Original"],["a02","Furiosa","WG Original Film"],["a03","Dune, deuxième partie","WG Original Film"],["a04","Avatar, la voie de l'eau","Guisney et Gixar"],["a05","Vice-Versa 2","Guisney et Gixar"],["a06","Snow White","Guisney"],["a07","Aquaman and the Lost Kingdom","WG"],["a08","Mission Impossible 3","Guiguimount, Republic Pictures"],["a09","Mufasa","Guisney"],["a10","Jurassic World Dominion","Guniversal"],["a11","The Devil Wears Prada","Walt Guisney Classics"],["a12","Wish","Guisney"],["a13","Le Flambeau","GCanal+ Séries"],["a15","Barbie","WG"],["a16","Game of Thrones","GBO"],["a17","Sacrées Sorcières","Guiguimax"],["a18","Challengers","Atelier gg"],["a19","Bad Boys","GSony et Columbia"],["a20","Blue Beetle","WG"],["a21","Swagger","Gtv+"],["a22","Mechanic","gg film"],["a23","The Gray Man","Atelier gg"],["a14","Miss USA","Mise en situation sur panneau"]];
+const piste=$("#piste");aff.forEach(([f,t,s])=>{const g=document.createElement("figure");g.innerHTML=`<img src="img/affiches/${f}.jpg" data-l="${t}, ${s}" alt="${t}" loading="lazy"><figcaption>${t}<small>${s}</small></figcaption>`;piste.append(g)});
+const figs=[...piste.children],ECART=520;
+function tunnel(){const s=$("#affiches"),r=s.getBoundingClientRect(),h=s.offsetHeight-innerHeight;let p=Math.min(1,Math.max(0,-r.top/h));const avance=p*(figs.length-1)*ECART+200;let proche=0;figs.forEach((g,i)=>{const z=-i*ECART+avance;const cote=i%2?1:-1;const x=cote*Math.min(innerWidth*.22,300);const y=(i%3-1)*40;const o=z>520?0:z<-3200?0:z>200?1-(z-200)/320:Math.min(1,(3200+z)/1200);g.style.transform=`translate3d(${x}px,${y}px,${z}px) rotateY(${-cote*14}deg)`;g.style.opacity=o;g.style.pointerEvents=o>.6?"auto":"none";if(z<=300&&z>-ECART/2)proche=i});$("#compteur").textContent=String(proche+1).padStart(2,"0")+" / "+figs.length}
+addEventListener("scroll",()=>requestAnimationFrame(tunnel),{passive:true});addEventListener("resize",tunnel);tunnel();
+
+/* pellicule */
+const fonds=[["f01","Wonka","WG"],["f02","Ratatouille","Guisney et Gixar"],["f03","Avatar","Guisney et Gixar"],["f04","Kuzco","Guisney"],["f05","The Devil Wears Prada","Walt Guisney Classics"],["f06","Aquaman","WG"],["f07","Percy Jackson","Guisney"],["f08","Wish","Guisney"],["f09","Babylon","Guiguimount+"],["f11","La Belle et la Bête","Guisney"],["f12","Aladdin","Guisney"],["f13","En avant","Guisney et Gixar"],["f14","Argylle","Guniversal et Gtv+"],["f16","Percy Jackson, version nuit","Guisney"],["f17","Atlantide","Guisney"],["f18","The Rookie: Feds","gulu Original"],["f19","Bernadette","WG"],["g122","Civil War","gg"],["g123","Le Flic de Beverly Hills","gg"]];
+const ruban=$("#ruban");[...fonds,...fonds].forEach(([f,t,s])=>{const g=document.createElement("figure");g.innerHTML=`<img src="img/fonds/${f}.jpg" data-l="${t}, ${s}" alt="${t}" loading="lazy"><figcaption>${t} · ${s}</figcaption>`;ruban.append(g)});
+
+/* mur des marques */
+const marques=["Guisney, le château","Guisney Awards","Gixar","GStar","WG","WG Animation","WG, la tournée","GC Studios","Guiguimax","GBC et Gomcast","Guniversal","Geacock","MGM+","Columbia","Pegasus","GSony","Columbia, cent ans","Guiguimount","Gickelodeon","Republic","GCanal+","GCS","TFG+","My TFG","Ghistoire","Ghistory"];
+marques.forEach((m,i)=>{const n=String(i+1).padStart(2,"0");const g=document.createElement("figure");g.className="app";g.innerHTML=`<img src="img/marques/${n}.jpg" data-l="${m}" alt="${m}" loading="lazy"><figcaption><b>${m}</b><span>Univers de marque</span></figcaption>`;g.addEventListener("mousemove",e=>{const r=g.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;g.style.transform=`rotateY(${x*14}deg) rotateX(${-y*14}deg) translateZ(10px)`});g.addEventListener("mouseleave",()=>g.style.transform="");$("#mur").append(g)});
+
+/* onglets */
+const ateliers={"Interfaces":[["ux/01","guigui tv","Accueil de plateforme"],["ux/02","Icônes","Jeu d'icônes"],["ux/03","Mémoire de Guilhem","Interface de présentation"],["ux/04","Geta IA","Interface d'assistant"],["ux/05","Gumax","Interface de streaming"],["ux/06","Guiguimount+","Offre d'abonnement"],["ux/07","guigui.tv","Page programme"],["ux/08","guigui tv sport","Déclinaison sport"],["ux/09","Pyramides","Habillage"],["ux/10","Paris 2024","Habillage olympique"]],
+"Presse et édition":[["edito/02","The Guigui Times","Une de journal"],["edito/03","SpotiGui, GMusic, geezer","Plateformes musicales"]],
+"Photographie":[["photo/01","La Rochelle","Avant et après retouche"],["photo/02","La Rochelle","Avant et après retouche"],["photo/03","La Rochelle","Avant et après retouche"],["photo/04","La Rochelle","Avant et après retouche"],["photo/05","La Rochelle","Avant et après retouche"],["photo/06","La Rochelle","Avant et après retouche"]],
+"Majesty Records":[["musique/01","Majesty Records","Identité dorée"],["musique/02","Majesty Records","Identité rouge"],["musique/03","Majesty","Famille de logos"],["musique/04","Whatever et Majesty Awards","Cérémonie"],["musique/05","The Electric Jazzy Album","Pochette"],["musique/06","The Electric Jazzy Album","Vinyle"],["musique/07","Les Guigui Eagles","Emblème"]],
+};
+Object.entries(ateliers).forEach(([nom,l],k)=>{const b=document.createElement("button");b.textContent=nom;if(!k)b.className="on";const p=document.createElement("div");p.className="panneau"+(k?"":" on");p.innerHTML=l.map(([f,t,s])=>`<figure><img src="img/${f}.jpg" data-l="${t}, ${s}" alt="${t}" loading="lazy"><figcaption><b>${t}</b>${s}</figcaption></figure>`).join("");b.onclick=()=>{document.querySelectorAll("#onglets button").forEach(x=>x.classList.toggle("on",x===b));document.querySelectorAll(".panneau").forEach(x=>x.classList.toggle("on",x===p))};$("#onglets").append(b);$("#panneaux").append(p)});
+
+/* travaux */
+const T=[
+ // stage M2
+ {n:"Stage M2",ou:"Stage de Master 2, 2026",t:"Livret d'accueil transversal",p:"Le livrable central : un accueil commun aux sept établissements pour personnes âgées.",img:"stage/accueil.jpg",th:["Communication interne","Secteur public","Gestion de projet"]},
+ {n:"Stage M2",ou:"Stage de Master 2, 2026",t:"Stratégie de transformation et de cohésion 2026",p:"Le diaporama de présentation à la direction, avec rétro-planning.",img:"stage/diaporama.jpg",th:["Communication interne","Secteur public","Présentation"]},
+ {n:"Stage M2",ou:"Stage de Master 2, 2026",t:"Un tournant stratégique",p:"La synthèse visuelle du diagnostic de l'institution.",img:"stage/transformation.jpg",th:["Secteur public","Infographie"]},
+ {n:"Stage M2",ou:"Stage de Master 2, 2026",gros:"55",t:"Questionnaire aux résidences autonomie",p:"Conception, diffusion et analyse : cinquante-cinq réponses d'agents.",th:["Études et enquêtes","Secteur public"]},
+ {n:"Stage M2",ou:"Stage de Master 2, 2026",gros:"9",t:"Guide des ateliers collectifs",p:"Neuf ateliers pour construire le livret avec les agents, et un guide d'étude pour les mener.",th:["Communication interne","Gestion de projet"]},
+ {n:"Stage M2",ou:"Stage de Master 2, 2026",t:"Fédérer l'invisible",p:"Note sur la cohésion entre des métiers qui ne se croisent pas. Avec les feuilles de route, la page web de la mission et la convergence des solidarités.",th:["Communication interne","Secteur public","Rédaction"]},
+ {n:"Stage M2",ou:"Stage de Master 2, 2026",t:"Rapport de stage",p:"Le récit complet de la mission, du diagnostic à la transmission du livret.",th:["Rédaction","Secteur public"]},
+ // mémoire
+ {n:"Master 2",ou:"Mémoire, 2026",t:"Métamorphoses, le dossier de presse",p:"Quarante-six pages pour présenter le mémoire au grand public.",img:"memoire/presse-1.jpg",th:["Recherche","Identité de marque","Médias et streaming","Édition"]},
+ {n:"Master 2",ou:"Mémoire, 2026",gros:"307",t:"Le mémoire",p:"Neuf chapitres, cinq hypothèses, treize annexes, sur l'identité des majors du cinéma de 1985 à 2026.",th:["Recherche","Médias et streaming"]},
+ // M2
+ {n:"Master 2",ou:"Production de contenu numérique",t:"Kithara, contenus et calendrier",p:"Calendrier éditorial et plan de communication sur six mois. Travail de groupe.",img:"m2/kithara-calendrier.jpg",th:["Réseaux sociaux","Identité de marque","Calendrier éditorial"]},
+ {n:"Master 2",ou:"Production de contenu numérique",t:"Kithara, les coffrets",p:"Visuels produits pour les trois destinations.",img:"kithara/k5.jpg",th:["Identité de marque","Création visuelle"]},
+ {n:"Master 2",ou:"Création et communication",t:"Zefil",p:"Logo, emblème et habillage d'une marque de bijoux éco-responsables.",img:"zefil/z-hippo.jpg",th:["Identité de marque","Création visuelle"]},
+ {n:"Master 2",ou:"Création et communication",t:"Zefil, la publicité",p:"Vidéo verticale de quarante-deux secondes.",img:"zefil/pub3.jpg",th:["Vidéo et motion","Réseaux sociaux"]},
+ {n:"Master 2",ou:"Projet de communication numérique",t:"À ton rythme",p:"Campagne de santé mentale pour les étudiants. Travail de groupe.",img:"ssu/Affiche-Tristesse-V3.jpg",th:["Campagne","Santé publique","Affiche"]},
+ {n:"Master 2",ou:"Projet de communication numérique",t:"À ton rythme, la charte",p:"Couleurs, typographies et règles de la campagne.",img:"ssu/charte.jpg",th:["Charte graphique","Campagne"]},
+ {n:"Master 2",ou:"Droit, éthique et sécurité",t:"Audit juridique",p:"Mentions, données personnelles et droit à l'image d'un site.",img:"m2/audit-juridique.jpg",th:["Droit du numérique","Audit"]},
+ {n:"Master 2",ou:"Analyse du discours numérique",t:"Branding the Stream",p:"Les agences et les stratégies derrière les grands services de streaming américains. Dossier à deux.",th:["Recherche","Médias et streaming","Identité de marque"]},
+ {n:"Master 2",ou:"Stratégie et audit numérique",t:"Audit numérique",p:"Diagnostic de présence en ligne et recommandations.",th:["Audit","Stratégie numérique"]},
+ {n:"Master 2",ou:"Création de trafic",t:"Référencement et Google Ads",p:"Mots-clés, annonces, budget et suivi d'une campagne de référencement payant.",th:["Référencement","Stratégie numérique"]},
+ {n:"Master 2",ou:"Data et communication digitale",t:"Google Analytics 4",p:"Lecture des parcours, tableaux de bord et indicateurs.",th:["Données","Stratégie numérique"]},
+ {n:"Master 2",ou:"Gestion de projets",t:"Gestion de projet",p:"Planification, rôles et suivi d'un projet de communication.",th:["Gestion de projet"]},
+ {n:"Master 2",ou:"Social ads et influence",t:"Publicités sociales et influence",p:"Ciblage, formats et choix de créateurs.",th:["Réseaux sociaux","Campagne"]},
+ {n:"Master 2",ou:"Méthodologie du mémoire",t:"Analyse qualitative",p:"Exposé sur la méthode des entretiens.",th:["Recherche","Études et enquêtes"]},
+ // M1
+ {n:"Master 1",ou:"Projet d'infographie",t:"The Winery",p:"Affiche d'un bar à vin.",img:"m1/winery.jpg",th:["Affiche","Création visuelle"]},
+ {n:"Master 1",ou:"Projet d'infographie",t:"Mesita Cocktails",p:"Identité et affiche de carte de cocktails.",img:"m1/cocktail.jpg",th:["Affiche","Identité de marque"]},
+ {n:"Master 1",ou:"Projet d'infographie",t:"Mashup Festival",p:"Affiche de festival.",img:"m1/mashup.jpg",th:["Affiche","Culture et événement"]},
+ {n:"Master 1",ou:"Photoshop et montage vidéo",t:"The Electric Jazzy Album",p:"Planche de tendance, pochette finale et maquette de vinyle.",img:"m1/jazzy-album-pochette.jpg",th:["Création visuelle","Musique"]},
+ {n:"Master 1",ou:"Photoshop et montage vidéo",t:"Planche de tendance",p:"La recherche d'ambiance avant la pochette.",img:"m1/jazzy-album-moodboard.jpg",th:["Création visuelle","Musique"]},
+ {n:"Master 1",ou:"Photoshop et montage vidéo",t:"Maquette du vinyle",p:"La pochette mise en situation.",img:"m1/jazzy-album-vinyle.jpg",th:["Création visuelle","Musique"]},
+ {n:"Master 1",ou:"Stratégies de communication visuelle",t:"Les Stars de l'impressionnisme",p:"Communication d'une exposition. Travail à deux.",img:"m1/impressionnisme.jpg",th:["Culture et événement","Campagne"]},
+ {n:"Master 1",ou:"Communication culturelle",t:"La Nuit européenne des musées",p:"Questionnaire de cent vingt-sept réponses, revue de presse et présentation. Travail de groupe.",img:"m1/musees.jpg",th:["Culture et événement","Études et enquêtes"]},
+ {n:"Master 1",ou:"Stratégies de communication globale",t:"Préconisations Monoprix",p:"Recommandations pour le magasin de Clermont-Ferrand.",img:"m1/monoprix.jpg",th:["Stratégie de marque","Distribution"]},
+ {n:"Master 1",ou:"Spécificités de la communication des entreprises",t:"Audit de Monoprix",p:"Analyse de la communication de l'enseigne.",th:["Audit","Stratégie de marque","Distribution"]},
+ {n:"Master 1",ou:"Stratégie de marque",t:"BOZ, plateforme de marque",p:"Valeurs, ton, promesse et présentation d'une marque de burgers.",th:["Stratégie de marque","Identité de marque"]},
+ {n:"Master 1",ou:"Communication interactive et e-mailing",t:"La newsletter « En Vrai »",p:"Conception, calendrier éditorial et dossier. Travail de groupe.",th:["E-mailing","Calendrier éditorial"]},
+ {n:"Master 1",ou:"Marketing interactif",t:"Média planning du Père Lucien",p:"Choix des médias, calendrier et budget.",th:["Stratégie numérique","Campagne"]},
+ {n:"Master 1",ou:"Réception des campagnes",t:"Pré-tests des Galeries Lafayette",p:"Tester une campagne avant sa diffusion.",th:["Études et enquêtes","Campagne"]},
+ {n:"Master 1",ou:"Communication interne et pratiques numériques",t:"L'usage des mails au travail",p:"Enquête par entretiens et analyse.",th:["Communication interne","Études et enquêtes"]},
+ {n:"Master 1",ou:"Enjeux de la société numérique",t:"Burn-out et travail numérique",p:"Note de lecture à plusieurs.",th:["Recherche","Communication interne"]},
+ {n:"Master 1",ou:"Communication, participation et ESS",t:"Les Petits Débrouillards",p:"Communication d'une association d'éducation populaire, affiche d'arpentage.",th:["Économie sociale et solidaire","Affiche"]},
+ {n:"Master 1",ou:"Communication de crise",t:"Gérer une crise",p:"Cas pratique de communication de crise.",th:["Communication de crise"]},
+ {n:"Master 1",ou:"Journalisme d'entreprise",t:"Article et podcast d'entreprise",p:"Un article de tendances et un podcast corporate.",th:["Rédaction","Audio"]},
+ {n:"Master 1",ou:"Anglais",t:"My Mission Statement",p:"Présentation professionnelle en anglais.",th:["Anglais"]},
+ {n:"Master 1",ou:"Épistémologie",t:"Fiches de lecture",p:"Chalmers et Barreau.",th:["Recherche"]},
+ // Licence
+ {n:"Licence",ou:"Licence 3, 2023",t:"La presse au Brésil et aux États-Unis",p:"Exposé sur les journaux et les agences de presse au long XIXᵉ siècle.",th:["Recherche","Médias et streaming"]},
+ {n:"Licence",ou:"Licence 3, 2024",t:"Les Indiens et les Espagnols",p:"Exposé illustré, du XVIᵉ au XVIIIᵉ siècle.",th:["Recherche","Présentation"]},
+ {n:"Licence",ou:"Licence, 2023",t:"La guerre froide",p:"Dossier et fiches de lecture d'histoire contemporaine, fiches d'atlas.",th:["Recherche","Rédaction"]},
+ {n:"Licence",ou:"Stage de Licence 3, 2024",t:"Maison des Écritures",p:"Communication culturelle autour du festival Intermondes.",th:["Culture et événement"]}
+];
+const niveaux=["Tout","Stage M2","Master 2","Master 1","Licence"];
+const FAM={"Marque et identité":["Identité de marque","Charte graphique"],"Stratégie et marketing":["Stratégie de marque","Distribution","Campagne"],"Création graphique":["Affiche","Création visuelle","Infographie","Musique","Édition"],"Vidéo et audio":["Vidéo et motion","Audio"],"Réseaux et contenus":["Réseaux sociaux","Calendrier éditorial","E-mailing"],"Numérique et données":["Stratégie numérique","Référencement","Données","Audit","Droit du numérique"],"Organisations et secteur public":["Communication interne","Secteur public","Gestion de projet","Communication de crise","Présentation"],"Santé et social":["Santé publique","Économie sociale et solidaire","Secteur public"],"Culture et médias":["Culture et événement","Médias et streaming"],"Recherche et études":["Recherche","Études et enquêtes"],"Rédaction et langues":["Rédaction","Anglais","Édition"]};
+const themes=["Tout",...Object.keys(FAM)];
+let fN="Tout",fT="Tout";
+const g=$("#grilleTravaux");
+T.forEach(x=>{const d=document.createElement("article");d.className="trav"+(x.img?"":" texte");d.dataset.n=x.n;d.dataset.th=x.th.join("|");d.innerHTML=(x.img?`<img src="img/${x.img}" data-l="${x.t}" alt="${x.t}" loading="lazy">`:"")+`<div class="corps">${x.gros?`<div class="gros grad">${x.gros}</div>`:""}<div class="ou">${x.ou}</div><h4>${x.t}</h4><p>${x.p}</p><div class="tags">${x.th.map(t=>`<i>${t}</i>`).join("")}</div></div>`;g.append(d)});
+function filtrer(){let c=0;g.querySelectorAll(".trav").forEach(d=>{const ok=(fN==="Tout"||d.dataset.n===fN)&&(fT==="Tout"||d.dataset.th.split("|").some(t=>FAM[fT].includes(t)));d.classList.toggle("cache",!ok);if(ok)c++});$("#total").textContent=c+" travaux affichés"}
+function boutons(l,cible,f){l.forEach((v,i)=>{const b=document.createElement("button");b.textContent=v;if(!i)b.className="on";b.onclick=()=>{cible.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));f(v);filtrer()};cible.append(b)})}
+boutons(niveaux,$("#fNiveau"),v=>fN=v);boutons(themes,$("#fTheme"),v=>fT=v);filtrer();
+
+/* visionneuse */
+document.addEventListener("click",e=>{const i=e.target.closest("img[data-l]");if(!i)return;e.stopPropagation();const v=$("#visio");v.querySelector("img").src=i.src;v.querySelector("p").textContent=i.dataset.l;v.classList.add("on")},true);
+$("#visio").onclick=()=>$("#visio").classList.remove("on");
+addEventListener("keydown",e=>{if(e.key==="Escape")$("#visio").classList.remove("on")});
+
+/* apparition */
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("vu");io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll(".app").forEach(x=>io.observe(x));
+</script>
+</body>
+</html>

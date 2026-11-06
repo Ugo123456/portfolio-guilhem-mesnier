@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guilhem Mesnier, portfolio cinéma</title>
+<style>
+:root{--noir:#0A0607;--noir2:#140B0D;--velours:#6E0F1A;--rouge:#B3122A;--or:#D8B26A;--or2:#F3DFA8;--tx:#F4ECE4;--tx2:#B7A69A;--ligne:rgba(216,178,106,.22);--orgrad:linear-gradient(120deg,#9C7434,#D8B26A 35%,#F3DFA8 55%,#C49A4E)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+section{scroll-margin-top:60px}
+body{background:var(--noir);color:var(--tx);font-family:"Montserrat",sans-serif;font-size:16px;line-height:1.6;overflow-x:clip}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.bod{font-family:"Bodoni 72","Didot",serif;font-weight:400}
+.or{background:var(--orgrad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.w{width:min(1240px,100% - 40px);margin:0 auto}
+.sur{font-size:12px;letter-spacing:.38em;text-transform:uppercase;color:var(--or);font-weight:600}
+h2{font-family:"Bodoni 72",serif;font-weight:400;font-size:clamp(44px,6vw,86px);line-height:1;margin:12px 0 16px}
+h2 em{font-style:italic}
+.chapo{color:var(--tx2);font-size:18px;max-width:720px}
+section{padding:110px 0;position:relative}
+.etoiles{text-align:center;color:var(--or);letter-spacing:.6em;font-size:12px;margin-bottom:10px}
+/* barre */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 26px;background:linear-gradient(rgba(10,6,7,.92),rgba(10,6,7,0))}
+nav .m{font-family:"Bodoni 72";font-size:22px;display:flex;gap:10px;align-items:center}
+nav .m img{width:32px;height:32px;border-radius:50%;object-fit:cover;border:1px solid var(--or)}
+nav .l{display:flex;gap:22px;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+nav .l a:hover{color:var(--or)}
+/* héros : rideau et projecteur */
+.heros{min-height:100vh;display:grid;place-items:center;text-align:center;overflow:hidden;padding:120px 20px 80px;background:radial-gradient(ellipse at 50% 0%,rgba(216,178,106,.18),transparent 55%),var(--noir)}
+.rideau{position:absolute;top:0;bottom:0;width:30%;background:repeating-linear-gradient(90deg,#4a0911 0 18px,#7a1220 18px 30px,#5b0c16 30px 44px);box-shadow:inset -40px 0 60px rgba(0,0,0,.7);transition:transform 2.2s cubic-bezier(.7,0,.2,1)}
+.rideau.g{left:0;transform-origin:left}
+.rideau.d{right:0;transform-origin:right;box-shadow:inset 40px 0 60px rgba(0,0,0,.7)}
+.ouvert .rideau.g{transform:translateX(-78%)}
+.ouvert .rideau.d{transform:translateX(78%)}
+.projo{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle 340px at var(--x,50%) var(--y,40%),rgba(255,236,190,.13),transparent 70%)}
+.heros .centre{position:relative;z-index:2;max-width:980px}
+.heros .photo{width:190px;height:190px;border-radius:50%;object-fit:cover;margin:0 auto 26px;border:2px solid var(--or);box-shadow:0 0 0 8px rgba(216,178,106,.12),0 0 80px rgba(216,178,106,.25)}
+.heros h1{font-family:"Bodoni 72";font-weight:400;font-size:clamp(70px,12vw,170px);line-height:.9}
+.heros h1 em{font-style:italic}
+.heros .role{color:var(--tx2);font-size:18px;max-width:760px;margin:24px auto 0}
+.affichette{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-top:40px;border-top:1px solid var(--ligne);border-bottom:1px solid var(--ligne);padding:18px 0}
+.affichette div{min-width:150px}
+.affichette b{font-family:"Bodoni 72";font-size:46px;font-weight:400;display:block;line-height:1}
+.affichette span{font-size:12px;color:var(--tx2);letter-spacing:.06em;display:block;max-width:180px;margin:4px auto 0}
+/* générique du parcours */
+.generique{max-width:820px;margin:40px auto 0;text-align:center}
+.generique .e{padding:22px 0;border-bottom:1px solid var(--ligne)}
+.generique .q{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--or)}
+.generique h3{font-family:"Bodoni 72";font-weight:400;font-size:30px;line-height:1.15;margin:6px 0}
+.generique p{color:var(--tx2);font-size:15px}
+/* programme 2026 : billets */
+.programme{display:grid;gap:26px;margin-top:40px}
+.billet{display:grid;grid-template-columns:330px 1fr 120px;background:linear-gradient(135deg,#1c0f12,#120a0c);border:1px solid var(--ligne);border-radius:18px;overflow:hidden;position:relative}
+.billet .aff{position:relative;overflow:hidden}
+.billet .aff img{width:100%;height:100%;min-height:280px;object-fit:cover;transition:transform 1s}
+.billet:hover .aff img{transform:scale(1.06)}
+.billet .corps{padding:28px 30px}
+.billet h3{font-family:"Bodoni 72";font-weight:400;font-size:42px;line-height:1}
+.billet .s{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:8px}
+.billet p{color:var(--tx2);font-size:15px;margin-top:12px}
+.billet .vign{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.billet .vign img{width:64px;height:64px;object-fit:cover;border-radius:8px;cursor:zoom-in;border:1px solid var(--ligne);transition:transform .3s}
+.billet .vign img:hover{transform:translateY(-4px)}
+.billet video{height:64px;border-radius:8px}
+.billet .souche{border-left:2px dashed var(--ligne);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:10px}
+.billet .souche b{font-family:"Bodoni 72";font-size:54px;font-weight:400;line-height:1}
+.billet .souche span{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--tx2)}
+.billet::before,.billet::after{content:"";position:absolute;right:108px;width:24px;height:24px;border-radius:50%;background:var(--noir);border:1px solid var(--ligne)}
+.billet::before{top:-13px}.billet::after{bottom:-13px}
+.genres{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.genres i{font-style:normal;font-size:11px;letter-spacing:.08em;border:1px solid var(--ligne);color:var(--or2);padding:3px 10px;border-radius:99px}
+/* mur d'affiches avec projecteur */
+.mur{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:36px}
+.mur figure{position:relative;cursor:zoom-in;transition:transform .4s,filter .4s}
+.mur img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:6px}
+.mur:hover figure{filter:brightness(.45) saturate(.6)}
+.mur figure:hover{filter:none;transform:scale(1.06);z-index:2;box-shadow:0 20px 60px rgba(216,178,106,.25)}
+.mur figcaption{font-size:12px;margin-top:8px;font-weight:600}
+.mur figcaption small{display:block;color:var(--tx2);font-weight:400}
+/* pellicule des fonds */
+.pellicule{background:#050304;padding:26px 0;margin-top:30px;position:relative;overflow:hidden}
+.pellicule::before,.pellicule::after{content:"";position:absolute;left:0;right:0;height:14px;background:repeating-linear-gradient(90deg,transparent 0 14px,#2a1b1d 14px 30px)}
+.pellicule::before{top:6px}.pellicule::after{bottom:6px}
+.bande{display:flex;gap:10px;width:max-content;animation:defile 80s linear infinite}
+.pellicule:hover .bande{animation-play-state:paused}
+.bande figure{width:380px}
+.bande img{width:100%;aspect-ratio:16/9;object-fit:cover;cursor:zoom-in}
+.bande figcaption{font-size:12px;color:var(--tx2);margin-top:6px;text-align:center}
+@keyframes defile{to{transform:translateX(-50%)}}
+/* marques en néon */
+.neons{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:36px}
+.neons figure{border-radius:14px;overflow:hidden;background:#140b0d;border:1px solid var(--ligne);cursor:zoom-in;transition:box-shadow .4s,border-color .4s}
+.neons figure:hover{border-color:var(--or);box-shadow:0 0 0 1px var(--or),0 0 30px rgba(216,178,106,.35)}
+.neons img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.neons figcaption{padding:10px 14px;font-family:"Bodoni 72";font-size:18px}
+/* salles */
+.salles{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.salles button{font:inherit;font-size:12px;letter-spacing:.16em;text-transform:uppercase;background:none;border:1px solid var(--ligne);color:var(--tx);padding:10px 16px;border-radius:99px;cursor:pointer}
+.salles button.on{background:var(--orgrad);color:#1a0f08;border-color:transparent;font-weight:700}
+.panneau{display:none;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:24px}
+.panneau.on{display:grid}
+.panneau img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;cursor:zoom-in}
+.panneau figcaption{font-size:13px;color:var(--tx2);margin-top:6px}
+.panneau figcaption b{color:var(--tx);display:block}
+/* séances */
+.filtres{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.filtres button{font:inherit;font-size:12px;background:none;border:1px solid var(--ligne);color:var(--tx2);padding:6px 12px;border-radius:99px;cursor:pointer}
+.filtres button.on{border-color:var(--or);color:var(--or2);background:rgba(216,178,106,.1)}
+.compte{margin:18px 0 6px;font-size:13px;color:var(--tx2)}
+.seances{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px}
+.seance{display:grid;grid-template-columns:96px 1fr;gap:16px;border:1px solid var(--ligne);border-radius:12px;padding:12px;background:#110a0b}
+.seance.cache{display:none}
+.seance img{width:96px;height:96px;object-fit:cover;border-radius:8px;cursor:zoom-in}
+.seance .vide{width:96px;height:96px;border-radius:8px;display:grid;place-items:center;font-family:"Bodoni 72";font-size:38px;background:radial-gradient(circle,#3a1218,#160b0d)}
+.seance .ou{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--or)}
+.seance h4{font-family:"Bodoni 72";font-weight:400;font-size:22px;line-height:1.1;margin:2px 0 4px}
+.seance p{font-size:13px;color:var(--tx2)}
+/* logo */
+.palmares{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:40px;text-align:center}
+.palmares img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;border:2px solid var(--or);cursor:zoom-in}
+.palmares .prix{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin-top:18px}
+.palmares h4{font-family:"Bodoni 72";font-weight:400;font-size:28px}
+.palmares p{color:var(--tx2);font-size:14px}
+.final{text-align:center;padding:130px 20px;background:radial-gradient(ellipse at 50% 100%,rgba(179,18,42,.35),transparent 60%)}
+.final h2{font-size:clamp(56px,9vw,130px)}
+.ticket{display:inline-block;margin-top:30px;border:1px solid var(--or);padding:14px 30px;border-radius:6px;letter-spacing:.2em;text-transform:uppercase;font-size:13px;color:var(--or2)}
+.final .mention{max-width:780px;margin:40px auto 0;font-size:13px;color:var(--tx2)}
+#visio{position:fixed;inset:0;background:rgba(5,3,4,.95);display:none;place-items:center;z-index:99;cursor:zoom-out;padding:30px}
+#visio.on{display:grid}
+#visio img{max-width:92vw;max-height:84vh;box-shadow:0 0 120px rgba(216,178,106,.25)}
+#visio p{font-family:"Bodoni 72";font-size:24px;text-align:center;margin-top:12px;color:var(--or2)}
+.app{opacity:0;transform:translateY(26px);transition:opacity 1s,transform 1s}
+.app.vu{opacity:1;transform:none}
+@media(max-width:900px){nav .l{display:none}.billet{grid-template-columns:1fr}.billet .souche{border-left:0;border-top:2px dashed var(--ligne);flex-direction:row}.billet::before,.billet::after{display:none}.mur{grid-template-columns:repeat(2,1fr)}.palmares{grid-template-columns:1fr}.seances{grid-template-columns:1fr}.bande figure{width:260px}.rideau{width:22%}}
+</style>
+</head>
+<body>
+<nav><a class="m" href="#haut"><img src="img/logo/l5-or-brosse.jpg" alt="">Guilhem Mesnier</a><div class="l"><a href="#parcours">Générique</a><a href="#annee2026">Programme 2026</a><a href="#affiches">Affiches</a><a href="#marques">Studios</a><a href="#travaux">Séances</a><a href="#contact">Contact</a></div></nav>
+
+<header class="heros" id="haut">
+  <div class="rideau g"></div><div class="rideau d"></div><div class="projo" id="projo"></div>
+  <div class="centre">
+    <img class="photo" src="img/profil/portrait-vert.png" alt="Portrait de Guilhem Mesnier">
+    <div class="etoiles">★ ★ ★ ★ ★</div>
+    <div class="sur">Une production Guilhem Mesnier, octobre 2026</div>
+    <h1>Guilhem <em class="or">Mesnier</em></h1>
+    <p class="role" id="profil"></p>
+    <div class="affichette" id="chiffres"></div>
+  </div>
+</header>
+
+<section id="parcours"><div class="w" style="text-align:center">
+  <div class="sur">Le générique</div>
+  <h2>De l'histoire à la <em class="or">communication</em></h2>
+  <div class="generique" id="generique"></div>
+</div></section>
+
+<section id="annee2026" style="background:var(--noir2)"><div class="w">
+  <div class="sur">Au programme</div>
+  <h2>L'année <em class="or">2026</em>, cinq séances</h2>
+  <p class="chapo">Un stage, un mémoire et trois projets de Master 2. Cliquez sur une vignette pour l'agrandir.</p>
+  <div class="programme" id="programme"></div>
+</div></section>
+
+<section id="affiches"><div class="w">
+  <div class="sur">Atelier personnel</div>
+  <h2>Le mur des <em class="or">affiches</em></h2>
+  <p class="chapo">Passez la souris : le projecteur suit l'affiche choisie, les autres s'éteignent.</p>
+  <div class="mur" id="mur"></div>
+</div></section>
+
+<section id="fonds" style="padding-bottom:60px"><div class="w">
+  <div class="sur">Fonds d'écran</div>
+  <h2>En <em class="or">16:9</em>, sur la pellicule</h2>
+  <p class="chapo">Des déclinaisons paysage pour les écrans d'accueil des plateformes. La pellicule s'arrête au survol.</p>
+</div>
+<div class="pellicule"><div class="bande" id="bande"></div></div></section>
+
+<section id="marques" style="background:var(--noir2)"><div class="w">
+  <div class="sur">Identité de marque</div>
+  <h2>Vingt-six <em class="or">studios</em> redessinés</h2>
+  <p class="chapo">Logos, déclinaisons, signalétique et cérémonies : chaque studio est repris en entier, avec ses règles. C'est le travail le plus proche du mémoire.</p>
+  <div class="neons" id="neons"></div>
+</div></section>
+
+<section id="ateliers"><div class="w">
+  <div class="sur">Les autres salles</div>
+  <h2>Interfaces, presse, photo, <em class="or">musique</em></h2>
+  <div class="salles" id="salles"></div>
+  <div id="panneaux"></div>
+</div></section>
+
+<section id="travaux" style="background:var(--noir2)"><div class="w">
+  <div class="sur">Toutes les séances</div>
+  <h2>Licence, Master, <em class="or">stages</em></h2>
+  <p class="chapo">Les matières servent seulement à ranger : un même travail parle souvent de plusieurs choses.</p>
+  <div class="filtres" id="fAnnee"></div>
+  <div class="filtres" id="fTheme"></div>
+  <div class="compte" id="compte"></div>
+  <div class="seances" id="seances"></div>
+</div></section>
+
+<section id="logo"><div class="w" style="text-align:center">
+  <div class="sur">Le palmarès</div>
+  <h2>Quel papillon <em class="or">gg</em> ?</h2>
+  <p class="chapo" style="margin:0 auto">Le bon logo se lit comme deux g dos à dos et comme un papillon, même en tout petit.</p>
+  <div class="palmares" id="palmares"></div>
+</div></section>
+
+<section class="final" id="contact">
+  <div class="etoiles">★ ★ ★</div>
+  <div class="sur">Prochainement</div>
+  <h2>Travaillons <em class="or">ensemble</em>.</h2>
+  <p class="chapo" style="margin:0 auto">Chargé de communication, de contenus numériques ou d'identité de marque.</p>
+  <a class="ticket" href="#">Adresse et LinkedIn à ajouter</a>
+  <p class="mention" id="mention"></p>
+  <p class="mention">Guilhem Mesnier, portfolio cinéma, octobre 2026. Polices Bodoni 72 et Montserrat.</p>
+</section>
+
+<script src="data/v1/donnees.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+$("#profil").textContent=PROFIL;$("#mention").textContent=MENTION;
+$("#chiffres").innerHTML=CHIFFRES.map(([n,l])=>`<div><b class="or">${n}</b><span>${l}</span></div>`).join("");
+$("#generique").innerHTML=PARCOURS.map(([q,t,p])=>`<div class="e app"><div class="q">${q}</div><h3>${t}</h3><p>${p}</p></div>`).join("");
+$("#programme").innerHTML=acc.map((a,i)=>`<article class="billet app"><div class="aff"><img src="${a.img}" data-l="${a.t}" alt="${a.t}"></div><div class="corps"><div class="s">${a.s}</div><h3>${a.t}</h3><p>${a.p}</p><div class="vign">${a.v.map(s=>`<img src="${s}" data-l="${a.t}" alt="" loading="lazy">`).join("")}${a.video?`<video src="${a.video}" controls muted playsinline preload="none" poster="img/zefil/pub9.jpg"></video>`:""}</div><div class="genres">${a.tags.map(t=>`<i>${t}</i>`).join("")}</div></div><div class="souche"><span>Séance</span><b class="or">${String(i+1).padStart(2,"0")}</b><span>2026</span></div></article>`).join("");
+$("#mur").innerHTML=aff.map(([f,t,s])=>`<figure><img src="img/affiches/${f}.jpg" data-l="${t}, ${s}" alt="${t}" loading="lazy"><figcaption>${t}<small>${s}</small></figcaption></figure>`).join("");
+$("#bande").innerHTML=[...fonds,...fonds].map(([f,t,s])=>`<figure><img src="img/fonds/${f}.jpg" data-l="${t}, ${s}" alt="${t}" loading="lazy"><figcaption>${t} · ${s}</figcaption></figure>`).join("");
+$("#neons").innerHTML=marques.map((m,i)=>`<figure class="app"><img src="img/marques/${String(i+1).padStart(2,"0")}.jpg" data-l="${m}" alt="${m}" loading="lazy"><figcaption>${m}</figcaption></figure>`).join("");
+Object.entries(ateliers).forEach(([nom,l],k)=>{const b=document.createElement("button");b.textContent=nom;if(!k)b.className="on";const p=document.createElement("div");p.className="panneau"+(k?"":" on");p.innerHTML=l.map(([f,t,s])=>`<figure><img src="img/${f}.jpg" data-l="${t}, ${s}" alt="${t}" loading="lazy"><figcaption><b>${t}</b>${s}</figcaption></figure>`).join("");b.onclick=()=>{document.querySelectorAll(".salles button").forEach(x=>x.classList.toggle("on",x===b));document.querySelectorAll(".panneau").forEach(x=>x.classList.toggle("on",x===p))};$("#salles").append(b);$("#panneaux").append(p)});
+$("#seances").innerHTML=T.map(x=>`<div class="seance" data-n="${x.n}" data-th="${x.th.join("|")}">${x.img?`<img src="img/${x.img}" data-l="${x.t}" alt="" loading="lazy">`:`<div class="vide or">${x.gros||"✦"}</div>`}<div><div class="ou">${x.ou}</div><h4>${x.t}</h4><p>${x.p}</p></div></div>`).join("");
+let fN="Tout",fT="Tout";
+function filtrer(){let c=0;document.querySelectorAll(".seance").forEach(d=>{const ok=(fN==="Tout"||d.dataset.n===fN)&&(fT==="Tout"||d.dataset.th.split("|").some(t=>FAM[fT].includes(t)));d.classList.toggle("cache",!ok);if(ok)c++});$("#compte").textContent=c+" séances à l'affiche"}
+function boutons(l,cible,f,tout){l.forEach((v,i)=>{const b=document.createElement("button");b.textContent=v==="Stage M2"?"Stage 2026":v==="Tout"?tout:v;if(!i)b.className="on";b.onclick=()=>{cible.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));f(v);filtrer()};cible.append(b)})}
+boutons(niveaux,$("#fAnnee"),v=>fN=v,"Toutes les années");boutons(["Tout",...Object.keys(FAM)],$("#fTheme"),v=>fT=v,"Tous les thèmes");filtrer();
+$("#palmares").innerHTML=LOGOS.map(([f,t,p],i)=>`<figure class="app"><img src="img/logo/${f}.jpg" data-l="${t}" alt="${t}"><div class="prix">${["Grand prix","Prix de la lisibilité","Prix du spectacle"][i]}</div><h4>${t}</h4><p>${p}</p></figure>`).join("");
+visionneuse();
+/* rideau qui s'ouvre et projecteur qui suit la souris */
+setTimeout(()=>$("#haut").classList.add("ouvert"),300);
+$("#haut").addEventListener("mousemove",e=>{const r=e.currentTarget.getBoundingClientRect();$("#projo").style.setProperty("--x",(e.clientX-r.left)+"px");$("#projo").style.setProperty("--y",(e.clientY-r.top)+"px")});
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("vu");io.unobserve(x.target)}}),{threshold:.1});
+document.querySelectorAll(".app").forEach(e=>io.observe(e));
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Choisir un portfolio</title>
+<link rel="stylesheet" href="data/v1/polices.css">
+<style>
+:root{--fond:#0f0d16;--texte:#fff;--doux:rgba(255,255,255,.72);--carte:rgba(255,255,255,.06);--trait:rgba(255,255,255,.14)}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Figtree",system-ui,sans-serif;color:var(--texte);min-height:100vh;
+  background:radial-gradient(70% 60% at 85% 0%,#1f7a8c55,transparent 60%),radial-gradient(60% 60% at 0% 100%,#7c5cc455,transparent 60%),var(--fond)}
+main{max-width:1240px;margin:0 auto;padding:clamp(40px,7vw,90px) clamp(16px,4vw,40px)}
+.sur{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--doux)}
+h1{font-family:"Sora",system-ui,sans-serif;font-size:clamp(38px,6vw,76px);letter-spacing:-.035em;line-height:1;margin:14px 0 16px}
+.intro{font-size:18px;line-height:1.55;color:var(--doux);max-width:62ch}
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-top:40px}
+a.choix{display:flex;flex-direction:column;text-decoration:none;color:inherit;background:var(--carte);border:1px solid var(--trait);border-radius:26px;overflow:hidden;transition:transform .25s,border-color .25s}
+a.choix:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.4)}
+a.choix img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.txt{padding:18px 20px 22px}
+.txt h2{font-family:"Sora",system-ui,sans-serif;font-size:21px;letter-spacing:-.01em}
+.txt p{font-size:15px;line-height:1.5;color:var(--doux);margin-top:6px}
+.txt small{display:inline-block;margin-top:12px;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.1)}
+.neuf{background:#f4d9b0;color:#1a1410}
+.pdf{margin-top:36px;display:inline-flex;gap:10px;align-items:center;text-decoration:none;color:#141414;background:#fff;font-weight:700;padding:14px 22px;border-radius:999px}
+</style>
+</head>
+<body>
+<main>
+  <span class="sur">Guilhem Mesnier · octobre 2026</span>
+  <h1>Huit façons de montrer le même travail</h1>
+  <p class="intro">Les huit portfolios montrent les mêmes travaux de Master, de stage et de mémoire, et les mêmes créations personnelles. Seuls le style et la manière de naviguer changent. Il suffit d'en choisir un.</p>
+  <div class="grille">
+    <a class="choix" href="v2.html"><img src="img/apercus/disney2.jpg" alt=""><div class="txt"><h2>🏰 Façon Disney+</h2><p>Comme une plateforme de streaming : un carrousel en haut, des tuiles avec le logo de chaque travail, des collections, des playlists, la recherche, et une page par travail avec sa propre façon d'être montré (livre, boule, tunnel, cartes holographiques, accordéon). Trois réglages : sans carrousel, plus professionnel, plus d'effets.</p><small class="neuf">Nouveau, le plus complet</small></div></a>
+    <a class="choix" href="v1-disney.html"><img src="img/apercus/disney1.jpg" alt=""><div class="txt"><h2>🏰 Façon Disney+, première version</h2><p>La première version façon plateforme de streaming, gardée telle quelle pour comparer.</p><small>Version précédente</small></div></a>
+    <a class="choix" href="v1-univers.html"><img src="img/apercus/univers.jpg" alt=""><div class="txt"><h2>🌍 À univers</h2><p>Chaque travail est comme une canette : quand on clique dessus, toute la page prend ses couleurs. Il y a une page par travail, avec la consigne, ce qui a été fait, le développement et un diaporama.</p><small>Une page par travail</small></div></a>
+    <a class="choix" href="v1-accueil.html"><img src="img/apercus/principal.jpg" alt=""><div class="txt"><h2>🦋 Principal</h2><p>Le portfolio de référence, sur un fond sombre en dégradé, qui montre tout sur une seule longue page.</p><small>Version principale</small></div></a>
+    <a class="choix" href="v1-cinema.html"><img src="img/apercus/cinema.jpg" alt=""><div class="txt"><h2>🎬 Cinéma</h2><p>Un rideau rouge qui s'ouvre, un générique et un programme, comme une salle de cinéma.</p><small>Bodoni et Montserrat</small></div></a>
+    <a class="choix" href="v1-editorial.html"><img src="img/apercus/editorial.jpg" alt=""><div class="txt"><h2>📰 Éditorial</h2><p>Une mise en page de magazine, en ivoire et bordeaux.</p><small>Didot et Lora</small></div></a>
+    <a class="choix" href="v1-suisse.html"><img src="img/apercus/suisse.jpg" alt=""><div class="txt"><h2>🟥 Suisse</h2><p>Une grille stricte, en noir et rouge, dans l'esprit du style typographique suisse.</p><small>Helvetica Neue</small></div></a>
+    <a class="choix" href="v1-bento.html"><img src="img/apercus/bento.jpg" alt=""><div class="txt"><h2>🫧 Bento</h2><p>Des tuiles claires et arrondies, comme une boîte à bento.</p><small>Avenir Next</small></div></a>
+  </div>
+  <a class="pdf" href="Portfolio Guilhem Mesnier, octobre 2026.pdf">📄 La version PDF du portfolio</a>
+</main>
+</body>
+</html>
