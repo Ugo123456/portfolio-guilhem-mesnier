@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>Les barres de navigation, Guilhem Mesnier</title>
+<link rel="stylesheet" href="data/v15/polices.css?v=202611121700">
+<style>
+:root{--fond:#0b0f2a;--texte:#f4f5fb;--doux:rgba(244,245,251,.68)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:"Figtree",system-ui,-apple-system,sans-serif;color:var(--texte);background:radial-gradient(1200px 700px at 15% -10%,#1d2a6e 0%,transparent 60%),radial-gradient(900px 600px at 100% 10%,#3a1c71 0%,transparent 55%),var(--fond);min-height:100vh;-webkit-font-smoothing:antialiased}
+main{max-width:1240px;margin:0 auto;padding:max(36px,env(safe-area-inset-top)) 16px 70px}
+header.tete{text-align:center;margin-bottom:30px}header.tete img{width:70px;height:70px;object-fit:contain}
+h1{font-size:clamp(30px,5vw,48px);margin:10px 0 8px;letter-spacing:-.01em}h2{font-size:clamp(22px,3vw,30px);margin:46px 0 6px}
+.chapeau{color:var(--doux);max-width:760px;margin:0 auto;line-height:1.6;font-size:16px}
+.retour{display:inline-block;margin-top:18px;padding:11px 22px;border-radius:999px;background:#f4f5fb;color:#0c1030;font-weight:700;text-decoration:none}
+nav.sommaire{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:24px 0 0}
+nav.sommaire a{padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:var(--texte);text-decoration:none;font-weight:600;font-size:14px}
+.intro{color:var(--doux);margin:0 0 18px;line-height:1.55}
+/* Barres réelles des versions */
+.version{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:18px;margin:16px 0}
+.version h3{margin:0 0 4px;font-size:19px}.version p{margin:0 0 14px;color:var(--doux);font-size:14.5px;line-height:1.5}
+.cap{display:block;width:100%;height:auto;border-radius:14px;background:#000}
+.tel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+.tel figure,.version figure{margin:0}.version figcaption{font-size:12.5px;color:var(--doux);margin-top:6px}
+.v1g{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(360px,100%),1fr));gap:14px}
+/* Nouvelles barres vivantes */
+.demo{position:relative;border-radius:22px;overflow:hidden;margin:16px 0;min-height:190px;background:#111 center/cover no-repeat;border:1px solid rgba(255,255,255,.1)}
+.demo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,8,25,.15),rgba(5,8,25,.55));pointer-events:none}
+.demo .zone{position:relative;z-index:2;padding:18px}
+.legende{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:0 0 22px 22px;margin:-26px 0 16px;padding:30px 18px 16px;font-size:14.5px;color:var(--doux);line-height:1.55}
+.legende b{color:var(--texte);font-size:17px;display:block;margin-bottom:4px}
+.b{display:flex;align-items:center;gap:6px;font-size:14.5px;font-weight:600}
+.b a{color:inherit;text-decoration:none;padding:9px 14px;border-radius:999px;white-space:nowrap;transition:background .25s,color .25s}
+.b img.pap{width:34px;height:34px;object-fit:contain}
+.b .nom{font-weight:700;margin-right:8px;white-space:nowrap}
+.esp{flex:1}
+.ico{width:18px;height:18px;vertical-align:-3px;margin-right:6px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.defile{overflow-x:auto;scrollbar-width:none}.defile::-webkit-scrollbar{display:none}
+/* 1 Disney+ : rectangle arrondi */
+.n1{background:rgba(10,14,40,.72);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:8px 12px;box-shadow:0 10px 30px rgba(0,0,0,.35);color:#fff}
+.n1 a:hover,.n1 a.on{background:rgba(255,255,255,.14)}
+/* 2 Liquid Glass Apple, clair et lisible */
+.n2{position:relative;border-radius:999px;padding:7px 10px;color:#fff;background:linear-gradient(180deg,rgba(255,255,255,.26),rgba(255,255,255,.10));-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,.38);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(255,255,255,.12),0 12px 34px rgba(0,0,0,.30);text-shadow:0 1px 6px rgba(0,0,0,.45)}
+.n2 a:hover,.n2 a.on{background:rgba(255,255,255,.28)}
+/* 3 Papillon au centre */
+.n3{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:rgba(8,12,34,.62);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:6px 12px;color:#fff}
+.n3 .g{display:flex;justify-content:flex-end;gap:4px}.n3 .d{display:flex;gap:4px}
+.n3 img.pap{width:48px;height:48px;margin:0 14px;filter:drop-shadow(0 4px 14px rgba(120,200,255,.45))}
+.n3 a:hover{background:rgba(255,255,255,.14)}
+/* 4 Capsule basse façon Instagram / WhatsApp, avec lentille qui glisse */
+.tel-cadre{width:min(360px,100%);margin:0 auto;height:420px;border-radius:44px;border:10px solid #05060f;position:relative;overflow:hidden;background:#111 center/cover}
+.tel-cadre .ecran{position:absolute;inset:0;overflow:auto;scrollbar-width:none}.tel-cadre .ecran::-webkit-scrollbar{display:none}
+.tel-cadre .ecran img{width:100%;display:block}
+.n4{position:absolute;left:12px;right:12px;bottom:14px;z-index:3;display:grid;grid-template-columns:repeat(5,1fr);padding:6px;border-radius:999px;background:rgba(255,255,255,.18);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,.35);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 10px 30px rgba(0,0,0,.4)}
+.n4 a{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:2px;color:#fff;text-decoration:none;font-size:10.5px;font-weight:600;padding:7px 0;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.n4 a .ico{margin:0;width:22px;height:22px}
+.n4 .lentille{position:absolute;z-index:1;top:6px;bottom:6px;left:6px;width:calc((100% - 12px)/5);border-radius:999px;background:rgba(255,255,255,.34);box-shadow:inset 0 1px 0 rgba(255,255,255,.7);transition:transform .45s cubic-bezier(.3,1.4,.5,1)}
+/* 5 Barre qui se cache au défilement */
+.boite{height:300px;overflow:auto;border-radius:16px;position:relative;scrollbar-width:thin}
+.boite .contenu{height:1100px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.4)),url(img/scenes/kithara.webp) top/cover}
+.n5{position:sticky;top:10px;margin:0 10px;z-index:3;transition:transform .35s ease,opacity .35s;background:rgba(10,14,40,.7);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:6px 10px;color:#fff}
+.n5.cache{transform:translateY(-120%);opacity:0}
+.n5 a:hover{background:rgba(255,255,255,.14)}
+/* 6 Onglets Collections et Playlists, façon plateforme */
+.n6{color:#fff;border-bottom:1px solid rgba(255,255,255,.18);padding:4px 6px;gap:0}
+.n6 a{border-radius:0;padding:14px 16px;position:relative;opacity:.72}.n6 a.on,.n6 a:hover{opacity:1}
+.n6 a.on::after{content:"";position:absolute;left:14px;right:14px;bottom:-1px;height:3px;border-radius:3px;background:#fff}
+/* 7 Rail vertical, comme Disney+ sur ordinateur */
+.n7wrap{display:flex;gap:16px;min-height:300px}
+.n7{width:76px;flex:none;display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 0;border-radius:22px;background:rgba(8,12,34,.66);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.14);transition:width .35s;overflow:hidden;color:#fff}
+.n7:hover{width:220px;align-items:stretch;padding:14px 10px}
+.n7 a{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;padding:10px 14px;border-radius:14px;font-weight:600;white-space:nowrap;font-size:14.5px}
+.n7 a:hover{background:rgba(255,255,255,.14)}.n7 a .ico{margin:0;flex:none;width:22px;height:22px}
+.n7 a span{opacity:0;transition:opacity .25s}.n7:hover a span{opacity:1}
+.n7 img.pap{width:40px;height:40px;object-fit:contain;align-self:center;margin-bottom:6px}
+/* 8 Pastille qui s'ouvre, façon île dynamique */
+.n8{margin:0 auto;width:max-content;max-width:100%;display:flex;align-items:center;gap:6px;padding:6px;border-radius:999px;background:#05060f;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:padding .4s}
+.n8 .menu{display:flex;gap:2px;max-width:0;overflow:hidden;transition:max-width .55s cubic-bezier(.3,1.2,.5,1)}
+.n8:hover .menu,.n8:focus-within .menu{max-width:760px}
+.n8 a:hover{background:rgba(255,255,255,.14)}
+.n8 img.pap{width:34px;height:34px}
+/* 9 Éditoriale, texte seul */
+.n9{color:#fff;justify-content:space-between;border-top:1px solid rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.5);padding:8px 4px;font-family:Didot,"Bodoni 72",Georgia,serif;font-weight:400;font-size:16px;letter-spacing:.06em;text-transform:none}
+.n9 .nom{font-size:24px;font-style:italic;letter-spacing:0}
+.n9 a{padding:6px 8px}.n9 a:hover{text-decoration:underline;text-underline-offset:6px}
+/* 10 Bleu nuit, ombre portée façon Nuit des musées */
+.n10{background:linear-gradient(180deg,rgba(18,34,92,.82),rgba(8,14,46,.82));-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(160,190,255,.25);border-radius:20px;padding:7px 12px;color:#fff;box-shadow:0 24px 60px rgba(0,0,0,.65),0 0 0 1px rgba(0,0,0,.3);text-shadow:0 2px 10px rgba(0,0,0,.8)}
+.n10 a:hover,.n10 a.on{background:rgba(120,160,255,.22)}
+/* 11 Deux étages : marque en haut, rubriques en dessous */
+.n11{color:#fff;flex-direction:column;align-items:stretch;gap:8px}
+.n11 .h{display:flex;align-items:center;gap:10px;padding:2px 6px}
+.n11 .p{display:flex;gap:8px}
+.n11 .p a{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2)}.n11 .p a.on,.n11 .p a:hover{background:#fff;color:#0c1030}
+/* 12 Recherche au centre, façon Disney+ */
+.n12{background:rgba(10,14,40,.7);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:7px 10px;color:#fff;gap:10px}
+.n12 .champ{flex:1;display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:12px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-weight:500;min-width:140px}
+.n12 a:hover{background:rgba(255,255,255,.14)}
+@media (max-width:700px){.tel{grid-template-columns:1fr}.b{font-size:13.5px}}
+</style></head>
+<body><main>
+<header class="tete"><img src="img/logo/papillons/A.webp" alt="Logo gg de Guilhem Mesnier">
+<h1>Les barres de navigation</h1>
+<p class="chapeau">La barre en haut du portfolio a changé à chaque version. Voici, côte à côte, toutes les barres réellement mises en ligne, de la version 1 à la plus récente, sur ordinateur et sur téléphone. Puis douze nouvelles barres, vivantes : on peut passer la souris dessus, cliquer, faire défiler.</p>
+<a class="retour" href="index.html">← Toutes les versions du portfolio</a>
+<nav class="sommaire"><a href="#nouvelles">Les nouvelles barres</a><a href="#versions">Les barres des versions</a><a href="#v1">Les sept styles de la version 1</a></nav></header>
+
+<section id="nouvelles"><h2>✨ Les nouvelles barres</h2>
+<p class="intro">Chacune reprend une demande faite pendant la fabrication du portfolio : le rectangle arrondi de Disney+, le verre lisible d'Apple, le papillon au centre, la capsule du bas comme Instagram ou WhatsApp, la barre qui disparaît quand on descend.</p>
+
+<div class="demo" style="background-image:url(img/scenes/kithara.webp)"><div class="zone"><div class="b n1 defile"><img class="pap" src="img/logo/papillons/A.webp" alt=""><span class="nom">Guilhem Mesnier</span><a class="on" href="#">Accueil</a><a href="#">Mes travaux</a><a href="#">Collections</a><a href="#">Playlists</a><a href="#">Mon univers</a><span class="esp"></span><a href="#" aria-label="Recherche"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></a></div></div></div>
+<div class="legende"><b>1. Le rectangle arrondi de Disney+</b>Un rectangle aux coins arrondis plutôt qu'une pilule, sombre et posé sur l'image, le papillon en haut à gauche, Collections et Playlists séparées dans le menu.</div>
+
+<div class="demo" style="background-image:url(img/scenes/a-ton-rythme-affiches-vif.webp)"><div class="zone"><div class="b n2 defile"><img class="pap" src="img/logo/papillons/A.webp" alt=""><span class="nom">Guilhem Mesnier</span><a class="on" href="#">Accueil</a><a href="#">Mes travaux</a><a href="#">Collections et playlists</a><a href="#">Mon univers</a><a href="#">À propos</a><a href="#">Contact</a></div></div></div>
+<div class="legende"><b>2. Le verre liquide d'Apple, clair et lisible</b>Un verre qui laisse passer les couleurs, avec un reflet en haut et une ombre douce, mais un texte toujours lisible grâce à une petite ombre portée. Pas bleuté, pas trop uni.</div>
+
+<div class="demo" style="background-image:url(img/scenes/etrange-festival.webp)"><div class="zone"><div class="b n3"><div class="g defile"><a href="#">Accueil</a><a href="#">Mes travaux</a><a href="#">Collections</a></div><img class="pap" src="img/logo/papillons/A.webp" alt="Papillon"><div class="d defile"><a href="#">Mon univers</a><a href="#">À propos</a><a href="#">Contact</a></div></div></div></div>
+<div class="legende"><b>3. Le papillon au centre</b>Le logo au milieu de la barre, les rubriques réparties de chaque côté, comme sur le site d'une maison de mode.</div>
+
+<div class="demo" style="background-image:url(img/scenes/zefil.webp);padding:18px 0"><div class="zone"><div class="tel-cadre"><div class="ecran"><img src="img/scenes/kithara.webp" alt=""><img src="img/scenes/boz.webp" alt=""><img src="img/scenes/zefil.webp" alt=""></div>
+<nav class="n4" id="n4"><span class="lentille"></span>
+<a href="#"><svg class="ico" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></svg>Accueil</a>
+<a href="#"><svg class="ico" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 9h16M9 4v16"/></svg>Travaux</a>
+<a href="#"><svg class="ico" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>Collections</a>
+<a href="#"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg>Univers</a>
+<a href="#"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="9" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Moi</a></nav></div></div></div>
+<div class="legende"><b>4. La capsule du bas, comme Instagram ou WhatsApp</b>Sur téléphone, une capsule de verre flottante en bas de l'écran, à portée de pouce. Une lentille glisse sous l'onglet touché. Le contenu défile derrière le verre (on peut faire défiler l'écran).</div>
+
+<div class="demo" style="background-image:url(img/scenes/boz.webp)"><div class="zone"><div class="boite" id="boite"><div class="b n5" id="n5"><img class="pap" src="img/logo/papillons/A.webp" alt=""><span class="nom">Guilhem Mesnier</span><a href="#">Accueil</a><a href="#">Mes travaux</a><a href="#">Collections</a><a href="#">Mon univers</a></div><div class="contenu"></div></div></div></div>
+<div class="legende"><b>5. La barre qui se cache quand on descend</b>Faites défiler le cadre : la barre disparaît vers le haut quand on descend, et revient dès qu'on remonte un tout petit peu. Sur l'accueil, elle reste visible.</div>
+
+<div class="demo" style="background-image:url(img/scenes/galeries-lafayette.webp)"><div class="zone"><div class="b n6 defile" id="n6"><a class="on" href="#">Collections</a><a href="#">Playlists</a><a href="#">Top 10</a><a href="#">Marques</a><a href="#">Sites personnels</a></div></div></div>
+<div class="legende"><b>6. Les onglets d'une plateforme</b>Un simple trait blanc sous l'onglet choisi, comme les rubriques d'une plateforme de streaming. Idéal sous la grande barre, pour passer des collections aux playlists.</div>
+
+<div class="demo" style="background-image:url(img/scenes/livret-accueil.webp)"><div class="zone"><div class="n7wrap"><nav class="n7"><img class="pap" src="img/logo/papillons/A.webp" alt="">
+<a href="#"><svg class="ico" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></svg><span>Accueil</span></a>
+<a href="#"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Recherche</span></a>
+<a href="#"><svg class="ico" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 9h16M9 4v16"/></svg><span>Mes travaux</span></a>
+<a href="#"><svg class="ico" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg><span>Collections</span></a>
+<a href="#"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg><span>Mon univers</span></a></nav></div></div></div>
+<div class="legende"><b>7. Le rail sur le côté</b>Une colonne d'icônes à gauche, comme Disney+ sur ordinateur. Au passage de la souris, elle s'élargit et montre le nom de chaque rubrique.</div>
+
+<div class="demo" style="background-image:url(img/scenes/odette-du-puigaudeau.webp)"><div class="zone"><div class="b n8"><img class="pap" src="img/logo/papillons/A.webp" alt="Menu"><span class="nom" style="margin:0 6px">Guilhem Mesnier</span><span class="menu"><a href="#">Accueil</a><a href="#">Mes travaux</a><a href="#">Collections</a><a href="#">Mon univers</a><a href="#">Contact</a></span></div></div></div>
+<div class="legende"><b>8. La pastille qui s'ouvre</b>Au repos, une petite pastille noire avec le papillon et le nom. Au passage de la souris, elle s'étire et dévoile le menu, comme l'île dynamique de l'iPhone.</div>
+
+<div class="demo" style="background-image:url(img/scenes/electric-jazzy-album.webp)"><div class="zone"><div class="b n9 defile"><span class="nom">Guilhem Mesnier</span><a href="#">Travaux</a><a href="#">Collections</a><a href="#">Univers</a><a href="#">À propos</a><a href="#">Contact</a></div></div></div>
+<div class="legende"><b>9. L'éditoriale</b>Du texte seul, en lettres de magazine, entre deux filets fins. Pas de verre, pas d'icône : la barre d'un journal de mode.</div>
+
+<div class="demo" style="background-image:url(img/scenes/skye-events.webp)"><div class="zone"><div class="b n10 defile"><img class="pap" src="img/logo/papillons/A.webp" alt=""><span class="nom">Guilhem Mesnier</span><a class="on" href="#">Accueil</a><a href="#">Mes travaux</a><a href="#">Collections et playlists</a><a href="#">Mon univers</a><a href="#">Contact</a></div></div></div>
+<div class="legende"><b>10. Le bleu nuit à grande ombre</b>Un dégradé bleu nuit et une ombre portée profonde, comme celle de la page de la Nuit des musées : la barre semble flotter au-dessus de l'image.</div>
+
+<div class="demo" style="background-image:url(img/scenes/baraka-jeux.webp)"><div class="zone"><div class="b n11"><div class="h"><img class="pap" src="img/logo/papillons/A.webp" alt=""><span class="nom">Guilhem Mesnier</span><span class="esp"></span><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div><div class="p defile" id="n11"><a class="on" href="#">Accueil</a><a href="#">Travaux</a><a href="#">Collections</a><a href="#">Playlists</a><a href="#">Univers</a><a href="#">Contact</a></div></div></div></div>
+<div class="legende"><b>11. Deux étages</b>Le nom et la recherche en haut, les rubriques en pastilles en dessous. Pratique sur téléphone : tout tient sans rien cacher, les pastilles défilent du doigt.</div>
+
+<div class="demo" style="background-image:url(img/scenes/a-ton-rythme.webp)"><div class="zone"><div class="b n12"><img class="pap" src="img/logo/papillons/A.webp" alt=""><a href="#">Accueil</a><span class="champ"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Un travail, une marque, un logiciel…</span><a href="#">Collections</a><a href="#">Mon univers</a></div></div></div>
+<div class="legende"><b>12. La recherche au centre</b>Le champ de recherche prend toute la place du milieu, comme sur les plateformes : on tape « affiche », « Kithara » ou « InDesign » et les travaux apparaissent.</div>
+</section>
+
+<section id="versions"><h2>🗂️ Les barres des versions mises en ligne</h2>
+<p class="intro">Capturées telles qu'elles étaient : sur ordinateur, puis sur téléphone en haut et en bas de l'écran.</p>
+<div id="liste"></div></section>
+
+<section id="v1"><h2>🎨 Les sept styles de la version 1</h2>
+<p class="intro">La première version proposait sept pages d'accueil différentes, chacune avec sa propre barre.</p>
+<div class="v1g" id="v1g"></div></section>
+</main>
+<script>
+const V=[[14,"Écrins, lecteur plein écran et toutes les tailles d'écran"],[13,"Logos plus grands, couleurs vives, carrousel recalé"],[12,"Infography séparé, plus de diapositives, référencement"],[11,"Deux mondes, À propos et Contact refaits"],[10,"Mobile en affiches et verre liquide"],[9,"Barre de la V6 et fonds pleine page"],[8,"Barre, collections et parcours"],[7,"Un seul lecteur de diaporamas"],[6,"Fonds en images et pages sans trous"],[5,"Papillons et ciel étoilé"],[4,"Pages habillées et playlists"],[3,"Accueil façon Disney+"],[2,"Page unique"],[1,"Six directions artistiques"]];
+document.getElementById("liste").innerHTML=V.map(([n,t])=>`<article class="version"><h3>Version ${n}</h3><p>${t}</p><figure><img class="cap" src="img/barres/v${n}-o.webp" alt="Barre de la version ${n} sur ordinateur" loading="lazy"><figcaption>Sur ordinateur</figcaption></figure><div class="tel"><figure><img class="cap" src="img/barres/v${n}-th.webp" alt="Barre du haut, version ${n}, téléphone" loading="lazy"><figcaption>Sur téléphone, en haut</figcaption></figure><figure><img class="cap" src="img/barres/v${n}-tb.webp" alt="Barre du bas, version ${n}, téléphone" loading="lazy"><figcaption>Sur téléphone, en bas</figcaption></figure></div></article>`).join("");
+const S=[["accueil","Accueil"],["disney","Disney+"],["cinema","Cinéma"],["editorial","Éditorial"],["suisse","Suisse"],["bento","Bento"],["univers","Univers"]];
+document.getElementById("v1g").innerHTML=S.map(([k,t])=>`<article class="version"><h3>${t}</h3><figure><img class="cap" src="img/barres/v1-${k}-o.webp" alt="Barre ${t}" loading="lazy"><figcaption>Sur ordinateur</figcaption></figure><div class="tel"><figure><img class="cap" src="img/barres/v1-${k}-th.webp" alt="" loading="lazy"><figcaption>Téléphone, haut</figcaption></figure><figure><img class="cap" src="img/barres/v1-${k}-tb.webp" alt="" loading="lazy"><figcaption>Téléphone, bas</figcaption></figure></div></article>`).join("");
+// Liens de démonstration : pas de navigation, seulement l'onglet actif qui change
+document.querySelectorAll("#nouvelles a").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();const p=a.parentElement;p.querySelectorAll("a").forEach(x=>x.classList.remove("on"));a.classList.add("on")}));
+// Lentille de la capsule basse
+const n4=document.getElementById("n4");n4.querySelectorAll("a").forEach((a,i)=>a.addEventListener("click",()=>n4.querySelector(".lentille").style.transform=`translateX(${i*100}%)`));
+// Barre qui se cache
+const bo=document.getElementById("boite"),n5=document.getElementById("n5");let y0=0;bo.addEventListener("scroll",()=>{const y=bo.scrollTop;n5.classList.toggle("cache",y>y0&&y>40);y0=y},{passive:true});
+</script></body></html>
