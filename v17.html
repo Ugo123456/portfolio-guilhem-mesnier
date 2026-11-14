@@ -2333,6 +2333,17 @@ html body #barre::before,html body .verre-coeur{inset:0;border-radius:inherit;-w
 .vp-fond{transform:none}.vp-fond-v{container-type:size}
 .vp-fond-v iframe{width:max(100cqw,177.78cqh);height:max(100cqh,56.25cqw);transform:translate(-50%,-50%) scale(1.25)}
 .vp-fond-v img{top:0;left:0;transform:none;transform-origin:50% 50%}
+.vp-fond-v iframe{opacity:0;animation:vpVoir .9s ease 4.5s forwards}@keyframes vpVoir{to{opacity:1}}
+.u-cats-6{grid-template-columns:repeat(3,minmax(0,1fr))}
+.u-cat{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.u-cat:hover,.u-cat:focus-visible{transform:scale(1.03);box-shadow:0 24px 40px -18px rgba(0,0,0,.9)}
+.u-bandeau{min-height:400px;margin-top:70px;margin-bottom:60px;background:linear-gradient(115deg,#050a24 0%,#0e2a7a 45%,#1b5fd0 75%,#3a8bf0 100%)}
+.u-bandeau-txt{max-width:600px;padding:clamp(36px,5vw,72px)}
+.u-bandeau-txt b{font-size:clamp(36px,5vw,64px)}
+.u-bandeau-fond{width:62%;gap:34px 38px;opacity:.34}
+.u-bandeau-fond img{max-height:64px}
+@media(max-width:700px){.u-cats-6{grid-template-columns:repeat(2,minmax(0,1fr))}.u-bandeau{min-height:340px}.u-bandeau-fond{opacity:.16}}
+@media(max-width:700px){.u-cats-6 .u-cat-titre{font-size:16px;padding:0 10px 18px}.u-cats-6 .u-cat-play{width:26px;height:26px;right:8px;bottom:8px}.u-cats-6 .u-cat-n{left:10px;bottom:8px;font-size:11px}}
 </style>
 </head>
 <body>
@@ -2416,7 +2427,7 @@ const I={
 
 /* ---------- les classements ---------- */
 const COLLECTIONS=[
- {id:"identite",nom:"Identité de marque",d:"Créer une marque de zéro : nom, logo, couleurs, ton, puis la faire vivre.",c:["#3a1c71","#d76d77"],s:["kithara","zefil","boz","tx-jewelry","a-ton-rythme","memoire-metamorphoses","skye-events","infography-project","moodboard"]},
+ {id:"identite",nom:"Identité de marque",d:"Créer une marque de zéro : nom, logo, couleurs, ton, puis la faire vivre.",c:["#3a1c71","#d76d77"],s:["kithara","zefil","boz","a-ton-rythme","memoire-metamorphoses","skye-events","infography-project","moodboard","tx-jewelry"]},
  {id:"strategie",nom:"Stratégie et conseil",d:"Auditer, diagnostiquer, recommander : des marques réelles, des budgets, des priorités.",c:["#0f2027","#2c5364"],s:["audit-monoprix","preconisations-monoprix","galeries-lafayette","basilic","data-ga4","nuit-des-musees","pere-lucien"]},
  {id:"creation",nom:"Création graphique",d:"Affiches, détournements, infographies, chartes : l'image au service du message.",c:["#7f1d1d","#f59e0b"],s:["etrange-festival","fragonard","infography-project","a-ton-rythme","moodboard","tx-jewelry","boz","zefil"]},
  {id:"organisations",nom:"Communication des organisations",d:"Communication interne, service public, gestion de projet et gestion de crise.",c:["#0b3b5b","#1f7a8c"],s:["livret-accueil","stage-m1","communication-de-crise","enquete-mails","organisations-communicantes","gestion-projet","ess","petits-debrouillards","anglais-wbd"]},
@@ -2435,7 +2446,7 @@ const INDISPENSABLES=["memoire-metamorphoses","livret-accueil","kithara","zefil"
 const PLAYLISTS=[
  {id:"cinq-minutes",nom:"Le portfolio en cinq minutes",d:"Les cinq travaux à voir si vous n'avez que cinq minutes.",c:["#0a7dff","#22b8cf"],s:["memoire-metamorphoses","livret-accueil","kithara","a-ton-rythme","boz"]},
  {id:"service-public",nom:"Pour une collectivité ou un service public",d:"Communication interne, santé publique, crise, économie sociale et droit.",c:["#0b3b5b","#e8c77a"],s:["livret-accueil","stage-m1","a-ton-rythme","communication-de-crise","ess","audit-juridique"]},
- {id:"agence",nom:"Pour une agence de création",d:"Des marques inventées de zéro et des images qui racontent.",c:["#7f1d1d","#d76d77"],s:["kithara","zefil","boz","tx-jewelry","etrange-festival","fragonard","skye-events","infography-project"]},
+ {id:"agence",nom:"Pour une agence de création",d:"Des marques inventées de zéro et des images qui racontent.",c:["#7f1d1d","#d76d77"],s:["kithara","zefil","boz","etrange-festival","fragonard","skye-events","infography-project","tx-jewelry"]},
  {id:"numerique",nom:"Pour un poste en stratégie numérique",d:"Données, audit de site, réseaux sociaux, newsletters et préconisations.",c:["#134e5e","#71b280"],s:["data-ga4","basilic","audit-juridique","pere-lucien","newsletter-en-vrai","audit-monoprix","preconisations-monoprix"]},
  {id:"marques-zero",nom:"Des marques créées de zéro",d:"Un nom, un logo, une charte, un ton : cinq marques nées d'une feuille blanche.",c:["#3a1c71","#d76d77"],s:["kithara","zefil","boz","tx-jewelry","a-ton-rythme"]},
  {id:"master2",nom:"L'essentiel du Master 2",d:"La dernière année : le mémoire, les marques, les audits et les données.",c:["#0a4f4a","#3fc1a5"],s:["memoire-metamorphoses","kithara","zefil","a-ton-rythme","basilic","data-ga4","audit-juridique"]},
@@ -2444,7 +2455,7 @@ const PLAYLISTS=[
  {id:"video-son",nom:"Vidéo et son",d:"Tourner, monter, écrire pour l'oreille : des vidéos, une bande-annonce et un podcast.",c:["#1b1b3a","#e4572e"],s:["odette-du-puigaudeau","fragonard","zefil","kithara","nuit-des-musees","baraka-jeux"]},
  {id:"design-image",nom:"Design et image",d:"Affiches, infographies, pochettes, planches de tendances : l'image d'abord.",c:["#7f1d1d","#f59e0b"],s:["etrange-festival","fragonard","infography-project","electric-jazzy-album","moodboard","boz"]},
  {id:"plume",nom:"La plume",d:"Écrire pour convaincre, informer, enquêter : articles, newsletters et notes de cadrage.",c:["#232526","#b08d57"],s:["burn-out-numerique","baraka-jeux","cadrage-a69","newsletter-en-vrai","enquete-mails","odette-du-puigaudeau"]},
- {id:"luxe-culture",nom:"Luxe et culture",d:"Bijoux, grands magasins, musées, parfumerie et festival : communiquer avec élégance.",c:["#2b1a4a","#d4af6a"],s:["tx-jewelry","galeries-lafayette","nuit-des-musees","kithara","fragonard","etrange-festival"]},
+ {id:"luxe-culture",nom:"Luxe et culture",d:"Bijoux, grands magasins, musées, parfumerie et festival : communiquer avec élégance.",c:["#2b1a4a","#d4af6a"],s:["galeries-lafayette","nuit-des-musees","kithara","fragonard","etrange-festival","tx-jewelry"]},
  {id:"sites",nom:"Mes sites personnels",d:"Un parcours dans mes sites, du plus visuel au plus long à lire : Kairu, les Réflexions, les Pensées, mon logo, les éditions, et les guides.",c:["#1a1240","#7b3fe4"],s:[],sites:["kairu","reflexions","pensees-de-guigui","guigui-portfolio","labs-editions","guides-de-guigui","guide-epub"]},
  {id:"auditer",nom:"Auditer et recommander",d:"Partir du terrain, poser un diagnostic, chiffrer des préconisations.",c:["#0f2027","#2c9c8f"],s:["audit-monoprix","preconisations-monoprix","basilic","galeries-lafayette","petits-debrouillards","pere-lucien"]}
 ];
@@ -2453,8 +2464,7 @@ const MARQUES=[
  {id:"master2",nom:"Master 2",lien:"#/marque/master2",f:t=>t.niveau==="Master 2"},
  {id:"master1",nom:"Master 1",lien:"#/marque/master1",f:t=>t.niveau==="Master 1"},
  {id:"memoire",nom:"Le mémoire",lien:"#/t/memoire-metamorphoses",f:t=>/mémoire/i.test(t.niveau),bg:"img/memoire/fond-hollywood.webp"},
- {id:"stage",nom:"Les stages",lien:"#/marque/stage",f:t=>/stage/i.test(t.niveau)},
- {id:"photo",nom:"Photographie",lien:"#/univers/photographie"}
+ {id:"stage",nom:"Les stages",lien:"#/marque/stage",f:t=>/stage/i.test(t.niveau)}
 ];
 
 /* ---------- les images ---------- */
@@ -3221,14 +3231,12 @@ function pageUnivers(r){
       <p class="u-rev">Des exercices de direction artistique : du fan art, sans aucun usage commercial.</p>
       <button class="btn blanc u-rev u-entrer" data-aller="u-entree">Entrer ${I.d}</button></div></section>`;
     return intro+`<div id="u-entree"></div>`+rangeeU("Les indispensables",indis,{chapeau:"Une sélection d'affiches, de fonds d'écran et de logos : ce que je montrerais en premier."})
-     +`<section class="section apparait"><div class="titre-rangee"><h2>Les images</h2></div><div class="u-cats">${TI.map(([id,nom,bg,lg,n])=>`<a class="u-cat" href="#/univers/${id}" aria-label="${nom}"><span class="u-cat-im" style="background-image:url('${bg}')"></span><img class="u-cat-l" src="${lg}" alt="${nom}"><span class="u-cat-n">${n} ${id==="sites"?"sites":"créations"}</span></a>`).join("")}</div></section>`
-     +`<section class="section apparait"><div class="titre-rangee"><h2>Les vidéos</h2><span class="rg-outils"><a href="${YT_CHAINE}" target="_blank" rel="noopener">La chaîne YouTube ↗</a></span></div><div class="u-cats u-cats-v">${TV.map(([id,nom,im])=>{const L=YT.find(x=>x.id===id),n=L.v.length+(id==="showreels"?YT[2].v.length:0);return `<a class="u-cat" href="#/univers/v-${id}" aria-label="${nom}"><span class="u-cat-im" style="background-image:url('img/yt/${im}.webp')"></span><span class="u-cat-titre">${nom}</span><span class="u-cat-n">${n} vidéos</span><span class="u-cat-play">${I.lecture||"▶"}</span></a>`}).join("")}</div></section>`
-     +`<section class="section apparait"><div class="titre-rangee"><h2>Par marque</h2><span class="rg-outils"><a href="#/univers/marques">Tout voir</a></span></div><div class="mq-rang">${toutesMarques().slice(0,12).map(tuileMarque).join("")}</div></section>`
+     +`<section class="section apparait"><div class="titre-rangee"><h2>Explorer mon univers</h2><span class="rg-outils"><a href="${YT_CHAINE}" target="_blank" rel="noopener">La chaîne YouTube ↗</a></span></div><p class="chapeau">Trois portes pour les images, trois pour les vidéos.</p><div class="u-cats u-cats-6">${TI.filter(x=>x[0]!=="sites").map(([id,nom,bg,lg,n])=>`<a class="u-cat" href="#/univers/${id}" aria-label="${nom}"><span class="u-cat-im" style="background-image:url('${bg}')"></span><img class="u-cat-l" src="${lg}" alt="${nom}"><span class="u-cat-n">${n} créations</span></a>`).join("")}${TV.map(([id,nom,im])=>{const L=YT.find(x=>x.id===id),n=L.v.length+(id==="showreels"?YT[2].v.length:0);return `<a class="u-cat" href="#/univers/v-${id}" aria-label="${nom}"><span class="u-cat-im" style="background-image:url('img/yt/${im}.webp')"></span><span class="u-cat-titre">${nom}</span><span class="u-cat-n">${n} vidéos</span><span class="u-cat-play">${I.lecture||"▶"}</span></a>`}).join("")}</div></section>`
      +railEtudes()+railYT(YT[0])+rangeeU("Les affiches",RUBRIQUES[0].items().map(x=>({...x,port:1,id:x.k.split("/")[1]})).filter(x=>!/Miss USA/.test(x.t)).slice(0,20),{lien:"#/univers/affiches"})
      +railYT(YT[1])+rangeeU("Les fonds d'écran",RUBRIQUES[2].items().slice(0,16),{lien:"#/univers/fonds"})
      +avantApres(["a02","a05","a11","a15"],"Avant, après","À gauche l'affiche d'origine, sans texte ; à droite ma version. Faites glisser le curseur, ou agrandissez.")
      +railYT(YT[2])+rangeeU("Les logos",RUBRIQUES[1].items().slice(0,16),{lien:"#/univers/studios"})+railYT(YT[3])
-     +`<a class="u-bandeau apparait" href="#/univers/marques"><span class="u-bandeau-fond">${toutesMarques().slice(0,10).map(x=>`<img src="${LR(x.lg)}" alt="">`).join("")}</span><span class="u-bandeau-txt"><small>Mon univers</small><b>Voir par marque</b><span>Disney, Warner Bros., HBO, Paramount, Universal, Sony : chaque création rangée chez sa marque.</span><em class="btn blanc">Découvrir ${I.d}</em></span></a>`
+     +`<a class="u-bandeau apparait" href="#/univers/marques"><span class="u-bandeau-fond">${toutesMarques().slice(0,15).map(x=>`<img src="${LR(x.lg)}" alt="">`).join("")}</span><span class="u-bandeau-txt"><small>Mon univers</small><b>Voir par studio</b><span>Walt Disney, Pixar, Marvel, Warner Bros., HBO, DC, Paramount, Universal, Sony : chaque création rangée chez son studio.</span><em class="btn blanc">Découvrir ${I.d}</em></span></a>`
      +montagesMaisons("")+railYT(YT[4])+railYT(YT[5])
      +`<section class="section apparait"><div class="titre-rangee"><h2>Les sites web</h2><span class="rg-outils"><a href="#/univers/sites">Tout voir</a></span></div><p class="chapeau">Des sites conçus, écrits et codés par moi, à côté des études.</p></section><div class="sites-grille">${SITES.filter(x=>!x.cache).slice(0,6).map(carteSite).join("")}</div>`
      +`<section class="section"><p class="mention">${echap(MENTION)} Les affiches, les logos et les intros détournés sont du fan art, à usage non commercial : les marques et les visuels d'origine appartiennent à leurs propriétaires. Affiches d'origine et logos officiels : The Movie Database (TMDB).</p></section>`}
