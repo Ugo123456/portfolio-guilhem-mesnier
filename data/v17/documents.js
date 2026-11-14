@@ -7,7 +7,7 @@ const LOGICIELS_NOMS={
  canva:"Canva",indesign:"Adobe InDesign",illustrator:"Adobe Illustrator",photoshop:"Adobe Photoshop",
  "adobe-express":"Adobe Express",procreate:"Procreate",gemini:"Gemini",wordpress:"WordPress",spotify:"Spotify",deezer:"Deezer","youtube-music":"YouTube Music",
  "pixelmator-pro":"Pixelmator Pro",keynote:"Keynote",pages:"Pages","google-docs":"Google Docs",word:"Microsoft Word",
- youtube:"YouTube","google-analytics":"Google Analytics 4","davinci-resolve":"DaVinci Resolve",figma:"Figma",capcut:"CapCut"
+ youtube:"YouTube","google-analytics":"Google Analytics 4","davinci-resolve":"DaVinci Resolve",figma:"Figma",capcut:"CapCut",filmora:"Wondershare Filmora",affinity:"Affinity","after-effects":"Adobe After Effects","premiere-pro":"Adobe Premiere Pro",lightroom:"Adobe Lightroom"
 };
 
 /* Les logiciels lus dans les fichiers eux-mêmes (le logiciel qui a fabriqué chaque PDF ou chaque vidéo). */
@@ -144,7 +144,7 @@ const DOCS={
   {t:"La soutenance du 2 septembre 2026",p:"Le diaporama de la soutenance, en mode sombre.",k:"diapo",src:"s2"}
  ],
  "kithara":[
-  {t:"La présentation orale",p:"La marque, ses cibles, sa ligne éditoriale, son site et son budget, en dix-neuf diapositives.",k:"diapo",src:"s1"},
+  {t:"La présentation orale",p:"La marque, ses cibles et ses personas, sa ligne éditoriale, son site, son budget et un article de blog, en vingt-trois diapositives. Travail de groupe (3 étudiants).",k:"diapo",src:"s1"},
   {t:"Les coffrets",p:"Les maquettes des trois box : Lisbonne, la Thaïlande, l'Amérique latine.",k:"diapo",src:"s2"},
   {t:"L'arborescence du site",k:"diapo",src:"s3"},
   {t:"Le document du calendrier",k:"diapo",src:"s4"}
@@ -164,7 +164,8 @@ const DOCS={
   {t:"La campagne",p:"Les pochettes des playlists et les supports qui prolongent les affiches.",k:"images",ims:["img/ssu/1-cover-playlist-ssu.jpg","img/ssu/2-cover-playlist-ssu.jpg","img/ssu/3-cover-playlist-ssu.jpg"]},
   {t:"Le diaporama final",p:"La présentation de la campagne au Service de Santé Universitaire : la rencontre, le cœur du projet, l'immersion dans les supports, et la suite.",k:"diapo",src:"s4"},
   {t:"Le diaporama de travail",p:"Le brainstorming du groupe : les pistes, les essais et les choix de la campagne, avant la version finale.",k:"diapo",src:"s1"},
-  {t:"Le carnet de bord",p:"Le projet semaine après semaine : la rencontre, le benchmark, les choix, le calendrier.",k:"diapo",src:"s3"}
+  {t:"Le carnet de bord",p:"Le projet semaine après semaine : la rencontre, le benchmark, les choix, le calendrier.",k:"diapo",src:"s3"},
+  {t:"Les flashcards",p:"Les quatre flashcards de la campagne pour le Service de santé universitaire, titres à la même hauteur.",k:"diapo",src:"s5"}
  ],
  "audit-juridique":[{t:"L'audit",k:"diapo",src:"s1"}],
  "analyse-discours":[{t:"La présentation orale",k:"diapo",src:"s1"}],
@@ -197,9 +198,9 @@ const DOCS={
   {t:"Les essais du logo Skye Events",k:"images",ims:["img/infography/skye-silhouette-logo-01.jpg","img/infography/skye-logo-variante-01.jpg","img/infography/skye-logo-variante-03.jpg","img/infography/skye-logo-variante-05.jpg","img/infography/skye-logo-variante-06.jpg","img/infography/skye-logo-variante-07.jpg","img/infography/skye-logo-cover-02.jpg","img/infography/skye-logo-cover-04.jpg","img/infography/skye-text-logo-01.jpg"]}
  ],
  "cadrage-a69":[{t:"Le dossier",k:"article"},{t:"Le document d'origine",k:"pages",src:"s1"}],
- "newsletter-en-vrai":[{t:"L'analyse",k:"article"},{t:"Le document d'origine",k:"pages",src:"s1"}],
+ "newsletter-en-vrai":[{t:"L'analyse",k:"article"},{t:"La communication interactive",p:"La présentation de la communication interactive, en quatorze diapositives. Travail de groupe (6 étudiants).",k:"diapo",src:"s2"},{t:"Le document d'origine",k:"pages",src:"s1"}],
  "enquete-mails":[{t:"Le dossier d'enquête",k:"article"},{t:"Le document d'origine",k:"pages",src:"s1"}],
- "baraka-jeux":[{t:"Les articles",k:"article"},{t:"Le dossier du podcast Baraka+",p:"La ligne éditoriale du podcast : présentation, nom, musiques, durée, fréquence, thèmes et plateformes. Travail de groupe (5 étudiants).",k:"pages",src:"s2"},{t:"Le document d'origine",k:"pages",src:"s1"}],
+ "baraka-jeux":[{t:"Les articles",k:"article"},{t:"Le dossier du podcast Baraka+",p:"Le dossier de presse complet, en onze pages : la présentation, le nom, les musiques, la durée, la fréquence, les thèmes, les plateformes, l'équipe et la retranscription de l'épisode. Les prénoms des participantes sont masqués. Travail de groupe (5 étudiants).",k:"pages",src:"s2"},{t:"Le document d'origine",k:"pages",src:"s1"}],
  "fragonard":[
   {t:"La vidéo",p:"La publicité détournée, en vidéo.","k":"video","yt":"TjgDN8iSae0","src":"video/fragonard.mp4","poster":"img/fragonard/affiche-video.jpg"},
   {t:"Le diaporama",p:"L'artiste, le tableau, ses couleurs, puis la publicité.",k:"diapo",src:"s1"}

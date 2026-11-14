@@ -895,10 +895,10 @@ body.clair .vignette:hover .tuile,body.clair .vignette:hover .affiche,body.clair
 #ciel::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='860' height='860'%3E%3Cg fill='%23ffe9bd'%3E%3Cpath d='M140 150q1.6 7.4 9 9-7.4 1.6-9 9-1.6-7.4-9-9 7.4-1.6 9-9z'/%3E%3Cpath d='M610 90q1.2 5.8 7 7-5.8 1.2-7 7-1.2-5.8-7-7 5.8-1.2 7-7z' fill='%23bdf2ff'/%3E%3Cpath d='M430 420q1.6 7.4 9 9-7.4 1.6-9 9-1.6-7.4-9-9 7.4-1.6 9-9z' fill='%23e5d3ff'/%3E%3Cpath d='M730 610q1.2 5.8 7 7-5.8 1.2-7 7-1.2-5.8-7-7 5.8-1.2 7-7z'/%3E%3Cpath d='M210 700q1.2 5.8 7 7-5.8 1.2-7 7-1.2-5.8-7-7 5.8-1.2 7-7z' fill='%23bdf2ff'/%3E%3C/g%3E%3C/svg%3E");background-size:860px;opacity:.28;animation:scintille 11s ease-in-out -4s infinite alternate}
 @keyframes scintille{from{opacity:.16}to{opacity:.55}}
 #vol{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:0;transition:opacity .8s}
-#vol.on{opacity:.62}
-#envol{position:fixed;inset:0;width:100%;height:100%;z-index:40;pointer-events:none}
+#vol.on{opacity:.34}
+#envol{position:fixed;inset:0;width:100%;height:100%;z-index:201;pointer-events:none}
 body.clair #ciel{display:none}
-body.clair #vol.on{opacity:.8}
+body.clair #vol.on{opacity:.42}
 /* ---------- l'ouverture : le papillon tourne, puis l'essaim s'envole ---------- */
 #chargement{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:radial-gradient(60% 50% at 50% 50%,#10204a,#040714 70%);transition:background .9s .25s,opacity .6s 1.1s}
 #chargement .pap{width:clamp(90px,12vw,150px);height:auto;filter:drop-shadow(0 0 30px rgba(34,184,207,.7));animation:tourne-pap 1.4s cubic-bezier(.45,0,.55,1) infinite}
@@ -2150,6 +2150,189 @@ html body .marques-u .marq:hover .bg{transform:scale(1.08)}
 html body .marques-u .marq img.l.maj{top:40%;width:66%;max-height:62%}
 html body .marques-u a[href="#/univers/presse"] .bg{background-position:right top}
 html body .marques-u a[href="#/univers/studios"] .bg{background-position:center 35%}
+/* 14 novembre : corrections demandées par Guilhem */
+html body #barre #menu a.marque::after,html body.sur-clair #barre #menu a.marque::after{display:none!important;content:none!important}
+.diap.louvre-v .v-fond{left:0;right:0;width:100%;opacity:1;mix-blend-mode:normal;filter:none;-webkit-mask-image:none;mask-image:none;object-position:center 50%;border-radius:20px;clip-path:inset(0 round 20px)}
+.ecrin[data-s="organisations-communicantes"] .centre img.logo,.page-travail[data-s="organisations-communicantes"] .centre img.logo{max-width:min(90vw,1120px)!important;width:973px;max-height:none!important;height:auto}
+.holo{position:relative}
+.holo .agrandir{position:absolute;top:10px;right:10px;z-index:3;width:38px;height:38px;border-radius:50%;border:0;display:grid;place-items:center;color:#fff;background:rgba(10,12,30,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);cursor:pointer;opacity:.9;transition:transform .2s,opacity .2s}
+.holo .agrandir:hover{transform:scale(1.1);opacity:1}.holo .agrandir svg{width:18px;height:18px}
+/* 14 novembre : Mon univers, tuiles à logos et pages de familles */
+.u-logos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.u-logo{position:relative;display:grid;place-items:center;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:radial-gradient(120% 90% at 50% 0,var(--b),var(--a));box-shadow:0 14px 26px -16px rgba(0,0,0,.75),inset 0 0 0 1px rgba(255,255,255,.14);transition:transform .35s,box-shadow .35s}
+.u-logo::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,255,255,.18),transparent 45%);pointer-events:none}
+.u-logo img{position:absolute;left:15%;top:22%;width:70%;height:56%;max-width:none;max-height:none;object-fit:contain;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45))}
+.u-logo:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 0 0 3px #fff,0 22px 34px -16px rgba(0,0,0,.8)}
+.marques.marques-u.u-types{grid-template-columns:repeat(5,minmax(0,1fr))}
+.u-types .marq::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(6,10,30,.35),rgba(6,10,30,.62));pointer-events:none;border-radius:inherit}.u-types .marq .l{position:relative;z-index:2}
+@media (max-width:760px){.m-page .m-retour{position:relative;left:auto;top:auto;align-self:flex-start;margin-bottom:14px}}
+@media (max-width:760px){.u-logos{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.marques.marques-u.u-types{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* 14 novembre : Mon univers comme le reste du site */
+.holo .agrandir{padding:0!important;gap:0!important;line-height:0}
+.holo .agrandir svg{display:block;margin:0}
+#heros.heros-u .diap .art{background-size:cover;background-position:center 28%;filter:blur(2px) saturate(1.15);transform:scale(1.18)}
+#heros.heros-u .diap.u-pays .art{filter:none;transform:none;background-position:center}
+#heros.heros-u .diap .u-aff{position:absolute;right:7%;top:50%;transform:translateY(-50%) rotate(2deg);height:78%;width:auto;border-radius:14px;box-shadow:0 30px 60px -20px rgba(0,0,0,.8);z-index:1}
+#heros.heros-u .contenu img.u-logo-d{max-height:96px;max-width:min(360px,70%);width:auto;object-fit:contain;filter:drop-shadow(0 6px 16px rgba(0,0,0,.6))}
+#heros.heros-u .u-titre{font-size:clamp(20px,2.2vw,30px);margin:10px 0 4px;line-height:1.15}
+@media (max-width:760px){#heros.heros-u .diap .u-aff{display:none}#heros.heros-u .diap .art{filter:none;transform:none}}
+.u-tete{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:34px var(--g) 8px}
+.u-tete .u-tete-l{max-height:110px;max-width:min(420px,80vw);width:auto;object-fit:contain}
+.u-tete p{max-width:720px;opacity:.85;margin:0}
+.u-pays-piste .affiche.u-large{aspect-ratio:16/9}
+.u-montage .u-mos{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px;padding:3px}
+.u-montage .u-mos i{background-size:cover;background-position:center;border-radius:8px}
+.u-montage .txt{z-index:2;background:linear-gradient(0deg,rgba(0,0,0,.85),transparent);position:absolute;inset:auto 0 0 0;padding:16px 12px 12px}
+/* 14 novembre : le verre touche le contour, le liseré de la version 12, la fiche d'identité en billet */
+.page-travail.hab .mission+.fiche{position:relative;border-top:0;padding-top:30px}
+.page-travail.hab .mission+.fiche::before{content:"";position:absolute;top:0;left:22px;right:22px;height:4px;background:radial-gradient(circle,color-mix(in srgb,var(--acc) 70%,#fff) 1.6px,transparent 2.1px) 0 50%/13px 4px repeat-x;opacity:.75;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.page-travail.hab .mission+.fiche dl{border:0;gap:14px}
+.page-travail.hab .mission+.fiche dl>div{position:relative;padding:16px 18px 16px 20px;border-radius:18px;background:linear-gradient(150deg,color-mix(in srgb,var(--acc) 12%,rgba(255,255,255,.04)),rgba(255,255,255,.015));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 22%,rgba(255,255,255,.08)),inset 0 1px 0 rgba(255,255,255,.08)}
+.page-travail.hab .mission+.fiche dl>div::before{content:"";position:absolute;left:0;top:16px;bottom:16px;width:3px;border-radius:0 3px 3px 0;background:linear-gradient(180deg,var(--acc),color-mix(in srgb,var(--acc) 20%,transparent))}
+.page-travail.hab .mission+.fiche .fiche-bas{margin-top:22px;padding-top:20px;border-top:0;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--acc) 40%,rgba(255,255,255,.2)),transparent) top/100% 1px no-repeat}
+.page-travail.hab .mission+.fiche .fiche-bas .puce{background:color-mix(in srgb,var(--acc) 14%,rgba(255,255,255,.03));border-color:color-mix(in srgb,var(--acc) 42%,rgba(255,255,255,.14));padding:8px 15px}
+.page-travail.hab .mission+.fiche .logiciel{background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+@media (max-width:640px){.page-travail.hab .mission+.fiche dl{gap:10px}.page-travail.hab .mission+.fiche dl>div{padding:13px 12px 13px 16px}}
+html body #barre .marque img,html body[data-monde] #barre .marque img,html body #barre #menu a.marque img{filter:drop-shadow(0 1px 2px rgba(0,0,0,.28))!important}
+html body #barre #menu a.marque::before,html body #barre #menu a.marque::after,html body #barre .marque::after{display:none!important;content:none!important;background:none!important}
+/* 14 novembre : libellés entiers sur téléphone */
+@media (max-width:760px){html body #mondes-tel{width:min(330px,calc(100% - 96px))!important}html body #mondes-tel a{flex:1 1 0!important;font-size:12px!important;white-space:nowrap}html body #mondes-tel a[data-m="real"]{padding-right:30px!important}html body #mondes-tel a[data-m="univ"]{padding-left:30px!important}html body #mondes-tel{width:calc(100% - 92px)!important}}
+/* 14 novembre : « Agrandir » seulement sur les titres de section, plus sur les rangées ni les tops */
+html body .titre-rangee .voir-grand{display:none!important}
+.tete-bloc{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.bloc:has(.tete-grand) .dp-grand{display:none!important}
+/* 14 novembre : Mon univers refait (accueil, vidéos, marques façon Paramount+, avant / après sans déformation) */
+.u-ouverture{position:relative;min-height:min(92vh,900px);display:grid;place-items:center;overflow:hidden;margin-top:-80px;padding:140px 20px 80px}
+.u-ouverture{isolation:isolate}.u-ouverture .mur-aff{position:absolute;inset:0;height:100%;z-index:0;opacity:.6}.u-ouverture .mur-aff::after{display:none}.u-ouverture::after{z-index:1}
+.u-ouverture::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 55% at 50% 45%,rgba(6,8,20,.72),rgba(6,8,20,.45) 80%),linear-gradient(180deg,transparent 60%,var(--fond,#06081a))}
+.u-ouv-txt{position:relative;z-index:2;max-width:760px;text-align:center;display:grid;justify-items:center;gap:16px}
+.u-ouv-txt h1{font-size:clamp(46px,8vw,96px);margin:6px 0 4px;letter-spacing:-.02em}
+.u-ouv-txt p{font-size:clamp(17px,2vw,21px);line-height:1.5;margin:0;color:rgba(255,255,255,.86)}
+.u-rev{opacity:0;transform:translateY(14px);animation:u-rev .9s cubic-bezier(.2,.7,.2,1) forwards}
+.u-rev:nth-of-type(1){animation-delay:.25s}.u-rev:nth-of-type(2){animation-delay:.7s}.u-rev:nth-of-type(3){animation-delay:1.15s}.u-entrer{animation-delay:1.6s}
+@keyframes u-rev{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.u-rev{animation:none;opacity:1;transform:none}}
+.u-entrer{display:inline-flex;align-items:center;gap:8px;margin-top:10px}.u-entrer svg{width:18px;height:18px}
+.u-cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.u-cats-v{grid-template-columns:repeat(3,minmax(0,1fr))}
+.u-cat{position:relative;display:grid;place-items:center;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#0b0d18;box-shadow:0 14px 28px -16px rgba(0,0,0,.8);isolation:isolate}
+.u-cat::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.16);z-index:3;transition:box-shadow .3s}
+.u-cat:hover::before,.u-cat:focus-visible::before{box-shadow:inset 0 0 0 3px #fff}
+.u-cat-im{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s cubic-bezier(.2,.7,.2,1);z-index:-1}
+.u-cat-im::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.62))}
+.u-cat:hover .u-cat-im{transform:scale(1.07)}
+.u-cat-l{max-width:68%;max-height:44%;object-fit:contain;filter:drop-shadow(0 6px 16px rgba(0,0,0,.6))}
+.u-cat-titre{font-weight:800;font-size:clamp(22px,2.4vw,32px);line-height:1.05;letter-spacing:-.01em;text-align:center;padding:0 18px;text-shadow:0 4px 18px rgba(0,0,0,.7)}
+.u-cat-n{position:absolute;left:14px;bottom:12px;font-size:12px;font-weight:600;color:rgba(255,255,255,.85)}
+.u-cat-play{position:absolute;right:12px;bottom:10px;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}.u-cat-play svg{width:14px;height:14px}
+.mq-rang{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.mq-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,44vw),1fr));gap:16px}
+.mq{position:relative;display:grid;place-items:center;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:linear-gradient(180deg,#26272d,#17181c);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 10px 22px -14px rgba(0,0,0,.8);transition:transform .35s cubic-bezier(.2,.7,.2,1),background .35s,box-shadow .35s;isolation:isolate}
+.mq::after{content:"";position:absolute;inset:0;z-index:-1;background:var(--mq);opacity:0;transition:opacity .35s}
+.mq-fil{position:absolute;inset:-30% -20%;background-size:contain;background-repeat:no-repeat;background-position:62% 55%;opacity:.06;transform:scale(1.4);transition:opacity .35s;z-index:-1}
+.mq img{max-width:62%;max-height:46%;object-fit:contain;transition:transform .35s}
+.mq-n{position:absolute;left:12px;bottom:9px;font-size:11px;font-weight:600;color:rgba(255,255,255,.7);opacity:0;transition:opacity .3s}
+.mq:hover,.mq:focus-visible{transform:scale(1.06);z-index:2;box-shadow:0 18px 34px -12px rgba(0,0,0,.85)}
+.mq:hover::after,.mq:focus-visible::after{opacity:1}.mq:hover .mq-fil{opacity:.16}.mq:hover .mq-n{opacity:1}
+.vid-piste{grid-auto-columns:clamp(240px,24vw,340px)!important}
+.vid{display:block;color:#fff;text-decoration:none}
+.vid-im{position:relative;display:block;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#111;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+.vid-im img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.vid-im::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 0 #fff;transition:box-shadow .25s}
+.vid:hover .vid-im::after{box-shadow:inset 0 0 0 3px #fff}.vid:hover .vid-im img{transform:scale(1.05)}
+.vid-d{position:absolute;right:8px;bottom:8px;font-weight:600;font-size:11.5px;line-height:1;background:rgba(0,0,0,.72);padding:4px 6px;border-radius:5px}
+.vid-play{position:absolute;left:50%;top:50%;width:46px;height:46px;margin:-23px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.22);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;transition:opacity .25s}
+.vid-play svg{width:16px;height:16px}.vid:hover .vid-play{opacity:1}
+.vid-t{display:block;padding:10px 2px 0}.vid-t b{display:block;font-size:14.5px;line-height:1.3}.vid-t small{display:block;margin-top:3px;font-size:12px;color:rgba(255,255,255,.6)}
+.vid-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,86vw),1fr));gap:26px 20px}
+.u-h1{font-size:clamp(34px,5vw,58px);margin:16px 0 6px}
+.u-bandeau{position:relative;display:block;margin:40px clamp(16px,4vw,56px);min-height:260px;border-radius:22px;overflow:hidden;color:#fff;text-decoration:none;background:linear-gradient(110deg,#081236 0%,#123a9a 55%,#1b6fd6 100%);box-shadow:0 30px 60px -30px rgba(0,0,0,.9),inset 0 0 0 1px rgba(255,255,255,.12)}
+.u-bandeau-fond{position:absolute;right:-4%;top:50%;width:58%;transform:translateY(-50%) rotate(-8deg);display:grid;grid-template-columns:repeat(5,1fr);gap:26px 30px;opacity:.28}
+.u-bandeau-fond img{width:100%;max-height:48px;object-fit:contain}
+.u-bandeau-txt{position:relative;display:grid;gap:10px;max-width:520px;padding:clamp(28px,4vw,52px)}
+.u-bandeau-txt small{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.u-bandeau-txt b{font-size:clamp(30px,4vw,48px);line-height:1;letter-spacing:-.02em}
+.u-bandeau-txt span{font-size:16px;line-height:1.45;opacity:.88}
+.u-bandeau-txt em{font-style:normal;justify-self:start;display:inline-flex;align-items:center;gap:6px;margin-top:6px}.u-bandeau-txt em svg{width:16px;height:16px}
+.u-bandeau:hover .u-bandeau-fond{opacity:.4}
+html body .holo{transform:none!important}
+.aa-cadre::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.10) 45%,rgba(180,210,255,.08) 52%,transparent 66%);background-size:250% 250%;background-position:100% 0;transition:background-position 1.2s ease;mix-blend-mode:screen}
+.aa:hover .aa-cadre::after{background-position:0 100%}
+.aa-cadre{box-shadow:0 0 0 1px rgba(255,255,255,.28),0 20px 40px -18px rgba(0,0,0,.85)!important}
+.aa-agr{display:flex;gap:6px;margin-top:9px}
+.aa-agr button{font-family:inherit;font-weight:600;font-size:12px;line-height:1;color:#fff;background:rgba(255,255,255,.1);border:0;border-radius:999px;padding:7px 11px;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);transition:background .2s}
+.aa-agr button:hover{background:rgba(255,255,255,.22)}
+#yt-fen{position:fixed;inset:0;z-index:9000;display:grid;place-items:center;padding:20px;background:rgba(3,4,10,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);animation:fondu .3s}
+.yt-boite{width:min(1200px,100%)}
+.yt-boite .yt-haut{display:flex;align-items:center;gap:12px;margin-bottom:12px}.yt-haut b{flex:1;font-size:17px}
+.yt-boite .yt-haut .x{width:40px;height:40px;border-radius:50%;border:0;color:#fff;background:rgba(255,255,255,.14);cursor:pointer;font-size:16px}
+.yt-cadre{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 30px 70px -20px #000}
+.yt-cadre iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+@media (max-width:1000px){.mq-rang{display:flex;overflow-x:auto;scrollbar-width:none;padding:6px 2px 12px}.mq-rang .mq{flex:0 0 clamp(150px,40vw,200px)}}
+@media (max-width:760px){.u-cats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.u-cats-v{grid-template-columns:minmax(0,1fr)}.u-bandeau{margin:30px 16px;min-height:300px}.u-bandeau-fond{width:90%;right:-30%;opacity:.18}.yt-boite .yt-haut .btn{display:none}}
+/* 14 novembre : études de cas et planches de logos */
+.ec-etapes{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.ec-etapes li{display:flex;flex-direction:column;gap:10px;padding:18px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);font-size:14.5px;line-height:1.45}
+.ec-etapes b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#f6dc94,#c99a3a);color:#1a1205;font-size:15px}
+.ec-logs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:18px}.ec-logs small{opacity:.7;margin-right:6px;font-size:13px;letter-spacing:.04em}
+.ec-logs span{padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);font-size:13.5px}
+.ec-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(520px,100%),1fr));gap:26px}
+.ec{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px;align-items:center;padding:16px;border-radius:24px;background:linear-gradient(150deg,rgba(255,255,255,.08),rgba(255,255,255,.02));box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 18px 34px -22px rgba(0,0,0,.8)}
+.ec-im{position:relative}.ec-apres{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:16px;overflow:hidden;box-shadow:0 14px 26px -14px rgba(0,0,0,.8)}
+.ec-apres img{display:block;width:100%;aspect-ratio:2/3;object-fit:cover;transition:transform .5s}.ec-apres:hover img{transform:scale(1.04)}
+.ec-fond .ec-apres img{aspect-ratio:16/10}
+.ec-avant{position:absolute;right:-12px;bottom:-12px;width:38%;margin:0;border-radius:10px;overflow:hidden;box-shadow:0 0 0 3px #fff,0 12px 22px -8px rgba(0,0,0,.85);background:#000}
+.ec-avant img{display:block;width:100%;aspect-ratio:2/3;object-fit:cover}.ec-avant figcaption{position:absolute;left:0;right:0;bottom:0;padding:14px 6px 5px;font-size:11px;text-align:center;background:linear-gradient(transparent,rgba(0,0,0,.85))}
+.ec-txt small{opacity:.65;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}.ec-txt h3{margin:6px 0 4px;font-size:clamp(20px,2vw,26px);line-height:1.15}
+.ec-st{margin:0 0 14px;opacity:.75}.ec-lg{margin:0 0 18px;font-size:14.5px}.ec-lg span{display:block;font-size:12px;opacity:.6;margin-bottom:3px}
+.ec-tuile{position:relative}.ec-mini{position:absolute;right:8px;bottom:8px;width:34%;border-radius:6px;box-shadow:0 0 0 2px #fff;aspect-ratio:2/3;object-fit:cover}
+.pl-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:18px;margin-top:14px}
+.pl{position:relative;padding:0;border:0;border-radius:16px;overflow:hidden;cursor:zoom-in;background:#000;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 14px 26px -16px rgba(0,0,0,.8)}
+.pl img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;transition:transform .5s}.pl:hover img{transform:scale(1.03)}
+.pl span{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;text-align:left;color:#fff;font-size:14.5px;font-weight:600;background:linear-gradient(transparent,rgba(0,0,0,.8))}
+@media (max-width:900px){.ec-etapes{grid-template-columns:repeat(2,minmax(0,1fr))}.ec-etapes li:last-child{grid-column:1/-1}}
+@media (max-width:600px){.ec{grid-template-columns:1fr}.ec-avant{right:8px;bottom:8px;width:32%}}
+/* 14 novembre : « Fait avec » au-dessus des logiciels */
+.logiciels .fait-avec{flex-basis:100%;display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin-bottom:2px}
+.fiche-bas .logiciels{flex-direction:row}@media (max-width:700px){.logiciels .fait-avec{text-align:center}}
+/* 14 novembre : contour blanc de la carte active dessiné à l'intérieur, au-dessus de tout (Zefil ne le coupe plus) */
+html body .diap.on::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 3px rgba(255,255,255,.92);z-index:40;pointer-events:none}
+html body .diap.on{box-shadow:0 26px 40px -18px rgba(0,0,0,.8)!important}
+/* 14 novembre : le remplissage du verre suit exactement l'arrondi de la barre (plus de flou carré), le contour reste au-dessus */
+html body #barre::before,html body .verre-coeur{inset:0;border-radius:inherit;-webkit-mask:none;mask:none;clip-path:inset(0 round 999px);-webkit-clip-path:inset(0 round 999px)}
+/* 14 novembre : survol des marques = dégradé de la couleur de la marque, logo laissé en filigrane par-dessus, logo bien centré */
+.mq{isolation:isolate}
+.mq::after{z-index:-2;background:radial-gradient(120% 140% at 15% 10%,color-mix(in srgb,var(--mq) 92%,#fff) 0%,var(--mq) 35%,color-mix(in srgb,var(--mq) 55%,#000) 75%,color-mix(in srgb,var(--mq) 30%,#000) 100%)}
+.mq-fil{z-index:-1;inset:-25%;background-position:center;transform:none}
+.mq:hover .mq-fil,.mq:focus-visible .mq-fil{opacity:.22}
+.mq img{position:absolute;inset:0;margin:auto;max-width:62%;max-height:52%}
+.mq-fil{opacity:0}
+/* 14 novembre : pages des catégories de vidéos */
+.vp-tete{position:relative;min-height:min(62vh,620px);display:flex;align-items:flex-end;overflow:hidden;margin:-20px 0 10px}
+.vp-fond{position:absolute;inset:0;display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);gap:4px;transform:scale(1.08);filter:saturate(1.1)}
+.vp-fond-v{position:relative;overflow:hidden;background:#000}
+.vp-fond-v img,.vp-fond-v iframe{position:absolute;top:50%;left:50%;width:180%;height:180%;transform:translate(-50%,-50%);object-fit:cover;border:0;pointer-events:none}
+.vp-fond-v img{width:100%;height:100%}
+.vp-voile{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.25) 40%,color-mix(in srgb,var(--c1) 92%,transparent) 88%,var(--c1) 100%),radial-gradient(80% 70% at 20% 90%,color-mix(in srgb,var(--c2) 60%,transparent),transparent)}
+.vp-texte{position:relative;z-index:1;padding:120px clamp(16px,5vw,64px) 36px;max-width:820px}
+.vp-texte p{font-size:17px;line-height:1.55;color:rgba(255,255,255,.88)}
+.vp-lecteur{max-width:1100px;margin:0 auto}
+.vp-barre{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px}.vp-barre b{flex:1;min-width:200px;font-size:18px}
+.vp-hors{position:absolute;inset:0;display:grid;place-items:center}.vp-hors img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.vp-hors .vid-play{position:relative;z-index:1}
+.vp-pastilles{display:flex;flex-wrap:wrap;gap:10px}.vp-pastilles small{opacity:.65;margin-left:6px}
+.yt-cadre:fullscreen{border-radius:0}
+@media (max-width:760px){.vp-fond{grid-template-columns:1fr;grid-template-rows:1fr}.vp-fond-v:not(:first-child){display:none}.vp-texte{padding-top:96px}}
+.vp-hors-t{position:relative;z-index:1;padding:12px 20px;border-radius:999px;background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font-weight:600}
+.vp-fond-v img{animation:vpKB 22s ease-in-out infinite alternate}@keyframes vpKB{to{transform:scale(1.12) translate(-2%,-2%)}}
+.vp-hors .vid-play{display:none}
+.vp-fond{display:block;gap:0}
+.vp-fond-v{position:absolute;inset:0;opacity:0;animation:vpRelais 24s infinite;animation-delay:calc(var(--k)*6s - 1s)}
+.vp-fond-v:first-child{opacity:1}
+@keyframes vpRelais{0%{opacity:0}4%{opacity:1}25%{opacity:1}29%{opacity:0}100%{opacity:0}}
+@media (max-width:760px){.vp-fond-v:not(:first-child){display:block}}
+.vp-hors-t{display:inline-flex;align-items:center;gap:8px}.vp-hors-t svg{width:16px;height:16px;flex:none}
+.vp-fond{transform:none}.vp-fond-v{container-type:size}
+.vp-fond-v iframe{width:max(100cqw,177.78cqh);height:max(100cqh,56.25cqw);transform:translate(-50%,-50%) scale(1.25)}
+.vp-fond-v img{top:0;left:0;transform:none;transform-origin:50% 50%}
 </style>
 </head>
 <body>
@@ -2158,7 +2341,7 @@ html body .marques-u a[href="#/univers/studios"] .bg{background-position:center 
   <i class="lisere" aria-hidden="true"></i>
   <a class="marque" href="#/" aria-label="Accueil"><img src="img/logo/papillons/A.webp" alt="Logo gg de Guilhem Mesnier"><span>Guilhem Mesnier</span></a>
   <nav id="menu" aria-label="Menu principal"></nav>
-  <nav id="mondes-tel" aria-label="Les deux mondes"><a href="#/travaux" data-m="real">Réalisations</a><a href="#/univers" data-m="univ">Univers</a></nav>
+  <nav id="mondes-tel" aria-label="Les deux mondes"><a href="#/travaux" data-m="real">Mes réalisations</a><a href="#/univers" data-m="univ">Mon univers</a></nav>
   <div class="outils">
     <a class="saut" id="saut-monde" href="#/univers"></a>
     <button class="rond" id="ouvrir-cherche" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
@@ -2298,7 +2481,7 @@ function tuile(t){
 }
 function rangee(titre,liste,{lien="",chapeau="",tops=false}={}){
   if(!liste.length)return"";
-  return `<section class="section rail-section"><div class="titre-rangee"><h2>${titre}</h2><span class="rg-outils"><button class="voir-grand" type="button" aria-label="Voir cette rangée en grand, en plein écran"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Voir en grand</button>${lien?`<a href="${lien}">Tout voir</a>`:""}</span></div>${chapeau?`<p class="chapeau">${chapeau}</p>`:""}
+  return `<section class="section rail-section"><div class="titre-rangee"><h2>${titre}</h2><span class="rg-outils"><a href="${lien||"#/travaux"}">Tout voir</a></span></div>${chapeau?`<p class="chapeau">${chapeau}</p>`:""}
   <div class="rail"><button class="fleche g" aria-label="Précédent">${I.g}</button><div class="piste${tops?" tops":""}">${liste.map((t,i)=>tops?poster(t,i+1):tuile(t)).join("")}</div><button class="fleche d" aria-label="Suivant">${I.d}</button></div></section>`;
 }
 function brancherRails(root=document){
@@ -2331,9 +2514,9 @@ const HEROS=[
  {s:"memoire-metamorphoses",fond:"img/memoire/fond-hollywood.webp",ombre:true},
  {s:"livret-accueil",fond:"img/scenes/livret-accueil.webp",cl:"livret"},
  {s:"kithara",fond:"img/scenes/kithara.webp",cl:"calme"},
- {s:"nuit-des-musees",fond:"img/fonds-ecrins-louvre.jpg",ombre:true,video:"video/louvre-nuit.mp4"},
+ {s:"nuit-des-musees",fond:"img/louvre-nuit-premiere-image.jpg",ombre:true,cl:"louvre-v",video:"video/louvre-nuit.mp4"},
  {s:"zefil",fond:"img/scenes/zefil.webp",logo:"img/logos/zefil-blanc.png",grand:true,cl:"zefil-v",video:"video/pub-zefil.mp4",motifs:"img/zefil/motifs-blanc.png"},
- {s:"a-ton-rythme",fond:"img/scenes/a-ton-rythme-affiches.webp",logo:"img/logos/a-ton-rythme-empile.png",grand:true,cl:"douce"},
+ {s:"a-ton-rythme",fond:"img/scenes/a-ton-rythme-affiches-vif.webp",logo:"img/logos/a-ton-rythme-empile.png",grand:true,cl:"douce"},
  {s:"boz",fond:"img/scenes/boz.webp"},
  {s:"baraka-jeux",fond:"img/scenes/baraka-jeux.webp",grand:true,cl:"baraka-v"},
  {s:"galeries-lafayette",fond:"img/scenes/galeries-lafayette.webp",ombre:true},
@@ -2362,7 +2545,7 @@ const carteListe=p=>`<a class="vignette" href="#/playlist/${p.id}" aria-label="P
 const carteBientot=p=>`<div class="vignette"><span class="affiche bientot" style="--deg:linear-gradient(160deg,${p.c[0]},${p.c[1]})"><span class="txt"><b>${echap(p.nom)}</b><span>${echap(p.d)}</span></span></span>
     <span class="legende"><small><i>Bientôt</i></small></span></div>`;
 function railAffiches(titre,chapeau,cartes,lien=""){
-  return `<section class="section rail-section apparait"><div class="titre-rangee"><h2>${titre}</h2><span class="rg-outils"><button class="voir-grand" type="button" aria-label="Voir cette rangée en grand, en plein écran"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Voir en grand</button>${lien?`<a href="${lien}">Tout voir</a>`:""}</span></div>${chapeau?`<p class="chapeau">${chapeau}</p>`:""}
+  return `<section class="section rail-section apparait"><div class="titre-rangee"><h2>${titre}</h2><span class="rg-outils"><a href="${lien||"#/travaux"}">Tout voir</a></span></div>${chapeau?`<p class="chapeau">${chapeau}</p>`:""}
   <div class="rail"><button class="fleche g" aria-label="Précédent">${I.g}</button><div class="piste affiches-piste">${cartes.join("")}</div><button class="fleche d" aria-label="Suivant">${I.d}</button></div></section>`;
 }
 /* Mon univers : seulement les affiches sans détournement de nom de studio (ni Guisney, ni Gixar, ni Guiguimount), ni la mise en situation. */
@@ -2624,7 +2807,7 @@ function bloc(t,b,i){
     fin={id,lab:`Voir ${minuscule(b.t)}`};
   }
   if(!corps)return{html:"",fin:null};
-  const tete=`<div class="tete-bloc"><span class="num">${String(i+1).padStart(2,"0")}</span><h3>${echap(b.t)}</h3>${compte?`<span class="compte">${compte}</span>`:""}${b.k==="pages"&&gal?`<button class="tete-grand" data-gal="${gal}" data-i="0">${AGRANDIR}Agrandir</button>`:""}</div>${b.c?`<p class="consigne-etape"><b>La consigne</b>${echap(b.c)}</p>`:""}${b.p?`<p class="chapo">${echap(b.p)}</p>`:""}`;
+  const tete=`<div class="tete-bloc"><span class="num">${String(i+1).padStart(2,"0")}</span><h3>${echap(b.t)}</h3>${compte?`<span class="compte">${compte}</span>`:""}${gal?`<button class="tete-grand" data-gal="${gal}" data-i="0">${AGRANDIR}Agrandir</button>`:""}</div>${b.c?`<p class="consigne-etape"><b>La consigne</b>${echap(b.c)}</p>`:""}${b.p?`<p class="chapo">${echap(b.p)}</p>`:""}`;
   return {html:b.k==="video"&&!b.vertical?`<div class="duo"><div class="duo-txt">${tete}</div><div class="duo-media">${corps}</div></div>`:tete+corps,fin,carte:{t:b.t,compte,img,gal}};
 }
 /* Ce qu'on montre dans l'écrin quand le premier document n'est qu'une page de texte : les vraies images, ou rien. */
@@ -2689,7 +2872,7 @@ function pageTravail(t){
   ${t.slug==="newsletter-en-vrai"?vitrineEnVrai():""}
   <section class="fiche apparait">
     <dl><div><dt>Cadre</dt><dd>${echap(t.niveau)}</dd></div><div><dt>Matière</dt><dd>${echap(t.matiere)}</dd></div><div><dt>Période</dt><dd>${echap(t.sem)}</dd></div>${t.types.length?`<div><dt>Format</dt><dd>${t.types.map(echap).join(", ")}</dd></div>`:""}</dl>
-    ${competences.length||logs.length?`<div class="fiche-bas"><div class="comp">${competences.map(puce).join("")}</div>${logs.length?`<div class="logiciels">${logs.map(l=>`<a class="logiciel" href="#/logiciel/${l}" title="Tous les travaux faits avec ${echap(noms[l]||l)}"><img src="img/logiciels/${l}.webp" alt="" loading="lazy">${echap(noms[l]||l)}</a>`).join("")}</div>`:""}</div>`:""}</section>
+    ${competences.length||logs.length?`<div class="fiche-bas"><div class="comp">${competences.map(puce).join("")}</div>${logs.length?`<div class="logiciels"><small class="fait-avec">Fait avec</small>${logs.map(l=>`<a class="logiciel" href="#/logiciel/${l}" title="Tous les travaux faits avec ${echap(noms[l]||l)}"><img src="img/logiciels/${l}.webp" alt="" loading="lazy">${echap(noms[l]||l)}</a>`).join("")}</div>`:""}</div>`:""}</section>
   <section class="regards apparait"><div><h3>Ce qui a été fait</h3><p>${echap(t.fait)}</p></div><div><h3>Le regard</h3><p>${echap(t.dev)}</p></div></section>
   <div class="blocs" id="blocs">${bl.map((x,i)=>`<section class="bloc apparait" id="etape-${i}">${x.html}</section>`).join("")}</div>
   ${bl.length>1?`<section class="tout apparait" id="tout"><h2>Voir tout le travail</h2><div class="cartes-etapes${bl.length<5?" peu":""}">${bl.map((x,i)=>`<a class="carte-etape" href="#" ${x.carte.gal?`data-gal="${x.carte.gal}" data-i="0"`:`data-aller="etape-${i}"`}>${x.carte.img?`<span class="ce-im"><img class="f" src="${x.carte.img}" alt="" loading="lazy"><img class="n" src="${x.carte.img}" alt="" loading="lazy"></span>`:""}<span class="ce-tx"><b>${echap(x.carte.t)}</b>${x.carte.compte?`<small>${x.carte.compte}</small>`:""}</span></a>`).join("")}</div></section>`:""}
@@ -2790,7 +2973,7 @@ function pagePlaylists(){document.title="Les playlists, Guilhem Mesnier";
 /* ---------- Mon univers ---------- */
 const RUBRIQUES=[
  {id:"affiches",nom:"Les affiches de cinéma",d:"Des affiches refaites à partir des visuels officiels, les noms de studios transformés exprès. Cliquez sur une affiche pour la voir en grand.",items:()=>aff.map(([id,t,s])=>({k:"affiches/"+id,t,s})),port:true},
- {id:"studios",nom:"Les univers de studios redessinés",d:"Vingt-six identités de studios et de chaînes redessinées à l'identique, puis détournées : un exercice de précision sur les proportions, les courbes et les couleurs.",items:()=>marques.map((t,i)=>({k:"marques/"+String(i+1).padStart(2,"0"),t,s:"Univers de studio"}))},
+ {id:"studios",nom:"Les logos redessinés",d:"Vingt-six identités de studios et de chaînes redessinées à l'identique, puis détournées : un exercice de précision sur les proportions, les courbes et les couleurs.",items:()=>marques.map((t,i)=>({k:"marques/"+String(i+1).padStart(2,"0"),t,s:"Univers de studio"}))},
  {id:"fonds",nom:"Les fonds d'écran",d:"Des fonds d'écran composés en grand format, pour les écrans 5K.",items:()=>fonds.map(([id,t,s])=>({k:"fonds/"+id,t,s}))},
  {id:"interfaces",nom:"Les interfaces",d:"Des maquettes de plateformes, d'icônes et d'assistants.",items:()=>ateliers["Interfaces"].map(([k,t,s])=>({k,t,s}))},
  {id:"majesty",nom:"Majesty Records",d:"L'identité d'un label de musique imaginaire : logos, pochettes, cérémonie.",items:()=>ateliers["Majesty Records"].map(([k,t,s])=>({k,t,s}))},
@@ -2822,7 +3005,7 @@ const oeuvresStudio=k=>{const re=STUDIO_REGLES[k];if(!re)return[];return[...aff.
 const studiosAvecOeuvres=()=>typeof TMDB_STUDIOS==="undefined"?[]:Object.keys(TMDB_STUDIOS).filter(k=>oeuvresStudio(k).length);
 const tuilesStudios=()=>{const ks=studiosAvecOeuvres();if(!ks.length)return"";return `<section class="section"><div class="titre-rangee"><h2>Par studio</h2></div><p class="chapeau">Les maisons d'origine des films que j'ai détournés. Chaque tuile ouvre mes affiches et mes fonds d'écran faits à partir de ce studio.</p>
   <div class="studios-tuiles">${ks.map(k=>{const[c1,c2]=STUDIO_TEINTES[k]||["#111","#333"];return `<a class="studio-tuile" href="#/studio/${k}" style="--c1:${c1};--c2:${c2}" aria-label="${echap(TMDB_STUDIOS[k])}"><img src="img/univers/studios/${k}.png" alt=""><span class="n">${oeuvresStudio(k).length}</span></a>`}).join("")}</div></section>`};
-const carteAvantApres=id=>{const a=aff.find(x=>x[0]===id),o=TMDB_AVANT[id];if(!a||!o)return"";return `<figure class="aa"><div class="aa-cadre" style="--p:50%"><img class="apres" src="${univ("affiches/"+id)}" alt="${echap(a[1])}, ma version" loading="lazy"><img class="avant" src="img/univers/tmdb/${id}.jpg" alt="${echap(o.t)}, l'affiche officielle" loading="lazy"><span class="aa-trait"><i></i></span><span class="aa-lab g">Officielle</span><span class="aa-lab d">Ma version</span><input type="range" min="0" max="100" value="50" aria-label="Comparer l'affiche officielle et ma version de ${echap(a[1])}"></div><figcaption><b>${echap(a[1])}</b>${echap(o.t)}${o.an?" · "+o.an:""}</figcaption></figure>`};
+const carteAvantApres=id=>{const a=aff.find(x=>x[0]===id),o=TMDB_AVANT[id];if(!a||!o)return"";return `<figure class="aa"><div class="aa-cadre" style="--p:50%"><img class="apres" src="${univ("affiches/"+id)}" alt="${echap(a[1])}, ma version" loading="lazy"><img class="avant" src="img/univers/tmdb/${id}-nu.jpg" onerror="this.onerror=null;this.src='img/univers/tmdb/${id}.jpg'" alt="${echap(o.t)}, l'affiche d'origine" loading="lazy"><span class="aa-trait"><i></i></span><span class="aa-lab g">Avant</span><span class="aa-lab d">Après</span><input type="range" min="0" max="100" value="50" aria-label="Comparer l'affiche officielle et ma version de ${echap(a[1])}"></div><figcaption><b>${echap(a[1])}</b>${echap(o.t)}${o.an?" · "+o.an:""}<span class="aa-agr"><button type="button" data-aa="${id}" data-v="avant">Avant</button><button type="button" data-aa="${id}" data-v="apres">Après</button><button type="button" data-aa="${id}" data-v="deux">Les deux</button></span></figcaption></figure>`};
 const avantApres=(ids,titre,txt)=>typeof TMDB_AVANT==="undefined"?"":`<section class="section"><div class="titre-rangee"><h2>${titre}</h2>${ids.length<Object.keys(TMDB_AVANT).length?'<a href="#/univers/affiches">Tout voir</a>':""}</div><p class="chapeau">${txt}</p><div class="aa-grille">${ids.map(carteAvantApres).join("")}</div><p class="mention">Affiches officielles : The Movie Database (TMDB). Fan art, usage non commercial : les visuels d'origine appartiennent à leurs propriétaires.</p></section>`;
 /* 13 novembre au soir : les maisons mères. Chaque création est rangée chez son vrai propriétaire (sur la durée, pas au dernier rachat),
    puis dans la marque qui la porte. Une page par maison : un carrousel, puis les tuiles de ses marques (vrais logos, TMDB). */
@@ -2830,11 +3013,11 @@ const LR=k=>`img/univers/marques-reelles/blanc/${k}.png`;
 const MAISONS=[
  {k:"disney",nom:"Disney",logo:"disney",c:["#0b1d5c","#1f6fd1"],d:"Walt Disney Pictures, Pixar, Marvel, 20th Century, Disney+, Hulu et ABC : tout ce qui appartient au groupe Disney.",
   m:[["walt-disney-pictures","Walt Disney Pictures",/Guisney/,[0,1]],["pixar","Pixar",/Gixar/,[2]],["marvel","Marvel Studios",/Garvel/],["twentieth","20th Century Studios",null,[],["a04","a29","f03"]],["disney-plus","Disney+",/Guigui\+/,[3]],["hulu","Hulu",/gulu/],["abc","ABC",/\bgbc\b/]]},
- {k:"warner",nom:"Warner Bros. Discovery",logo:"wbd",c:["#08204a","#c9a227"],d:"Warner Bros., HBO, Max, DC et Discovery : le groupe Warner Bros. Discovery.",
+ {k:"warner",nom:"Warner Bros.",logo:"warner",c:["#08204a","#c9a227"],d:"Warner Bros., HBO, Max, DC et Discovery.",
   m:[["wbd","Warner Bros.",/\bWG\b/,[4,6]],["hbo","HBO",/GBO/],["max","Max",/Guiguimax|Guimax/,[8]],["dc","DC Studios",null,[7]],["wb-animation","Warner Bros. Animation",null,[5]],["discovery-plus","discovery+",/gdiscovery/]]},
  {k:"paramount",nom:"Paramount",logo:"paramount",c:["#071a3d","#4a7bd6"],d:"Paramount Pictures, Paramount+, CBS, Nickelodeon et le catalogue Republic.",
   m:[["paramount","Paramount Pictures",/Guiguimount(?!\+)/,[17]],["paramount-plus","Paramount+",/Guiguimount\+/],["cbs","CBS",/GBS/],["nickelodeon","Nickelodeon",/gickelodeon/i,[18]],["republic","Republic Pictures",/Republic/,[19]]]},
- {k:"nbcu",nom:"NBCUniversal",logo:"universal",c:["#05223f","#2c8de0"],d:"Universal Pictures, DreamWorks, Peacock et NBC : le groupe NBCUniversal.",
+ {k:"nbcu",nom:"Universal",logo:"universal",c:["#05223f","#2c8de0"],d:"Universal Pictures, DreamWorks, Peacock et NBC.",
   m:[["universal","Universal Pictures",/Guniversal/,[10]],["dreamworks","DreamWorks",/GDreamWorks/],["peacock","Peacock",/geacock/i,[11]],["nbc","NBC",/\bGBC\b/,[9]]]},
  {k:"sony",nom:"Sony Pictures",logo:"sony",c:["#141414","#6b6b6b"],d:"Sony Pictures, Columbia et TriStar.",
   m:[["sony","Sony Pictures",/GSony/,[14,15]],["columbia","Columbia Pictures",/Columbia/,[13,16]]]},
@@ -2849,19 +3032,75 @@ const creationsMaison=(M,mk)=>creationsU().filter(it=>M.m.some(m=>(!mk||m[0]===m
 const logoMaison=(M,cl="")=>M.logo?`<img class="${cl}" src="${LR(M.logo)}" alt="${echap(M.nom)}">`:`<span class="m-duo ${cl}"><img src="${LR("canal-plus")}" alt=""><img src="${LR("tf1")}" alt=""></span><b class="m-nom">${echap(M.nom)}</b>`;
 const tuilesMaisons=(on)=>`<div class="maisons-tuiles">${MAISONS.map(M=>{const n=creationsMaison(M).length;return n?`<a class="maison-tuile${on===M.k?" on":""}" href="#/studio/${M.k}" style="--c1:${M.c[0]};--c2:${M.c[1]}" aria-label="${echap(M.nom)}">${logoMaison(M)}<span class="n">${n}</span></a>`:""}).join("")}</div>`;
 const sectionMaisons=()=>`<section class="section"><div class="titre-rangee"><h2>Par maison</h2></div><p class="chapeau">Chaque création rangée chez son vrai propriétaire : Marvel et Pixar chez Disney, HBO et DC chez Warner, Nickelodeon chez Paramount.</p>${tuilesMaisons()}</section>`;
+/* 14 novembre : Mon univers fait comme le reste du site. Le carrousel est celui de l'accueil (même code, même animation),
+   les rangées sont des Top 10 et des rails, les collections sont des petits montages. Chaque marque a la couleur de son logo. */
+const COUL_MARQUE={"walt-disney-pictures":["#0b1d5c","#1f6fd1"],pixar:["#0b2a4a","#2aa3c9"],marvel:["#4a0606","#e23636"],twentieth:["#2e2205","#c9a227"],"disney-plus":["#0a1a5c","#1db9c9"],hulu:["#05301a","#1ce783"],abc:["#121212","#5a5a5a"],
+ wbd:["#071a44","#2266e0"],hbo:["#0e0e10","#5b4bd6"],max:["#06123f","#2a5ef0"],dc:["#061a44","#0476f2"],"wb-animation":["#2e2205","#e0b020"],"discovery-plus":["#061a44","#2175ff"],
+ paramount:["#061638","#1f5ad6"],"paramount-plus":["#05103a","#0064ff"],cbs:["#06143a","#2a6fd6"],nickelodeon:["#5a2006","#ff7a00"],republic:["#2a0606","#c0392b"],
+ universal:["#05223f","#2c8de0"],dreamworks:["#0a1a3a","#4a8cd6"],peacock:["#121212","#6a3fbf"],nbc:["#2a0a3a","#f2a31a"],sony:["#0c0c0e","#4a4a52"],columbia:["#14223e","#7a95c0"]};
+const coulMarque=(M,k)=>COUL_MARQUE[k]||M.c;
+/* 14 novembre : les vidéos de la chaîne YouTube « Portfolio Guilhem Mesnier », rangées comme sur la chaîne.
+   Titres réécrits proprement, sans prénom. Miniatures dans img/yt. Les trois travaux du Master renvoient à leur page. */
+const YT_CHAINE="https://www.youtube.com/@Portfolio_Guilhem_Mesnier/playlists";
+const YT=[
+ {id:"recreations",nom:"Recréations de logos",d:"Des intros de studios recréées image par image en 3D, puis détournées : la lumière, les reflets, le rythme et le son, au plus près de l'original.",v:[
+  ["szZGm7tjh60","Disney 100 ans, « Guisney »",41,"walt-disney-pictures"],["EFahueVlqUs","Walt Disney, « Walt Guisney »",32,"walt-disney-pictures"],["P3JxCoYELUQ","Disney, « Guisney »",45,"walt-disney-pictures"],["0yqDyyUtjwU","Disney, l'intro « Guisney »",32,"walt-disney-pictures"],
+  ["ut7bQ1BuT7Q","Hollywood Pictures, « Guiguiwood »",12,"walt-disney-pictures"],["zBZ9oQVCaBI","Warner Bros., toutes les intros",57,"wbd"],["vZI2Za7WpWY","Warner Bros. Animation",4,"wb-animation"],["thG80qr7txI","Max, « guimax »",5,"max"],
+  ["h7TS0_Wd8KA","Paramount, « Guiguimount »",20,"paramount"],["lXVqTWJmObw","Paramount, l'intro du film Bob Marley",23,"paramount"],["cComvHrwuoo","Republic Pictures",5,"republic"],
+  ["YjeQ68WMatQ","Universal Pictures",25,"universal"],["s1bdrstGums","Universal et DreamWorks",62,"dreamworks"],["_VSOUu4Kn5o","Columbia Pictures, « Golumbia »",41,"columbia"],["iEFgjStU_94","Columbia 100 ans, « Golumbia »",32,"columbia"],
+  ["N7F_xftPd1g","Sony : Columbia et TriStar",64,"sony"],["uWjw9LoHoGg","MGM, « Metro Guigui Mayer »",15,"amazon-mgm"],["_5UpzEFMGfY","Canal+, « GCanal+ »",5,"canal-plus"],["hn4HaXJYrH0","TF1+, « TFG+ »",7,"tf1"],["7W2v2SlQY3g","Secret Story, « Secret Guigui »",3,"tf1"],["r2e3mK213Uw","Secret Story, le logo de 2024",4,"tf1"]]},
+ {id:"showreels",nom:"Showreels",d:"De longs montages qui enchaînent les intros sur une musique : chaque coupe tombe sur le temps, chaque logo a sa transition.",v:[
+  ["Y4IE-CwOye0","Mission Impossible Edit",2529],["t5_xAOj_pPI","Hollywood Mix",701],["3NePnEQNdT0","Cinema Edition",1090],["lDT79ixOpGI","Pop Icons Mix",1160],["aeIlkVIR6kc","Danceclub Edit",1314],["FnGTaWvRoyQ","Studios et cinéma, l'aventure",1374],
+  ["3jxQyC1Iscc","Rihanna Medley",469],["3uXGzNqXYPY","Bollywood Mix",349],["XDaYbUzqck4","Dance Edit",430],["kOIHwqi3Yw0","Electric Pop Cut",583],["QQAulEVshBg","Intégration dynamique",482]]},
+ {id:"compilations",nom:"Compilations",d:"Des séquences plus courtes, chacune sur un thème ou une bande originale de film.",v:[
+  ["2kSG-sE5L0Y","Pirates des Caraïbes",251],["rK1yoV2vDYE","Captain America 2",248],["5jukoHxPC74","Meg 2 : The Trench",432],["Cpbls3rGMFs","Blue Beetle",384],["zE6l0GXjpbQ","Blue Beetle et The Meg",452],["LxP0s6on-eg","La Casa de Papel et Avengers",430],
+  ["aqi1BIJSMPo","Les Mystérieuses Cités d'or",433],["DqAYttRjLLQ","Flashback, années 80 contre années 2020",243],["9ye0xKNpkMU","Rock et électro",145],["U03t6z1B4oo","Électro",145],["zJY5QM702jg","Pirates des Caraïbes 4",251],["WP0DUysNJmE","Les Trois Mousquetaires",158]]},
+ {id:"originales",nom:"Créations originales",d:"Des logos et des génériques inventés de A à Z : l'idée, le dessin, l'animation et le son.",v:[
+  ["gaqULSYFnXY","The Universal-World, ident original",23],["2LKTHk_uOBg","Celestian & Universe, le logo animé",23],["hfR2MVgKbNQ","Celestian & Universe Co., l'identité",6],["9ifWfBgRyTY","Générique d'un documentaire",83]]},
+ {id:"showcases",nom:"Portfolios vidéo",d:"Mes affiches, mes fonds d'écran et mes logos montrés en mouvement, et deux grands showcases.",v:[
+  ["F0_Rs6mjnjs","Le showcase principal",2211],["rtkCWq8ckds","Le showcase complémentaire",2787],["UU4H3-K4h_g","Affiches, fonds et logos, version pop",121],["lVD9o6tDBrk","Affiches, fonds et logos, version instrumentale",118],["p_aV8UqX-Ts","Affiches et fonds d'écran, version fun",80],
+  ["W1vhWlAcOBw","Images faites avec l'IA (2024)",165],["j7tsqXuuSeI","Bande-annonce : intros revisitées",481],["GB9VvSwIheI","Étude de cas : le Dance Edit expliqué",963]]},
+ {id:"universitaires",nom:"Réalisations universitaires",d:"Podcasts et vidéos faits pendant la licence d'histoire et le Master.",v:[
+  ["TjgDN8iSae0","Fragonard, porter un fragment d'art",756,"","#/t/fragonard"],["71n62sflQrI","Odette du Puigaudeau, une femme libre",192,"","#/t/odette-du-puigaudeau"],["2-6f6Lueqtk","Baraka+, le podcast",347,"","#/t/baraka-jeux"],
+  ["a7ongjmo2bg","Podcast : les mouvements sociaux de la guerre froide",548],["lqXAkqNU9Po","Podcast : la guerre culturelle",532],["l2PibmXa3js","Podcast : les Pentagon Papers",233],["sCXE24bcwYw","Podcast : les favelas et Morar Carioca",287],["x50gy5T5rAY","Archives de La Rochelle, années 60 (parodie)",269]]}
+];
+const duree=s=>s>=3600?`${Math.floor(s/3600)} h ${String(Math.floor(s%3600/60)).padStart(2,"0")}`:`${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`;
+const carteYT=(v,cat)=>{const[id,ti,d,mq,lien]=v;return `<a class="vid" href="${lien||"https://www.youtube.com/watch?v="+id}" ${lien?"":`data-ytv="${id}" data-titre="${echap(ti)}" target="_blank" rel="noopener"`} aria-label="${echap(ti)}"><span class="vid-im"><img src="img/yt/${id}.webp" alt="" loading="lazy"><span class="vid-d">${duree(d)}</span><span class="vid-play">${I.lecture||"▶"}</span></span><span class="vid-t"><b>${echap(ti)}</b><small>${lien?"Voir le travail":echap(cat)}</small></span></a>`};
+const railYT=(L,{titre=L.nom,lien=`#/univers/v-${L.id}`,liste=L.v}={})=>liste.length?`<section class="section rail-section apparait"><div class="titre-rangee"><h2>${titre}</h2><span class="rg-outils"><a href="${lien}">Tout voir</a></span></div><p class="chapeau">${L.d}</p><div class="rail"><button class="fleche g" aria-label="Précédent">${I.g}</button><div class="piste vid-piste">${liste.map(v=>carteYT(v,L.nom)).join("")}</div><button class="fleche d" aria-label="Suivant">${I.d}</button></div></section>`:"";
+const videosMarque=mks=>YT[0].v.filter(v=>mks.includes(v[3]));
+/* Les couleurs des marques (au survol, la tuile prend la couleur de la marque, comme sur Paramount+) */
+const MQC={"walt-disney-pictures":"#113ccf",pixar:"#1b75bb",marvel:"#e62429",twentieth:"#b38a2e","disney-plus":"#0b8fd0",hulu:"#13b05f",abc:"#3a3a3a",wbd:"#0b5fd1",hbo:"#5b2bd6",max:"#002be7",dc:"#0476f2","wb-animation":"#d39a00","discovery-plus":"#2175ff",
+ paramount:"#0064ff","paramount-plus":"#0064ff",cbs:"#1f4fd1",nickelodeon:"#ff6d00",republic:"#b02a2a",universal:"#1d5fd6",dreamworks:"#2f7fd6",peacock:"#6a3fbf",nbc:"#e38d00",sony:"#4a4a55",columbia:"#4f6fa8","apple-tv":"#4a4a4f","amazon-mgm":"#b8913e","canal-plus":"#2b2b2b",tf1:"#0040c8","france-tv":"#2e3dd6"};
+const LOGO_BLANC={wbd:"wbd",universal:"universal",republic:"",["france-tv"]:""};
+const toutesMarques=()=>{const r=[];MAISONS.forEach(M=>M.m.forEach(m=>{const n=creationsMaison(M,m[0]).length+videosMarque([m[0]]).length;const lg=m[0] in LOGO_BLANC?LOGO_BLANC[m[0]]:m[0];if(n&&lg)r.push({M,k:m[0],nom:m[1],lg,n})}));return r};
+const tuileMarque=x=>`<a class="mq" href="#/studio/${x.M.k}/${x.k}" style="--mq:${MQC[x.k]||x.M.c[1]}" aria-label="${echap(x.nom)}"><i class="mq-fil" style="background-image:url('${LR(x.lg)}')"></i><img src="${LR(x.lg)}" alt="${echap(x.nom)}" loading="lazy"><span class="mq-n">${x.n} création${x.n>1?"s":""}</span></a>`;
+
+const marqueDeU=it=>{for(const M of MAISONS){const m=M.m.find(x=>dansMarque(it,x));if(m)return[M,m]}return[null,null]};
+let GAL_N=0;const galU=(titre,ims,i=0)=>{const id="u"+(GAL_N++);GALS[id]={titre,ims,mode:""};return `data-gal="${id}" data-i="${i}"`};
+function herosU(liste,logoDefaut,fam){
+  if(!liste.length)return"";const ims=liste.map(x=>univ(x.k));
+  return `<div id="heros" class="heros-u" aria-roledescription="carrousel" aria-label="${echap(fam)}"><div class="heros-cadre"><div class="piste-heros">${liste.map((it,i)=>{const[M,m]=marqueDeU(it),lg=m?LR(m[0]):logoDefaut,g=galU(fam,ims,i);
+    return `<article class="diap ombre${it.port?" u-port":" u-pays"}${i?"":" on"}" aria-label="${echap(it.t)}"><span class="art" style="background-image:url('${univ(it.k)}')"></span><span class="art-m" style="background-image:url('${univ(it.k)}')"></span><a class="tout" href="#" ${g} tabindex="-1" aria-hidden="true"></a>
+      <div class="contenu">${lg?`<img class="logo u-logo-d" src="${lg}" alt="${echap(m?m[1]:fam)}" draggable="false" onerror="this.remove()">`:""}<h2 class="u-titre">${echap(it.t)}</h2><p>${echap(it.s)}</p><div class="meta">${echap(fam)}${M&&M.nom!==fam?` • ${echap(M.nom)}`:""}</div><div class="etiquettes"><span>Fan art</span><span>${/affiche/i.test(fam)||it.port?"Affiche":it.i!==undefined?"Logo":"Fond d'écran"}</span>${m?`<span>${echap(m[1])}</span>`:""}</div><div class="bas-heros"><a class="btn glace" href="#" ${g} draggable="false">${I.lecture} Découvrir</a></div></div>${it.port?`<img class="u-aff" src="${univ(it.k)}" alt="" draggable="false">`:""}</article>`}).join("")}</div>
+    <button class="fleche g" aria-label="Précédent">${I.g}</button><button class="fleche d" aria-label="Suivant">${I.d}</button></div>
+    <div class="points">${liste.map((it,i)=>`<button aria-label="${echap(it.t)}" class="${i?"":"on"}"></button>`).join("")}</div></div>`}
+const vignU=(it,ims,i,titre,num)=>{const h=`<a class="vignette" href="#" ${galU(titre,ims,i)} aria-label="${echap(it.t)}"><span class="affiche${it.port?"":" u-large"}" style="--deg:linear-gradient(160deg,#16204a,#2a3f8f)"><span class="img" style="background-image:url('${univ(it.k)}')"></span></span><span class="legende"><small>${echap(it.t)}</small></span></a>`;return num?`<div class="top${num>9?" deux":""}"><span class="num">${num}</span>${h}</div>`:h};
+function rangeeU(titre,liste,{lien="",chapeau="",tops=false}={}){
+  if(!liste.length)return"";const ims=liste.map(x=>univ(x.k));
+  return `<section class="section rail-section"><div class="titre-rangee"><h2>${titre}</h2>${lien?`<span class="rg-outils"><a href="${lien}">Tout voir</a></span>`:""}</div>${chapeau?`<p class="chapeau">${chapeau}</p>`:""}
+  <div class="rail"><button class="fleche g" aria-label="Précédent">${I.g}</button><div class="piste${tops?" tops":""}${liste.every(x=>!x.port)?" u-pays-piste":""}">${liste.map((it,i)=>vignU(it,ims,i,titre,tops?i+1:0)).join("")}</div><button class="fleche d" aria-label="Suivant">${I.d}</button></div></section>`}
+const montageU=(nom,sous,lien,ims,c)=>`<a class="vignette" href="${lien}" aria-label="${echap(nom)}"><span class="affiche col u-montage" style="--deg:linear-gradient(160deg,${c[0]},${c[1]})"><span class="u-mos">${[0,1,2,3].map(j=>`<i style="background-image:url('${ims[j%ims.length]}')"></i>`).join("")}</span><span class="txt"><b>${echap(nom)}</b><small>${echap(sous)}</small></span></span><span class="legende"><small>${ims.length} créations</small></span></a>`;
+const montagesMaisons=(sauf)=>railAffiches("Les collections","Une collection par maison de cinéma : toutes mes créations faites à partir de ses films et de ses marques.",MAISONS.filter(M=>M.k!==sauf&&creationsMaison(M).length).map(M=>{const l=creationsMaison(M),po=l.filter(x=>x.port);return montageU(M.nom,"Collection",`#/studio/${M.k}`,(po.length>=4?po:l).map(x=>univ(x.k)),M.c)}),"#/univers/studios");
+const top10U=l=>{const po=l.filter(x=>x.port);return(po.length>=6?po:l).slice(0,10)};
 function pageMaison(k,mk){const M=MAISONS.find(x=>x.k===k);if(!M)return pageUnivers("");const tout=creationsMaison(M),o=mk?creationsMaison(M,mk):tout,mm=M.m.find(x=>x[0]===mk);
-  document.title=`${mm?mm[1]:M.nom}, mes détournements, Guilhem Mesnier`;
-  const diaps=tout.filter(x=>x.port).slice(0,10).concat(tout.filter(x=>!x.port&&x.i===undefined).slice(0,3));
-  const marqueDe=it=>M.m.find(m=>dansMarque(it,m));
-  const car=`<section class="m-car" style="--c1:${M.c[0]};--c2:${M.c[1]}"><div class="m-piste">${diaps.map((it,i)=>{const m=marqueDe(it);return `<div class="m-diap${i?"":" on"}"><span class="m-flou" style="background-image:url('${univ(it.k)}')"></span><div class="m-txt">${m&&M.m.length>1?`<img class="m-sous" src="${LR(m[0])}" alt="${echap(m[1])}" onerror="this.remove()">`:""}<h2>${echap(it.t)}</h2><p>${echap(it.s)}</p></div><img class="m-visuel${it.port?" port":""}" src="${univ(it.k)}" alt="${echap(it.t)}"></div>`}).join("")}</div>
-   <a class="btn pa-verre m-retour" href="#/univers">← Mon univers</a><div class="m-tete">${logoMaison(M,"m-logo")}<p>${echap(M.d)}</p></div>
-   <div class="m-points">${diaps.map((_,i)=>`<button aria-label="Image ${i+1}" class="${i?"":"on"}"></button>`).join("")}</div></section>`;
-  const marquesT=M.m.length>1?`<section class="section"><div class="titre-rangee"><h2>Les marques de ${echap(M.nom)}</h2></div><div class="maisons-tuiles sous">${M.m.map(m=>{const n=creationsMaison(M,m[0]).length;return n?`<a class="maison-tuile${mk===m[0]?" on":""}" href="#/studio/${M.k}/${m[0]}" style="--c1:${M.c[0]};--c2:${M.c[1]}" aria-label="${echap(m[1])}"><img src="${LR(m[0])}" alt="${echap(m[1])}" onerror="this.replaceWith(Object.assign(document.createElement('b'),{className:'m-nom',textContent:this.alt}))"><span class="n">${n}</span></a>`:""}).join("")}</div></section>`:"";
+  document.title=`${mm?mm[1]:M.nom}, mes détournements, Guilhem Mesnier`;GAL_N=0;
+  const diaps=o.filter(x=>x.port).slice(0,8).concat(o.filter(x=>!x.port&&x.i===undefined).slice(0,2));
+  const tete=`<div class="u-tete" style="--c1:${M.c[0]};--c2:${M.c[1]}"><a class="btn pa-verre" href="#/univers">← Mon univers</a>${mm?`<img class="u-tete-l" src="${LR(mm[0])}" alt="${echap(mm[1])}" onerror="this.remove()">`:logoMaison(M,"u-tete-l")}<p>${echap(mm?mm[1]+", une marque de "+M.nom+".":M.d)}</p></div>`;
+  const marquesT=M.m.length>1?`<section class="section"><div class="titre-rangee"><h2>Les marques de ${echap(M.nom)}</h2></div><div class="maisons-tuiles sous">${M.m.map(m=>{const n=creationsMaison(M,m[0]).length,c=coulMarque(M,m[0]);return n?`<a class="maison-tuile${mk===m[0]?" on":""}" href="#/studio/${M.k}/${m[0]}" style="--c1:${c[0]};--c2:${c[1]}" aria-label="${echap(m[1])}"><img src="${LR(m[0])}" alt="${echap(m[1])}" onerror="this.replaceWith(Object.assign(document.createElement('b'),{className:'m-nom',textContent:this.alt}))"><span class="n">${n}</span></a>`:""}).join("")}</div></section>`:"";
   const ids=o.filter(x=>x.port).map(x=>x.id).filter(i=>typeof TMDB_AVANT!=="undefined"&&TMDB_AVANT[i]);
-  setTimeout(()=>{const s=document.querySelector(".m-car");if(!s)return;const d=[...s.querySelectorAll(".m-diap")],p=[...s.querySelectorAll(".m-points button")];let i=0;
-    const aller=n=>{i=(n+d.length)%d.length;d.forEach((x,j)=>x.classList.toggle("on",j===i));p.forEach((x,j)=>x.classList.toggle("on",j===i))};
-    p.forEach((b,j)=>b.onclick=()=>aller(j));if(d.length<2)return;const h=setInterval(()=>aller(i+1),5500);arret=()=>clearInterval(h)},0);
-  return car+marquesT+`<section class="section"><div class="titre-rangee"><h2>${mm?echap(mm[1])+", ":""}${o.length} création${o.length>1?"s":""}</h2>${mk?`<a href="#/studio/${M.k}">Tout ${echap(M.nom)}</a>`:""}</div><div class="holos">${o.map((it,i)=>`<div class="holo${it.port?"":" large"}" data-g="${i}"><img src="${univ(it.k)}" alt="${echap(it.t)}" data-g="${i}" loading="lazy"><div class="cap"><b>${echap(it.t)}</b>${echap(it.s)}</div></div>`).join("")}</div></section>
+  const parMarque=mk?"":M.m.map(m=>rangeeU(m[1],creationsMaison(M,m[0]),{lien:`#/studio/${M.k}/${m[0]}`})).join("");
+  return herosU(diaps.length?diaps:o.slice(0,8),"",mm?mm[1]:M.nom)+tete+marquesT+rangeeU(`Le Top 10 ${mm?echap(mm[1]):echap(M.nom)}`,top10U(o),{tops:true,chapeau:"Mes créations préférées, de la première à la dixième."})+railYT(YT[0],{titre:`Les intros recréées en vidéo`,liste:videosMarque(mk?[mk]:M.m.map(m=>m[0]))})+parMarque+montagesMaisons(M.k)
+  +`<section class="section" id="grille"><div class="titre-rangee"><h2>${mm?echap(mm[1])+", ":""}toutes les créations (${o.length})</h2>${mk?`<a href="#/studio/${M.k}">Tout ${echap(M.nom)}</a>`:""}</div><div class="holos">${o.map((it,i)=>`<div class="holo${it.port?"":" large"}" data-g="${i}"><img src="${univ(it.k)}" alt="${echap(it.t)}" data-g="${i}" loading="lazy"><div class="cap"><b>${echap(it.t)}</b>${echap(it.s)}</div></div>`).join("")}</div></section>
   ${ids.length?avantApres(ids,"Avant, après","À gauche l'affiche officielle, à droite ma version. Faites glisser pour comparer."):""}
   <section class="section"><p class="mention">Fan art, à usage non commercial : les noms sont transformés exprès, les marques et les visuels d'origine appartiennent à leurs propriétaires. Logos officiels : TMDB.</p>${tuilesMaisons(M.k)}</section>`}
 function pageStudio(k){const ALIAS={pixar:"disney",marvel:"disney",lucasfilm:"disney",universal:"nbcu"};const[,,,sous]=location.hash.split("/");return pageMaison(ALIAS[k]||k,sous)}
@@ -2907,26 +3146,103 @@ addEventListener("hashchange",()=>setTimeout(paillettes,120));addEventListener("
 /* v16 : compteur de caractères et petit envol au départ du message */
 document.addEventListener("input",e=>{const t=e.target;if(t.name!=="m"||!t.closest("#pc-form"))return;let c=t.closest("label").querySelector(".compteur");if(!c){c=document.createElement("small");c.className="compteur";t.closest("label").appendChild(c)}c.textContent=t.value.length+" caractères"});
 document.addEventListener("submit",e=>{if(e.target.id!=="pc-form")return;const b=e.target.querySelector('button[type="submit"]');if(!b)return;const r=b.getBoundingClientRect(),v=document.createElement("div");v.className="pc-envol";v.style.left=r.left+r.width/2-21+"px";v.style.top=r.top-10+"px";v.innerHTML=`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 11.5 21 3l-6.5 18-3.2-7.3L2 11.5zm9.3 2.2 2 4.6L17.6 6.4 6.7 11.3l4.6 2.4z"/></svg>`;document.body.appendChild(v);setTimeout(()=>v.remove(),1200)},true);
+/* 14 novembre : les études de cas tirées de l'ancien portfolio de 2025 (images d'origine, textes réécrits) */
+const ETUDES=[
+["053","The Gray Man","Netflix, 2022","Nanani et N Film, d'après Netflix"],
+["102","Atlantide, l'empire perdu","Walt Disney, 2001","Guisney"],
+["103","Vice-Versa 2","Disney et Pixar, 2024","Guisney · Gixar, Guigui+ Original"],
+["104","Percy Jackson et les Olympiens","Disney, 2023","Guisney"],
+["105","Avatar","20th Century, 2009","Guigui · Gixar"],
+["106","En avant","Disney et Pixar, 2020","Guisney · Gixar"],
+["107","Tron : L'Héritage","Disney, 2010","Guisney"],
+["193","Dune, deuxième partie","Warner Bros., 2024","Warner Guigui Discovery"],
+["194","Aquaman et le Royaume perdu","Warner Bros., 2023","Warner Guigui et DC"],
+["195","Meg 2","Warner Bros., 2023","Warner Guigui"],
+["196","Barbie","Warner Bros., 2023","Warner Guigui"],
+["197","The Flash","Warner Bros., 2023","Warner Guigui"],
+["198","Game of Thrones","HBO, 2011","GBO"],
+["199","House of the Dragon","HBO, 2022","GBO"],
+["200","Furiosa","Warner Bros., 2024","Warner Guigui Original Film"],
+["201","La Couleur pourpre","Warner Bros., 2023","Warner Guigui Original Film"],
+["202","Sacrées Sorcières","Warner Bros., 2020","Guigui Max"],
+["203","The Rookie","ABC, 2018","Guigui Max"],
+["204","Blue Beetle","Warner Bros., 2023","Warner Guigui et GC"],
+["206","Blue Beetle, le fond d'écran","Warner Bros., 2023","Warner Guigui et GC",1],
+["278","Argylle","Universal et Apple TV+, 2024","Gtv+ et Guniversal+"],
+["310","Challengers","MGM et Warner Bros., 2024","MGM et Warner Guigui Discovery"],
+["311","Argylle, version MGM","MGM, 2024","MGM et MGM+"],
+["312","Mississippi Burning","MGM, 1988","MGM+ et Metro Guigui Mayer"],
+["313","Oppenheimer","Universal, 2023","MGM+ et le lion Metro Guigui Mayer"],
+["347","Bad Boys for Life","Columbia Pictures, 2020","Gsony"],
+["508","Swagger","Apple TV+, 2021","Gtv+"],
+["509","For All Mankind","Apple TV+, 2019","Gtv+"]];
+const ETAPES=["Une base vierge : l'image du film sans titre, sans logo ni montage.","Le logo du studio recréé à l'identique, puis détourné.","L'harmonie des couleurs entre le logo, les personnages et le fond.","Les personnages : colorimétrie, lignes dorées, détourage et ancrage au premier plan.","Le montage final, avec le titre et les mentions."];
+const ETUDE_LOG=["Pixelmator Pro","Photoshop","Illustrator","Topaz Photo AI","Affinity Designer","Luminar Neo"];
+const AVEC_AVANT=new Set(["053","102","103","104","105","106","107","193","194","195","196","202","203","204","278","310","311","312","313","347","508","509"]);
+const PLANCHES=[["071","Majesty Records"],["150","Guisney et Guisney+"],["160","Guisney · Gixar"],["161","Le château Guisney"],["225","Warner Guigui"],["226","Warner Guigui, la famille"],["263","GBC"],["269","Guniversal"],["357","Pegasus Pictures"],["380","Guiguimount"],["382","Guiguimount+"],["409","GCanal+"],["410","GCanal+, les chaînes"],["454","TFG"],["470","guigui•tv"],["471","guigui•tv, les déclinaisons"]];
+const carteEtude=(e,n)=>{const[id,ti,st,lg,fd]=e,av=AVEC_AVANT.has(id);return `<article class="ec${fd?" ec-fond":""}"><div class="ec-im"><button type="button" class="ec-apres" data-etude="${id}" aria-label="Agrandir ${echap(ti)}"><img src="img/etudes/${id}-apres.webp" alt="${echap(ti)}, ma version" loading="lazy"></button>${av?`<figure class="ec-avant"><img src="img/etudes/${id}-avant.webp" alt="${echap(ti)}, l'affiche d'origine" loading="lazy"><figcaption>L'original</figcaption></figure>`:""}</div>
+  <div class="ec-txt"><small>Étude de cas ${String(n+1).padStart(2,"0")}</small><h3>${echap(ti)}</h3><p class="ec-st">${echap(st)}</p><p class="ec-lg"><span>Logo recréé</span>${echap(lg)}</p><button type="button" class="btn verre ec-voir" data-etude="${id}">Agrandir ${I.d}</button></div></article>`};
+const etapesEtude=()=>`<ol class="ec-etapes">${ETAPES.map((x,i)=>`<li><b>${i+1}</b><span>${x}</span></li>`).join("")}</ol><div class="ec-logs"><small>Fait avec</small>${ETUDE_LOG.map(x=>`<span>${x}</span>`).join("")}</div>`;
+const railEtudes=()=>`<section class="section apparait"><div class="titre-rangee"><h2>Les études de cas</h2><span class="rg-outils"><a href="#/univers/etudes">Tout voir</a></span></div><p class="chapeau">Comment une affiche est née : l'original du studio, puis ma version, étape par étape.</p><div class="rail"><div class="piste">${ETUDES.filter(e=>!e[4]).slice(0,12).map(e=>`<a class="tuile portrait ec-tuile" href="#/univers/etudes" aria-label="${echap(e[1])}"><span class="art" style="background-image:url('img/etudes/${e[0]}-apres.webp');filter:none"></span>${AVEC_AVANT.has(e[0])?`<img class="ec-mini" src="img/etudes/${e[0]}-avant.webp" alt="" loading="lazy">`:""}</a>`).join("")}</div></div></section>`;
+const planchesLogos=()=>`<section class="section"><div class="titre-rangee"><h2>Les planches de logos</h2></div><p class="chapeau">Chaque marque redessinée avec toutes ses déclinaisons : chaînes, labels, versions dorées et argentées.</p><div class="pl-grille">${PLANCHES.map(([id,ti])=>`<button type="button" class="pl" data-planche="${id}" aria-label="Agrandir ${echap(ti)}"><img src="img/anciens/d${id}.webp" alt="${echap(ti)}" loading="lazy"><span>${echap(ti)}</span></button>`).join("")}</div></section>`;
 function pageUnivers(r){
   document.title="Mon univers, Guilhem Mesnier";
   const tete=`<section class="u-heros${r?" court":""}">${murAffiches(aff.filter(a=>!/Miss USA/.test(a[1])).map(a=>univ("affiches/"+a[0])))}<div class="u-txt">${mondes("univers")}<h1>Mon univers</h1><p>Mes créations personnelles, faites pour le plaisir et pour apprendre, à part des travaux universitaires. Ce sont des exercices de direction artistique, sans usage commercial.</p>
-    <div class="puces">${RUBRIQUES.map(x=>`<a href="#/univers/${x.id}"><button class="${r===x.id?"on":""}">${(n=>n[0].toUpperCase()+n.slice(1))(x.nom.replace(/^(Les|La|L')\s?/,""))}</button></a>`).join("")}<a href="#/univers/sites"><button class="${r==="sites"?"on":""}">Sites personnels</button></a></div></div></section>`;
+    <div class="puces">${[["affiches","Affiches"],["fonds","Fonds d'écran"],["studios","Logos"],["v-recreations","Vidéos"],["etudes","Études de cas"],["marques","Par marque"],["sites","Sites web"]].map(([id,n])=>`<a href="#/univers/${id}"><button class="${r===id?"on":""}">${n}</button></a>`).join("")}</div></div></section>`;
   /* 13 novembre au soir : les tuiles de marques de Mon univers, comme celles de l'accueil */
   const RU=i=>univ(RUBRIQUES.find(x=>x.id===i).items()[0].k);
-  const TU=[["affiches","Les affiches",univ("affiches/a03")],["studios","Les studios",univ("marques/01")],["fonds","Les fonds d'écran",univ("fonds/f01")],["sites","Les sites personnels",(SITES.find(s=>!s.cache)||{}).v],["majesty","Majesty Records",RU("majesty")],["interfaces","Les interfaces",univ("ux/01")],["photographie","La photographie",RU("photographie")],["presse","Presse et édition",univ("edito/02")]];
-  const tuilesU=`<section class="section apparait"><h2 class="cache">Les familles de Mon univers</h2><div class="marques marques-u">${TU.map(([id,nom,bg])=>`<a class="marq${r===id?" on":""}" href="#/univers/${id}" aria-label="${nom}">${id==="majesty"?`<span class="bg maj"></span><img class="l maj" src="img/logos/majesty-signature-dore.webp" alt="">`:`<span class="bg" style="background-image:url('${bg}')"></span>`}<span class="u-nom">${nom}</span></a>`).join("")}</div></section>`;
+  const TM=[["guisney","Guisney","#/studio/disney","disney"],["warner-guigui","Warner Guigui","#/studio/warner","wbd"],["guiguimount","Guiguimount","#/studio/paramount","paramount"],["guniversal","GUniversal","#/studio/nbcu","nbcu"],["gsony","GSony","#/studio/sony","sony"],["majesty","Majesty Records","#/univers/majesty",null],["guigui-tv","guigui•tv, les interfaces","#/univers/interfaces",null],["guigui-geographic","Guigui Geographic, la photo","#/univers/photographie",null]];
+  const coulM=k=>({disney:["#0b1d5c","#1f6fd1"],wbd:["#071a44","#2266e0"],paramount:["#061638","#1f5ad6"],nbcu:["#05223f","#2c8de0"],sony:["#0c0c0e","#3a4a6a"]})[k]||null;
+  const TU=[["affiches","Les affiches",univ("affiches/a03")],["studios","Les studios redessinés",univ("marques/01")],["fonds","Les fonds d'écran",univ("fonds/f01")],["sites","Les sites personnels",(SITES.find(s=>!s.cache)||{}).v],["presse","Presse et édition",univ("edito/02")]];
+  const tuilesU=`<section class="section apparait"><div class="titre-rangee"><h2>Par maison</h2></div><div class="u-logos">${TM.map(([f,nom,h,k])=>{const c=coulM(k)||(f==="majesty"?["#1a1205","#6b4e12"]:f==="guigui-tv"?["#0a1b3a","#2148a8"]:["#1d2a12","#a8861c"]);return `<a class="u-logo" href="${h}" aria-label="${nom}" style="--a:${c[0]};--b:${c[1]}"><img src="${f==="majesty"?"img/logos/majesty-signature-dore.webp":`img/logos/univers/${f}.webp`}" alt="${nom}" loading="lazy"></a>`}).join("")}</div></section>
+  <section class="section apparait"><div class="titre-rangee"><h2>Par type</h2></div><div class="marques marques-u u-types">${TU.map(([id,nom,bg])=>`<a class="marq" href="#/univers/${id}" aria-label="${nom}"><span class="bg" style="background-image:url('${bg}')"></span><img class="l" src="img/logos/marque-u-${id}.png" alt="${nom}"></a>`).join("")}</div></section>`;
   const webCP=railAffiches("Création et design web","La collection et la playlist de mes sites.",[posterCol(COLLECTIONS.find(c=>c.id==="web")),carteListe(PLAYLISTS.find(p=>p.id==="sites"))]);
-  if(r==="sites")return tete+tuilesU+webCP+`<section class="section"><div class="titre-rangee"><h2>Mes sites personnels</h2></div><p class="chapeau">${SITES_TXT}</p></section><div class="sites-grille">${SITES.filter(x=>!x.cache).map(carteSite).join("")}</div>`;
+  const autresF=`<section class="section"><div class="titre-rangee"><h2>Les autres familles</h2><a href="#/univers">Mon univers</a></div><div class="marques marques-u u-types">${TU.filter(x=>x[0]!==r).map(([id,nom,bg])=>`<a class="marq" href="#/univers/${id}" aria-label="${nom}"><span class="bg" style="background-image:url('${bg}')"></span><img class="l" src="img/logos/marque-u-${id}.png" alt="${nom}"></a>`).join("")}</div></section>`;
+  const teteF=(nom,logo,tags,d,fond,mur,btns,c)=>`<div class="m-page${mur?" a-mur":""}" style="--a:${c[0]};--b:${c[1]}">${mur?murAffiches(mur):`<div class="m-fond" style="background-image:url('${fond}')"></div>`}<section class="monde m-centre"><a class="btn verre m-retour" href="#/univers">← Mon univers</a>
+    <div class="m-texte">${logo?`<h1 class="m-h"><img class="m-logo" src="${logo}" alt="${echap(nom)}"></h1>`:`<h1 class="m-nom">${echap(nom)}</h1>`}<small class="m-sous">Mon univers</small><div class="m-tags">${tags.map(g=>`<span>${echap(g)}</span>`).join("")}</div><p>${echap(d)}</p><div class="m-btns">${btns}</div></div></section>`;
+  if(r==="sites")return teteF("Les sites personnels","img/logos/marque-u-sites.png",[`${SITES.filter(x=>!x.cache).length} sites`,"Hors cursus","Mode sombre"],SITES_TXT,(SITES.find(s=>!s.cache)||{}).v,null,`<button class="btn blanc" data-aller="grille">Tout voir</button>`,["#06281f","#1f8a6b"])+webCP+`<div class="sites-grille" id="grille">${SITES.filter(x=>!x.cache).map(carteSite).join("")}</div>`+autresF+`</div>`;
+  if(false)return tete+tuilesU+webCP+`<section class="section"><div class="titre-rangee"><h2>Mes sites personnels</h2></div><p class="chapeau">${SITES_TXT}</p></section><div class="sites-grille">${SITES.filter(x=>!x.cache).map(carteSite).join("")}</div>`;
   const R=RUBRIQUES.find(x=>x.id===r);
   const railU=x=>`<section class="section"><div class="titre-rangee"><h2>${x.nom}</h2><a href="#/univers/${x.id}">Tout voir</a></div><div class="rail"><div class="piste">${x.items().slice(0,10).map(it=>`<a class="tuile${x.port?" portrait":""}" href="#/univers/${x.id}" aria-label="${echap(it.t)}"><span class="art" style="background-image:url('${univ(it.k)}');filter:none"></span></a>`).join("")}</div></div></section>`;
   const groupe=(h,p,ids)=>`<div class="u-groupe"><h2>${h}</h2><p>${p}</p></div>${ids.map(i=>railU(RUBRIQUES.find(x=>x.id===i))).join("")}`;
-  if(!R)return tete+tuilesU+`<div class="u-groupe"><h2>Mes sites personnels</h2><p>Des sites conçus, écrits et codés par moi, à côté des études. Ils s'affichent en mode sombre et s'ouvrent dans le portfolio.</p></div>`+webCP+`<div class="sites-grille">${SITES.filter(x=>!x.cache).slice(0,6).map(carteSite).join("")}</div>`+groupe("Mes créations","Des marques et des images inventées de A à Z.",["majesty","interfaces","photographie","presse"])+`<div class="u-groupe"><h2>D’après les studios</h2><p>Des exercices de précision à partir de marques et de films existants : du fan art, pour apprendre.</p></div>`+sectionMaisons()+avantApres(["a02","a05","a11","a15"],"Avant, après","À gauche l'affiche officielle, à droite ma version : faites glisser le curseur.")+["affiches","fonds","studios"].map(i=>railU(RUBRIQUES.find(x=>x.id===i))).join("")+`
-    <section class="section"><p class="mention">${echap(MENTION)} Les affiches et les logos de studios détournés sont du fan art, à usage non commercial : les marques et les visuels d'origine appartiennent à leurs propriétaires.</p></section>`;
-  const its=R.items();
-  return tete+tuilesU+`<section class="section"><div class="titre-rangee"><h2>${R.nom}</h2></div><p class="chapeau">${R.d}</p>
+  if(r==="etudes")return `<div class="u-page" style="--c1:#140a2a;--c2:#4a1e7a"><div class="u-tete"><a class="btn pa-verre" href="#/univers">← Mon univers</a><h1 class="u-h1">Les études de cas</h1><p>Vingt-huit affiches et fonds d'écran refaits entre 2023 et 2025, montrés à côté de l'original. Chaque fois le même chemin : partir de l'image nue du film, recréer le logo du studio, puis tout accorder.</p><div class="m-tags"><span>${ETUDES.length} études</span><span>Fan art</span><span>Usage non commercial</span></div></div>
+   <section class="section"><div class="titre-rangee"><h2>La méthode, en cinq étapes</h2></div>${etapesEtude()}</section>
+   <section class="section"><div class="ec-grille">${ETUDES.map(carteEtude).join("")}</div></section>${planchesLogos()}
+   <section class="section"><p class="mention">${echap(MENTION)} Fan art, usage non commercial : les films et les marques appartiennent à leurs propriétaires. Images tirées de mon portfolio de 2025.</p></section></div>`;
+  if(r==="marques")return `<div class="u-page" style="--c1:#0a0f2a;--c2:#1b2a6b"><div class="u-tete"><a class="btn pa-verre" href="#/univers">← Mon univers</a><h1 class="u-h1">Par marque</h1><p>Chaque création rangée dans la marque qui la porte : les affiches, les fonds d'écran, les logos et les intros en vidéo. Survolez une tuile, elle prend la couleur de la marque.</p></div><section class="section"><div class="mq-grille">${toutesMarques().map(tuileMarque).join("")}</div></section>`+montagesMaisons("")+`<section class="section"><p class="mention">${echap(MENTION)} Fan art, usage non commercial. Logos officiels : TMDB.</p></section></div>`;
+  if(/^v-/.test(r)){const L=YT.find(x=>"v-"+x.id===r);if(L)return pageVideos(L)}
+  if(!R){GAL_N=0;const C=creationsU(),pick=ids=>ids.map(id=>C.find(x=>x.id===id)).filter(Boolean);
+    const indis=pick(["a03","f01","a15","m0","a02","f03","a05","m4","a11","f02","a09","m17"]);
+    const TI=[["affiches","Les affiches",univ("affiches/a03"),"img/logos/marque-u-affiches.png",aff.length],["fonds","Les fonds d'écran",univ("fonds/f01"),"img/logos/marque-u-fonds.png",fonds.length],["studios","Les logos",univ("marques/01"),"img/logos/marque-u-studios.png",marques.length],["sites","Les sites web",(SITES.find(s=>!s.cache)||{}).v,"img/logos/marque-u-sites.png",SITES.filter(x=>!x.cache).length]];
+    const TV=[["recreations","Recréations de logos","szZGm7tjh60"],["showreels","Showreels et compilations","Y4IE-CwOye0"],["originales","Créations originales","gaqULSYFnXY"]];
+    const intro=`<section class="u-ouverture">${murAffiches(aff.filter(a=>!/Miss USA/.test(a[1])).map(a=>univ("affiches/"+a[0])))}<div class="u-ouv-txt">${mondes("univers")}<h1>Mon univers</h1>
+      <p class="u-rev">Mes créations personnelles, faites pour le plaisir et pour apprendre, à côté des études.</p>
+      <p class="u-rev">Des affiches de cinéma refaites, des fonds d'écran, des logos de studios redessinés, et leurs intros recréées en vidéo.</p>
+      <p class="u-rev">Des exercices de direction artistique : du fan art, sans aucun usage commercial.</p>
+      <button class="btn blanc u-rev u-entrer" data-aller="u-entree">Entrer ${I.d}</button></div></section>`;
+    return intro+`<div id="u-entree"></div>`+rangeeU("Les indispensables",indis,{chapeau:"Une sélection d'affiches, de fonds d'écran et de logos : ce que je montrerais en premier."})
+     +`<section class="section apparait"><div class="titre-rangee"><h2>Les images</h2></div><div class="u-cats">${TI.map(([id,nom,bg,lg,n])=>`<a class="u-cat" href="#/univers/${id}" aria-label="${nom}"><span class="u-cat-im" style="background-image:url('${bg}')"></span><img class="u-cat-l" src="${lg}" alt="${nom}"><span class="u-cat-n">${n} ${id==="sites"?"sites":"créations"}</span></a>`).join("")}</div></section>`
+     +`<section class="section apparait"><div class="titre-rangee"><h2>Les vidéos</h2><span class="rg-outils"><a href="${YT_CHAINE}" target="_blank" rel="noopener">La chaîne YouTube ↗</a></span></div><div class="u-cats u-cats-v">${TV.map(([id,nom,im])=>{const L=YT.find(x=>x.id===id),n=L.v.length+(id==="showreels"?YT[2].v.length:0);return `<a class="u-cat" href="#/univers/v-${id}" aria-label="${nom}"><span class="u-cat-im" style="background-image:url('img/yt/${im}.webp')"></span><span class="u-cat-titre">${nom}</span><span class="u-cat-n">${n} vidéos</span><span class="u-cat-play">${I.lecture||"▶"}</span></a>`}).join("")}</div></section>`
+     +`<section class="section apparait"><div class="titre-rangee"><h2>Par marque</h2><span class="rg-outils"><a href="#/univers/marques">Tout voir</a></span></div><div class="mq-rang">${toutesMarques().slice(0,12).map(tuileMarque).join("")}</div></section>`
+     +railEtudes()+railYT(YT[0])+rangeeU("Les affiches",RUBRIQUES[0].items().map(x=>({...x,port:1,id:x.k.split("/")[1]})).filter(x=>!/Miss USA/.test(x.t)).slice(0,20),{lien:"#/univers/affiches"})
+     +railYT(YT[1])+rangeeU("Les fonds d'écran",RUBRIQUES[2].items().slice(0,16),{lien:"#/univers/fonds"})
+     +avantApres(["a02","a05","a11","a15"],"Avant, après","À gauche l'affiche d'origine, sans texte ; à droite ma version. Faites glisser le curseur, ou agrandissez.")
+     +railYT(YT[2])+rangeeU("Les logos",RUBRIQUES[1].items().slice(0,16),{lien:"#/univers/studios"})+railYT(YT[3])
+     +`<a class="u-bandeau apparait" href="#/univers/marques"><span class="u-bandeau-fond">${toutesMarques().slice(0,10).map(x=>`<img src="${LR(x.lg)}" alt="">`).join("")}</span><span class="u-bandeau-txt"><small>Mon univers</small><b>Voir par marque</b><span>Disney, Warner Bros., HBO, Paramount, Universal, Sony : chaque création rangée chez sa marque.</span><em class="btn blanc">Découvrir ${I.d}</em></span></a>`
+     +montagesMaisons("")+railYT(YT[4])+railYT(YT[5])
+     +`<section class="section apparait"><div class="titre-rangee"><h2>Les sites web</h2><span class="rg-outils"><a href="#/univers/sites">Tout voir</a></span></div><p class="chapeau">Des sites conçus, écrits et codés par moi, à côté des études.</p></section><div class="sites-grille">${SITES.filter(x=>!x.cache).slice(0,6).map(carteSite).join("")}</div>`
+     +`<section class="section"><p class="mention">${echap(MENTION)} Les affiches, les logos et les intros détournés sont du fan art, à usage non commercial : les marques et les visuels d'origine appartiennent à leurs propriétaires. Affiches d'origine et logos officiels : The Movie Database (TMDB).</p></section>`}
+  const its=R.items(),CF={affiches:["#2a0b3a","#c2436b"],studios:["#0b1d5c","#1f6fd1"],fonds:["#071a33","#3a7bd5"],majesty:["#1a1205","#a8861c"],interfaces:["#0a1b3a","#2148a8"],photographie:["#10222a","#2f8a9a"],presse:["#2a0f0a","#c2543a"]}[r]||["#0d2a6b","#1f7a8c"];
+  const LF={majesty:"img/logos/majesty-signature-dore.webp",interfaces:"img/logos/univers/guigui-tv.webp",photographie:"img/logos/univers/guigui-geographic.webp"}[r]||`img/logos/marque-u-${r}.png`;
+  GAL_N=0;if(R.port)its.forEach(x=>x.port=true);const parM=MAISONS.map(M=>[M,its.filter(it=>M.m.some(m=>dansMarque({...it,id:it.k.split("/")[1]},m)))]).filter(x=>x[1].length>1);
+  return `<div class="u-page" style="--c1:${CF[0]};--c2:${CF[1]}">`+herosU(its.slice(0,8),LF,R.nom)+`<div class="u-tete"><a class="btn pa-verre" href="#/univers">← Mon univers</a><img class="u-tete-l" src="${LF}" alt="${echap(R.nom)}"><p>${echap(R.d)}</p><div class="m-tags"><span>${its.length} créations</span><span>Fan art</span><span>Usage non commercial</span></div><div class="m-btns"><button class="btn blanc" data-aller="grille">Tout voir</button>${r==="affiches"?`<button class="btn verre" data-aller="aa">Avant, après</button>`:""}</div></div>`
+   +rangeeU(`Le Top 10 ${R.nom.replace(/^(Les|La|L')\s?/,"des ")}`,top10U(its),{tops:true,chapeau:"Mes préférées, de la première à la dixième."})
+   +parM.map(([M,l])=>rangeeU(`${M.nom}`,l,{lien:`#/studio/${M.k}`})).join("")
+   +(its.length>10&&!parM.length?rangeeU("Et aussi",its.slice(10,30)):"")
+   +montagesMaisons("")+`<section class="section" id="grille"><div class="titre-rangee"><h2>Toutes les créations</h2></div>
    <div class="holos" style="${R.port?"":"grid-template-columns:repeat(auto-fill,minmax(min(300px,80vw),1fr))"}">${its.map((it,i)=>`<div class="holo${document.body.classList.contains("v-effets")?" vif":""}" data-g="${i}"><img src="${univ(it.k)}" alt="${echap(it.t)}" data-g="${i}" loading="lazy"><div class="cap"><b>${echap(it.t)}</b>${echap(it.s)}</div></div>`).join("")}</div></section>
-   ${r==="affiches"?avantApres(Object.keys(TMDB_AVANT),"Avant, après","Chaque affiche à côté de l'officielle : à gauche le visuel du studio, à droite ma version. Faites glisser pour comparer."):""}
-   <section class="section"><p class="mention">${echap(MENTION)} Fan art, usage non commercial.</p></section>`;
+   ${r==="studios"?planchesLogos():""}${r==="affiches"?`<div id="aa"></div>`+avantApres(Object.keys(TMDB_AVANT),"Avant, après","Chaque affiche à côté de l'officielle : à gauche le visuel du studio, à droite ma version. Faites glisser pour comparer."):""}
+   ${autresF}<section class="section"><p class="mention">${echap(MENTION)} Fan art, usage non commercial.</p></section></div></div>`;
 }
 
 /* ---------- à propos ---------- */
@@ -3160,6 +3476,33 @@ function ouvrirVideo(v,titre,lien){
   w.onloadedmetadata=()=>{w.currentTime=t;w.play().catch(()=>{})};
   document.documentElement.classList.add("fige");
 }
+/* 14 novembre : une page par catégorie de vidéos (Portfolios vidéo, Showreels, Recréations de logos…), vidéos qui tournent en fond, lecteur intégré */
+const COUL_YT={recreations:["#0b1030","#24306e"],showreels:["#1a0606","#6a1212"],compilations:["#06141a","#0f4a5a"],originales:["#120a24","#4a2a8a"],showcases:["#140c02","#6a4410"],universitaires:["#071a10","#165a3a"]};
+function pageVideos(L){const c=COUL_YT[L.id]||["#1a0606","#5a1010"],lis=L.v.filter(v=>!v[4]),prem=(lis[0]||L.v[0]),fond=lis.slice(0,4).map(v=>v[0]);
+  const enLigne=location.protocol!=="file:";
+  const fonds=fond.map((id,k)=>`<div class="vp-fond-v" style="--k:${k}"><img src="img/yt/${id}.webp" alt="">${enLigne?`<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&playsinline=1&rel=0&modestbranding=1&enablejsapi=1" class="yt-suivi" data-repli="fond" title="" tabindex="-1" aria-hidden="true" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>`:""}</div>`).join("");
+  return `<div class="u-page vp-page" style="--c1:${c[0]};--c2:${c[1]}">
+<header class="vp-tete"><div class="vp-fond" aria-hidden="true">${fonds}</div><div class="vp-voile"></div>
+<div class="vp-texte"><a class="btn pa-verre" href="#/univers">← Mon univers</a><h1 class="u-h1">${L.nom}</h1><p>${L.d}</p><div class="m-tags"><span>${L.v.length} vidéos</span><span>Sur YouTube</span></div>
+<div class="m-btns"><a class="btn verre" href="${YT_CHAINE}" target="_blank" rel="noopener">${I.lecture||"▶"} Voir la chaîne YouTube</a></div></div></header>
+<section class="section vp-lect-sec"><div class="vp-lecteur" id="vp-lecteur" data-id="${prem[0]}"><div class="yt-cadre" id="vp-cadre">${enLigne?`<iframe src="https://www.youtube-nocookie.com/embed/${prem[0]}?rel=0&playsinline=1&enablejsapi=1" class="yt-suivi" data-repli="lecteur" data-id="${prem[0]}" title="${echap(prem[1])}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`:`<a class="vp-hors" href="https://www.youtube.com/watch?v=${prem[0]}" target="_blank" rel="noopener"><img src="img/yt/${prem[0]}.webp" alt=""><span class="vid-play">${I.lecture||"▶"}</span></a>`}</div>
+<div class="vp-barre"><b id="vp-titre">${echap(prem[1])}</b><button class="btn pa-verre" id="vp-agrandir" type="button">⤢ Agrandir</button><a class="btn pa-verre" id="vp-yt" href="https://www.youtube.com/watch?v=${prem[0]}" target="_blank" rel="noopener">Voir sur YouTube ↗</a></div></div></section>
+<section class="section"><div class="titre-rangee"><h2>Toutes les vidéos</h2></div><div class="vid-grille">${L.v.map(v=>carteYT(v,L.nom)).join("")}</div></section>
+<section class="section vp-autres"><div class="titre-rangee"><h2>Les autres catégories</h2></div><div class="vp-pastilles">${YT.filter(x=>x!==L).map(x=>`<a class="btn pa-verre" href="#/univers/v-${x.id}">${x.nom} <small>${x.v.length}</small></a>`).join("")}</div></section></div>`}
+function lireDansPage(id,titre){const cad=$("#vp-cadre");if(!cad)return false;
+  cad.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1&enablejsapi=1" class="yt-suivi" data-repli="lecteur" data-id="${id}" title="${echap(titre||"")}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+  $("#vp-titre").textContent=titre||"";$("#vp-yt").href="https://www.youtube.com/watch?v="+id;$("#vp-lecteur").dataset.id=id;
+  $("#vp-lecteur").scrollIntoView({behavior:"smooth",block:"center"});return true}
+/* 14 novembre : si YouTube refuse une vidéo intégrée (droits de la musique), on retire le lecteur et on garde l'image */
+function suivreYT(){document.querySelectorAll("iframe.yt-suivi:not([data-suivi])").forEach(f=>{f.dataset.suivi=1;const go=()=>{try{f.contentWindow.postMessage(JSON.stringify({event:"listening",id:1}),"*")}catch(e){}};f.addEventListener("load",()=>{go();setTimeout(go,1200)})})}
+addEventListener("message",e=>{if(!/youtube/.test(e.origin))return;let d;try{d=typeof e.data==="string"?JSON.parse(e.data):e.data}catch(x){return}
+  if(!d||d.event!=="onError")return;const f=[...document.querySelectorAll("iframe.yt-suivi")].find(x=>x.contentWindow===e.source);if(!f)return;
+  if(f.dataset.repli==="fond"){f.remove();return}
+  const id=f.dataset.id,box=f.parentElement;box.innerHTML=`<a class="vp-hors" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener"><img src="img/yt/${id}.webp" alt=""><span class="vp-hors-t">${I.lecture||"▶"} Cette vidéo se regarde sur YouTube (droits de la musique)</span></a>`});
+new MutationObserver(suivreYT).observe(document.documentElement,{childList:true,subtree:true});
+function ouvrirYT(id,titre){$("#yt-fen")?.remove();const f=document.createElement("div");f.id="yt-fen";f.setAttribute("role","dialog");f.setAttribute("aria-label",titre||"Vidéo");
+  f.innerHTML=`<div class="yt-boite"><div class="yt-haut"><b>${echap(titre||"")}</b><button class="btn pa-verre" type="button" onclick="const c=this.closest('.yt-boite').querySelector('.yt-cadre');(c.requestFullscreen||c.webkitRequestFullscreen).call(c)">⤢ Agrandir</button><a class="btn pa-verre" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">Voir sur YouTube ↗</a><button class="x" aria-label="Fermer">✕</button></div><div class="yt-cadre"><iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="${echap(titre||"Vidéo YouTube")}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div>`;
+  document.body.appendChild(f);document.body.classList.add("fige");addEventListener("keydown",function k(e){if(e.key==="Escape"){f.remove();document.body.classList.remove("fige");removeEventListener("keydown",k)}})}
 function ouvrirVisio(titre,ims,mode="",i=0){
   if(!ims.length)return;
   Object.assign(V,{ims,mode,titre,i:0,z:1,ajust:/long/.test(mode)?"long":""});
@@ -3260,6 +3603,17 @@ $("#visio .scene").addEventListener("touchstart",e=>{x0=e.touches[0].clientX},{p
 $("#visio .scene").addEventListener("touchend",e=>{if(x0===null||V.z>1||V.ajust)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>50)montrer(V.i+(dx<0?1:-1))},{passive:true});
 document.addEventListener("click",e=>{
   if(e.target.closest("#visio"))return;
+  const yv=e.target.closest("[data-ytv]");
+  if(e.target.closest("#vp-agrandir")){const c=$("#vp-cadre");(c.requestFullscreen||c.webkitRequestFullscreen||(()=>{})).call(c);return}
+  if(yv&&location.protocol!=="file:"){e.preventDefault();if(!lireDansPage(yv.dataset.ytv,yv.dataset.titre))ouvrirYT(yv.dataset.ytv,yv.dataset.titre);return}
+  if(e.target.closest("#yt-fen .x")||e.target.matches("#yt-fen")){$("#yt-fen")?.remove();document.body.classList.remove("fige");return}
+  const etb=e.target.closest("[data-etude]");
+  if(etb){e.preventDefault();const id=etb.dataset.etude,E=ETUDES.find(x=>x[0]===id);const ims=[`img/etudes/${id}-apres.webp`];if(AVEC_AVANT.has(id))ims.push(`img/etudes/${id}-avant.webp`);ouvrirVisio(E?E[1]:"",ims,"",0);return}
+  const plb=e.target.closest("[data-planche]");
+  if(plb){e.preventDefault();const i=PLANCHES.findIndex(x=>x[0]===plb.dataset.planche);ouvrirVisio("Les planches de logos",PLANCHES.map(x=>`img/anciens/d${x[0]}.webp`),"",Math.max(0,i));return}
+  const aab=e.target.closest("[data-aa]");
+  if(aab){e.preventDefault();const id=aab.dataset.aa,a=aff.find(x=>x[0]===id),fig=aab.closest(".aa"),av=fig.querySelector("img.avant").currentSrc||fig.querySelector("img.avant").src,ap=univ("affiches/"+id);
+    const ims=aab.dataset.v==="avant"?[av,ap]:aab.dataset.v==="apres"?[ap,av]:[av,ap];ouvrirVisio(`${a?a[1]:""}, avant et après`,ims,aab.dataset.v==="deux"?"duo":"",0);return}
   // une vidéo passe de la page à la fenêtre flottante
   const gv=e.target.closest("[data-grandvid]");
   if(gv){e.preventDefault();const v=gv.parentElement.querySelector("video");if(v)ouvrirVideo(v,gv.dataset.titre,gv.dataset.ytl);return}
@@ -3322,27 +3676,21 @@ document.addEventListener("keydown",e=>{
 
 /* ---------- la navigation ---------- */
 const trait=(c)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${c}</svg>`,DOUX='fill="currentColor" fill-opacity=".16"';
-const IM={
-  maison:trait(`<path ${DOUX} d="M4 10.4 11.1 4.3a1.4 1.4 0 0 1 1.8 0L20 10.4V19a1.7 1.7 0 0 1-1.7 1.7H5.7A1.7 1.7 0 0 1 4 19z"/><path d="M9.6 20.7v-5a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v5"/>`),
-  film:trait(`<rect ${DOUX} x="3" y="4" width="18" height="16" rx="3.4"/><path d="M7.6 4v16M16.4 4v16M3 9.3h4.6M3 14.7h4.6M16.4 9.3H21M16.4 14.7H21"/>`),
-  piles:trait(`<rect ${DOUX} x="7" y="7" width="13.5" height="13.5" rx="3.2"/><path d="M3.5 15.8V6.6a3.1 3.1 0 0 1 3.1-3.1h9.2"/>`),
-  eclat:trait(`<path ${DOUX} d="M10.2 3.4c.7 3.9 2.4 5.6 6.3 6.3-3.9.7-5.6 2.4-6.3 6.3-.7-3.9-2.4-5.6-6.3-6.3 3.9-.7 5.6-2.4 6.3-6.3z"/><path d="M17.9 14.6c.3 1.7 1.1 2.5 2.8 2.8-1.7.3-2.5 1.1-2.8 2.8-.3-1.7-1.1-2.5-2.8-2.8 1.7-.3 2.5-1.1 2.8-2.8z"/>`),
-  profil:trait(`<circle ${DOUX} cx="12" cy="12" r="9.3"/><circle cx="12" cy="9.8" r="3.1"/><path d="M6.4 18.4a6.6 6.6 0 0 1 11.2 0"/>`),
-  bulle:trait(`<path ${DOUX} d="M12 3.9c4.7 0 8.4 3.1 8.4 7.1s-3.7 7.1-8.4 7.1c-.9 0-1.8-.1-2.6-.3L4.9 19.9l1.1-3.7C4.5 14.9 3.6 13 3.6 11c0-4 3.7-7.1 8.4-7.1z"/>`)};
-const MENU=[["#/","Accueil",IM.maison],["#/travaux","Mes travaux",IM.film,"Travaux"],["#/collections","Collections et playlists",IM.piles,'Collections<span class="et"> et playlists</span>'],["#/univers","Mon univers",IM.eclat,"Univers"],["#/a-propos","À propos",IM.profil],["#/contact","Contact",IM.bulle]];
-IM.cadre=trait(`<rect ${DOUX} x="5" y="2.8" width="14" height="18.4" rx="2.9"/><path d="m5.5 16.4 3.6-3.4a1.1 1.1 0 0 1 1.5 0l2.3 2.2 1.4-1.3a1.1 1.1 0 0 1 1.5 0l2.7 2.5"/><circle cx="14.7" cy="7.9" r="1.4"/>`);
-IM.ecran=trait(`<rect ${DOUX} x="2.5" y="3.8" width="19" height="13.2" rx="2.8"/><path d="M8.6 20.6h6.8M12 17v3.6"/>`);
-IM.globe=trait(`<circle ${DOUX} cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.7 3.9 5.9 3.9 9.5s-1.3 6.8-3.9 9.5c-2.6-2.7-3.9-5.9-3.9-9.5S9.4 5.2 12 2.5z"/>`);
-IM.claquette=trait(`<path ${DOUX} d="M3.5 10h17v9a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/><path d="m3.2 9.6 16.4-4.4-.8-3-16.4 4.4zM7.4 4.8l2.7 3.6M12.5 3.4l2.7 3.6"/>`);
+const IM={maison:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width=".8" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3.1 2.9 11.2h2.4v8.4c0 .8.6 1.4 1.4 1.4h3.5v-5.6c0-.4.3-.7.7-.7h2.2c.4 0 .7.3.7.7V21h3.5c.8 0 1.4-.6 1.4-1.4v-8.4h2.4z"/></svg>',film:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width=".8" stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd"><path d="M6 4.6h12a3.4 3.4 0 0 1 3.4 3.4v8a3.4 3.4 0 0 1-3.4 3.4H6A3.4 3.4 0 0 1 2.6 16V8A3.4 3.4 0 0 1 6 4.6zm4 3.9v7l5.8-3.5z"/></svg>',piles:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width=".8" stroke-linejoin="round" stroke-linecap="round"><rect x="2.8" y="8.6" width="18.4" height="12.2" rx="3"/><path fill="none" stroke-width="1.9" d="M5.6 5.6h12.8M8 2.9h8"/></svg>',eclat:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width=".8" stroke-linejoin="round" stroke-linecap="round"><path d="M9.6 4.2c.8 4.3 2.6 6.1 6.9 6.9-4.3.8-6.1 2.6-6.9 6.9-.8-4.3-2.6-6.1-6.9-6.9 4.3-.8 6.1-2.6 6.9-6.9z"/><path d="M18 2.6c.4 1.9 1.2 2.7 3.1 3.1-1.9.4-2.7 1.2-3.1 3.1-.4-1.9-1.2-2.7-3.1-3.1 1.9-.4 2.7-1.2 3.1-3.1zM18.2 15.6c.3 1.5.9 2.1 2.4 2.4-1.5.3-2.1.9-2.4 2.4-.3-1.5-.9-2.1-2.4-2.4 1.5-.3 2.1-.9 2.4-2.4z"/></svg>',profil:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width=".8" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="7.9" r="4.2"/><path d="M4.2 20.6c0-4.1 3.5-6.8 7.8-6.8s7.8 2.7 7.8 6.8z"/></svg>',bulle:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width=".8" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3.4c5.1 0 9.1 3.4 9.1 7.7s-4 7.7-9.1 7.7c-1 0-2-.1-2.9-.4l-4.8 2.3 1.3-4.1C4.2 15 2.9 13.2 2.9 11.1c0-4.3 4-7.7 9.1-7.7z"/></svg>'};
+const MENU=[["#/","Accueil",IM.maison],["#/travaux","Mes travaux",IM.film,"Mes travaux"],["#/collections","Collections et playlists",IM.piles,'Collections<span class="et"> et playlists</span>'],["#/univers","Mon univers",IM.eclat,"Mon univers"],["#/a-propos","À propos",IM.profil],["#/contact","Contact",IM.bulle]];
+IM.cadre='<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width=".8" stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd"><path d="M8 2.6h8a3 3 0 0 1 3 3v12.8a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V5.6a3 3 0 0 1 3-3zm-.9 15.9h9.8l-3.2-4.4-2.3 2.8-1.6-1.8zM14.6 6.4a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2z"/></svg>';
+IM.ecran='<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width=".8" stroke-linejoin="round" stroke-linecap="round"><rect x="2.4" y="3.6" width="19.2" height="13.4" rx="2.8"/><path fill="none" stroke-width="1.9" d="M8.4 20.6h7.2M12 17v3.4"/></svg>';
+IM.globe='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3"/><path d="M2.7 12h18.6M12 2.7c2.5 2.6 3.8 5.7 3.8 9.3s-1.3 6.7-3.8 9.3c-2.5-2.6-3.8-5.7-3.8-9.3s1.3-6.7 3.8-9.3z"/></svg>';
+IM.claquette='<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width=".8" stroke-linejoin="round" stroke-linecap="round"><path d="M3.3 10.2h17.4v8.6a2.2 2.2 0 0 1-2.2 2.2H5.5a2.2 2.2 0 0 1-2.2-2.2z"/><path d="m3 9 16.6-4.5-.7-2.6c-.2-.6-.8-1-1.4-.8L3.6 4.9c-.6.2-1 .8-.8 1.4z"/></svg>';
 /* Trois mondes, comme Disney+ : « Pour vous » (l'accueil), « Mes réalisations », « Mon univers ». Chaque monde a sa propre barre. */
 /* une pastille par idée : « Affiche » disparaît si « Affiches » est déjà là, « Analyse » si « Analyse de discours » l'est */
 const racinePuce=s=>String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").split(/[\s'-]+/).map(m=>m.replace(/(s|x)$/,"")).join(" ").trim();
 function pucesUniques(l){const r=[],k=[];for(const x of l.filter(Boolean)){const c=racinePuce(x);if(k.some(y=>y===c||(c.length>3&&y.startsWith(c+" "))||(y.length>3&&c.startsWith(y+" "))))continue;
   const i=k.findIndex(y=>y.length>3&&c.startsWith(y+" "));k.push(c);r.push(x)}return r}
 const MENUS={
- pour:[["#/","Accueil",IM.maison,"Accueil"],["#/travaux","Mes réalisations",IM.film,"Réalisations"],["#/collections","Collections et playlists",IM.piles,'Collections<br> et playlists',"tel"],["#/univers","Mon univers",IM.eclat,"Univers"],["#/contact","Contact",IM.bulle]],
- real:[["#/","Accueil",IM.maison,"Accueil"],["#/travaux","Mes travaux",IM.film,"Travaux"],["#/collections","Collections et playlists",IM.piles,'Collections<br> et playlists'],["#/a-propos","À propos",IM.profil],["#/contact","Contact",IM.bulle]],
- univ:[["#/","Accueil",IM.maison,"Accueil"],["#/univers","Mon univers",IM.eclat,"Univers"],["#/univers/affiches","Affiches",IM.cadre],["#/univers/studios","Studios",IM.claquette],["#/univers/fonds","Fonds d'écran",IM.ecran,"Fonds"],["#/univers/sites","Sites",IM.globe]]};
+ pour:[["#/","Accueil",IM.maison,"Accueil"],["#/travaux","Mes réalisations",IM.film,"Mes réalisations"],["#/collections","Collections et playlists",IM.piles,'Collections<br> et playlists',"tel"],["#/univers","Mon univers",IM.eclat,"Mon univers"],["#/contact","Contact",IM.bulle]],
+ real:[["#/","Accueil",IM.maison,"Accueil"],["#/travaux","Mes travaux",IM.film,"Mes travaux"],["#/collections","Collections et playlists",IM.piles,'Collections<br> et playlists'],["#/a-propos","À propos",IM.profil],["#/contact","Contact",IM.bulle]],
+ univ:[["#/","Accueil",IM.maison,"Accueil"],["#/univers","Mon univers",IM.eclat,"Mon univers"],["#/univers/affiches","Affiches",IM.cadre],["#/univers/studios","Studios",IM.claquette],["#/univers/fonds","Fonds d'écran",IM.ecran,"Fonds"],["#/univers/sites","Sites",IM.globe]]};
 let mondeMenu="";
 function poserMenu(m){
   if(m===mondeMenu)return;mondeMenu=m;const nav=$("#menu");
@@ -3410,7 +3758,7 @@ function route(){
   const actif=!a?"#/":a==="site"?"#/univers/sites":a==="studio"?"#/univers/studios":a==="univers"?(b&&$(`#menu a[href="#/univers/${b}"]`)?"#/univers/"+b:"#/univers"):a==="t"||a==="travaux"||a==="marque"||a==="logiciel"?"#/travaux":/^(collection|playlist)s?$/.test(a)?"#/collections":"#/"+a;
   $$("#menu a:not(.marque)").forEach(x=>x.classList.toggle("actif",x.getAttribute("href")===actif));if(typeof placerLentille==="function")placerLentille();
   $("#menu").classList.remove("ouvert");
-  if(!a)arret=animerHeros();
+  if(!a||(/^(univers|studio)$/.test(a)&&$("#heros")))arret=animerHeros();
   animerEnVrai();
   if(!window.__spot){window.__spot=1;addEventListener("pointermove",e=>{const c=e.target.closest&&e.target.closest(".pa-spot");if(!c)return;const r=c.getBoundingClientRect();c.style.setProperty("--mx",e.clientX-r.left+"px");c.style.setProperty("--my",e.clientY-r.top+"px")},{passive:true})}
   if(a==="travaux"){remplirTravaux(b||"");$$("#filtres button").forEach(x=>x.onclick=()=>remplirTravaux(x.dataset.f))}
@@ -3484,8 +3832,10 @@ function lumPoint(x,y){
     if(s.backgroundImage.includes("gradient")){const cs=(s.backgroundImage.match(/rgba?\([^)]+\)/g)||[]).map(lumCouleur).filter(v=>v!=null);if(cs.length)return cs.reduce((a,b)=>a+b)/cs.length}
     const l=lumCouleur(s.backgroundColor);if(l!=null)return l}
   return repli}
-function verreSur(el,suit){const r=el.getBoundingClientRect();if(!r.width)return;const y=Math.min(innerHeight-2,Math.max(2,r.top+r.height/2)),l=[.18,.5,.82].map(k=>lumPoint(r.left+r.width*k,y)).reduce((a,b)=>a+b)/3;
-  const clair=el.classList.contains("verre-clair"),n=clair?l>.45:l>.6;[el,...suit].forEach(e=>e.classList.toggle("verre-clair",n))}
+function verreSur(el,suit){const r=el.getBoundingClientRect();if(!r.width)return;
+  /* 14 novembre : décision à la majorité, 27 points sur toute la barre (une pastille rose ou une affiche claire ne fait plus basculer le texte) */
+  let clairs=0,total=0;for(const ky of [.25,.5,.75]){const y=Math.min(innerHeight-2,Math.max(2,r.top+r.height*ky));for(let i=0;i<9;i++){const l=lumPoint(r.left+r.width*(.06+i*.11),y);total++;if(l>.55)clairs++}}
+  const f=clairs/total,clair=el.classList.contains("verre-clair"),n=clair?f>.4:f>.6;[el,...suit].forEach(e=>e.classList.toggle("verre-clair",n))}
 let fondAttente=0;function lireFond(){if(fondAttente)return;fondAttente=setTimeout(()=>{fondAttente=0;const b=$("#barre"),m=$("#menu");if(m.parentNode===b)verreSur(b,[m]);else{verreSur(b,[]);verreSur(m,[])}},120)}
 addEventListener("scroll",lireFond,{passive:true});addEventListener("resize",lireFond);addEventListener("hashchange",()=>{setTimeout(lireFond,350);setTimeout(lireFond,1100)});[500,1300,2600].forEach(d=>setTimeout(lireFond,d));addEventListener("load",lireFond);
 addEventListener("scroll",barreBas,{passive:true});barreBas();
@@ -3500,6 +3850,7 @@ let aurAttente=0;const aurore=()=>{if(aurAttente)return;aurAttente=requestAnimat
 addEventListener("scroll",aurore,{passive:true});addEventListener("hashchange",()=>setTimeout(aurore,60));aurore();
 addEventListener("hashchange",()=>$("#barre").classList.remove("cache"));
 /* Les papillons : ceux des maquettes d'octobre, dans toutes leurs matières. Chacun bat des ailes : les deux moitiés du logo se resserrent et s'ouvrent. */
+const PAP_V11=["p3-06","p3-00","p3-02","p3-08","p3-03","p2-ch","g-or","A"].map(n=>{const i=new Image();i.src=`img/logo/papillons/${n}.webp`;return i});
 const PAP=["p3-06","p3-00","b-bleu-or","p3-08","p3-03","p2-ch","g-or","A"].map(n=>{const i=new Image();i.src=`img/logo/papillons/${n}.webp`;return i});
 /* 13 novembre : les papillons irisés de la planche détourée. « Mon univers » a son papillon multicolore ;
    chaque studio a le sien, et le logo de la barre comme les papillons qui volent changent avec le monde ouvert. */
@@ -3524,12 +3875,12 @@ function essaim(){const c=document.createElement("canvas");c.id="envol";document
   const b=Array.from({length:n},(_,k)=>{const a=k/n*6.283+Math.random()*.5;return{x:w/2,y:h/2,cap:a,v:520+Math.random()*420,s:34+Math.random()*58,ph:Math.random()*6.28,f:15+Math.random()*9,im:k%PAP.length,t:Math.random()*9,fin:1.7+Math.random()*1.1}});
   let t0=0,der=0;(function pas(now){t0=t0||now;const T=(now-t0)/1000,dt=Math.min(.05,(now-der)/1000||.016);der=now;x.setTransform(d,0,0,d,0,0);x.clearRect(0,0,w,h);let vivant=false;
     for(const p of b){if(T>p.fin)continue;vivant=true;p.cap+=Math.sin(now/230+p.t)*.045;const v=p.v*Math.max(.2,1-T/1.3);p.x+=Math.cos(p.cap)*v*dt;p.y+=Math.sin(p.cap)*v*dt;p.ph+=dt*p.f;
-      x.globalAlpha=Math.min(1,T*8)*Math.min(1,(p.fin-T)/.5);battre(x,papJeu[p.im%papJeu.length],p.x,p.y,p.cap,p.s*Math.min(1,.45+T*2.2),p.ph)}
+      x.globalAlpha=Math.min(1,T*8)*Math.min(1,(p.fin-T)/.5);battre(x,PAP_V11[p.im%PAP_V11.length],p.x,p.y,p.cap,p.s*Math.min(1,.45+T*2.2),p.ph)}
     x.globalAlpha=1;if(vivant&&T<3.2)requestAnimationFrame(pas);else c.remove()})(performance.now())}
 /* Sur l'accueil : cinq papillons restent et volent lentement derrière la page ; ils tournent autour de la souris quand elle passe près d'eux. */
 const volant=(function(){const c=$("#vol");if(!c||matchMedia("(prefers-reduced-motion: reduce)").matches)return{on(){}};
   const x=c.getContext("2d");let actif=false,der=0,souris={x:-999,y:-999};addEventListener("pointermove",e=>{souris={x:e.clientX,y:e.clientY}},{passive:true});
-  const b=Array.from({length:innerWidth<700?3:5},(_,k)=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,cap:Math.random()*6.28,v:34+Math.random()*30,s:30+Math.random()*30,ph:Math.random()*6.28,f:6+Math.random()*4,im:(k*3+1)%PAP.length,t:Math.random()*99}));
+  const b=Array.from({length:innerWidth<700?2:3},(_,k)=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,cap:Math.random()*6.28,v:34+Math.random()*30,s:30+Math.random()*30,ph:Math.random()*6.28,f:6+Math.random()*4,im:(k*3+1)%PAP.length,t:Math.random()*99}));
   function pas(now){if(!actif)return;requestAnimationFrame(pas);if(document.hidden||now-der<30)return;const dt=Math.min(.06,(now-der)/1000);der=now;const{d,w,h}=taille(c);x.setTransform(d,0,0,d,0,0);x.clearRect(0,0,w,h);
     for(const p of b){const dx=souris.x-p.x,dy=souris.y-p.y,di=Math.hypot(dx,dy);let veut=p.cap+Math.sin(now/1300+p.t)*.6;if(di<280){const a=p.t+now/900;veut=Math.atan2(souris.y+Math.sin(a*1.3)*90-p.y,souris.x+Math.cos(a)*110-p.x)}
       p.cap+=(((veut-p.cap+Math.PI*3)%(Math.PI*2))-Math.PI)*.04;p.x+=Math.cos(p.cap)*p.v*dt;p.y+=Math.sin(p.cap)*p.v*dt;p.ph+=dt*p.f;
@@ -3543,6 +3894,11 @@ const volant=(function(){const c=$("#vol");if(!c||matchMedia("(prefers-reduced-m
   if(document.readyState==="complete")setTimeout(finir,500);else addEventListener("load",()=>setTimeout(finir,350));
   setTimeout(finir,4500)})();
 version.init();route();
+
+/* 14 novembre : un bouton « Agrandir » sur chaque image de Mon univers (affiches, fonds d'écran…) */
+const SVG_AGR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>';
+new MutationObserver(()=>{document.querySelectorAll(".holo[data-g]:not(.a-agr)").forEach(h=>{h.classList.add("a-agr");const b=document.createElement("button");b.type="button";b.className="agrandir";b.setAttribute("aria-label","Agrandir en plein écran");b.innerHTML=SVG_AGR;h.appendChild(b)})}).observe(document.body,{childList:true,subtree:true});
+document.addEventListener("click",e=>{const b=e.target.closest(".holo .agrandir");if(!b)return;setTimeout(()=>{if(!document.fullscreenElement){const f=document.querySelector("#visio .fenetre");(f.requestFullscreen||f.webkitRequestFullscreen||function(){}).call(f)}},60)},true);
 </script>
 </body>
 </html>
