@@ -2344,6 +2344,64 @@ html body #barre::before,html body .verre-coeur{inset:0;border-radius:inherit;-w
 .u-bandeau-fond img{max-height:64px}
 @media(max-width:700px){.u-cats-6{grid-template-columns:repeat(2,minmax(0,1fr))}.u-bandeau{min-height:340px}.u-bandeau-fond{opacity:.16}}
 @media(max-width:700px){.u-cats-6 .u-cat-titre{font-size:16px;padding:0 10px 18px}.u-cats-6 .u-cat-play{width:26px;height:26px;right:8px;bottom:8px}.u-cats-6 .u-cat-n{left:10px;bottom:8px;font-size:11px}}
+/* 14 nov : plus d'ombre sur les affiches sans texte (elle cachait les logos) ; survol = contour et lumière */
+.affiche:not(:has(.txt))::before{display:none!important}
+.vignette .affiche{transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s}
+.vignette:hover .affiche,.vignette:focus-visible .affiche{transform:translateY(-4px) scale(1.02);box-shadow:0 0 0 2px rgba(255,255,255,.95),0 0 26px 6px rgba(140,185,255,.42),0 0 60px 10px rgba(120,160,255,.18),0 24px 40px -20px rgba(0,0,0,.85)!important}
+/* 14 nov : barre, flou plein et liseré neuf « filet de lumière » (façon Liquid Glass) */
+@property --gl{syntax:"<angle>";inherits:false;initial-value:0deg}
+@media (min-width:821px){
+html body #barre::before,html body.sur-clair #barre::before{inset:0;border-radius:999px;clip-path:none;-webkit-clip-path:none;-webkit-mask:none;mask:none;-webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);z-index:-2}
+html body #barre>.verre-coeur{display:none}
+html body #barre::after,html body.sur-clair #barre::after{content:"";position:absolute;inset:0;border-radius:999px;padding:1.4px;pointer-events:none;z-index:3;
+ background:conic-gradient(from var(--gl),rgba(255,255,255,.95) 0deg,rgba(255,255,255,.14) 40deg,rgba(150,195,255,.55) 95deg,rgba(255,255,255,.08) 150deg,rgba(255,255,255,.7) 180deg,rgba(255,255,255,.1) 220deg,rgba(255,214,150,.6) 275deg,rgba(255,255,255,.14) 320deg,rgba(255,255,255,.95) 360deg);
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+ box-shadow:none;filter:drop-shadow(0 0 3px rgba(255,255,255,.35));animation:glTour 18s linear infinite}
+html body #barre{box-shadow:inset 0 1px 1px rgba(255,255,255,.35),inset 0 -1px 1px rgba(255,255,255,.12),inset 0 0 18px rgba(255,255,255,.06),0 14px 36px -12px rgba(0,0,0,.5),0 3px 10px -3px rgba(0,0,0,.2)}
+}
+@keyframes glTour{to{--gl:360deg}}
+@media (prefers-reduced-motion:reduce){html body #barre::after{animation:none}}
+html body #barre .marque span,html body #menu a,html body #barre .outils .saut{text-shadow:0 1px 3px rgba(0,0,0,.42),0 0 12px rgba(0,0,0,.2)}
+html body #barre.verre-clair .marque span,html body #menu.verre-clair a,html body #barre.verre-clair .outils .saut{text-shadow:0 1px 2px rgba(255,255,255,.6),0 0 12px rgba(255,255,255,.35)}
+/* 14 nov : le lecteur de Zefil pour les vidéos YouTube (Agrandir, Largeur, Hauteur, Plein écran, Voir sur YouTube) */
+#visio.ytm .fenetre{width:min(1500px,100%);height:100%;aspect-ratio:auto;background:linear-gradient(150deg,var(--yt1,#0b1030),var(--yt2,#24306e))!important;color:#fff}
+#visio.ytm .zoom{display:flex}#visio.ytm .zoom [data-z],#visio.ytm .zv{display:none!important}
+#visio.ytm .scene img,#visio.ytm .scene video,#visio.ytm .fl,#visio.ytm .miniatures{display:none!important}
+#visio.ytm .scene{display:flex;align-items:center;justify-content:center;overflow:auto;background:transparent}
+#visio.ytm .yt-ifr{height:calc(100% - 32px);aspect-ratio:16/9;max-width:calc(100% - 32px);border-radius:16px;overflow:hidden;background:#000;box-shadow:0 0 0 1px rgba(255,255,255,.14),0 40px 90px -30px rgba(0,0,0,.9);flex:none}
+#visio.ytm.yt-larg .scene{align-items:flex-start}#visio.ytm.yt-larg .yt-ifr{width:calc(100% - 32px);height:auto;max-width:none;margin:16px 0}
+#visio.ytm .yt-ifr iframe{width:100%;height:100%;border:0;display:block}#visio.ytm .yt-ifr .vp-hors{display:block;width:100%;height:100%}#visio.ytm .yt-ifr .vp-hors img{display:block!important;width:100%;height:100%;object-fit:cover}
+#visio.ytm .ajuste,#visio.ytm .rond{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.22)}#visio.ytm .ajuste.on{background:#fff;color:var(--yt1,#0b1030)}
+#visio.ytm .yt-haut{display:inline-flex;align-items:center;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);text-decoration:none;color:#fff}
+#visio.ytm .titre small{opacity:.7}
+#visio.ytm .yt-ifr,#visio.ytm.yt-larg .yt-ifr{position:relative;aspect-ratio:auto;max-width:none;max-height:none}
+#visio.ytm .yt-ifr .vp-hors{position:absolute;inset:0;display:block}#visio.ytm .yt-ifr .vp-hors img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#visio.ytm .yt-ifr .vp-hors-t{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);white-space:nowrap}
+@media (max-width:820px){#visio.ytm .yt-ifr .vp-hors-t{white-space:normal;width:86%;text-align:center}}
+/* 14 nov : playlists vidéo par studio (montage de quatre images + vrai logo) */
+.pl-grille{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.pl-tuile{position:relative;display:block;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:linear-gradient(150deg,var(--p1),var(--p2));color:#fff;text-decoration:none;isolation:isolate;transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
+.pl-mont{position:absolute;inset:-6%;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:4px;transform:rotate(-6deg) scale(1.08);opacity:.62;transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .5s}
+.pl-mont i{background:center/cover;border-radius:8px}
+.pl-voile{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 42%,transparent 0,color-mix(in srgb,var(--p1) 55%,transparent) 55%,var(--p1) 100%),linear-gradient(0deg,var(--p1) 0,transparent 55%)}
+.pl-logo{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);max-width:52%;max-height:34%;object-fit:contain;filter:drop-shadow(0 6px 22px rgba(0,0,0,.6));transition:transform .5s}
+.pl-pied{position:absolute;left:18px;right:18px;bottom:14px;display:flex;flex-direction:column;gap:2px}.pl-pied b{font-size:17px;letter-spacing:-.01em}.pl-pied small{opacity:.78;font-size:12.5px}
+.pl-tuile .u-cat-play{position:absolute;right:16px;bottom:16px}
+.pl-tuile:hover,.pl-tuile:focus-visible{transform:translateY(-4px) scale(1.02);box-shadow:0 0 0 2px rgba(255,255,255,.9),0 0 30px 6px color-mix(in srgb,var(--p2) 60%,transparent)}
+.pl-tuile:hover .pl-mont{transform:rotate(-3deg) scale(1.14);opacity:.8}.pl-tuile:hover .pl-logo{transform:translate(-50%,-54%) scale(1.06)}
+@media (max-width:820px){.pl-grille{grid-template-columns:minmax(0,1fr);gap:12px}}
+.a-logo .titre-rangee h2{line-height:0}.h2-logo{display:block;height:46px;width:auto;max-width:260px;object-fit:contain;object-position:left center;filter:drop-shadow(0 3px 12px rgba(0,0,0,.45))}
+@media (max-width:820px){.h2-logo{height:34px;max-width:200px}}
+.affiche.u-poster::before{display:none}
+.heros-u .diap.u-scene .art{filter:none;transform:none;background-size:cover;background-position:center 30%}
+.heros-u .diap.u-scene::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(4,7,20,.82) 0%,rgba(4,7,20,.5) 34%,rgba(4,7,20,0) 62%),linear-gradient(0deg,rgba(4,7,20,.55),transparent 40%)}
+.heros-u .contenu img.u-logo-film{max-height:110px;max-width:min(380px,72%);width:auto;object-fit:contain;object-position:left bottom;filter:drop-shadow(0 6px 18px rgba(0,0,0,.65))}
+.heros-u .u-carte{position:absolute;z-index:3;right:6%;top:50%;transform:translateY(-50%) rotate(2deg);height:72%;aspect-ratio:2/3;border-radius:16px;overflow:hidden;box-shadow:0 0 0 1.5px rgba(255,255,255,.75),0 28px 60px -18px rgba(0,0,0,.85);transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.heros-u .u-carte img{width:100%;height:100%;object-fit:cover;display:block}
+.heros-u .u-carte small{position:absolute;left:50%;top:10px;transform:translateX(-50%);padding:5px 12px;border-radius:999px;background:rgba(10,14,30,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.heros-u .u-carte:hover{transform:translateY(-50%) rotate(0deg) scale(1.03);box-shadow:0 0 0 2px #fff,0 0 40px 4px rgba(170,200,255,.35),0 28px 60px -18px rgba(0,0,0,.85)}
+@media (max-width:760px){.heros-u .u-carte{right:5%;top:8%;transform:rotate(2deg);height:44%}.heros-u .u-carte:hover{transform:rotate(0) scale(1.03)}.heros-u .contenu img.u-logo-film{max-height:70px}}
+@media (max-width:760px){.heros-u .diap.u-scene .u-carte,.heros-u .diap.u-scene .u-logo-film{display:none}.heros-u .diap.u-scene::after{background:linear-gradient(0deg,rgba(4,7,20,.8),rgba(4,7,20,.2) 45%,transparent 60%)}}
 </style>
 </head>
 <body>
@@ -2396,6 +2454,7 @@ html body #barre::before,html body .verre-coeur{inset:0;border-radius:inherit;-w
 <script src="data/v17/documents.js?v=202611121700"></script>
 <script src="data/v17/decors.js?v=202611121700"></script>
 <script src="data/v17/tmdb.js?v=202611131800"></script>
+<script src="data/v17/tmdb-scenes.js?v=202611141200"></script>
 <script>
 "use strict";
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
@@ -2464,7 +2523,8 @@ const MARQUES=[
  {id:"master2",nom:"Master 2",lien:"#/marque/master2",f:t=>t.niveau==="Master 2"},
  {id:"master1",nom:"Master 1",lien:"#/marque/master1",f:t=>t.niveau==="Master 1"},
  {id:"memoire",nom:"Le mémoire",lien:"#/t/memoire-metamorphoses",f:t=>/mémoire/i.test(t.niveau),bg:"img/memoire/fond-hollywood.webp"},
- {id:"stage",nom:"Les stages",lien:"#/marque/stage",f:t=>/stage/i.test(t.niveau)}
+ {id:"stage",nom:"Les stages",lien:"#/marque/stage",f:t=>/stage/i.test(t.niveau)},
+ {id:"mon-univers",nom:"Mon univers",lien:"#/univers",bgk:"marques/01"}
 ];
 
 /* ---------- les images ---------- */
@@ -2578,7 +2638,7 @@ function pageAccueil(){
     <button class="fleche g" aria-label="Précédent">${I.g}</button><button class="fleche d" aria-label="Suivant">${I.d}</button></div>
     <div class="points">${heros.map((h,i)=>`<button aria-label="${echap(h.t.titre)}" class="${i?"":"on"}"></button>`).join("")}</div></div>
   <section class="section apparait"><h2 class="cache">Les grandes familles de travaux</h2><div class="marques">${MARQUES.map(m=>{const ex=m.f?TRAVAUX.find(m.f):null;
-    return `<a class="marq" href="${m.lien}" aria-label="${m.nom}"><span class="bg" style="background-image:url('${m.bg||(ex?vis(ex):univ("fonds/f01"))}')"></span><img class="l" src="img/logos/marque-${m.id}.png" alt="${m.nom}"></a>`}).join("")}</div></section>
+    return `<a class="marq" href="${m.lien}" aria-label="${m.nom}"><span class="bg" style="background-image:url('${m.bg||(m.bgk?univ(m.bgk):ex?vis(ex):univ("fonds/f01"))}')"></span><img class="l" src="img/logos/marque-${m.id}.png" alt="${m.nom}"></a>`}).join("")}</div></section>
   ${rangee("Les indispensables",liste(INDISPENSABLES),{tops:true,chapeau:"Les dix travaux qui résument le mieux mon Master, du mémoire au stage."})}
   ${TOPS.map(o=>rangee(o.nom,liste(o.s),{tops:true,chapeau:o.d})).join("")}
   ${railAffiches("Les playlists","Des parcours tout prêts, selon qui vous êtes.",PLAYLISTS.map(carteListe))}
@@ -3023,7 +3083,7 @@ const LR=k=>`img/univers/marques-reelles/blanc/${k}.png`;
 const MAISONS=[
  {k:"disney",nom:"Disney",logo:"disney",c:["#0b1d5c","#1f6fd1"],d:"Walt Disney Pictures, Pixar, Marvel, 20th Century, Disney+, Hulu et ABC : tout ce qui appartient au groupe Disney.",
   m:[["walt-disney-pictures","Walt Disney Pictures",/Guisney/,[0,1]],["pixar","Pixar",/Gixar/,[2]],["marvel","Marvel Studios",/Garvel/],["twentieth","20th Century Studios",null,[],["a04","a29","f03"]],["disney-plus","Disney+",/Guigui\+/,[3]],["hulu","Hulu",/gulu/],["abc","ABC",/\bgbc\b/]]},
- {k:"warner",nom:"Warner Bros.",logo:"warner",c:["#08204a","#c9a227"],d:"Warner Bros., HBO, Max, DC et Discovery.",
+ {k:"warner",nom:"Warner Bros.",logo:"wbd",c:["#08204a","#c9a227"],d:"Warner Bros., HBO, Max, DC et Discovery.",
   m:[["wbd","Warner Bros.",/\bWG\b/,[4,6]],["hbo","HBO",/GBO/],["max","Max",/Guiguimax|Guimax/,[8]],["dc","DC Studios",null,[7]],["wb-animation","Warner Bros. Animation",null,[5]],["discovery-plus","discovery+",/gdiscovery/]]},
  {k:"paramount",nom:"Paramount",logo:"paramount",c:["#071a3d","#4a7bd6"],d:"Paramount Pictures, Paramount+, CBS, Nickelodeon et le catalogue Republic.",
   m:[["paramount","Paramount Pictures",/Guiguimount(?!\+)/,[17]],["paramount-plus","Paramount+",/Guiguimount\+/],["cbs","CBS",/GBS/],["nickelodeon","Nickelodeon",/gickelodeon/i,[18]],["republic","Republic Pictures",/Republic/,[19]]]},
@@ -3053,21 +3113,21 @@ const coulMarque=(M,k)=>COUL_MARQUE[k]||M.c;
    Titres réécrits proprement, sans prénom. Miniatures dans img/yt. Les trois travaux du Master renvoient à leur page. */
 const YT_CHAINE="https://www.youtube.com/@Portfolio_Guilhem_Mesnier/playlists";
 const YT=[
- {id:"recreations",nom:"Recréations de logos",d:"Des intros de studios recréées image par image en 3D, puis détournées : la lumière, les reflets, le rythme et le son, au plus près de l'original.",v:[
+ {id:"recreations",nom:"Intros de studios recréées en 3D",d:"Des intros de studios recréées image par image en 3D, puis détournées : la lumière, les reflets, le rythme et le son, au plus près de l'original.",v:[
   ["szZGm7tjh60","Disney 100 ans, « Guisney »",41,"walt-disney-pictures"],["EFahueVlqUs","Walt Disney, « Walt Guisney »",32,"walt-disney-pictures"],["P3JxCoYELUQ","Disney, « Guisney »",45,"walt-disney-pictures"],["0yqDyyUtjwU","Disney, l'intro « Guisney »",32,"walt-disney-pictures"],
   ["ut7bQ1BuT7Q","Hollywood Pictures, « Guiguiwood »",12,"walt-disney-pictures"],["zBZ9oQVCaBI","Warner Bros., toutes les intros",57,"wbd"],["vZI2Za7WpWY","Warner Bros. Animation",4,"wb-animation"],["thG80qr7txI","Max, « guimax »",5,"max"],
   ["h7TS0_Wd8KA","Paramount, « Guiguimount »",20,"paramount"],["lXVqTWJmObw","Paramount, l'intro du film Bob Marley",23,"paramount"],["cComvHrwuoo","Republic Pictures",5,"republic"],
   ["YjeQ68WMatQ","Universal Pictures",25,"universal"],["s1bdrstGums","Universal et DreamWorks",62,"dreamworks"],["_VSOUu4Kn5o","Columbia Pictures, « Golumbia »",41,"columbia"],["iEFgjStU_94","Columbia 100 ans, « Golumbia »",32,"columbia"],
   ["N7F_xftPd1g","Sony : Columbia et TriStar",64,"sony"],["uWjw9LoHoGg","MGM, « Metro Guigui Mayer »",15,"amazon-mgm"],["_5UpzEFMGfY","Canal+, « GCanal+ »",5,"canal-plus"],["hn4HaXJYrH0","TF1+, « TFG+ »",7,"tf1"],["7W2v2SlQY3g","Secret Story, « Secret Guigui »",3,"tf1"],["r2e3mK213Uw","Secret Story, le logo de 2024",4,"tf1"]]},
- {id:"showreels",nom:"Showreels",d:"De longs montages qui enchaînent les intros sur une musique : chaque coupe tombe sur le temps, chaque logo a sa transition.",v:[
+ {id:"showreels",nom:"Showreels, les intros en musique",d:"De longs montages qui enchaînent les intros sur une musique : chaque coupe tombe sur le temps, chaque logo a sa transition.",v:[
   ["Y4IE-CwOye0","Mission Impossible Edit",2529],["t5_xAOj_pPI","Hollywood Mix",701],["3NePnEQNdT0","Cinema Edition",1090],["lDT79ixOpGI","Pop Icons Mix",1160],["aeIlkVIR6kc","Danceclub Edit",1314],["FnGTaWvRoyQ","Studios et cinéma, l'aventure",1374],
   ["3jxQyC1Iscc","Rihanna Medley",469],["3uXGzNqXYPY","Bollywood Mix",349],["XDaYbUzqck4","Dance Edit",430],["kOIHwqi3Yw0","Electric Pop Cut",583],["QQAulEVshBg","Intégration dynamique",482]]},
- {id:"compilations",nom:"Compilations",d:"Des séquences plus courtes, chacune sur un thème ou une bande originale de film.",v:[
+ {id:"compilations",nom:"Compilations par thème",d:"Des séquences plus courtes, chacune sur un thème ou une bande originale de film.",v:[
   ["2kSG-sE5L0Y","Pirates des Caraïbes",251],["rK1yoV2vDYE","Captain America 2",248],["5jukoHxPC74","Meg 2 : The Trench",432],["Cpbls3rGMFs","Blue Beetle",384],["zE6l0GXjpbQ","Blue Beetle et The Meg",452],["LxP0s6on-eg","La Casa de Papel et Avengers",430],
   ["aqi1BIJSMPo","Les Mystérieuses Cités d'or",433],["DqAYttRjLLQ","Flashback, années 80 contre années 2020",243],["9ye0xKNpkMU","Rock et électro",145],["U03t6z1B4oo","Électro",145],["zJY5QM702jg","Pirates des Caraïbes 4",251],["WP0DUysNJmE","Les Trois Mousquetaires",158]]},
- {id:"originales",nom:"Créations originales",d:"Des logos et des génériques inventés de A à Z : l'idée, le dessin, l'animation et le son.",v:[
+ {id:"originales",nom:"Logos et génériques inventés",d:"Des logos et des génériques inventés de A à Z : l'idée, le dessin, l'animation et le son.",v:[
   ["gaqULSYFnXY","The Universal-World, ident original",23],["2LKTHk_uOBg","Celestian & Universe, le logo animé",23],["hfR2MVgKbNQ","Celestian & Universe Co., l'identité",6],["9ifWfBgRyTY","Générique d'un documentaire",83]]},
- {id:"showcases",nom:"Portfolios vidéo",d:"Mes affiches, mes fonds d'écran et mes logos montrés en mouvement, et deux grands showcases.",v:[
+ {id:"showcases",nom:"Mes créations en mouvement",d:"Mes affiches, mes fonds d'écran et mes logos montrés en mouvement, et deux grands showcases.",v:[
   ["F0_Rs6mjnjs","Le showcase principal",2211],["rtkCWq8ckds","Le showcase complémentaire",2787],["UU4H3-K4h_g","Affiches, fonds et logos, version pop",121],["lVD9o6tDBrk","Affiches, fonds et logos, version instrumentale",118],["p_aV8UqX-Ts","Affiches et fonds d'écran, version fun",80],
   ["W1vhWlAcOBw","Images faites avec l'IA (2024)",165],["j7tsqXuuSeI","Bande-annonce : intros revisitées",481],["GB9VvSwIheI","Étude de cas : le Dance Edit expliqué",963]]},
  {id:"universitaires",nom:"Réalisations universitaires",d:"Podcasts et vidéos faits pendant la licence d'histoire et le Master.",v:[
@@ -3077,6 +3137,15 @@ const YT=[
 const duree=s=>s>=3600?`${Math.floor(s/3600)} h ${String(Math.floor(s%3600/60)).padStart(2,"0")}`:`${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`;
 const carteYT=(v,cat)=>{const[id,ti,d,mq,lien]=v;return `<a class="vid" href="${lien||"https://www.youtube.com/watch?v="+id}" ${lien?"":`data-ytv="${id}" data-titre="${echap(ti)}" target="_blank" rel="noopener"`} aria-label="${echap(ti)}"><span class="vid-im"><img src="img/yt/${id}.webp" alt="" loading="lazy"><span class="vid-d">${duree(d)}</span><span class="vid-play">${I.lecture||"▶"}</span></span><span class="vid-t"><b>${echap(ti)}</b><small>${lien?"Voir le travail":echap(cat)}</small></span></a>`};
 const railYT=(L,{titre=L.nom,lien=`#/univers/v-${L.id}`,liste=L.v}={})=>liste.length?`<section class="section rail-section apparait"><div class="titre-rangee"><h2>${titre}</h2><span class="rg-outils"><a href="${lien}">Tout voir</a></span></div><p class="chapeau">${L.d}</p><div class="rail"><button class="fleche g" aria-label="Précédent">${I.g}</button><div class="piste vid-piste">${liste.map(v=>carteYT(v,L.nom)).join("")}</div><button class="fleche d" aria-label="Suivant">${I.d}</button></div></section>`:"";
+const PLYT=[["pl-disney","Disney et ses studios",["walt-disney-pictures"],"walt-disney-pictures","#06123a","#1d4fb0","Le château, Hollywood Pictures, les cent ans de Disney : toutes mes intros autour de la maison de Mickey."],
+ ["pl-warner","Warner Bros., Max et DC",["wbd","wb-animation","max"],"wbd","#071226","#1b4a8a","Le bouclier Warner, ses déclinaisons animées et la plateforme Max."],
+ ["pl-paramount","Paramount et Republic",["paramount","republic"],"paramount","#04122e","#1f5bd1","La montagne étoilée de Paramount, et l'aigle de Republic Pictures."],
+ ["pl-universal","Universal et DreamWorks",["universal","dreamworks"],"universal","#020a18","#1d3b6b","Le globe d'Universal et le garçon sur la lune de DreamWorks."],
+ ["pl-sony","Sony et Columbia",["columbia","sony"],"columbia","#140a04","#7a4a14","La dame à la torche de Columbia, et les intros de Sony Pictures."],
+ ["pl-tele","Les chaînes de télévision",["tf1","canal-plus","amazon-mgm"],"tf1","#160410","#7a1240","Les habillages de TF1, de Canal+ et d'Amazon MGM refaits à ma façon."]
+].map(([id,nom,mks,lg,c1,c2,d])=>{const vu=new Set(),v=[];YT.forEach(L=>L.v.forEach(x=>{if(mks.includes(x[3])&&!vu.has(x[0])){vu.add(x[0]);v.push(x)}}));return {id,nom,mks,lg,c:[c1,c2],d,v}}).filter(p=>p.v.length);
+const tuilePL=p=>`<a class="pl-tuile" href="#/univers/v-${p.id}" style="--p1:${p.c[0]};--p2:${p.c[1]}" aria-label="${echap(p.nom)}"><span class="pl-mont">${[0,1,2,3].map(k=>{const x=p.v[k%p.v.length];return `<i style="background-image:url('img/yt/${x[0]}.webp')"></i>`}).join("")}</span><span class="pl-voile"></span><img class="pl-logo" src="img/univers/marques-reelles/blanc/${p.lg}.png" alt=""><span class="pl-pied"><b>${p.nom}</b><small>${p.v.length} vidéo${p.v.length>1?"s":""} · Playlist</small></span><span class="u-cat-play">${I.lecture||"▶"}</span></a>`;
+const railPL=()=>`<section class="section apparait"><div class="titre-rangee"><h2>Les playlists vidéo</h2></div><p class="chapeau">Toutes mes vidéos rangées par studio : on choisit une maison, on regarde tout d'un coup.</p><div class="pl-grille">${PLYT.map(tuilePL).join("")}</div></section>`;
 const videosMarque=mks=>YT[0].v.filter(v=>mks.includes(v[3]));
 /* Les couleurs des marques (au survol, la tuile prend la couleur de la marque, comme sur Paramount+) */
 const MQC={"walt-disney-pictures":"#113ccf",pixar:"#1b75bb",marvel:"#e62429",twentieth:"#b38a2e","disney-plus":"#0b8fd0",hulu:"#13b05f",abc:"#3a3a3a",wbd:"#0b5fd1",hbo:"#5b2bd6",max:"#002be7",dc:"#0476f2","wb-animation":"#d39a00","discovery-plus":"#2175ff",
@@ -3088,19 +3157,22 @@ const tuileMarque=x=>`<a class="mq" href="#/studio/${x.M.k}/${x.k}" style="--mq:
 const marqueDeU=it=>{for(const M of MAISONS){const m=M.m.find(x=>dansMarque(it,x));if(m)return[M,m]}return[null,null]};
 let GAL_N=0;const galU=(titre,ims,i=0)=>{const id="u"+(GAL_N++);GALS[id]={titre,ims,mode:""};return `data-gal="${id}" data-i="${i}"`};
 function herosU(liste,logoDefaut,fam){
-  if(!liste.length)return"";const ims=liste.map(x=>univ(x.k));
+  if(!liste.length)return"";const SC=typeof TMDB_SCENES!=="undefined"?TMDB_SCENES:{};liste=liste.slice().sort((a,b)=>(SC[b.id]?1:0)-(SC[a.id]?1:0));const ims=liste.map(x=>univ(x.k));
   return `<div id="heros" class="heros-u" aria-roledescription="carrousel" aria-label="${echap(fam)}"><div class="heros-cadre"><div class="piste-heros">${liste.map((it,i)=>{const[M,m]=marqueDeU(it),lg=m?LR(m[0]):logoDefaut,g=galU(fam,ims,i);
-    return `<article class="diap ombre${it.port?" u-port":" u-pays"}${i?"":" on"}" aria-label="${echap(it.t)}"><span class="art" style="background-image:url('${univ(it.k)}')"></span><span class="art-m" style="background-image:url('${univ(it.k)}')"></span><a class="tout" href="#" ${g} tabindex="-1" aria-hidden="true"></a>
-      <div class="contenu">${lg?`<img class="logo u-logo-d" src="${lg}" alt="${echap(m?m[1]:fam)}" draggable="false" onerror="this.remove()">`:""}<h2 class="u-titre">${echap(it.t)}</h2><p>${echap(it.s)}</p><div class="meta">${echap(fam)}${M&&M.nom!==fam?` • ${echap(M.nom)}`:""}</div><div class="etiquettes"><span>Fan art</span><span>${/affiche/i.test(fam)||it.port?"Affiche":it.i!==undefined?"Logo":"Fond d'écran"}</span>${m?`<span>${echap(m[1])}</span>`:""}</div><div class="bas-heros"><a class="btn glace" href="#" ${g} draggable="false">${I.lecture} Découvrir</a></div></div>${it.port?`<img class="u-aff" src="${univ(it.k)}" alt="" draggable="false">`:""}</article>`}).join("")}</div>
+    const sc=SC[it.id],fd=sc?`img/univers/tmdb/${it.id}-scene.jpg`:univ(it.k);
+    return `<article class="diap ombre${sc?" u-scene":it.port?" u-port":" u-pays"}${i?"":" on"}" aria-label="${echap(it.t)}"><span class="art" style="background-image:url('${fd}')"></span><span class="art-m" style="background-image:url('${univ(it.k)}')"></span><a class="tout" href="#" ${g} tabindex="-1" aria-hidden="true"></a>
+      <div class="contenu">${sc&&sc.logo?`<img class="logo u-logo-film" src="img/univers/tmdb/${it.id}-logo.png" alt="${echap(it.t)}" draggable="false" onerror="this.remove()">`:""}${lg&&!(sc&&sc.logo)?`<img class="logo u-logo-d" src="${lg}" alt="${echap(m?m[1]:fam)}" draggable="false" onerror="this.remove()">`:""}<h2 class="u-titre">${echap(it.t)}</h2><p>${echap(it.s)}</p><div class="meta">${echap(fam)}${M&&M.nom!==fam?` • ${echap(M.nom)}`:""}</div><div class="etiquettes"><span>Fan art</span><span>${/affiche/i.test(fam)||it.port?"Affiche":it.i!==undefined?"Logo":"Fond d'écran"}</span>${m?`<span>${echap(m[1])}</span>`:""}</div><div class="bas-heros"><a class="btn glace" href="#" ${g} draggable="false">${I.lecture} Découvrir</a></div></div>${sc?`<a class="u-carte" href="#" ${g} aria-label="Voir ma création ${echap(it.t)}"><img src="${univ(it.k)}" alt="" draggable="false"><small>Ma création</small></a>`:""}</article>`}).join("")}</div>
     <button class="fleche g" aria-label="Précédent">${I.g}</button><button class="fleche d" aria-label="Suivant">${I.d}</button></div>
     <div class="points">${liste.map((it,i)=>`<button aria-label="${echap(it.t)}" class="${i?"":"on"}"></button>`).join("")}</div></div>`}
 const vignU=(it,ims,i,titre,num)=>{const h=`<a class="vignette" href="#" ${galU(titre,ims,i)} aria-label="${echap(it.t)}"><span class="affiche${it.port?"":" u-large"}" style="--deg:linear-gradient(160deg,#16204a,#2a3f8f)"><span class="img" style="background-image:url('${univ(it.k)}')"></span></span><span class="legende"><small>${echap(it.t)}</small></span></a>`;return num?`<div class="top${num>9?" deux":""}"><span class="num">${num}</span>${h}</div>`:h};
-function rangeeU(titre,liste,{lien="",chapeau="",tops=false}={}){
+function rangeeU(titre,liste,{lien="",chapeau="",tops=false,logo=""}={}){
   if(!liste.length)return"";const ims=liste.map(x=>univ(x.k));
-  return `<section class="section rail-section"><div class="titre-rangee"><h2>${titre}</h2>${lien?`<span class="rg-outils"><a href="${lien}">Tout voir</a></span>`:""}</div>${chapeau?`<p class="chapeau">${chapeau}</p>`:""}
+  return `<section class="section rail-section${logo?" a-logo":""}"><div class="titre-rangee"><h2>${logo?`<img class="h2-logo" src="${logo}" alt="${echap(titre)}" onerror="this.replaceWith(document.createTextNode(this.alt))">`:titre}</h2>${lien?`<span class="rg-outils"><a href="${lien}">Tout voir</a></span>`:""}</div>${chapeau?`<p class="chapeau">${chapeau}</p>`:""}
   <div class="rail"><button class="fleche g" aria-label="Précédent">${I.g}</button><div class="piste${tops?" tops":""}${liste.every(x=>!x.port)?" u-pays-piste":""}">${liste.map((it,i)=>vignU(it,ims,i,titre,tops?i+1:0)).join("")}</div><button class="fleche d" aria-label="Suivant">${I.d}</button></div></section>`}
 const montageU=(nom,sous,lien,ims,c)=>`<a class="vignette" href="${lien}" aria-label="${echap(nom)}"><span class="affiche col u-montage" style="--deg:linear-gradient(160deg,${c[0]},${c[1]})"><span class="u-mos">${[0,1,2,3].map(j=>`<i style="background-image:url('${ims[j%ims.length]}')"></i>`).join("")}</span><span class="txt"><b>${echap(nom)}</b><small>${echap(sous)}</small></span></span><span class="legende"><small>${ims.length} créations</small></span></a>`;
-const montagesMaisons=(sauf)=>railAffiches("Les collections","Une collection par maison de cinéma : toutes mes créations faites à partir de ses films et de ses marques.",MAISONS.filter(M=>M.k!==sauf&&creationsMaison(M).length).map(M=>{const l=creationsMaison(M),po=l.filter(x=>x.port);return montageU(M.nom,"Collection",`#/studio/${M.k}`,(po.length>=4?po:l).map(x=>univ(x.k)),M.c)}),"#/univers/studios");
+const POSTER_M=["disney","warner","paramount","nbcu","sony","apple","amazon","france"];
+const posterMaison=(M,n)=>`<a class="vignette" href="#/studio/${M.k}" aria-label="Collection ${echap(M.nom)}"><span class="affiche col u-poster" style="--deg:linear-gradient(160deg,${M.c[0]},${M.c[1]})"><span class="img" style="background-image:url('img/posters/umaison-${M.k}.webp')"></span></span><span class="legende"><small>${echap(M.nom)} · ${n} créations</small></span></a>`;
+const montagesMaisons=(sauf)=>railAffiches("Les collections","Une collection par maison de cinéma : toutes mes créations faites à partir de ses films et de ses marques.",MAISONS.filter(M=>M.k!==sauf&&creationsMaison(M).length).map(M=>{const l=creationsMaison(M),po=l.filter(x=>x.port);if(POSTER_M.includes(M.k))return posterMaison(M,l.length);return montageU(M.nom,"Collection",`#/studio/${M.k}`,(po.length>=4?po:l).map(x=>univ(x.k)),M.c)}),"#/univers/studios");
 const top10U=l=>{const po=l.filter(x=>x.port);return(po.length>=6?po:l).slice(0,10)};
 function pageMaison(k,mk){const M=MAISONS.find(x=>x.k===k);if(!M)return pageUnivers("");const tout=creationsMaison(M),o=mk?creationsMaison(M,mk):tout,mm=M.m.find(x=>x[0]===mk);
   document.title=`${mm?mm[1]:M.nom}, mes détournements, Guilhem Mesnier`;GAL_N=0;
@@ -3108,7 +3180,7 @@ function pageMaison(k,mk){const M=MAISONS.find(x=>x.k===k);if(!M)return pageUniv
   const tete=`<div class="u-tete" style="--c1:${M.c[0]};--c2:${M.c[1]}"><a class="btn pa-verre" href="#/univers">← Mon univers</a>${mm?`<img class="u-tete-l" src="${LR(mm[0])}" alt="${echap(mm[1])}" onerror="this.remove()">`:logoMaison(M,"u-tete-l")}<p>${echap(mm?mm[1]+", une marque de "+M.nom+".":M.d)}</p></div>`;
   const marquesT=M.m.length>1?`<section class="section"><div class="titre-rangee"><h2>Les marques de ${echap(M.nom)}</h2></div><div class="maisons-tuiles sous">${M.m.map(m=>{const n=creationsMaison(M,m[0]).length,c=coulMarque(M,m[0]);return n?`<a class="maison-tuile${mk===m[0]?" on":""}" href="#/studio/${M.k}/${m[0]}" style="--c1:${c[0]};--c2:${c[1]}" aria-label="${echap(m[1])}"><img src="${LR(m[0])}" alt="${echap(m[1])}" onerror="this.replaceWith(Object.assign(document.createElement('b'),{className:'m-nom',textContent:this.alt}))"><span class="n">${n}</span></a>`:""}).join("")}</div></section>`:"";
   const ids=o.filter(x=>x.port).map(x=>x.id).filter(i=>typeof TMDB_AVANT!=="undefined"&&TMDB_AVANT[i]);
-  const parMarque=mk?"":M.m.map(m=>rangeeU(m[1],creationsMaison(M,m[0]),{lien:`#/studio/${M.k}/${m[0]}`})).join("");
+  const parMarque=mk?"":M.m.map(m=>rangeeU(m[1],creationsMaison(M,m[0]),{lien:`#/studio/${M.k}/${m[0]}`,logo:LR(m[0])})).join("");
   return herosU(diaps.length?diaps:o.slice(0,8),"",mm?mm[1]:M.nom)+tete+marquesT+rangeeU(`Le Top 10 ${mm?echap(mm[1]):echap(M.nom)}`,top10U(o),{tops:true,chapeau:"Mes créations préférées, de la première à la dixième."})+railYT(YT[0],{titre:`Les intros recréées en vidéo`,liste:videosMarque(mk?[mk]:M.m.map(m=>m[0]))})+parMarque+montagesMaisons(M.k)
   +`<section class="section" id="grille"><div class="titre-rangee"><h2>${mm?echap(mm[1])+", ":""}toutes les créations (${o.length})</h2>${mk?`<a href="#/studio/${M.k}">Tout ${echap(M.nom)}</a>`:""}</div><div class="holos">${o.map((it,i)=>`<div class="holo${it.port?"":" large"}" data-g="${i}"><img src="${univ(it.k)}" alt="${echap(it.t)}" data-g="${i}" loading="lazy"><div class="cap"><b>${echap(it.t)}</b>${echap(it.s)}</div></div>`).join("")}</div></section>
   ${ids.length?avantApres(ids,"Avant, après","À gauche l'affiche officielle, à droite ma version. Faites glisser pour comparer."):""}
@@ -3220,19 +3292,19 @@ function pageUnivers(r){
    <section class="section"><div class="ec-grille">${ETUDES.map(carteEtude).join("")}</div></section>${planchesLogos()}
    <section class="section"><p class="mention">${echap(MENTION)} Fan art, usage non commercial : les films et les marques appartiennent à leurs propriétaires. Images tirées de mon portfolio de 2025.</p></section></div>`;
   if(r==="marques")return `<div class="u-page" style="--c1:#0a0f2a;--c2:#1b2a6b"><div class="u-tete"><a class="btn pa-verre" href="#/univers">← Mon univers</a><h1 class="u-h1">Par marque</h1><p>Chaque création rangée dans la marque qui la porte : les affiches, les fonds d'écran, les logos et les intros en vidéo. Survolez une tuile, elle prend la couleur de la marque.</p></div><section class="section"><div class="mq-grille">${toutesMarques().map(tuileMarque).join("")}</div></section>`+montagesMaisons("")+`<section class="section"><p class="mention">${echap(MENTION)} Fan art, usage non commercial. Logos officiels : TMDB.</p></section></div>`;
-  if(/^v-/.test(r)){const L=YT.find(x=>"v-"+x.id===r);if(L)return pageVideos(L)}
+  if(/^v-/.test(r)){const L=YT.concat(PLYT).find(x=>"v-"+x.id===r);if(L)return pageVideos(L)}
   if(!R){GAL_N=0;const C=creationsU(),pick=ids=>ids.map(id=>C.find(x=>x.id===id)).filter(Boolean);
     const indis=pick(["a03","f01","a15","m0","a02","f03","a05","m4","a11","f02","a09","m17"]);
     const TI=[["affiches","Les affiches",univ("affiches/a03"),"img/logos/marque-u-affiches.png",aff.length],["fonds","Les fonds d'écran",univ("fonds/f01"),"img/logos/marque-u-fonds.png",fonds.length],["studios","Les logos",univ("marques/01"),"img/logos/marque-u-studios.png",marques.length],["sites","Les sites web",(SITES.find(s=>!s.cache)||{}).v,"img/logos/marque-u-sites.png",SITES.filter(x=>!x.cache).length]];
-    const TV=[["recreations","Recréations de logos","szZGm7tjh60"],["showreels","Showreels et compilations","Y4IE-CwOye0"],["originales","Créations originales","gaqULSYFnXY"]];
+    const TV=[["recreations","Intros de studios recréées en 3D","szZGm7tjh60","Disney, Pixar, Warner, Paramount…"],["showreels","Montages d'intros en musique","Y4IE-CwOye0","Showreels et compilations"],["originales","Logos et génériques inventés","gaqULSYFnXY","Mes propres studios animés"]];
     const intro=`<section class="u-ouverture">${murAffiches(aff.filter(a=>!/Miss USA/.test(a[1])).map(a=>univ("affiches/"+a[0])))}<div class="u-ouv-txt">${mondes("univers")}<h1>Mon univers</h1>
       <p class="u-rev">Mes créations personnelles, faites pour le plaisir et pour apprendre, à côté des études.</p>
       <p class="u-rev">Des affiches de cinéma refaites, des fonds d'écran, des logos de studios redessinés, et leurs intros recréées en vidéo.</p>
       <p class="u-rev">Des exercices de direction artistique : du fan art, sans aucun usage commercial.</p>
       <button class="btn blanc u-rev u-entrer" data-aller="u-entree">Entrer ${I.d}</button></div></section>`;
     return intro+`<div id="u-entree"></div>`+rangeeU("Les indispensables",indis,{chapeau:"Une sélection d'affiches, de fonds d'écran et de logos : ce que je montrerais en premier."})
-     +`<section class="section apparait"><div class="titre-rangee"><h2>Explorer mon univers</h2><span class="rg-outils"><a href="${YT_CHAINE}" target="_blank" rel="noopener">La chaîne YouTube ↗</a></span></div><p class="chapeau">Trois portes pour les images, trois pour les vidéos.</p><div class="u-cats u-cats-6">${TI.filter(x=>x[0]!=="sites").map(([id,nom,bg,lg,n])=>`<a class="u-cat" href="#/univers/${id}" aria-label="${nom}"><span class="u-cat-im" style="background-image:url('${bg}')"></span><img class="u-cat-l" src="${lg}" alt="${nom}"><span class="u-cat-n">${n} créations</span></a>`).join("")}${TV.map(([id,nom,im])=>{const L=YT.find(x=>x.id===id),n=L.v.length+(id==="showreels"?YT[2].v.length:0);return `<a class="u-cat" href="#/univers/v-${id}" aria-label="${nom}"><span class="u-cat-im" style="background-image:url('img/yt/${im}.webp')"></span><span class="u-cat-titre">${nom}</span><span class="u-cat-n">${n} vidéos</span><span class="u-cat-play">${I.lecture||"▶"}</span></a>`}).join("")}</div></section>`
-     +railEtudes()+railYT(YT[0])+rangeeU("Les affiches",RUBRIQUES[0].items().map(x=>({...x,port:1,id:x.k.split("/")[1]})).filter(x=>!/Miss USA/.test(x.t)).slice(0,20),{lien:"#/univers/affiches"})
+     +`<section class="section apparait"><div class="titre-rangee"><h2>Explorer mon univers</h2><span class="rg-outils"><a href="${YT_CHAINE}" target="_blank" rel="noopener">La chaîne YouTube ↗</a></span></div><p class="chapeau">Trois portes pour les images, trois pour les vidéos.</p><div class="u-cats u-cats-6">${TI.filter(x=>x[0]!=="sites").map(([id,nom,bg,lg,n])=>`<a class="u-cat" href="#/univers/${id}" aria-label="${nom}"><span class="u-cat-im" style="background-image:url('${bg}')"></span><img class="u-cat-l" src="${lg}" alt="${nom}"><span class="u-cat-n">${n} créations</span></a>`).join("")}${TV.map(([id,nom,im,sous])=>{const L=YT.find(x=>x.id===id),n=L.v.length+(id==="showreels"?YT[2].v.length:0);return `<a class="u-cat" href="#/univers/v-${id}" aria-label="${nom}"><span class="u-cat-im" style="background-image:url('img/yt/${im}.webp')"></span><span class="u-cat-titre">${nom}</span><span class="u-cat-n">${n} vidéos · ${sous}</span><span class="u-cat-play">${I.lecture||"▶"}</span></a>`}).join("")}</div></section>`
+     +railPL()+railEtudes()+railYT(YT[0])+rangeeU("Les affiches",RUBRIQUES[0].items().map(x=>({...x,port:1,id:x.k.split("/")[1]})).filter(x=>!/Miss USA/.test(x.t)).slice(0,20),{lien:"#/univers/affiches"})
      +railYT(YT[1])+rangeeU("Les fonds d'écran",RUBRIQUES[2].items().slice(0,16),{lien:"#/univers/fonds"})
      +avantApres(["a02","a05","a11","a15"],"Avant, après","À gauche l'affiche d'origine, sans texte ; à droite ma version. Faites glisser le curseur, ou agrandissez.")
      +railYT(YT[2])+rangeeU("Les logos",RUBRIQUES[1].items().slice(0,16),{lien:"#/univers/studios"})+railYT(YT[3])
@@ -3486,7 +3558,7 @@ function ouvrirVideo(v,titre,lien){
 }
 /* 14 novembre : une page par catégorie de vidéos (Portfolios vidéo, Showreels, Recréations de logos…), vidéos qui tournent en fond, lecteur intégré */
 const COUL_YT={recreations:["#0b1030","#24306e"],showreels:["#1a0606","#6a1212"],compilations:["#06141a","#0f4a5a"],originales:["#120a24","#4a2a8a"],showcases:["#140c02","#6a4410"],universitaires:["#071a10","#165a3a"]};
-function pageVideos(L){const c=COUL_YT[L.id]||["#1a0606","#5a1010"],lis=L.v.filter(v=>!v[4]),prem=(lis[0]||L.v[0]),fond=lis.slice(0,4).map(v=>v[0]);
+function pageVideos(L){const c=L.c||COUL_YT[L.id]||["#1a0606","#5a1010"],lis=L.v.filter(v=>!v[4]),prem=(lis[0]||L.v[0]),fond=lis.slice(0,4).map(v=>v[0]);
   const enLigne=location.protocol!=="file:";
   const fonds=fond.map((id,k)=>`<div class="vp-fond-v" style="--k:${k}"><img src="img/yt/${id}.webp" alt="">${enLigne?`<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&playsinline=1&rel=0&modestbranding=1&enablejsapi=1" class="yt-suivi" data-repli="fond" title="" tabindex="-1" aria-hidden="true" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>`:""}</div>`).join("");
   return `<div class="u-page vp-page" style="--c1:${c[0]};--c2:${c[1]}">
@@ -3494,7 +3566,7 @@ function pageVideos(L){const c=COUL_YT[L.id]||["#1a0606","#5a1010"],lis=L.v.filt
 <div class="vp-texte"><a class="btn pa-verre" href="#/univers">← Mon univers</a><h1 class="u-h1">${L.nom}</h1><p>${L.d}</p><div class="m-tags"><span>${L.v.length} vidéos</span><span>Sur YouTube</span></div>
 <div class="m-btns"><a class="btn verre" href="${YT_CHAINE}" target="_blank" rel="noopener">${I.lecture||"▶"} Voir la chaîne YouTube</a></div></div></header>
 <section class="section vp-lect-sec"><div class="vp-lecteur" id="vp-lecteur" data-id="${prem[0]}"><div class="yt-cadre" id="vp-cadre">${enLigne?`<iframe src="https://www.youtube-nocookie.com/embed/${prem[0]}?rel=0&playsinline=1&enablejsapi=1" class="yt-suivi" data-repli="lecteur" data-id="${prem[0]}" title="${echap(prem[1])}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`:`<a class="vp-hors" href="https://www.youtube.com/watch?v=${prem[0]}" target="_blank" rel="noopener"><img src="img/yt/${prem[0]}.webp" alt=""><span class="vid-play">${I.lecture||"▶"}</span></a>`}</div>
-<div class="vp-barre"><b id="vp-titre">${echap(prem[1])}</b><button class="btn pa-verre" id="vp-agrandir" type="button">⤢ Agrandir</button><a class="btn pa-verre" id="vp-yt" href="https://www.youtube.com/watch?v=${prem[0]}" target="_blank" rel="noopener">Voir sur YouTube ↗</a></div></div></section>
+<div class="vp-barre"><b id="vp-titre">${echap(prem[1])}</b><button class="btn pa-verre" id="vp-agrandir" type="button">⤢ Agrandir</button><button class="btn pa-verre" id="vp-plein" type="button">⛶ Plein écran</button><a class="btn pa-verre" id="vp-yt" href="https://www.youtube.com/watch?v=${prem[0]}" target="_blank" rel="noopener">Voir sur YouTube ↗</a></div></div></section>
 <section class="section"><div class="titre-rangee"><h2>Toutes les vidéos</h2></div><div class="vid-grille">${L.v.map(v=>carteYT(v,L.nom)).join("")}</div></section>
 <section class="section vp-autres"><div class="titre-rangee"><h2>Les autres catégories</h2></div><div class="vp-pastilles">${YT.filter(x=>x!==L).map(x=>`<a class="btn pa-verre" href="#/univers/v-${x.id}">${x.nom} <small>${x.v.length}</small></a>`).join("")}</div></section></div>`}
 function lireDansPage(id,titre){const cad=$("#vp-cadre");if(!cad)return false;
@@ -3508,9 +3580,15 @@ addEventListener("message",e=>{if(!/youtube/.test(e.origin))return;let d;try{d=t
   if(f.dataset.repli==="fond"){f.remove();return}
   const id=f.dataset.id,box=f.parentElement;box.innerHTML=`<a class="vp-hors" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener"><img src="img/yt/${id}.webp" alt=""><span class="vp-hors-t">${I.lecture||"▶"} Cette vidéo se regarde sur YouTube (droits de la musique)</span></a>`});
 new MutationObserver(suivreYT).observe(document.documentElement,{childList:true,subtree:true});
-function ouvrirYT(id,titre){$("#yt-fen")?.remove();const f=document.createElement("div");f.id="yt-fen";f.setAttribute("role","dialog");f.setAttribute("aria-label",titre||"Vidéo");
-  f.innerHTML=`<div class="yt-boite"><div class="yt-haut"><b>${echap(titre||"")}</b><button class="btn pa-verre" type="button" onclick="const c=this.closest('.yt-boite').querySelector('.yt-cadre');(c.requestFullscreen||c.webkitRequestFullscreen).call(c)">⤢ Agrandir</button><a class="btn pa-verre" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">Voir sur YouTube ↗</a><button class="x" aria-label="Fermer">✕</button></div><div class="yt-cadre"><iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="${echap(titre||"Vidéo YouTube")}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div>`;
-  document.body.appendChild(f);document.body.classList.add("fige");addEventListener("keydown",function k(e){if(e.key==="Escape"){f.remove();document.body.classList.remove("fige");removeEventListener("keydown",k)}})}
+const catDeYT=id=>(YT.find(L=>L.v.some(v=>v[0]===id))||{}).id;
+function ouvrirYT(id,titre,cat){cat=cat||catDeYT(id);V.yt=id;V.video=null;V.ims=[];V.titre=titre;V.ajust="";
+  habillerVisio("video seul ytm");const c=COUL_YT[cat]||["#0b1030","#24306e"];fen.style.setProperty("--yt1",c[0]);fen.style.setProperty("--yt2",c[1]);
+  $("#visio .titre b").textContent=titre||"";$("#visio .titre small").textContent=(YT.find(L=>L.id===cat)||{}).nom||"";$("#visio .miniatures").innerHTML="";
+  const y=$("#visio .yt-haut");y.href="https://www.youtube.com/watch?v="+id;y.hidden=false;
+  let w=$("#visio .yt-ifr");if(!w){w=document.createElement("div");w.className="yt-ifr";$("#visio .scene").appendChild(w)}
+  w.innerHTML=location.protocol==="file:"?`<a class="vp-hors" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener"><img src="img/yt/${id}.webp" alt=""><span class="vid-play">${I.lecture||"▶"}</span></a>`:`<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1&enablejsapi=1" class="yt-suivi" data-repli="lecteur" data-id="${id}" title="${echap(titre||"Vidéo")}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+  majYT();document.documentElement.classList.add("fige")}
+function majYT(){visio.classList.toggle("yt-larg",V.ajust==="largeur");const sc=$("#visio .scene"),w=$("#visio .yt-ifr");if(sc&&w){const sw=sc.clientWidth-32,sh=sc.clientHeight-32;let L=V.ajust==="largeur"?sw:Math.min(sw,sh*16/9);w.style.width=Math.round(L)+"px";w.style.height=Math.round(L*9/16)+"px"}$("#visio [data-fit=largeur]").classList.toggle("on",V.ajust==="largeur");$("#visio [data-fit=hauteur]").classList.toggle("on",V.ajust!=="largeur")}
 function ouvrirVisio(titre,ims,mode="",i=0){
   if(!ims.length)return;
   Object.assign(V,{ims,mode,titre,i:0,z:1,ajust:/long/.test(mode)?"long":""});
@@ -3569,14 +3647,15 @@ function montrer(n){
   if(V.ims[V.i+1])new Image().src=V.ims[V.i+1];
 }
 function fermerVisio(){
+  if(V.yt){$("#visio .yt-ifr")?.remove();V.yt=null}
   if(document.fullscreenElement)document.exitFullscreen?.();
   if(V.video){const w=$("#visio .scene video");V.video.currentTime=w.currentTime||0;w.pause();w.removeAttribute("src");w.load();V.video=null}
   visio.className="";document.documentElement.classList.remove("fige");$("#visio .scene img").removeAttribute("src");
 }
 $("#visio .x").onclick=fermerVisio;
 fen.append($("#visio .fl.g"),$("#visio .fl.d"));
-$("#visio .zoom").onclick=e=>{const f=e.target.closest("[data-fit]");if(f){const avant=filmActif();V.ajust=f.dataset.fit==="largeur"?"largeur":"";const on=filmMaj();zoomer(1,false);$("#visio .scene").scrollTop=0;$("#visio .scene").scrollLeft=0;if(on)filmPage(V.i);else if(avant)montrer(V.i);return}const b=e.target.closest("[data-z]");if(b)zoomer(palier(+b.dataset.z))};
-addEventListener("resize",()=>{if(visio.classList.contains("on")&&!V.video)zoomer(V.z||1,false)});
+$("#visio .zoom").onclick=e=>{if(V.yt){const f=e.target.closest("[data-fit]");if(f){V.ajust=f.dataset.fit==="largeur"?"largeur":"";majYT()}return}const f=e.target.closest("[data-fit]");if(f){const avant=filmActif();V.ajust=f.dataset.fit==="largeur"?"largeur":"";const on=filmMaj();zoomer(1,false);$("#visio .scene").scrollTop=0;$("#visio .scene").scrollLeft=0;if(on)filmPage(V.i);else if(avant)montrer(V.i);return}const b=e.target.closest("[data-z]");if(b)zoomer(palier(+b.dataset.z))};
+addEventListener("resize",()=>{if(V.yt){majYT();return}if(visio.classList.contains("on")&&!V.video)zoomer(V.z||1,false)});
 /* on déplace l'image agrandie en la tirant à la souris */
 {const sc=$("#visio .scene");let pan=null;
  sc.addEventListener("pointerdown",e=>{if(e.pointerType!=="mouse"||!sc.classList.contains("zoome"))return;pan={x:e.clientX,y:e.clientY,l:sc.scrollLeft,t:sc.scrollTop};sc.classList.add("tire")});
@@ -3612,7 +3691,8 @@ $("#visio .scene").addEventListener("touchend",e=>{if(x0===null||V.z>1||V.ajust)
 document.addEventListener("click",e=>{
   if(e.target.closest("#visio"))return;
   const yv=e.target.closest("[data-ytv]");
-  if(e.target.closest("#vp-agrandir")){const c=$("#vp-cadre");(c.requestFullscreen||c.webkitRequestFullscreen||(()=>{})).call(c);return}
+  if(e.target.closest("#vp-agrandir")){const f=$("#vp-cadre iframe"),id=f?.dataset.id||$("#vp-lecteur")?.dataset.id;if(id){ouvrirYT(id,$("#vp-titre")?.textContent);return}}
+  if(e.target.closest("#vp-plein")){const c=$("#vp-cadre");(c.requestFullscreen||c.webkitRequestFullscreen||(()=>{})).call(c);return}
   if(yv&&location.protocol!=="file:"){e.preventDefault();if(!lireDansPage(yv.dataset.ytv,yv.dataset.titre))ouvrirYT(yv.dataset.ytv,yv.dataset.titre);return}
   if(e.target.closest("#yt-fen .x")||e.target.matches("#yt-fen")){$("#yt-fen")?.remove();document.body.classList.remove("fige");return}
   const etb=e.target.closest("[data-etude]");
